@@ -1,0 +1,274 @@
+---
+import PracticeLayout from '../../layouts/PracticeLayout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+---
+
+<PracticeLayout
+  title="Location Data"
+  description="Your location is estimated through GPS, IP address, Wi-Fi networks, Bluetooth beacons, and cell towers. Different methods produce different precision. Turning off GPS does not stop all of them."
+  subtitle="Turning off GPS does not stop location tracking."
+  lastVerified="March 23, 2026"
+  platformCount={0}
+  severity="high"
+  severityText="Location data is collected through multiple independent methods with different precision levels. Disabling GPS on your phone stops one method; it does not affect IP-based geolocation, Wi-Fi triangulation, or cell tower estimates. Location data is sold to data brokers, used by advertisers, and has been subject to law enforcement requests including geofence warrants targeting everyone in a geographic area."
+>
+
+  <!-- WHAT IT IS -->
+  <div slot="what-it-is">
+    <p>Location data is any data that indicates where you are or have been. It is collected through several distinct technical mechanisms, each with different precision, each controllable in different ways, and each used for different downstream purposes.</p>
+
+    <p>The mechanisms are layered. GPS is the most precise and the most user-controllable. IP-based geolocation is the least precise and the least controllable. Wi-Fi and Bluetooth triangulation fall in between. Cell tower triangulation is available on any phone regardless of what settings the user has configured, and is accessible to mobile carriers independent of app permissions.</p>
+
+    <p>Most users think of location privacy as a binary: location is either on or off. That model does not match how location data is actually collected. Turning off GPS removes one input. The others continue.</p>
+  </div>
+
+  <!-- WHY IT MATTERS -->
+  <div slot="why-it-matters">
+    <p>Location data is among the most sensitive categories of personal information because of what it reveals over time. A single location fix tells you where someone is. A week of location data tells you where they live, where they work, what medical facilities they have visited, what religious institutions they attend, and who they spend time with. That is not an inference. It is a direct record of physical life.</p>
+
+    <p>Location data from apps has historically been sold to data brokers, who resell it to advertisers, insurance companies, hedge funds, and others. In 2021 and 2022, investigative reporting documented data brokers selling location data from health clinic visits and from religious sites. In 2023, FTC enforcement actions addressed the sale of sensitive location data specifically. The market has contracted but not ended.</p>
+
+    <WarningCallout title="Geofence warrants: you are a suspect if you were nearby">
+      <p>Geofence warrants are legal requests that ask Google, Apple, or other companies to provide data on all devices present in a geographic area during a specific time window. They do not target a specific individual. Anyone whose device was in the area is included in the initial response. Google's Sensorvault database, which stores location history for opted-in users, was the primary target of these warrants before Google's 2024 shift to on-device Timeline storage. The legal landscape around geofence warrants is in flux, with some courts finding them unconstitutional and others upholding them.</p>
+    </WarningCallout>
+
+    <p>The commercial incentive to collect location data is large and mostly invisible. The location data that apps collect is not usually used for the app's stated purpose — it is monetized through location SDKs embedded in the app's code. When you grant a weather app location permission, the app delivers weather. The location SDK embedded in the app reports your location to a third-party data aggregator. These are separate transactions. The SDK revenue is often how free apps are monetized.</p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div slot="how-it-works">
+    <ol class="steps-list">
+      <li>
+        <strong>GPS (Global Positioning System).</strong> Uses signals from satellites to calculate your position. Precision: 3 to 5 meters in good conditions. Requires clear sky visibility; less accurate indoors or in dense urban areas. Battery-intensive. Controlled by OS-level location permissions. App permission required. You can grant "while using" or "always" access.
+      </li>
+      <li>
+        <strong>Wi-Fi triangulation.</strong> Uses the signal strength and known location of nearby Wi-Fi networks to estimate position. Works indoors. Precision: 15 to 40 meters in dense network environments. Does not require you to be connected to a Wi-Fi network — proximity is sufficient. Google and Apple maintain databases mapping Wi-Fi network IDs to physical locations. Scanning is controlled by the Wi-Fi scanning permission in Android settings; iOS restricts this more tightly.
+      </li>
+      <li>
+        <strong>Bluetooth beacons.</strong> Retail stores, airports, and other venues deploy Bluetooth Low Energy beacons to enable precise indoor location tracking (within 1 to 3 meters). Requires Bluetooth to be on and often requires the retailer's app to be installed with Bluetooth permission granted. Used primarily for in-store analytics and targeted promotions.
+      </li>
+      <li>
+        <strong>Cell tower triangulation.</strong> Mobile carriers estimate device location by measuring signal strength and timing from multiple cell towers. Precision: 100 meters in dense urban areas; 1 to several kilometers in rural areas. This is carrier-level infrastructure. It is not subject to OS app permissions — it is a function of how cellular networks operate. Mobile carriers have your location by the nature of providing service.
+      </li>
+      <li>
+        <strong>IP address geolocation.</strong> Your IP address is assigned by your ISP and can be used to estimate your location. Precision varies widely: it may resolve to your city or neighborhood accurately; it may resolve to your ISP's regional hub, which could be a different city. This is the method that works regardless of device settings, app permissions, or whether you have a phone at all. Any server you connect to sees your IP address.
+      </li>
+    </ol>
+  </div>
+
+  <!-- WHAT THEY KNOW ABOUT YOU -->
+  <div slot="what-they-know">
+    <p>A company with 30 days of continuous location data from your phone knows your home address (where the device is most nights), your workplace (where it is on weekday mornings), your gym (early mornings, certain days), your medical providers (clinic, pharmacy), your religious practices (if any), and your social patterns (friend's address, frequency, duration). This is derived from the location record without any other data. It is one of the most intimate data collections that exists commercially.</p>
+
+    <p>Location data companies use the phrase "precise location" to describe GPS-quality data and "approximate location" for cell tower or IP-based estimates. The precise/approximate distinction is technically accurate but somewhat misleading as a privacy framing. Knowing someone visited a neighborhood cancer center three times in two months is sensitive information whether the fix is accurate to 5 meters or 200 meters.</p>
+
+    <p>On iOS, the "precise location" toggle in app permissions controls whether an app can access GPS-quality location or is limited to an approximate area (roughly county-sized). On Android, "precise" vs. "approximate" location are two different permissions that can be granted independently. Approximate location in Android 12 and later limits apps to a few hundred meters' accuracy.</p>
+  </div>
+
+  <!-- WHO HAS YOUR DATA -->
+  <div slot="who-has-data">
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Precision</th>
+            <th>Who Has Access</th>
+            <th>User Controllable?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>GPS</td>
+            <td>3–5 meters</td>
+            <td>Apps with location permission; OS stores history if enabled</td>
+            <td>Yes — via app permission settings and OS location toggle</td>
+          </tr>
+          <tr>
+            <td>Wi-Fi triangulation</td>
+            <td>15–40 meters</td>
+            <td>Apps with location or Wi-Fi scanning permission; Google/Apple mapping databases</td>
+            <td>Partially — Wi-Fi scanning permission in Android; GPS-off limits on iOS</td>
+          </tr>
+          <tr>
+            <td>Bluetooth beacons</td>
+            <td>1–3 meters (indoor)</td>
+            <td>Retailer apps with Bluetooth permission; beacon network operators</td>
+            <td>Yes — disable Bluetooth or deny Bluetooth permission to retailer apps</td>
+          </tr>
+          <tr>
+            <td>Cell towers</td>
+            <td>100m–several km</td>
+            <td>Mobile carrier by default; law enforcement via carrier records</td>
+            <td>No — inherent to cellular service</td>
+          </tr>
+          <tr>
+            <td>IP geolocation</td>
+            <td>City to neighborhood (varies)</td>
+            <td>Any server you connect to; VPN providers if used</td>
+            <td>Partially — VPN routes traffic through a different IP; Tor provides stronger anonymization</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- HOW TO TURN IT OFF -->
+  <div slot="how-to-turn-off">
+    <WarningCallout title="Turning off location does not turn off location">
+      <p>The iOS and Android location services toggles control GPS and Wi-Fi/Bluetooth-based location for apps. They do not affect IP geolocation — your IP address is visible to any server you connect to regardless of device settings. They do not affect cell tower location available to your carrier. Reducing location exposure requires a combination of settings adjustments, not a single toggle.</p>
+    </WarningCallout>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">iOS: Audit and Restrict App Location Access</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &rarr; Privacy and Security &rarr; Location Services.</li>
+        <li>Review each app listed. Most apps should be set to "While Using" at most. Set to "Never" for apps that have no obvious reason to know your location (games, utilities, shopping apps that don't require delivery).</li>
+        <li>For apps set to "While Using" or "Always," look for "Precise Location" underneath. Toggle off "Precise Location" for any app that does not need GPS-quality data. Weather apps, for example, can function accurately with approximate location.</li>
+        <li>Apps set to "Always" have background location access — they can track your location even when the app is closed. Very few apps genuinely need this. Navigation apps (when you are actively navigating) are the clearest legitimate use case.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Android: Audit and Restrict App Location Access</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &rarr; Location &rarr; App permissions.</li>
+        <li>Review apps with "Allow all the time" permission. This is the Android equivalent of iOS "Always." Remove this permission from any app that does not need background location.</li>
+        <li>For apps set to "Allow only while using the app," toggle off "Use precise location" unless the app requires GPS precision.</li>
+        <li>Settings &rarr; Location &rarr; Wi-Fi and Bluetooth scanning. Disable both to prevent apps from using network-based location even when GPS is off. Note that some location-based features (like finding nearby Wi-Fi networks) require this.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Google Location History (Timeline)</h3>
+      <ol class="turnoff-steps">
+        <li>myaccount.google.com &rarr; Data and Privacy &rarr; Location History.</li>
+        <li>Toggle off if enabled. Set auto-delete to the shortest period available.</li>
+        <li>To delete existing history: Google Maps &rarr; Your Timeline &rarr; Settings &rarr; Delete all Timeline data.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Reduce IP Geolocation Exposure</h3>
+      <ol class="turnoff-steps">
+        <li>A VPN routes your internet traffic through a server in a location of your choosing, replacing your home IP address with the VPN server's IP. This changes the city-level location that sites and services can observe. It does not hide your location from the VPN provider.</li>
+        <li>Choose a VPN provider that has a clear, audited no-logs policy. The VPN provider sees your traffic instead of your ISP — the trust relationship shifts, not the fundamental question.</li>
+        <li>Browser fingerprinting can estimate your location independently of IP, using time zone settings, language, and other browser attributes. Adjusting these settings or using a privacy-focused browser like Firefox with appropriate configuration reduces fingerprint-based location inference.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Cell Tower Location</h3>
+      <ol class="turnoff-steps">
+        <li>Cell tower location is inherent to cellular service. Your carrier knows where your phone is at all times when it is connected to the network. The only technical mitigation is to disable cellular service (airplane mode) or use a device without a SIM card on Wi-Fi only.</li>
+        <li>For high-sensitivity situations, some people use a secondary device that is Wi-Fi only with no SIM. This eliminates carrier-level location tracking at the cost of cellular connectivity.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/data-brokers" label="Data Brokers" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/off-platform-tracking" label="Off-Platform Activity Tracking" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/google" label="Google" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/amazon" label="Amazon" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/tiktok" label="TikTok" type="platform" />
+
+</PracticeLayout>
+
+<style>
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .steps-list {
+    padding-left: 1.5rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .steps-list li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  .steps-list li strong {
+    color: var(--color-text-primary);
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  .data-table th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .data-table td {
+    padding: 0.75rem;
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .data-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .turnoff-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .turnoff-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .turnoff-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .turnoff-steps {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .turnoff-steps li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+</style>
