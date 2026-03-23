@@ -1,0 +1,269 @@
+---
+import PracticeLayout from '../../layouts/PracticeLayout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+---
+
+<PracticeLayout
+  title="Dark Patterns"
+  description="The toggle is there. It is just hard to find, confusing to use, and designed to make you give up. How dark patterns work in privacy settings."
+  subtitle="The toggle is there. It is just hard to find, confusing to use, and designed to make you give up."
+  lastVerified="March 23, 2026"
+  platformCount={4}
+  severity="high"
+  severityText="Dark patterns in privacy settings are not accidents. They are deliberate design choices that maximize data collection by making consent as frictionless as possible and withdrawal of consent as difficult as possible. Regulators in the EU have begun issuing fines for the most egregious implementations, but enforcement remains slow relative to the scale of the practice."
+>
+
+  <!-- WHAT IT IS -->
+  <div slot="what-it-is">
+    <p>Dark patterns are user interface design choices that manipulate users into taking actions they may not intend or fully understand. In the context of privacy, dark patterns make it easy to consent to maximum data collection and difficult, confusing, or time-consuming to opt out.</p>
+
+    <p>The term was coined by UX designer Harry Brignull in 2010. The Princeton Web Transparency and Accountability Project identified dark patterns on approximately 11 percent of the most popular websites in a 2019 study. In privacy settings specifically, dark patterns are present on virtually every major platform.</p>
+
+    <p>Dark patterns are not bugs or oversights. They are the output of optimization processes — A/B testing that rewards consent rates and punishes opt-outs — applied by teams that understand user behavior deeply. The resulting interfaces look professional and polished. The friction is intentional.</p>
+  </div>
+
+  <!-- WHY IT MATTERS -->
+  <div slot="why-it-matters">
+    <p>Privacy law in most jurisdictions requires consent to be freely given, specific, informed, and unambiguous. Dark patterns undermine each of these requirements while maintaining technical compliance. A consent banner that buries "Reject All" behind three additional steps while displaying "Accept All" as a prominent single button is technically opt-in. The resulting consent is not meaningful.</p>
+
+    <p>The asymmetry is measurable. Studies of cookie consent banners have found acceptance rates of 90 percent or higher when "Accept" is the only prominent button, dropping to 20-40 percent when "Reject All" is equally prominent. That gap is not explained by user preference. It is explained by design.</p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div slot="how-it-works">
+    <dl class="pattern-list">
+      <div class="pattern-item">
+        <dt>Hidden defaults</dt>
+        <dd>Maximum data collection is always the pre-selected option. Opting out requires affirmative action. No platform defaults to minimum collection.</dd>
+      </div>
+
+      <div class="pattern-item">
+        <dt>Asymmetric friction</dt>
+        <dd>Accepting consent takes one click. Withdrawing consent or managing preferences takes multiple steps, submenus, and confirmation dialogs. The platform invests design resources in making "Accept" easy and "Decline" hard.</dd>
+      </div>
+
+      <div class="pattern-item">
+        <dt>Misdirection</dt>
+        <dd>Visual design draws attention to the consent option while making alternatives visually subordinate. "Accept All" is bold, colorful, and prominently placed. "Manage preferences" is gray, small, and positioned in a corner.</dd>
+      </div>
+
+      <div class="pattern-item">
+        <dt>Confirmshaming</dt>
+        <dd>Opt-out labels are written to make the user feel irrational or guilty for declining. "No thanks, I do not want relevant offers." "I prefer not to get discounts." The framing implies that choosing privacy is a mistake.</dd>
+      </div>
+
+      <div class="pattern-item">
+        <dt>Roach motel</dt>
+        <dd>Easy to get into, nearly impossible to get out. Creating a Facebook account takes two minutes. Deleting one takes 30 days of waiting periods, multiple confirmation screens, and re-authentication. The asymmetry is deliberate.</dd>
+      </div>
+
+      <div class="pattern-item">
+        <dt>Privacy Zuckering</dt>
+        <dd>Named after Mark Zuckerberg; users are tricked into sharing more information publicly than they intended through confusing privacy settings. Complex nested controls, inconsistent terminology, and misleading default descriptions.</dd>
+      </div>
+
+      <div class="pattern-item">
+        <dt>False urgency</dt>
+        <dd>Consent dialogs include countdown timers, "offer expires" language, or UI states that auto-advance after inaction — toward maximum collection, not minimum.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- WHAT THEY KNOW ABOUT YOU -->
+  <div slot="what-they-know">
+    <p>Dark patterns do not themselves collect data. Their function is to maximize the volume of data that other collection mechanisms gather. A platform that successfully deploys dark patterns ends up with consent records showing that most users "chose" maximum data collection — providing legal cover while producing the same behavioral profile that an explicitly non-consensual system would generate.</p>
+  </div>
+
+  <!-- WHO HAS YOUR DATA -->
+  <div slot="who-has-data">
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Example</th>
+            <th>Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Meta (EU Cookie Consent)</td>
+            <td>Meta's EU cookie consent interface required three clicks to decline data collection: initial banner, then manage preferences, then reject all. Accepting required one click.</td>
+            <td>Irish DPC fined Meta 414 million euros in January 2023 for this design.</td>
+          </tr>
+          <tr>
+            <td>Google (Ad Personalization)</td>
+            <td>Google's ad personalization settings are accessible from myaccount.google.com but reaching the relevant toggle requires navigating through Data &amp; privacy, then Ad settings, then Ad personalization. There is no direct link from Google Search or YouTube.</td>
+            <td>Settings exist but are deliberately hard to reach without knowing the path.</td>
+          </tr>
+          <tr>
+            <td>TikTok (Privacy Settings)</td>
+            <td>TikTok's privacy settings are located under Settings &rarr; Privacy, but individual data-sharing controls for ad measurement are nested under additional submenus. The default for most settings is maximum sharing.</td>
+            <td>Most users never reach the relevant toggles.</td>
+          </tr>
+          <tr>
+            <td>Cookie Consent Banners (General)</td>
+            <td>An "Accept All" button with no visible "Reject All" alternative, or a "Reject All" option discoverable only through a multi-step Manage Preferences flow, appears on thousands of websites.</td>
+            <td>Acceptance rates drop sharply when alternatives are equally prominent. The asymmetric design is deployed because it works.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- HOW TO TURN IT OFF -->
+  <div slot="how-to-turn-off">
+    <WarningCallout title="There is no setting to disable dark patterns">
+      <p>There is no setting to disable dark patterns. They are design choices, not features. Awareness is the primary defense: knowing that friction and visual hierarchy in consent interfaces are deliberate helps counter their effect.</p>
+    </WarningCallout>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Take the extra steps</h3>
+      <ol class="turnoff-steps">
+        <li>When a consent interface lacks a visible "Reject All" option, look for "Manage Preferences" or "Customize." The option exists; it is just harder to find.</li>
+        <li>Treat defaults as adversarial. Every pre-checked box and default-on toggle reflects the platform's preferred outcome, not a neutral starting point.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Use browser extensions</h3>
+      <ol class="turnoff-steps">
+        <li>uBlock Origin and similar tools block many tracking scripts before consent dialogs appear.</li>
+        <li>Extensions that auto-reject cookie consent banners (such as "I don't care about cookies" or "Consent-O-Matic") automate the rejection of consent where legally required banners appear.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Report violations</h3>
+      <ol class="turnoff-steps">
+        <li>In the EU, if a platform offers "Accept All" without an equally prominent "Reject All," this may violate GDPR. Complaints can be filed with the European Data Protection Supervisor at edps.europa.eu.</li>
+        <li>In California, CCPA violations can be reported to the California Attorney General at oag.ca.gov.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/off-platform-tracking" label="Off-Platform Activity Tracking" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/data-brokers" label="Data Brokers" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/meta" label="Meta / Instagram" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/google" label="Google" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/amazon" label="Amazon" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/tiktok" label="TikTok" type="platform" />
+
+</PracticeLayout>
+
+<style>
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .pattern-list {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .pattern-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .pattern-item:first-child {
+    padding-top: 0;
+  }
+
+  .pattern-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .pattern-item dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .pattern-item dd {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  .data-table th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .data-table td {
+    padding: 0.75rem;
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .data-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .turnoff-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .turnoff-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .turnoff-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .turnoff-steps {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .turnoff-steps li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+</style>

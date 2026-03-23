@@ -46,8 +46,16 @@ const practices: Array<{
   {
     name: 'Location Data',
     href: '/practices/location-data',
+    severity: 'critical',
+    description: 'Your location is collected continuously by apps, sold by data brokers, and purchased by advertisers, hedge funds, and government agencies. A location history reveals home, workplace, medical providers, and political activity.',
+    platformCount: 4,
+  },
+  {
+    name: 'Dark Patterns',
+    href: '/practices/dark-patterns',
     severity: 'high',
-    description: 'GPS, IP address, Wi-Fi, Bluetooth beacons, and cell towers all produce location estimates. Turning off GPS does not stop them. How to audit and reduce each method.',
+    description: 'The toggle is there. It is just hard to find, confusing to use, and designed to make you give up. How deliberate interface design maximizes data collection while maintaining technical compliance.',
+    platformCount: 4,
   },
 ];
 

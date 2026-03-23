@@ -8,164 +8,149 @@ import FactCard from '../../components/FactCard.astro';
 
 <PlatformLayout
   title="Amazon"
-  description="Amazon combines retail purchase history, Alexa voice recordings, Ring camera footage, advertising tracking, and AWS infrastructure into one of the most comprehensive commercial data profiles available. Here are the settings that matter and what they actually do."
-  subtitle=""
-  category="E-Commerce, Devices, Advertising, and Cloud"
+  description="Amazon knows what you buy, what you almost bought, what you say in your home, and what your neighbors put on their doorbell. Here are the settings that matter and what they actually do."
+  subtitle="Amazon knows what you buy, what you almost bought, what you say in your home, and what your neighbors put on their doorbell."
+  category="E-Commerce & Smart Home Platform"
   lastVerified="March 23, 2026"
-  settingsCount={6}
+  settingsCount={7}
   severity="critical"
-  severityText="Amazon operates at the intersection of retail behavior, voice data, home video surveillance, digital advertising, and cloud infrastructure. Purchase history and browsing behavior on Amazon feed an advertising network that runs on third-party sites and apps. Alexa voice recordings are stored by default. Ring data sharing with law enforcement has been documented. Amazon One collects palm biometrics."
+  severityText="Amazon operates across retail, smart home devices, cloud infrastructure, and advertising. Purchase history reveals behaviors that other platforms can only infer. Alexa devices record and store voice activity inside users' homes. Ring cameras have formalized law enforcement data sharing relationships. Amazon Sidewalk creates a mesh network using customer hardware without prominent disclosure."
 >
 
   <!-- WHAT THEY COLLECT -->
   <div slot="what-they-collect">
     <div class="fact-grid">
       <FactCard
-        label="Purchase and browsing history"
-        text="Every product you view, add to a list, or purchase is logged. Amazon's recommendation algorithm uses this to infer income range, household composition, health conditions, and life stage. The ad targeting system uses the same data."
+        label="Purchase history and browsing behavior"
+        text="Every item you view, add to a wishlist, add to cart, purchase, or return is logged. Browsing behavior on Amazon includes dwell time on product pages, price comparison patterns, and abandoned cart contents."
         severity="critical"
       />
       <FactCard
-        label="Alexa voice recordings"
-        text="Alexa stores recordings of your voice interactions by default. Amazon employees and contractors have historically reviewed a sample of recordings to improve voice recognition. You can delete recordings and disable saving them, but the setting must be actively configured."
-        severity="high"
-      />
-      <FactCard
-        label="Ring camera footage and law enforcement requests"
-        text="Ring stores video footage from your cameras on Amazon's servers. Amazon has provided Ring footage to law enforcement in response to legal requests, and previously operated a program called Neighbors Public Safety Service that allowed police departments to request footage directly. Amazon ended that specific program in 2022 but continues to respond to valid legal requests."
-        severity="high"
-      />
-      <FactCard
-        label="Amazon Advertising network"
-        text="Amazon operates a cross-site and cross-app advertising network. If you have browsed products on Amazon, those interest signals follow you to other websites and apps that run Amazon Ads. This works through a tracking pixel and SDK similar to Meta's and Google's ad networks."
+        label="Voice recordings from inside your home"
+        text="Alexa devices record audio beginning at the wake word and transmit recordings to Amazon servers. Recordings are stored by default and may be reviewed by Amazon employees for voice recognition improvement."
         severity="critical"
+      />
+      <FactCard
+        label="Continuous location data from Ring and Echo"
+        text="Ring doorbells and cameras capture video of your home exterior and visitors. Echo devices log when they are activated and by whom. Combined, these provide a behavioral pattern of household activity."
+        severity="high"
+      />
+      <FactCard
+        label="Amazon Sidewalk uses your device bandwidth"
+        text="Amazon Sidewalk is a mesh networking feature that uses your Echo or Ring device to create a shared network with neighbors' devices. It is enabled by default on most Echo and Ring hardware."
+        severity="high"
       />
     </div>
 
     <div class="collect-detail">
-      <p>Amazon's data collection has a scope that reflects the breadth of its product portfolio. At the retail layer: every search query on Amazon, every product page you visit, every item you add to a cart or wish list, and every purchase. Amazon's product recommendation systems process this data to infer interests, purchasing patterns, income range, and life events. These inferences feed directly into Amazon's advertising targeting.</p>
+      <p>Amazon collects two categories of data that most platforms cannot access: actual purchase behavior (not inferred intent but confirmed transactions) and in-home device activity. Purchase history is among the most valuable data in advertising because it reflects real behavior rather than modeled probability.</p>
 
-      <p>At the device layer: Alexa-enabled devices record audio beginning with the wake word and send it to Amazon's servers for processing. Recordings are stored in your account by default. Amazon's privacy policy states that employees may review a small sample of recordings to improve the service. On Fire TV and Kindle devices, viewing and reading history is collected and used for content recommendations and ad targeting. Amazon Sidewalk, enabled by default on some Echo and Ring devices, creates a shared neighborhood mesh network using your device's bandwidth and connection.</p>
+      <p>The Amazon Ads network is one of the largest digital advertising platforms, rivaling Google in some verticals. It uses purchase history, browsing behavior, and Prime membership activity to target ads both on Amazon properties and across the open web through Amazon DSP.</p>
 
-      <p>At the home security layer: Ring cameras store footage on Amazon's cloud servers. Users can choose local storage on some devices, but cloud storage is the default and is required for most Ring subscription features. Amazon's law enforcement request process has historically been one of the more permissive among major tech companies, though policies have evolved.</p>
-
-      <p>Amazon One is a palm biometric payment system available at Amazon Go stores, Whole Foods, and some third-party venues. Enrollment links your palm print to a payment method. Palm vein patterns are stored on Amazon's servers, not on the device. This is biometric data — it cannot be changed if compromised the way a password can.</p>
-
-      <p>At the advertising layer: Amazon's DSP (Demand-Side Platform) allows advertisers to reach Amazon audiences across Amazon properties and across third-party websites and apps. Your Amazon purchase history, browsing behavior, and Alexa interactions (at an aggregate category level) feed the audience segments that advertisers buy. Amazon is the third-largest digital advertising business by revenue in the US.</p>
+      <p>Ring cameras have formalized relationships with law enforcement. Amazon has disclosed that it provides Ring footage to law enforcement agencies in response to emergency requests, defined broadly, without requiring a warrant or user notification in some circumstances.</p>
     </div>
   </div>
 
   <!-- SETTINGS THAT MATTER -->
   <div slot="settings">
-    <SettingCard
-      name="Alexa Privacy: Voice History"
-      severity="critical"
-      defaultState="On (recordings saved)"
-      platform="Amazon"
-      path={['Alexa app', 'More', 'Settings', 'Alexa Privacy', 'Review Voice History']}
-      webUrl="https://www.amazon.com/alexaprivacysettings"
-      webPath={['Alexa Privacy', 'Manage Your Alexa Data']}
-      description="Controls whether Amazon saves recordings of your Alexa interactions. The default is to save recordings. From Manage Your Alexa Data, you can choose to have recordings deleted automatically after 3 months or 18 months, or switch to not saving recordings. You can also review and delete individual recordings or delete all recordings at once. A separate toggle, 'Help improve Amazon services and develop new features,' controls whether your recordings are used for model training. It is on by default."
-      whatItDoesnt="Turning off recording storage stops Amazon from saving future recordings. It does not delete recordings already stored, which must be deleted manually or via the auto-delete setting. Alexa still processes audio on Amazon's servers for wake word detection and command recognition even when saving is disabled — the audio is processed, just not retained. Turning off model training contribution does not affect recordings already used for training."
-    />
+    <h3 class="severity-group-label">Critical</h3>
 
     <SettingCard
-      name="Amazon Advertising Preferences"
+      name="Alexa Voice History"
       severity="critical"
       defaultState="On"
       platform="Amazon"
-      path={['Amazon.com account', 'Account', 'Advertising Preferences']}
-      webUrl="https://www.amazon.com/adprefs"
-      webPath={['Advertising Preferences']}
-      description="Controls whether Amazon uses your browsing and purchase history on Amazon to show you interest-based ads on Amazon and on other websites and apps through Amazon's advertising network. The Advertising Preferences page has separate toggles for interest-based ads on Amazon and off Amazon. There is also a toggle for 'Amazon marketing partners' which controls whether Amazon shares your data with third-party marketing partners."
-      whatItDoesnt="Turning off interest-based ads means you see generic ads instead of targeted ones. It does not stop Amazon from collecting your browsing and purchase data. It does not stop Amazon from selling advertising that benefits from the aggregate patterns of its user base. Off-Amazon targeting is controlled by the separate off-Amazon toggle, not the on-Amazon one."
+      path={['Alexa app', 'More', 'Settings', 'Alexa Privacy', 'Review Voice History']}
+      description="Amazon stores every Alexa voice recording by default. These recordings are used to improve voice recognition accuracy and may be reviewed by Amazon employees or contractors. The recordings are linked to your Amazon account and stored indefinitely unless manually deleted. Amazon offers automatic deletion options (3 months or 18 months) under Manage Your Alexa Data."
+      whatItDoesnt="Enabling automatic deletion removes stored recordings on a schedule. It does not prevent Amazon from processing voice commands in real time. Amazon retains some data from voice interactions for fraud prevention and account security even when automatic deletion is enabled. The device continues to listen for the wake word at all times."
     />
 
     <SettingCard
-      name="Ring: Control Center"
-      severity="high"
-      defaultState="Varies by feature"
+      name="Interest-Based Ads (Amazon DSP)"
+      severity="critical"
+      defaultState="On"
       platform="Amazon"
-      path={['Ring app', 'Menu', 'Control Center']}
-      webUrl="https://ring.com/account"
-      webPath={['Control Center']}
-      description="Ring's Control Center is the primary privacy settings hub for Ring devices. Key settings include: Video Encryption (end-to-end encryption for video, requires opting in; disables some cloud features), Video Storage (controls how long footage is stored on Ring's servers), Audio Recording (toggle for whether audio is recorded alongside video), and a setting for Community Alerts which controls sharing with local law enforcement via the Neighbors app. Each camera has individual settings in addition to account-level defaults."
-      whatItDoesnt="Enabling end-to-end encryption for video secures the content of recordings. It does not prevent Amazon from collecting metadata about your Ring device activity: when it triggers, how often, what time of day. Law enforcement requests for Ring data operate through Amazon's legal process regardless of encryption settings. Amazon can still receive device-level telemetry."
+      path={['amazon.com', 'Account & Lists', 'Your Account', 'Advertising Preferences']}
+      description="Amazon uses your purchase history, browsing behavior, and Prime Video watch history to serve targeted ads on Amazon and on third-party websites and apps through Amazon DSP. This is distinct from ads within Amazon search results. Amazon DSP ads follow you to news sites, apps, and other unrelated destinations using your Amazon behavioral profile."
+      whatItDoesnt="Opting out of interest-based ads stops Amazon from using your behavioral profile for off-Amazon ad targeting. You will still see ads on Amazon based on the products you search for and view. Amazon continues to collect your behavioral data; it simply stops applying it to external ad campaigns."
     />
 
     <h3 class="severity-group-label">High</h3>
 
     <SettingCard
-      name="Amazon Sidewalk"
+      name="Ring Camera Law Enforcement Sharing"
       severity="high"
-      defaultState="On (on supported Echo and Ring devices)"
+      defaultState="Amazon may share without explicit consent in emergencies"
       platform="Amazon"
-      path={['Alexa app', 'More', 'Settings', 'Account Settings', 'Amazon Sidewalk']}
-      webUrl="https://www.amazon.com/sidewalk"
-      webPath={['Account', 'Amazon Sidewalk']}
-      description="Amazon Sidewalk is a shared wireless network that uses a small portion of your home Wi-Fi and compatible Amazon devices to create a neighborhood mesh network. It is designed to extend connectivity for Amazon devices and some third-party sensors. It is enabled by default on compatible Echo and Ring devices. Your device's bandwidth is shared with nearby Amazon devices whose owners have also enabled Sidewalk."
-      whatItDoesnt="Turning off Sidewalk stops your device from contributing to or using the shared network. It does not affect your device's normal Wi-Fi connectivity. Devices that are not Sidewalk-compatible are unaffected."
+      path={['Ring app', 'Control Center', 'Video Privacy Settings']}
+      description="Amazon Ring has disclosed that it shares camera footage with law enforcement in response to emergency requests without requiring a warrant or notifying the device owner. The definition of emergency is determined by Amazon. Users can control who they share footage with voluntarily, but emergency sharing operates outside user control."
+      whatItDoesnt="Adjusting Ring privacy settings controls voluntary sharing — who you choose to share clips with and whether your clips appear in the Neighbors feed. It does not prevent Amazon from complying with emergency requests or legal process. There is no user-facing toggle to opt out of emergency law enforcement sharing."
     />
 
     <SettingCard
-      name="Interest-Based Ads (Off Amazon)"
+      name="Amazon Sidewalk"
       severity="high"
       defaultState="On"
       platform="Amazon"
-      path={['Amazon.com account', 'Account', 'Advertising Preferences']}
-      webUrl="https://www.amazon.com/adprefs"
-      webPath={['Advertising Preferences', 'Interest-Based Ads from Amazon on other websites and apps']}
-      description="This specifically controls whether Amazon uses your Amazon purchase and browsing history to serve targeted ads on third-party websites and apps through Amazon's DSP. This is separate from the on-Amazon interest-based ads toggle. Amazon's advertising network reaches a significant portion of the web and mobile app ecosystem through its DSP and Amazon Publisher Services."
-      whatItDoesnt="Turning this off reduces Amazon's ability to target you with ads off Amazon based on your Amazon activity. It does not prevent Amazon's ad tags on third-party sites from collecting data about your visits to those sites and reporting that data back to Amazon's ad infrastructure."
+      path={['Alexa app', 'More', 'Settings', 'Account Settings', 'Amazon Sidewalk']}
+      description="Amazon Sidewalk is a shared mesh network that uses the bandwidth and hardware of your Echo, Ring, and other compatible devices to extend connectivity for nearby Sidewalk-enabled devices. It was enabled by default for most existing Echo and Ring customers in 2021 without prominent notification. The network uses a small portion of your internet bandwidth and your device hardware to serve as a relay node for others."
+      whatItDoesnt="Turning off Sidewalk stops your device from participating in the shared network. It does not affect Amazon's ability to collect data from your own device usage. If neighbors' Sidewalk devices remain active, they may still use infrastructure near your home."
+    />
+
+    <SettingCard
+      name="Personalized Ads on Amazon"
+      severity="high"
+      defaultState="On"
+      platform="Amazon"
+      path={['amazon.com', 'Account & Lists', 'Your Account', 'Advertising Preferences', 'Personalized Ads Preferences']}
+      description="Amazon uses your search queries, product views, purchase history, and Prime Video watch history to select which ads appear in Amazon search results, on product pages, and within Prime Video. This is the in-platform targeting system, separate from the DSP network that extends to third-party sites."
+      whatItDoesnt="Turning off personalized ads on Amazon switches you to contextual ads — ads related to the products you are currently searching for rather than your historical behavior. It does not reduce Amazon's data collection. Your purchase and browsing history continues to be stored and used for other purposes."
     />
 
     <h3 class="severity-group-label">Medium</h3>
 
     <SettingCard
-      name="Browsing and Purchase History (Manage History)"
+      name="Alexa Voice Profile (Voice ID)"
       severity="medium"
-      defaultState="On"
+      defaultState="Off by default"
       platform="Amazon"
-      path={['Amazon.com', 'Account and Lists', 'Browsing History', 'Manage History']}
-      webUrl="https://www.amazon.com/gp/history"
-      webPath={['Manage History']}
-      description="Amazon's browsing history on Amazon.com can be viewed, items removed individually, or turned off entirely. Turning off browsing history stops Amazon from displaying it and stops it from feeding personalized recommendations on the site. A separate Purchases section under Your Account shows purchase history, which cannot be deleted but can be archived to reduce visibility."
-      whatItDoesnt="Removing items from your browsing history removes them from the visible history record. It does not delete them from Amazon's internal data systems. Purchase history cannot be deleted — it can only be archived, which hides it from your account view but does not delete the underlying record. Internal targeting and fraud detection systems still have access to this data regardless of what is archived or removed."
+      path={['Alexa app', 'More', 'Settings', 'Your Profile & Family', 'Voice ID']}
+      description="Voice ID creates a biometric voice profile linked to your Amazon account, enabling Alexa to recognize who is speaking and personalize responses. The biometric voice data is stored on Amazon servers."
+      whatItDoesnt="If Voice ID was previously enabled and is now disabled, the stored voice profile should be deleted per Amazon policy. Review Alexa Privacy settings to confirm deletion."
+    />
+
+    <SettingCard
+      name="Alexa Skill Data Access"
+      severity="medium"
+      defaultState="Varies by skill"
+      platform="Amazon"
+      path={['Alexa app', 'Skills & Games', 'Your Skills', '[Skill Name]', 'Settings']}
+      description="Third-party Alexa skills — games, productivity tools, media integrations — request permissions to access account data, smart home devices, or the ability to send notifications. Each skill operates under its own developer's privacy policy, not Amazon's. Skills can request access to your name, email, phone number, and customer profile."
+      whatItDoesnt="Disabling a skill revokes future access but does not delete data that skill has already collected. The skill developer retains data per their own policy."
     />
   </div>
 
   <!-- HOW TO TURN IT OFF -->
   <div slot="how-to-turn-off">
-    <WarningCallout title="What these settings do not cover">
-      <p>Amazon's data collection spans retail, devices, home security, and advertising. The settings available address specific categories but not the full scope. Purchase history cannot be deleted. Device telemetry from Echo and Ring devices continues regardless of voice recording settings. Amazon's advertising network collects data from third-party sites you visit through tracking tags that are independent of your Amazon account settings.</p>
+    <WarningCallout title="What these settings do not do">
+      <p>Every toggle here stops a specific use of your data. None of them stop Amazon from collecting data in the first place. Opting out of interest-based ads does not stop Amazon from building a behavioral profile. Enabling Alexa voice deletion does not stop the device from listening for the wake word.</p>
     </WarningCallout>
 
     <div class="turnoff-group">
-      <h3 class="turnoff-heading">Alexa Voice Recordings</h3>
+      <h3 class="turnoff-heading">Alexa Voice History</h3>
       <ol class="turnoff-steps">
-        <li>Open the Alexa app &rarr; More &rarr; Settings &rarr; Alexa Privacy &rarr; Manage Your Alexa Data.</li>
-        <li>Under "Voice Recordings," set auto-delete to "Don't save recordings" or choose a 3-month auto-delete period.</li>
-        <li>To delete existing recordings: "Review Voice History" &rarr; select the timeframe &rarr; Delete all recordings.</li>
-        <li>Under "Help improve Amazon services," toggle off to stop recordings from being used for model training.</li>
+        <li>Alexa app &rarr; More &rarr; Settings &rarr; Alexa Privacy &rarr; Review Voice History.</li>
+        <li>Tap "Delete All Recordings for All History" to remove stored recordings.</li>
+        <li>To enable automatic deletion: Alexa app &rarr; More &rarr; Settings &rarr; Alexa Privacy &rarr; Manage Your Alexa Data &rarr; choose "Automatically delete recordings" and select 3 months or 18 months.</li>
       </ol>
     </div>
 
     <div class="turnoff-group">
-      <h3 class="turnoff-heading">Amazon Advertising Preferences</h3>
+      <h3 class="turnoff-heading">Interest-Based Ads (Amazon DSP)</h3>
       <ol class="turnoff-steps">
-        <li>Go to amazon.com/adprefs or: Account &amp; Lists &rarr; Account &rarr; Advertising Preferences.</li>
-        <li>Toggle off "Interest-Based Ads from Amazon on Amazon" and "Interest-Based Ads from Amazon on other websites and apps" separately.</li>
-        <li>Toggle off "Amazon marketing partners" to limit sharing with Amazon's third-party marketing partners.</li>
-      </ol>
-    </div>
-
-    <div class="turnoff-group">
-      <h3 class="turnoff-heading">Ring Control Center</h3>
-      <ol class="turnoff-steps">
-        <li>Open the Ring app &rarr; Menu (three lines) &rarr; Control Center.</li>
-        <li>Review "Video Encryption" settings. Opt into end-to-end encryption if you want to encrypt video content (note: this disables some sharing and cloud features).</li>
-        <li>Review "Community Alerts" to control participation in the Neighbors network and law enforcement sharing features.</li>
-        <li>Per-device: tap any device in the Ring app &rarr; Device Settings to configure individual recording, motion sensitivity, and audio settings.</li>
+        <li>amazon.com &rarr; Account &amp; Lists &rarr; Your Account &rarr; Advertising Preferences.</li>
+        <li>Select "Do not personalize ads from Amazon for this browser."</li>
+        <li>Also accessible directly at amazon.com/adprefs.</li>
       </ol>
     </div>
 
@@ -173,15 +158,33 @@ import FactCard from '../../components/FactCard.astro';
       <h3 class="turnoff-heading">Amazon Sidewalk</h3>
       <ol class="turnoff-steps">
         <li>Alexa app &rarr; More &rarr; Settings &rarr; Account Settings &rarr; Amazon Sidewalk.</li>
-        <li>Toggle off.</li>
+        <li>Toggle off Amazon Sidewalk.</li>
       </ol>
     </div>
 
     <div class="turnoff-group">
-      <h3 class="turnoff-heading">Browsing History</h3>
+      <h3 class="turnoff-heading">Personalized Ads on Amazon</h3>
       <ol class="turnoff-steps">
-        <li>On amazon.com, go to Browsing History (under Account and Lists) &rarr; Manage History.</li>
-        <li>Toggle "Turn Browsing History on/off" to off, or remove individual items.</li>
+        <li>amazon.com &rarr; Account &amp; Lists &rarr; Your Account &rarr; Advertising Preferences &rarr; Personalized Ads Preferences.</li>
+        <li>Select "Do not personalize ads from Amazon."</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Ring Camera Privacy</h3>
+      <ol class="turnoff-steps">
+        <li>Ring app &rarr; Control Center &rarr; Video Privacy Settings.</li>
+        <li>Review and disable voluntary sharing settings including Neighbors feed participation.</li>
+        <li>Note: emergency law enforcement sharing cannot be disabled via user settings.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Alexa Skill Permissions</h3>
+      <ol class="turnoff-steps">
+        <li>Alexa app &rarr; Skills &amp; Games &rarr; Your Skills.</li>
+        <li>Review each enabled skill and tap Settings to view its permissions.</li>
+        <li>Disable skills you no longer use.</li>
       </ol>
     </div>
   </div>
@@ -190,50 +193,38 @@ import FactCard from '../../components/FactCard.astro';
   <div slot="who-gets-data">
     <dl class="data-recipients">
       <div class="recipient">
-        <dt>Third-Party Sellers on Amazon Marketplace</dt>
-        <dd>When you purchase from a third-party seller on Amazon, that seller receives your name, shipping address, and order information. Amazon's policy restricts sellers from using this data for marketing outside of fulfilling your order, but enforcement is limited. Sellers can contact you through Amazon's messaging system about your order. Some sellers export customer data in violation of these terms — Amazon periodically removes sellers for this but cannot prevent it entirely.</dd>
+        <dt>Amazon Advertising (DSP)</dt>
+        <dd>Amazon's demand-side platform serves ads on thousands of third-party websites and apps using purchase history and behavioral data. Publishers and advertisers access targeting capabilities without receiving individual user data directly.</dd>
       </div>
 
       <div class="recipient">
-        <dt>Amazon Advertising Network (DSP) Buyers</dt>
-        <dd>Advertisers purchasing through Amazon's DSP receive access to audience segments built from Amazon purchase data, browsing behavior, and Alexa interaction categories. They do not receive individual-level identifying data directly. They receive the targeting parameters — "recently purchased baby products," "researching laptops" — that Amazon derives from its data. Amazon's first-party data advantage over other ad networks is that purchase intent signals are more direct than behavioral inferences.</dd>
+        <dt>Alexa Skill Developers</dt>
+        <dd>Third-party developers whose Alexa skills you have enabled. Each has access to the specific permissions you granted and operates under their own privacy policy.</dd>
       </div>
 
       <div class="recipient">
-        <dt>Amazon's "Marketing Partners"</dt>
-        <dd>Amazon's privacy policy refers to "marketing partners" with whom Amazon may share your data for advertising and marketing purposes. This category is not fully enumerated in the policy. The Advertising Preferences page has a toggle specifically for this category. This is distinct from the Amazon DSP — it covers direct data transfers to third-party marketing companies rather than programmatic ad targeting.</dd>
+        <dt>Ring Law Enforcement Partners</dt>
+        <dd>Law enforcement agencies that submit emergency requests for Ring footage. Amazon discloses this sharing in its guidelines but the threshold for emergency designation is determined internally.</dd>
       </div>
 
       <div class="recipient">
-        <dt>Law Enforcement</dt>
-        <dd>Amazon responds to valid legal requests for Ring camera footage, Alexa recordings, purchase history, and account data. Amazon publishes a transparency report on government requests. Ring footage requests have historically been higher-volume than other Amazon data categories, reflecting Ring's role as a home security platform. Enabling end-to-end encryption on Ring cameras limits what Amazon can provide in response to legal requests for footage content, though metadata (device activity logs, timestamps) remains accessible.</dd>
-      </div>
-
-      <div class="recipient">
-        <dt>AWS Customers (Indirect)</dt>
-        <dd>Amazon Web Services is the infrastructure layer underlying a large portion of the commercial internet. Amazon does not share personal consumer data with AWS customers. However, the services many AWS customers run — websites, apps, platforms — may themselves be responsible for collecting and sharing your data. AWS is relevant context: when a data breach occurs at a company running on AWS, or when a company's data practices are regulated, AWS's infrastructure is in the chain. AWS does not make Amazon a data broker in the consumer sense, but it does mean Amazon's infrastructure handles data far beyond Amazon's own products.</dd>
+        <dt>IMDb TV / Prime Video Ad Partners</dt>
+        <dd>Advertisers running campaigns on Prime Video and Freevee receive targeting based on viewing history and purchase behavior.</dd>
       </div>
     </dl>
   </div>
 
   <!-- WHAT THEY KNOW -->
   <div slot="what-they-know">
-    <p>Amazon's retail purchase history is unusually direct as data goes. Most behavioral data requires inference: a search for "best running shoes" implies interest in fitness, which implies other things. Amazon's purchase history is actual behavior: you bought prenatal vitamins, then infant formula, then a baby monitor, then a toddler car seat. The life stage inference is not inferential at that point. It is a purchase record.</p>
-
-    <p>This is why Amazon's advertising business has grown rapidly despite not having the social graph that Meta and Google have. Purchase intent is more commercially valuable than content consumption. An advertiser targeting "households that recently purchased baby products" is working with a higher-confidence signal than one targeting "users who watched parenting content on YouTube."</p>
-
-    <p>Through Alexa, Amazon additionally has ambient audio from inside homes. Most of that audio is not recorded — it is processed locally for the wake word. But when the wake word is detected or when always-listening features are active, the audio is processed on Amazon's servers. Combined with purchase history and device behavior, Amazon has a household-level data profile that extends beyond what is visible through any single product.</p>
-
-    <WarningCallout title="Amazon One: biometric data is different">
-      <p>Amazon One collects palm vein patterns to enable palm-based payment. Palm vein patterns are biometric identifiers. Unlike passwords or account details, they cannot be changed. If a biometric database is compromised, the compromise is permanent. Amazon One profiles are stored on Amazon's servers and linked to payment methods. The service is voluntary and requires explicit enrollment, but once enrolled, the biometric record persists on Amazon's infrastructure.</p>
-    </WarningCallout>
+    <p>Amazon's purchase data reveals behaviors that social media can only approximate. After several years of Amazon use: your approximate income range (from purchase patterns and Prime membership tier), your health concerns (from supplements, OTC medications, and health device purchases), your children's ages and interests (from toy and clothing purchases), your relationship milestones (engagement rings, baby registries, moving supplies), your financial stress patterns (buy-now-pay-later usage, downgrade in purchase quality), and if you use Alexa, the daily rhythms of your household — when people wake up, when they leave, when they return, and what music plays in the background.</p>
   </div>
 
   <!-- RELATED PRACTICES -->
   <CrossLinkChip slot="related-practices" href="/practices/off-platform-tracking" label="Off-Platform Activity Tracking" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization" type="practice" />
   <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
   <CrossLinkChip slot="related-practices" href="/practices/location-data" label="Location Data" type="practice" />
-  <CrossLinkChip slot="related-practices" href="/practices/data-brokers" label="Data Brokers" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/dark-patterns" label="Dark Patterns" type="practice" />
 
   <!-- RELATED PLATFORMS -->
   <CrossLinkChip slot="related-platforms" href="/platforms/google" label="Google" type="platform" />

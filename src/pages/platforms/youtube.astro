@@ -1,0 +1,312 @@
+---
+import PlatformLayout from '../../layouts/PlatformLayout.astro';
+import SettingCard from '../../components/SettingCard.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import FactCard from '../../components/FactCard.astro';
+---
+
+<PlatformLayout
+  title="YouTube"
+  description="YouTube builds a detailed behavioral profile from every video you watch, including the ones you never finish. Here are the settings that matter and what they actually do."
+  subtitle="YouTube builds a detailed behavioral profile from every video you watch, including the ones you never finish."
+  category="Video Platform"
+  lastVerified="March 23, 2026"
+  settingsCount={6}
+  severity="high"
+  severityText="YouTube is a Google product. Most privacy settings are located in Google Account (myaccount.google.com) rather than YouTube itself. Watch history, search history, and engagement patterns feed Google's advertising network, one of the largest in the world. YouTube's recommendation algorithm is trained on granular viewing behavior including pause points, rewind patterns, and skip decisions."
+>
+
+  <!-- WHAT THEY COLLECT -->
+  <div slot="what-they-collect">
+    <div class="fact-grid">
+      <FactCard
+        label="Every video you watch, and how you watch it"
+        text="YouTube logs which videos you play, at what time, from what device, how far through each video you watched, where you paused, what you rewound, and what you skipped. This granular engagement data trains the recommendation algorithm and informs ad targeting."
+        severity="critical"
+      />
+      <FactCard
+        label="Every search query on YouTube"
+        text="YouTube Search history is stored separately from Google Search history. Every query entered into YouTube is logged and associated with your account or device."
+        severity="high"
+      />
+      <FactCard
+        label="Your YouTube activity informs ads across Google"
+        text="YouTube watch history and search behavior feed into the same Google advertising profile used for ads in Search, Gmail, Maps, and across the Google Display Network. YouTube is not a separate data silo."
+        severity="high"
+      />
+      <FactCard
+        label="Inferred beliefs and health from viewing patterns"
+        text="YouTube knows which political channels, health topics, religious content, and news sources you watch. These signals are used to infer demographic attributes and interests for ad targeting."
+        severity="high"
+      />
+    </div>
+
+    <div class="collect-detail">
+      <p>YouTube is a Google product, and its data flows into Google's unified advertising profile. There is no meaningful separation between your YouTube data and your Google data. Watching YouTube while logged into a Google Account adds to the same behavioral profile that governs ads you see on Google Search, in Gmail, and across the Display Network.</p>
+
+      <p>YouTube collects more granular viewing behavior than most users realize. Not just which videos you watched, but your engagement pattern within each video. Whether you skipped the first 30 seconds. Whether you rewound a segment. Whether you watched a video to completion or abandoned it at 40%. This behavioral signal is the core input for the recommendation algorithm.</p>
+
+      <p>Viewing history also creates inferences. A user who consistently watches videos from certain political channels, certain religious content creators, or certain health-focused channels has those interests and beliefs inferred and added to their advertising profile.</p>
+    </div>
+  </div>
+
+  <!-- SETTINGS THAT MATTER -->
+  <div slot="settings">
+    <h3 class="severity-group-label">Critical</h3>
+
+    <SettingCard
+      name="YouTube History (Watch History and Search History)"
+      severity="critical"
+      defaultState="On"
+      platform="YouTube"
+      path={['myaccount.google.com', 'Data & privacy', 'YouTube History']}
+      description="YouTube Watch History and Search History are managed under your Google Account, not YouTube settings. Pausing Watch History stops new videos from being saved to your history. Pausing Search History stops YouTube searches from being saved. Both histories are used by YouTube's recommendation algorithm and by Google's advertising systems."
+      whatItDoesnt="Pausing does not delete existing history. YouTube continues using engagement signals (pause, skip, rewind) within the current session for real-time recommendations. Pausing YouTube history does not pause your broader Web & App Activity, which continues to log YouTube visits at the Google level."
+    />
+
+    <h3 class="severity-group-label">High</h3>
+
+    <SettingCard
+      name="Ad Personalization (Google Account Level)"
+      severity="high"
+      defaultState="On"
+      platform="YouTube"
+      path={['myaccount.google.com', 'Data & privacy', 'Ad settings', 'Ad personalization']}
+      description="Because YouTube is a Google product, ad personalization is controlled at the Google Account level, not within YouTube. Turning off ad personalization in your Google Account stops behavioral targeting across YouTube, Search, Gmail, and the Display Network simultaneously."
+      whatItDoesnt="Turning off ad personalization does not remove YouTube from Google's data collection. Your viewing history, search queries, and engagement behavior continue to be recorded. You will see contextual ads — ads based on the content of the video you are watching — rather than ads based on your behavioral history."
+    />
+
+    <SettingCard
+      name="YouTube Activity Used Across Google Products"
+      severity="high"
+      defaultState="On"
+      platform="YouTube"
+      path={['myaccount.google.com', 'Data & privacy', 'Web & App Activity']}
+      description="YouTube watch history and search behavior are included in Web & App Activity and shared across Google products. A YouTube search for a medical symptom can influence ads you see in Gmail. A YouTube binge of home renovation content can appear as targeting parameters for home improvement advertisers in Google Search."
+      whatItDoesnt="Pausing Web & App Activity stops the cross-product data sharing. It does not stop YouTube from using your current session behavior for recommendations within YouTube."
+    />
+
+    <SettingCard
+      name="Location (for Recommendations and Ads)"
+      severity="high"
+      defaultState="On"
+      platform="YouTube"
+      path={['YouTube app', 'Account icon', 'Settings', 'Privacy', 'Pause watch history']}
+      description="YouTube uses your location (from device GPS, IP address, or Google Account location settings) to serve local content, local ads, and adjust recommendations by region. Location is not a separate toggle within YouTube — it is governed by your Google Account's location settings and your device's location permissions for the YouTube app."
+      whatItDoesnt="Revoking location permission from the YouTube app stops GPS-based location from reaching YouTube. IP-based location inference continues regardless of app permissions and cannot be disabled at the app level."
+    />
+
+    <h3 class="severity-group-label">Medium</h3>
+
+    <SettingCard
+      name="Connected Apps with YouTube Access"
+      severity="medium"
+      defaultState="Varies"
+      platform="YouTube"
+      path={['myaccount.google.com', 'Security', 'Third-party apps with account access']}
+      description="Third-party services authenticated via Google or YouTube OAuth may have access to YouTube account data, including watch history, subscriptions, and playlist management. Review connected apps periodically to revoke access from services no longer in use."
+      whatItDoesnt="Revoking access removes future permissions. It does not delete data that the third-party service has already collected."
+    />
+
+    <SettingCard
+      name="Autoplay"
+      severity="medium"
+      defaultState="On"
+      platform="YouTube"
+      path={['YouTube', 'Settings', 'Autoplay', 'Autoplay next video']}
+      description="Autoplay is a recommendation algorithm feature, not a data collection setting. It continuously feeds you recommended content based on your viewing history. While it does not directly affect data collection, it is the mechanism by which YouTube viewing sessions extend and engagement data accumulates."
+      whatItDoesnt="Turning off Autoplay stops the automatic progression to the next video. It does not reduce data collection during videos you choose to watch."
+    />
+  </div>
+
+  <!-- HOW TO TURN IT OFF -->
+  <div slot="how-to-turn-off">
+    <WarningCallout title="YouTube settings live in Google Account, not YouTube">
+      <p>Most YouTube privacy controls are at myaccount.google.com, not inside the YouTube app or website. Pausing YouTube history from within YouTube only pauses watch history. The broader Web & App Activity setting that shares your YouTube data across Google products must be paused separately in your Google Account.</p>
+    </WarningCallout>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">YouTube History</h3>
+      <ol class="turnoff-steps">
+        <li>myaccount.google.com &rarr; Data &amp; privacy &rarr; YouTube History.</li>
+        <li>Click "Turn off" for Watch History and Search History separately.</li>
+        <li>Optionally enable "Auto-delete" to remove history after 3, 18, or 36 months automatically.</li>
+        <li>To delete existing history: click "Manage history" and use the delete options.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Ad Personalization</h3>
+      <ol class="turnoff-steps">
+        <li>myaccount.google.com &rarr; Data &amp; privacy &rarr; Ad settings &rarr; Ad personalization.</li>
+        <li>Toggle off "Ad personalization is ON."</li>
+        <li>This applies across all Google products including YouTube, Search, and Gmail.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Web & App Activity (Cross-Product Sharing)</h3>
+      <ol class="turnoff-steps">
+        <li>myaccount.google.com &rarr; Data &amp; privacy &rarr; Web &amp; App Activity.</li>
+        <li>Click "Turn off" to stop YouTube activity from being shared across Google products.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Location Permissions</h3>
+      <ol class="turnoff-steps">
+        <li>On iPhone: Settings &rarr; YouTube &rarr; Location &rarr; set to Never.</li>
+        <li>On Android: Settings &rarr; Apps &rarr; YouTube &rarr; Permissions &rarr; Location &rarr; Deny.</li>
+        <li>IP-based location inference cannot be blocked at the app level.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Connected Third-Party Apps</h3>
+      <ol class="turnoff-steps">
+        <li>myaccount.google.com &rarr; Security &rarr; Third-party apps with account access.</li>
+        <li>Review apps with YouTube access and remove any you no longer use.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- WHO GETS YOUR DATA -->
+  <div slot="who-gets-data">
+    <dl class="data-recipients">
+      <div class="recipient">
+        <dt>Google's Advertising Network</dt>
+        <dd>YouTube behavioral data feeds into Google's advertising profile and is used to target ads on YouTube, Google Search, Gmail, Maps, and millions of third-party websites in the Google Display Network.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Display & Video 360</dt>
+        <dd>Google's enterprise advertising platform for agencies and major brands. YouTube viewership data informs audience segments available to advertisers running campaigns through DV360.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>YouTube Content Partners</dt>
+        <dd>YouTube channel owners and multi-channel networks receive analytics about their audience, including demographic breakdowns and engagement metrics. Individual viewer data is not shared, but aggregate signals are.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- WHAT THEY KNOW -->
+  <div slot="what-they-know">
+    <p>A year of YouTube watch history is readable as a biography. The algorithm infers: political leanings (from news and commentary content), religious affiliation or interest, health concerns (from medical content), relationship status and family composition (from wedding content, parenting content), profession and industry (from professional learning content), and approximate age (from content era preferences). These inferences are not disclosed to you but are used as targeting parameters available to any advertiser running campaigns through Google's ad platform.</p>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/off-platform-tracking" label="Off-Platform Activity Tracking" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ai-training" label="AI Training Data Usage" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/location-data" label="Location Data" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/google" label="Google" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/meta" label="Meta / Instagram" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/tiktok" label="TikTok" type="platform" />
+
+</PlatformLayout>
+
+<style>
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .collect-detail {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .severity-group-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 1.75rem 0 0.75rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .severity-group-label:first-child {
+    margin-top: 0;
+  }
+
+  .turnoff-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .turnoff-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .turnoff-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .turnoff-steps {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .turnoff-steps li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .data-recipients {
+    margin: 0;
+  }
+
+  .recipient {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .recipient:first-child {
+    padding-top: 0;
+  }
+
+  .recipient:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .recipient dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .recipient dd {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>
