@@ -1,0 +1,347 @@
+---
+import PlatformLayout from '../../layouts/PlatformLayout.astro';
+import SettingCard from '../../components/SettingCard.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import FactCard from '../../components/FactCard.astro';
+---
+
+<PlatformLayout
+  title="Google"
+  description="Google connects data across Search, YouTube, Maps, Gmail, Chrome, and Android. The ad network reaches roughly 90% of top websites. Here are the settings that matter and what they actually do."
+  subtitle=""
+  category="Search, Advertising, and Cloud Platform"
+  lastVerified="March 23, 2026"
+  settingsCount={6}
+  severity="critical"
+  severityText="Google Analytics and the Google Ads network are present on roughly 90% of top websites, making Google's off-platform reach larger than any other single company on the internet. Cross-product data combination — Search, YouTube, Maps, Gmail, Chrome, Android — produces profiles with no close equivalent. The Location History Timeline and Web and App Activity settings are on by default and require manual action to address."
+>
+
+  <!-- WHAT THEY COLLECT -->
+  <div slot="what-they-collect">
+    <div class="fact-grid">
+      <FactCard
+        label="Search and YouTube history"
+        text="Every search query and every YouTube video you watch is logged to your Google Account by default. This includes searches you do not click on and videos you only partially watch."
+        severity="critical"
+      />
+      <FactCard
+        label="Location Timeline"
+        text="Google Maps logs a detailed record of where you go. Since 2024, Timeline data is stored on-device by default for new users, but the setting can be enabled to sync to Google servers and remains server-side for accounts that had it enabled previously."
+        severity="high"
+      />
+      <FactCard
+        label="Off-platform tracking via Google Analytics"
+        text="Google Analytics is installed on roughly 90% of top websites. Google Ads tracking tags are present on a similar proportion of e-commerce sites. Your browsing behavior is reported to Google across virtually the entire commercial web."
+        severity="critical"
+      />
+      <FactCard
+        label="Cross-product data combination"
+        text="Google combines data from Search, YouTube, Maps, Gmail, Drive, Calendar, Chrome browsing history, and Android device data to build a single profile. Each product feeds the others."
+        severity="high"
+      />
+    </div>
+
+    <div class="collect-detail">
+      <p>Google's data collection spans two categories: what you do across Google's own products, and what happens on the rest of the internet where Google's infrastructure is embedded.</p>
+
+      <p>Within Google's products: every Search query, every YouTube video watched or searched, Maps routes and location history, Gmail content for spam detection and smart features, Drive files for search indexing, Calendar events, Chrome browsing history when signed in, and Android app usage and purchase history through Google Play. These data streams are connected to a single Google Account identity and can be reviewed at myactivity.google.com.</p>
+
+      <p>Outside Google's products: Google Analytics is the dominant web analytics platform, present on roughly 90% of top-traffic websites. Google Ads tags and the Floodlight conversion tracking pixel are present on a comparable proportion of e-commerce and commercial sites. When you visit any of those properties, behavioral data flows to Google's servers whether you are signed in or not. Google uses device fingerprinting, cookies, and login identity to link that activity to your Google Account profile where possible.</p>
+
+      <p>Google One subscribers who use Gemini AI features have their prompts and AI interactions processed under Google's standard privacy policy. For the free Gemini tier, conversations are reviewed by human raters by default to improve model quality. This can be turned off in Gemini's app settings. Workspace accounts have different terms depending on the organization's admin configuration.</p>
+
+      <p>Since 2024, Google has shifted Location History (now called Timeline) to on-device storage for new accounts. For accounts that had Timeline enabled before the migration, data remains on Google's servers unless manually deleted. The change reduces server-side retention but does not eliminate it for existing users, and does not affect the breadth of location signals collected through other means: IP-based location, Wi-Fi network location, and location embedded in photos uploaded to Google Photos.</p>
+    </div>
+  </div>
+
+  <!-- SETTINGS THAT MATTER -->
+  <div slot="settings">
+    <SettingCard
+      name="Web and App Activity"
+      severity="critical"
+      defaultState="On"
+      platform="Google"
+      path={['myaccount.google.com', 'Data and Privacy', 'Web and App Activity']}
+      webUrl="https://myaccount.google.com/activitycontrols"
+      webPath={['Data and Privacy', 'Web and App Activity']}
+      description="This is the master switch for Google's behavioral data collection across Search, Maps, YouTube (when not signed in), Chrome, and Android apps. When on, Google logs your activity across these products and uses it to personalize search results, recommendations, and ads. It includes a sub-option to include Chrome history and activity from sites and apps that use Google services. That sub-option covers the off-platform Google Analytics and Google Ads tracking network."
+      whatItDoesnt="Turning off Web and App Activity stops Google from saving new activity to your account. It does not delete what has already been collected. Google Analytics on third-party websites still reports your visits to Google — the setting controls whether that data is saved to your profile, not whether it is transmitted. Off-platform tracking via Google's ad network continues; this setting controls what is logged against your account."
+    />
+
+    <SettingCard
+      name="Location History (Timeline)"
+      severity="high"
+      defaultState="Off for new accounts (since 2024); server-side for accounts that had it enabled"
+      platform="Google"
+      path={['myaccount.google.com', 'Data and Privacy', 'Location History']}
+      webUrl="https://myaccount.google.com/activitycontrols/location"
+      webPath={['Data and Privacy', 'Location History']}
+      description="Controls whether Google Maps saves a detailed record of every place you visit to your Google Account. When enabled and synced to Google's servers, this produces a day-by-day record of your physical movements including home, work, and locations you visit regularly. Since 2024, new accounts default to on-device storage only. Existing accounts with server-side Timeline retain that data on Google's servers until manually deleted. The setting also controls whether Google can infer your home and work locations from your movement patterns."
+      whatItDoesnt="Turning off Location History does not stop Google from estimating your location for other purposes: IP address geolocation is used for local search results and ad targeting regardless of this setting. Location embedded in photos you upload to Google Photos is stored separately and is not controlled by this toggle. Google may still receive your location from the Google Maps app for real-time navigation even with this off."
+    />
+
+    <SettingCard
+      name="YouTube History"
+      severity="high"
+      defaultState="On"
+      platform="Google"
+      path={['myaccount.google.com', 'Data and Privacy', 'YouTube History']}
+      webUrl="https://myaccount.google.com/activitycontrols/youtube"
+      webPath={['Data and Privacy', 'YouTube History']}
+      description="Logs every video you watch and every search you perform on YouTube to your Google Account. YouTube watch history directly feeds the recommendation algorithm and is used for ad targeting. Separate from Web and App Activity, this toggle covers YouTube-specific activity only. Auto-delete options are available at 3, 18, and 36 months."
+      whatItDoesnt="Turning off YouTube History stops history from being saved to your account. It does not prevent YouTube from using your current session behavior to personalize recommendations during that session. It does not affect ad targeting based on other Google signals outside of YouTube."
+    />
+
+    <h3 class="severity-group-label">High</h3>
+
+    <SettingCard
+      name="Ad Personalization"
+      severity="high"
+      defaultState="On"
+      platform="Google"
+      path={['myaccount.google.com', 'Data and Privacy', 'Ad personalization']}
+      webUrl="https://myaccount.google.com/data-and-privacy"
+      webPath={['Ad personalization', 'Go to ad settings']}
+      description="Controls whether Google uses your behavioral data to select which ads you see across Google Search, YouTube, Gmail, and the Google Display Network (which covers millions of third-party websites). You can also view and remove individual interest categories Google has inferred about you. The page shows inferred demographics including estimated age range, gender, and household income bracket. Advertisers bid on these segments through Google Ads and DV360 (DoubleClick)."
+      whatItDoesnt="Turning off ad personalization means you see generic ads instead of targeted ones. It does not stop Google from collecting behavioral data. It does not stop Google Analytics from measuring your activity on third-party sites. Advertisers using conversion tracking still receive signals about your behavior."
+    />
+
+    <SettingCard
+      name="Connected Apps and Sites"
+      severity="high"
+      defaultState="Varies"
+      platform="Google"
+      path={['myaccount.google.com', 'Data and Privacy', 'Data from apps and services you use', 'Connected apps']}
+      webUrl="https://myaccount.google.com/permissions"
+      webPath={['Data from apps and services you use', 'Connected apps']}
+      description="Third-party apps and websites you have signed into using Sign in with Google. Each may have read or write access to Google data including your email address, profile information, calendar, contacts, or Drive files — depending on the permissions you granted. Some apps request only basic profile data; others request ongoing access to Gmail or Calendar. Permissions persist until manually revoked, even if you have stopped using the app."
+      whatItDoesnt="Revoking an app's access removes its ability to make future API calls to your Google data. It does not delete data the app already retrieved. It does not affect Google's own data collection — only what third-party apps can access."
+    />
+
+    <h3 class="severity-group-label">Medium</h3>
+
+    <SettingCard
+      name="Shared Endorsements in Ads"
+      severity="medium"
+      defaultState="On"
+      platform="Google"
+      path={['myaccount.google.com', 'Data and Privacy', 'Shared endorsements in ads']}
+      webUrl="https://myaccount.google.com/shared-endorsements"
+      webPath={['Data and Privacy', 'Shared endorsements in ads']}
+      description="When this is on, your name, profile photo, and ratings or reviews you've left in Google products (Maps, Play Store, etc.) can appear next to ads shown to your Google connections. This is a form of social proof advertising. Your review of a restaurant may appear as an endorsement in an ad shown to someone in your contacts."
+      whatItDoesnt="Turning this off stops Google from using your identity in social proof ad units. It does not affect review visibility in Maps or the Play Store. It does not affect ad targeting."
+    />
+  </div>
+
+  <!-- HOW TO TURN IT OFF -->
+  <div slot="how-to-turn-off">
+    <WarningCallout title="What these settings do not cover">
+      <p>Google's Activity Controls at myaccount.google.com are the primary interface for managing what Google saves to your account. They are not a comprehensive off-switch for data collection. Google Analytics on third-party websites still sends data to Google. IP-based location is used regardless of Location History settings. Incognito mode in Chrome prevents local history storage but does not prevent Google's servers from receiving queries made through Google Search, and does not block Google Analytics from tracking visits to sites you navigate to.</p>
+      <p>Browser-level content blockers and DNS-level filtering are more comprehensive than any Google account setting. uBlock Origin blocks the Google Analytics script on most sites it is installed on.</p>
+    </WarningCallout>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Web and App Activity</h3>
+      <ol class="turnoff-steps">
+        <li>Go to myaccount.google.com &rarr; Data and Privacy &rarr; Web and App Activity.</li>
+        <li>Toggle off "Web and App Activity."</li>
+        <li>Also toggle off "Include Chrome history and activity from sites, apps, and devices that use Google services" — this sub-option covers Google Analytics off-platform data.</li>
+        <li>Set auto-delete to 3 months to limit accumulation of existing history.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Location History (Timeline)</h3>
+      <ol class="turnoff-steps">
+        <li>myaccount.google.com &rarr; Data and Privacy &rarr; Location History.</li>
+        <li>If Timeline is enabled, toggle it off.</li>
+        <li>To delete existing Timeline data: open Google Maps &rarr; tap your profile photo &rarr; Your Timeline &rarr; Settings icon &rarr; Delete all Timeline data.</li>
+        <li>Note: for accounts that had server-side Timeline before 2024, data remains on Google's servers until explicitly deleted.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">YouTube History</h3>
+      <ol class="turnoff-steps">
+        <li>myaccount.google.com &rarr; Data and Privacy &rarr; YouTube History.</li>
+        <li>Toggle off. Set auto-delete to 3 months if you prefer to keep it on with limited retention.</li>
+        <li>To delete existing history: YouTube &rarr; History &rarr; Clear all watch history.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Ad Personalization</h3>
+      <ol class="turnoff-steps">
+        <li>myaccount.google.com &rarr; Data and Privacy &rarr; Ad personalization &rarr; Go to ad settings.</li>
+        <li>Toggle off "Ad personalization."</li>
+        <li>Optionally review and remove individual interest categories before turning it off.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Connected Apps</h3>
+      <ol class="turnoff-steps">
+        <li>myaccount.google.com &rarr; Data and Privacy &rarr; Data from apps and services you use &rarr; Connected apps.</li>
+        <li>Review each app. Click any app to see exactly what data it can access.</li>
+        <li>Click "Remove access" for anything you do not recognize or no longer use.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- WHO GETS YOUR DATA -->
+  <div slot="who-gets-data">
+    <dl class="data-recipients">
+      <div class="recipient">
+        <dt>Google Ads Buyers (via Google Ads and DV360)</dt>
+        <dd>Advertisers bid on Google audience segments through Google Ads (self-serve) and Display and Video 360, formerly DoubleClick. They do not receive your raw data. They receive access to targeting parameters — age range, income bracket, interest categories, intent signals — derived from your behavioral profile. A health insurer bidding on "actively researching health conditions" is buying a segment built from your Google Search and YouTube history. The insurer does not know who you are. Google does.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Third-Party Apps via Google OAuth and APIs</dt>
+        <dd>Any app or service you have signed in to using Sign in with Google, or that you have granted Google API access, can read data from your Google account within the scope you permitted. Some request only basic profile data (name, email). Others request access to Gmail, Calendar, Contacts, or Drive. Google provides a permissions page at myaccount.google.com/permissions, but few users review it after initial setup. Permissions persist indefinitely until revoked.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Google Workspace Partners and Resellers</dt>
+        <dd>Organizations using Google Workspace (formerly G Suite) may be subject to their own admin policies. Google's data processing terms for Workspace grant Google limited rights to process data for service delivery. Workspace admins can configure audit logs and data governance policies. Individual users within a Workspace organization may have reduced privacy control compared to personal Google Account users — their email, calendar, and Drive activity is accessible to their organization's admin.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Websites Using Google Analytics and Ads Tags</dt>
+        <dd>Website operators receive aggregated analytics reports about their visitors through Google Analytics. They do not receive individual user-level data from Google. In exchange for running Google Analytics, Google receives the behavioral data stream. The website operator gets traffic stats. Google gets the cross-site behavioral profile. These are not symmetric arrangements.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Law Enforcement and Government Entities</dt>
+        <dd>Google publishes a Transparency Report with government request data. US law enforcement can obtain account data through court orders, subpoenas, and National Security Letters. In 2023, Google began disclosing geofence warrant requests separately. Geofence warrants request data on all devices in a geographic area during a time window — not data on a specific individual. Google's database of precise location history made it a frequent target of such requests before the 2024 shift to on-device storage.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- WHAT THEY KNOW -->
+  <div slot="what-they-know">
+    <p>Google's profile is built from more product surfaces than any other single company. Search intent is the most valuable: what you search for in the moment of decision is a direct signal of what you want, what you fear, what you are researching, and what you intend to buy. YouTube watch history adds topic depth. Maps location history adds physical behavior. Gmail adds life events inferred from receipts, travel bookings, and subscription confirmations. Chrome browsing history, when enabled, fills in everything else.</p>
+
+    <p>The combination is not just additive. A search for "symptoms of X" followed by a YouTube video on the same topic followed by a Google Maps visit to a clinic in the same category is a behavioral sequence, not just three separate data points. Google's ad targeting systems are designed to act on these sequences in real time.</p>
+
+    <p>Through Google Analytics and the Google Ads network, this profile extends to behavior across effectively the entire commercial web. You do not need to use any Google product for Google to collect behavioral data about your web browsing, as long as you visit sites that run Google's tracking code. Most do.</p>
+
+    <WarningCallout title="The timeline shift does not close the location data gap">
+      <p>Google's 2024 move to on-device Timeline storage for new accounts was widely covered as a privacy improvement. It is a partial one. IP-based location continues to be used for personalization and ad targeting regardless of Timeline settings. Location signals embedded in Google Photos uploads, location from the Maps app during navigation, and location inferred from Wi-Fi networks and cell towers via Android location services all continue to function independently of the Timeline toggle. The change primarily affects the aggregated, historical location record — not the ongoing location inference.</p>
+    </WarningCallout>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/off-platform-tracking" label="Off-Platform Activity Tracking" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization and Targeting" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/location-data" label="Location Data" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/meta" label="Meta / Instagram" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/amazon" label="Amazon" type="platform" />
+
+</PlatformLayout>
+
+<style>
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .collect-detail {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .severity-group-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 1.75rem 0 0.75rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .severity-group-label:first-child {
+    margin-top: 0;
+  }
+
+  .turnoff-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .turnoff-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .turnoff-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .turnoff-steps {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .turnoff-steps li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .data-recipients {
+    margin: 0;
+  }
+
+  .recipient {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .recipient:first-child {
+    padding-top: 0;
+  }
+
+  .recipient:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .recipient dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .recipient dd {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>
