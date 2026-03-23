@@ -1,0 +1,257 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const platforms: Array<{ name: string; href: string; description: string }> = [];
+const practices: Array<{ name: string; href: string; description: string }> = [];
+---
+
+<BaseLayout
+  title="Privacy Wiki — What They Collect. How To Turn It Off."
+  description="A reference site for understanding how consumer technology platforms collect, share, and monetize your data — and exactly how to turn those settings off."
+>
+  <div class="page-container">
+    <header class="site-header">
+      <div class="site-eyebrow">privacywiki.io</div>
+      <h1 class="site-title">Privacy Wiki</h1>
+      <p class="site-description">
+        What they collect. Why it matters. How to turn it off.
+      </p>
+      <p class="site-subtext">
+        A reference site written from the inside. No outrage, no hedging — just
+        a plain account of how consumer platforms collect, share, and monetize
+        your data, and the exact steps to limit it.
+      </p>
+    </header>
+
+    <hr class="divider" />
+
+    <main>
+      <section class="index-section">
+        <div class="section-header">
+          <h2 class="section-heading">Platforms</h2>
+          <a href="/platforms" class="section-link">All platforms →</a>
+        </div>
+        <p class="section-desc">
+          One page per company. What they collect, which settings matter, and
+          how to turn them off.
+        </p>
+
+        {platforms.length > 0 ? (
+          <ul class="page-list">
+            {platforms.map((p) => (
+              <li class="page-list-item">
+                <a href={p.href} class="page-list-link">
+                  <span class="page-list-name">{p.name}</span>
+                  <span class="page-list-desc">{p.description}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div class="empty-state">
+            <span class="empty-label">Coming soon</span>
+            <p class="empty-text">
+              TikTok, Meta/Instagram, X — and more. Pages are being built now.
+            </p>
+          </div>
+        )}
+      </section>
+
+      <hr class="divider" />
+
+      <section class="index-section">
+        <div class="section-header">
+          <h2 class="section-heading">Practices</h2>
+          <a href="/practices" class="section-link">All practices →</a>
+        </div>
+        <p class="section-desc">
+          One page per data collection technique. How it works across every
+          platform that uses it.
+        </p>
+
+        {practices.length > 0 ? (
+          <ul class="page-list">
+            {practices.map((p) => (
+              <li class="page-list-item">
+                <a href={p.href} class="page-list-link">
+                  <span class="page-list-name">{p.name}</span>
+                  <span class="page-list-desc">{p.description}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div class="empty-state">
+            <span class="empty-label">Coming soon</span>
+            <p class="empty-text">
+              Off-Platform Activity Tracking, AI Training Data Usage, Ad
+              Personalization &amp; Targeting — pages in progress.
+            </p>
+          </div>
+        )}
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p class="footer-note">
+        Built by someone who works in ad tech. Verified against live settings,
+        not marketing copy.
+      </p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .site-header {
+    padding: 3rem 0 2rem;
+  }
+
+  .site-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .site-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .site-description {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .site-subtext {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  .index-section {
+    padding: 2rem 0;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .section-link:hover {
+    color: var(--color-accent-blue);
+    text-decoration: none;
+  }
+
+  .section-desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+    max-width: 520px;
+    line-height: 1.6;
+  }
+
+  .page-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .page-list-item {
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    transition: border-color 0.15s ease;
+  }
+
+  .page-list-item:hover {
+    border-color: #3a3a3a;
+  }
+
+  .page-list-link {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+  }
+
+  .page-list-link:hover {
+    text-decoration: none;
+  }
+
+  .page-list-name {
+    font-weight: 500;
+    color: var(--color-text-primary);
+    font-size: 0.9375rem;
+    flex-shrink: 0;
+  }
+
+  .page-list-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  .empty-state {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .empty-label {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    padding: 0.15em 0.5em;
+    margin-bottom: 0.625rem;
+  }
+
+  .empty-text {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .site-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .footer-note {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+</style>

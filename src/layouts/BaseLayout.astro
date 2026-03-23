@@ -1,0 +1,69 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalUrl,
+  ogImage,
+} = Astro.props;
+
+const siteUrl = 'https://privacywiki.io';
+const resolvedCanonical = canonicalUrl ?? new URL(Astro.url.pathname, siteUrl).href;
+const resolvedOgImage = ogImage ?? `${siteUrl}/og-default.png`;
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url: resolvedCanonical,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Privacy Wiki',
+    url: siteUrl,
+  },
+});
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary meta -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={resolvedCanonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={resolvedCanonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={resolvedOgImage} />}
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={resolvedOgImage} />}
+
+    <!-- JSON-LD structured data -->
+    <script type="application/ld+json" set:html={jsonLd} />
+
+    <!-- ANALYTICS: add Plausible script tag here before launch -->
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

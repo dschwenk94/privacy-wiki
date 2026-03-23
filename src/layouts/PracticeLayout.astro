@@ -1,0 +1,198 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import CategoryTag from '../components/CategoryTag.astro';
+import MetaBar from '../components/MetaBar.astro';
+import SeverityBanner from '../components/SeverityBanner.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  subtitle: string;
+  lastVerified: string;
+  platformCount: number;
+  severity: 'critical' | 'high' | 'medium';
+  severityText: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  subtitle,
+  lastVerified,
+  platformCount,
+  severity,
+  severityText,
+  canonicalUrl,
+  ogImage,
+} = Astro.props;
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Practices', href: '/practices' },
+  { label: title },
+];
+---
+
+<BaseLayout {title} {description} {canonicalUrl} {ogImage}>
+  <div class="page-container">
+    <header class="page-header">
+      <Breadcrumb crumbs={breadcrumbs} />
+      <CategoryTag label="Data Collection Practice" />
+      <h1 class="page-title">{title}</h1>
+      <p class="page-subtitle">{subtitle}</p>
+      <MetaBar
+        lastVerified={lastVerified}
+        category="Data Collection Practice"
+        count={platformCount}
+        countLabel="platforms affected"
+      />
+      <SeverityBanner level={severity} text={severityText} />
+    </header>
+
+    <main>
+      <section class="page-section" aria-labelledby="what-it-is-heading">
+        <h2 id="what-it-is-heading" class="section-heading">What It Is</h2>
+        <slot name="what-it-is">
+          <p class="placeholder-text">Content coming soon.</p>
+        </slot>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="page-section" aria-labelledby="why-it-matters-heading">
+        <h2 id="why-it-matters-heading" class="section-heading">Why It Matters</h2>
+        <slot name="why-it-matters">
+          <p class="placeholder-text">Content coming soon.</p>
+        </slot>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="page-section" aria-labelledby="how-it-works-heading">
+        <h2 id="how-it-works-heading" class="section-heading">How It Works</h2>
+        <slot name="how-it-works">
+          <p class="placeholder-text">Technical flow coming soon.</p>
+        </slot>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="page-section" aria-labelledby="what-they-know-heading">
+        <h2 id="what-they-know-heading" class="section-heading">What They Know About You</h2>
+        <slot name="what-they-know">
+          <p class="placeholder-text">Data profile example coming soon.</p>
+        </slot>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="page-section" aria-labelledby="who-has-data-heading">
+        <h2 id="who-has-data-heading" class="section-heading">Who Has Your Data</h2>
+        <slot name="who-has-data">
+          <p class="placeholder-text">Platform table coming soon.</p>
+        </slot>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="page-section" aria-labelledby="how-to-turn-off-heading">
+        <h2 id="how-to-turn-off-heading" class="section-heading">How To Turn It Off</h2>
+        <slot name="how-to-turn-off">
+          <p class="placeholder-text">Per-platform instructions coming soon.</p>
+        </slot>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="page-section" aria-labelledby="related-practices-heading">
+        <h2 id="related-practices-heading" class="section-heading">Related Practices</h2>
+        <div class="chip-group">
+          <slot name="related-practices">
+            <p class="placeholder-text">Practice cross-links coming soon.</p>
+          </slot>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="related-platforms-heading">
+        <h2 id="related-platforms-heading" class="section-heading">Related Platforms</h2>
+        <div class="chip-group">
+          <slot name="related-platforms">
+            <p class="placeholder-text">Platform cross-links coming soon.</p>
+          </slot>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p class="footer-updated">Last updated: {lastVerified}</p>
+      <p class="footer-feedback">
+        Something changed?
+        <a href="mailto:feedback@privacywiki.io">Let us know.</a>
+      </p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0.75rem 0 0.5rem;
+    line-height: 1.2;
+  }
+
+  .page-subtitle {
+    font-size: 1.0625rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    max-width: 620px;
+    margin-bottom: 0;
+  }
+
+  .chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .page-footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .footer-updated,
+  .footer-feedback {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .footer-feedback a {
+    color: var(--color-text-secondary);
+  }
+
+  .footer-feedback a:hover {
+    color: var(--color-text-primary);
+  }
+
+  .placeholder-text {
+    color: var(--color-text-muted);
+    font-style: italic;
+    font-size: 0.9375rem;
+  }
+</style>

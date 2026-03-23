@@ -1,0 +1,263 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const platforms: Array<{
+  name: string;
+  href: string;
+  category: string;
+  severity: 'critical' | 'high' | 'medium';
+  description: string;
+}> = [];
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Platforms' },
+];
+---
+
+<BaseLayout
+  title="Platforms — Privacy Wiki"
+  description="Privacy guides for TikTok, Meta, Instagram, X, Google, and other consumer platforms. What they collect and how to turn it off."
+>
+  <div class="page-container">
+    <header class="page-header">
+      <Breadcrumb crumbs={breadcrumbs} />
+      <h1 class="page-title">Platforms</h1>
+      <p class="page-subtitle">
+        One page per platform. What they collect, which settings are worth
+        changing, and exactly how to change them. Settings are verified against
+        live interfaces, not documentation.
+      </p>
+    </header>
+
+    <main>
+      {platforms.length > 0 ? (
+        <ul class="platform-list">
+          {platforms.map((p) => (
+            <li class="platform-item">
+              <a href={p.href} class="platform-link">
+                <div class="platform-header">
+                  <span class="platform-name">{p.name}</span>
+                  <span class={`severity-badge severity--${p.severity}`}>
+                    {p.severity.toUpperCase()}
+                  </span>
+                </div>
+                <div class="platform-meta">
+                  <span class="platform-category">{p.category}</span>
+                </div>
+                <p class="platform-desc">{p.description}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div class="empty-state">
+          <div class="empty-header">
+            <span class="empty-label">In progress</span>
+          </div>
+          <p class="empty-text">
+            Platform pages are being built in order of search demand and
+            severity. First up: TikTok, X, and Meta/Instagram.
+          </p>
+          <ul class="upcoming-list">
+            <li>TikTok — off-platform tracking, ad targeting</li>
+            <li>X / Twitter — Grok AI training opt-out</li>
+            <li>Meta / Instagram — Off-Facebook Activity, Meta Pixel</li>
+            <li>Google — Web &amp; App Activity, ad personalization</li>
+          </ul>
+        </div>
+      )}
+    </main>
+
+    <footer class="page-footer">
+      <p class="footer-note">
+        All settings verified by hand against live platform interfaces.
+        Platform UIs change — if something's wrong,
+        <a href="mailto:feedback@privacywiki.io">let us know</a>.
+      </p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: 2.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0.75rem 0 0.625rem;
+    color: var(--color-text-primary);
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    max-width: 580px;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .platform-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .platform-item {
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    transition: border-color 0.15s ease;
+  }
+
+  .platform-item:hover {
+    border-color: #3a3a3a;
+  }
+
+  .platform-link {
+    display: block;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+  }
+
+  .platform-link:hover {
+    text-decoration: none;
+  }
+
+  .platform-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.375rem;
+  }
+
+  .platform-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .severity-badge {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    border-radius: 2px;
+    padding: 0.15em 0.5em;
+    border: 1px solid;
+  }
+
+  .severity--critical {
+    color: var(--color-critical);
+    border-color: var(--color-critical);
+  }
+
+  .severity--high {
+    color: var(--color-high);
+    border-color: var(--color-high);
+  }
+
+  .severity--medium {
+    color: var(--color-medium);
+    border-color: var(--color-medium);
+  }
+
+  .platform-meta {
+    margin-bottom: 0.375rem;
+  }
+
+  .platform-category {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+
+  .platform-desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .empty-state {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 1.5rem 1.75rem;
+  }
+
+  .empty-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .empty-label {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    padding: 0.15em 0.5em;
+  }
+
+  .empty-text {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .upcoming-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .upcoming-list li {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .upcoming-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--color-text-muted);
+    opacity: 0.5;
+  }
+
+  .page-footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .footer-note {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .footer-note a {
+    color: var(--color-text-secondary);
+  }
+</style>
