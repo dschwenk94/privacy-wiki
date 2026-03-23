@@ -1,0 +1,255 @@
+---
+import PracticeLayout from '../../layouts/PracticeLayout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+---
+
+<PracticeLayout
+  title="Ad Personalization and Targeting"
+  description="Turning off personalized ads does not stop data collection. What ad personalization actually does, and what the settings actually control."
+  subtitle="Turning off personalized ads does not stop data collection."
+  lastVerified="March 23, 2026"
+  platformCount={4}
+  severity="high"
+  severityText="The most misunderstood setting in consumer tech. Platforms universally default to maximum targeting. The toggle most users find controls ad display, not data collection."
+>
+
+  <!-- WHAT IT IS -->
+  <div slot="what-it-is">
+    <p>Ad personalization is the practice of using data about your behavior — what you search for, what you buy, what you watch, what you click — to select which advertisements you see and when. Every major consumer platform defaults to full personalization. This means the system is collecting the maximum amount of behavioral data and applying it to ad targeting from the moment you create an account.</p>
+
+    <p>The term "personalized ads" is the user-facing label for a much larger system. The data collection, profile building, audience segment assignment, and cross-platform sharing all happen upstream of the ad that appears on your screen. Turning off personalized ads changes what you see. It does not change most of what the platform collects.</p>
+  </div>
+
+  <!-- WHY IT MATTERS -->
+  <div slot="why-it-matters">
+    <p>The specific misunderstanding that matters here: most users who find an "ad personalization" toggle believe it controls data collection. It controls ad display. The behavioral profile — what you clicked, how long you lingered, what you searched — continues to be built regardless of what the toggle says.</p>
+
+    <WarningCallout title="Turning off the toggle changes what you see, not what they know">
+      <p>When you disable personalized ads on any major platform, you will see generic or contextual ads instead of behaviorally targeted ones. The platform will continue collecting the same behavioral data. It will continue building your interest profile. It will continue sharing signals with third-party measurement partners. The data processing does not stop. One downstream application of it stops.</p>
+    </WarningCallout>
+
+    <p>For platforms that share behavioral data with third-party ad networks, the off-platform consequences of the behavioral profile persist even if you disable on-platform personalization. Your behavioral segment may still influence what ads you see on third-party websites via platforms' demand-side advertising products.</p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div slot="how-it-works">
+    <ol class="steps-list">
+      <li>
+        <strong>Behavioral signals are collected.</strong> Every interaction — search, click, view, purchase, link tap — is logged as a behavioral signal associated with your account and device identifiers.
+      </li>
+      <li>
+        <strong>Interest categories are inferred.</strong> Machine learning models analyze your behavioral history and assign you to interest categories (travel, automotive, home improvement, etc.) and intent signals (actively researching a purchase, recently interested in X category).
+      </li>
+      <li>
+        <strong>Audience segments are built.</strong> You are placed into audience segments that advertisers can target. These segments are defined by behavior, not demographics — though demographic signals are inferred from behavior as well.
+      </li>
+      <li>
+        <strong>Advertisers bid on your attention.</strong> When you load a feed, search results page, or any other ad-supported surface, an auction runs in real time. Advertisers bid based on how well your segment matches their campaign criteria.
+      </li>
+      <li>
+        <strong>The highest bidder's ad is displayed.</strong> The winning ad is served. Your engagement with it (or lack thereof) is logged as another behavioral signal that refines the model.
+      </li>
+      <li>
+        <strong>The toggle, if disabled, removes step 4 only.</strong> The behavioral profile built in steps 1 through 3 continues to exist. The auction in step 4 runs without personalization applied, or does not run at all, resulting in a generic placement.
+      </li>
+    </ol>
+  </div>
+
+  <!-- WHAT THEY KNOW ABOUT YOU -->
+  <div slot="what-they-know">
+    <p>The ad personalization system is designed to predict purchasing intent with as much granularity as possible. After months of normal platform use, the platform has inferred your income bracket, family status, health conditions you have searched for, financial products you are considering, and political content you engage with. None of this requires you to have stated any of it explicitly.</p>
+
+    <p>Interest categories are granular. "Travel" is not a category. "Luxury international travel in the next 90 days" is a category. The system is built to minimize wasted ad spend by matching users to advertisers with increasingly precise criteria.</p>
+
+    <p>The behavioral profile is retained even when personalization is turned off. It continues to be updated as you use the platform. Reactivating personalization restores the existing profile, not a blank one.</p>
+  </div>
+
+  <!-- WHO HAS YOUR DATA -->
+  <div slot="who-has-data">
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Personalization Toggle Location</th>
+            <th>What It Controls</th>
+            <th>What It Does Not Control</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Meta (Facebook/Instagram)</td>
+            <td>Settings &rarr; Ads &rarr; Ad Preferences</td>
+            <td>Whether interest-based targeting is applied to ads you see on Meta</td>
+            <td>Off-Facebook Activity data collection, data sharing with advertisers, measurement data</td>
+          </tr>
+          <tr>
+            <td>TikTok</td>
+            <td>Settings and Privacy &rarr; Ads &rarr; Personalized Ads</td>
+            <td>Whether in-app behavioral data is used to select ads in TikTok feed</td>
+            <td>Off-TikTok Activity tracking, ad profile construction, targeted ads on third-party platforms</td>
+          </tr>
+          <tr>
+            <td>Google</td>
+            <td>myaccount.google.com &rarr; Data and Privacy &rarr; Ad personalization</td>
+            <td>Whether Google uses your activity to personalize ads across Google properties</td>
+            <td>Google Analytics data on third-party sites, data shared with Google's Display Network partners</td>
+          </tr>
+          <tr>
+            <td>X / Twitter</td>
+            <td>Settings &rarr; Privacy and safety &rarr; Ads preferences &rarr; Personalized ads</td>
+            <td>Whether behavioral data is used to select ads in the X feed</td>
+            <td>Behavioral profile construction, off-X tracking signals, business partner data sharing</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- HOW TO TURN IT OFF -->
+  <div slot="how-to-turn-off">
+    <WarningCallout title="Disabling personalization is a starting point, not a complete solution">
+      <p>Disabling personalized ads on each platform reduces the direct application of your behavioral data to ad targeting. It does not stop data collection. For more comprehensive protection: use a browser-level ad and tracker blocker, opt out of off-platform activity tracking separately on each platform, and use App Tracking Transparency on iOS to restrict cross-app data sharing at the OS level.</p>
+    </WarningCallout>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Meta</h3>
+      <ol class="turnoff-steps">
+        <li>Facebook: Settings &amp; Privacy &rarr; Settings &rarr; Ads &rarr; Ad Preferences &rarr; Ad Settings.</li>
+        <li>Disable "Data about your activity from partners" and "Ads based on data from partners."</li>
+        <li>Separately: Settings &rarr; Your Facebook Information &rarr; Off-Facebook Activity &rarr; Manage Future Activity &rarr; toggle off.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">TikTok</h3>
+      <ol class="turnoff-steps">
+        <li>Profile icon &rarr; hamburger menu &rarr; Settings and Privacy &rarr; Ads &rarr; Personalized Ads.</li>
+        <li>Toggle off.</li>
+        <li>Also address: Settings and Privacy &rarr; Ads &rarr; Targeted Ads to prevent your TikTok profile from being used to target ads on other platforms.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Google</h3>
+      <ol class="turnoff-steps">
+        <li>myaccount.google.com &rarr; Data and Privacy &rarr; Ad personalization.</li>
+        <li>Toggle off "Ad Personalization."</li>
+        <li>Review and remove interest categories and advertiser connections listed below the main toggle.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">X / Twitter</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &rarr; Privacy and safety &rarr; Ads preferences &rarr; Personalized ads.</li>
+        <li>Toggle off.</li>
+        <li>Separately disable: Settings &rarr; Privacy and safety &rarr; Off-X activity and Data sharing and off-X activity.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/off-platform-tracking" label="Off-Platform Activity Tracking" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/tiktok" label="TikTok" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/x" label="X / Twitter" type="platform" />
+
+</PracticeLayout>
+
+<style>
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .steps-list {
+    padding-left: 1.5rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .steps-list li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  .steps-list li strong {
+    color: var(--color-text-primary);
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  .data-table th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .data-table td {
+    padding: 0.75rem;
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .data-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .turnoff-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .turnoff-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .turnoff-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .turnoff-steps {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .turnoff-steps li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+</style>

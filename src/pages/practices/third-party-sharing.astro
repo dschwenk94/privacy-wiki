@@ -1,0 +1,255 @@
+---
+import PracticeLayout from '../../layouts/PracticeLayout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+---
+
+<PracticeLayout
+  title="Third-Party Data Sharing"
+  description="Platforms share your data with companies you have never interacted with. What that means, who receives it, and what the policy language actually covers."
+  subtitle="Platforms share your data with companies you have never interacted with."
+  lastVerified="March 23, 2026"
+  platformCount={5}
+  severity="critical"
+  severityText="Once data leaves the originating platform, you have no visibility into where it goes or how it is used. Privacy policies use language deliberately vague enough to cover almost any sharing arrangement."
+>
+
+  <!-- WHAT IT IS -->
+  <div slot="what-it-is">
+    <p>Third-party data sharing is the practice of transferring user data to companies that are not party to the original user-platform relationship. This includes advertising partners, measurement companies, data brokers, business partners, and in some cases government entities under legal compulsion.</p>
+
+    <p>Most platforms share data in three broad categories: operational sharing (service providers who need data to run the platform), commercial sharing (advertisers, ad networks, and business partners who pay for access to behavioral data), and legal sharing (responses to government requests, court orders, and regulatory demands).</p>
+
+    <p>The commercial sharing category is the one that most directly affects user privacy, and it is the category where policy language is most deliberately broad. Terms like "business partners," "trusted third parties," and "service providers" are defined narrowly in disclosure documents but applied broadly in practice.</p>
+  </div>
+
+  <!-- WHY IT MATTERS -->
+  <div slot="why-it-matters">
+    <p>Once your data leaves the originating platform and reaches a third party, you lose any meaningful visibility into how it is used. The originating platform's privacy policy does not govern what happens after the transfer. The third party's practices — their retention policies, their own downstream sharing, their security posture — are outside the scope of anything you agreed to when you created your account.</p>
+
+    <WarningCallout title="Data shared with third parties is outside your control">
+      <p>Every opt-out and privacy setting on the originating platform operates on data before it is shared. Once a behavioral profile, audience segment, or raw data export reaches a third party, none of the originating platform's settings apply. You have no visibility into that third party's data practices, and no mechanism to request deletion from their systems specifically — only through the originating platform's data deletion request, which may not reach third-party systems that received the data prior to that request.</p>
+    </WarningCallout>
+
+    <p>The scale of commercial sharing is significant. A single session on a major social platform can generate behavioral signals that are shared, in processed form, with dozens of advertising partners, measurement companies, and data clean room providers. The individual data points are small. The aggregate is a detailed behavioral profile distributed across an ecosystem of companies you have never interacted with.</p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div slot="how-it-works">
+    <ol class="steps-list">
+      <li>
+        <strong>You use the platform.</strong> Your behavioral signals — clicks, views, searches, purchases — are collected and processed into behavioral attributes and audience segments.
+      </li>
+      <li>
+        <strong>Data is packaged for sharing.</strong> The platform packages data for sharing in several forms: raw event data (for clean room environments), audience segments (for ad targeting), and conversion signals (for measurement partners).
+      </li>
+      <li>
+        <strong>Data is transferred to third parties.</strong> This happens through APIs, data clean rooms, pixel-level real-time sharing, and periodic data exports. The recipient companies include ad networks, DSPs, measurement firms, data brokers, and platforms' own subsidiaries.
+      </li>
+      <li>
+        <strong>Third parties process and potentially re-share.</strong> Recipients use the data for their own purposes and may share it further with their own partners. Each hop in this chain is governed by that party's privacy policy, not the originating platform's.
+      </li>
+      <li>
+        <strong>Attribution and measurement close the loop.</strong> Conversion data flows back to the originating platform from measurement partners, confirming that ad exposures led to real-world actions. This feedback loop requires ongoing data sharing in both directions.
+      </li>
+    </ol>
+  </div>
+
+  <!-- WHAT THEY KNOW ABOUT YOU -->
+  <div slot="what-they-know">
+    <p>What third parties know about you depends on what they received and what they have combined it with from other sources. A data broker who receives behavioral segments from multiple platforms can build a cross-platform behavioral profile that no single platform has on its own. The profile gets richer each time another data source is integrated.</p>
+
+    <p>In practice, data brokers compile records that include your name, address, phone number, household income, purchase history, health interests, political affiliation, and hundreds of behavioral categories. The social platform data is one input. Credit card transaction data, public records, loyalty program data, and other purchased datasets fill in the rest.</p>
+
+    <p>The output is a consumer record that is bought and sold among data brokers, insurance companies, employers, political campaigns, and law enforcement — without your involvement in any of those transactions.</p>
+  </div>
+
+  <!-- WHO HAS YOUR DATA -->
+  <div slot="who-has-data">
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Third-Party Categories Named in Policy</th>
+            <th>Opt-Out Available</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Meta</td>
+            <td>Advertisers, measurement partners, third-party partners, service providers, Meta Companies (Instagram, WhatsApp, Oculus)</td>
+            <td>Partial. Off-Facebook Activity disconnect limits profile sharing. Does not cover measurement or service provider sharing.</td>
+          </tr>
+          <tr>
+            <td>TikTok</td>
+            <td>Advertising partners, analytics providers, measurement partners, ByteDance entities, TikTok Pixel ecosystem</td>
+            <td>Partial. Off-TikTok Activity disconnect. Does not cover analytics or measurement sharing.</td>
+          </tr>
+          <tr>
+            <td>Google</td>
+            <td>Advertisers, publishers (Google Display Network), measurement companies, trusted business partners</td>
+            <td>Partial. Ad personalization opt-out. Does not cover data shared as part of Search or YouTube infrastructure.</td>
+          </tr>
+          <tr>
+            <td>X / Twitter</td>
+            <td>xAI / Grok, advertising partners, business partners (undefined), measurement companies</td>
+            <td>Partial. Separate toggles for Grok, business partner sharing, and off-X activity. Does not cover measurement sharing.</td>
+          </tr>
+          <tr>
+            <td>LinkedIn</td>
+            <td>Advertisers, Microsoft entities, analytics providers, recruitment platform partners</td>
+            <td>Partial. Ad personalization opt-out. Does not cover Microsoft cross-product data sharing.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- HOW TO TURN IT OFF -->
+  <div slot="how-to-turn-off">
+    <WarningCallout title="There is no comprehensive opt-out">
+      <p>No platform offers a complete opt-out from all third-party data sharing. Operational sharing (service providers needed to run the platform) continues regardless of settings. Legal sharing continues regardless of settings. What settings address is commercial sharing — the portion that benefits advertising and business partner relationships. Treat in-app settings as a reduction, not an elimination.</p>
+    </WarningCallout>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Meta</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &rarr; Your Facebook Information &rarr; Off-Facebook Activity &rarr; Manage Future Activity: toggle off.</li>
+        <li>Settings &rarr; Ads &rarr; Ad Preferences &rarr; Ad Settings: disable "Data about your activity from partners."</li>
+        <li>Consider submitting a formal data access and deletion request via facebook.com/dsr/landing to understand and remove what has already been shared.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">TikTok</h3>
+      <ol class="turnoff-steps">
+        <li>Settings and Privacy &rarr; Ads &rarr; Your Off-TikTok Activity &rarr; Disconnect All.</li>
+        <li>Settings and Privacy &rarr; Ads &rarr; Targeted Ads: toggle off.</li>
+        <li>Submit a Data Subject Request via TikTok's privacy portal (tiktok.com/legal/report/privacy) to request data deletion.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Google</h3>
+      <ol class="turnoff-steps">
+        <li>myaccount.google.com &rarr; Data and Privacy &rarr; Ad personalization: toggle off.</li>
+        <li>Review and remove third-party advertiser connections listed in the ad personalization settings.</li>
+        <li>myaccount.google.com &rarr; Data and Privacy &rarr; Web and App Activity: toggle off or enable auto-delete.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">X / Twitter</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &rarr; Privacy and safety &rarr; Data sharing and off-X activity: disable "Allow additional information sharing with business partners."</li>
+        <li>Settings &rarr; Privacy and safety &rarr; Grok: opt out of Grok AI training data sharing.</li>
+        <li>Settings &rarr; Privacy and safety &rarr; Off-X activity: disable cross-device and location personalization.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/off-platform-tracking" label="Off-Platform Activity Tracking" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization and Targeting" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ai-training" label="AI Training Data Usage" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/tiktok" label="TikTok" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/x" label="X / Twitter" type="platform" />
+
+</PracticeLayout>
+
+<style>
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .steps-list {
+    padding-left: 1.5rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .steps-list li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  .steps-list li strong {
+    color: var(--color-text-primary);
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  .data-table th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .data-table td {
+    padding: 0.75rem;
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .data-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .turnoff-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .turnoff-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .turnoff-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .turnoff-steps {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .turnoff-steps li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+</style>

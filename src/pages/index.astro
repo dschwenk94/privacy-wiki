@@ -1,8 +1,40 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const platforms: Array<{ name: string; href: string; description: string }> = [];
-const practices: Array<{ name: string; href: string; description: string }> = [];
+const platforms: Array<{ name: string; href: string; description: string }> = [
+  {
+    name: 'TikTok',
+    href: '/platforms/tiktok',
+    description: 'Off-platform tracking via TikTok Pixel, GPS collection added in 2026, no AI training opt-out for US users.',
+  },
+  {
+    name: 'X / Twitter',
+    href: '/platforms/x',
+    description: 'Default-on Grok AI training added in 2024, data sharing with unspecified business partners, cross-device targeting.',
+  },
+];
+const practices: Array<{ name: string; href: string; description: string }> = [
+  {
+    name: 'Off-Platform Activity Tracking',
+    href: '/practices/off-platform-tracking',
+    description: 'When you close the app, the tracking does not stop. How platforms monitor behavior across the rest of the internet.',
+  },
+  {
+    name: 'AI Training Data Usage',
+    href: '/practices/ai-training',
+    description: 'Most platforms are using your content to train AI models by default. Opt-outs are forward-looking only.',
+  },
+  {
+    name: 'Ad Personalization and Targeting',
+    href: '/practices/ad-personalization',
+    description: 'Turning off personalized ads does not stop data collection. What the toggle actually controls.',
+  },
+  {
+    name: 'Third-Party Data Sharing',
+    href: '/practices/third-party-sharing',
+    description: 'Platforms share your data with companies you have never interacted with. What leaves the platform and where it goes.',
+  },
+];
 ---
 
 <BaseLayout

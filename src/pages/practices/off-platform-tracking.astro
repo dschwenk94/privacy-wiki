@@ -1,0 +1,257 @@
+---
+import PracticeLayout from '../../layouts/PracticeLayout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+---
+
+<PracticeLayout
+  title="Off-Platform Activity Tracking"
+  description="When you close the app, the tracking does not stop. How platforms monitor your behavior across the rest of the internet."
+  subtitle="When you close the app, the tracking does not stop."
+  lastVerified="March 23, 2026"
+  platformCount={4}
+  severity="critical"
+  severityText="Operates invisibly across millions of third-party websites. Users have no indication it is occurring. Data collected includes granular behavioral signals. Not just site visits but specific products viewed, time spent, and purchase intent."
+>
+
+  <!-- WHAT IT IS -->
+  <div slot="what-it-is">
+    <p>Off-platform activity tracking is the practice of collecting data about your behavior on websites and apps that have nothing to do with the social media platform doing the tracking. It works through tracking pixels, SDKs, and login integrations that businesses embed on their own properties in exchange for access to the platform's advertising tools.</p>
+
+    <p>When you visit a website that has a Meta Pixel, TikTok Pixel, or X tracking tag installed, your visit is reported back to those platforms. This happens whether the app is open or not. In most cases, it happens whether you have an account or not.</p>
+
+    <p>The platforms use this data to build behavioral profiles that extend far beyond what you do inside their apps. A user who never posts on TikTok but shops online regularly still generates a TikTok behavioral profile if the retailers they visit have TikTok's Pixel installed.</p>
+  </div>
+
+  <!-- WHY IT MATTERS -->
+  <div slot="why-it-matters">
+    <p>Most people understand that social platforms collect data about what they do inside the app. Few understand the scale of data collection happening outside it.</p>
+
+    <p>Off-platform tracking is how platforms know what you browsed before you came back to their app. It is why an ad for something you researched on a retailer's website appears in your social feed minutes later. The behavioral profile built from this data is often more complete than what you voluntarily share on the platform itself.</p>
+
+    <WarningCallout title="The data exists whether you see the ads or not">
+      <p>The off-platform behavioral data is collected regardless of whether you interact with ads. It is used for audience segmentation, lookalike modeling, and measurement — not just for showing you targeted ads. The collection is the product. The ad targeting is one downstream use of it.</p>
+    </WarningCallout>
+
+    <p>The in-app settings that address this practice control how the data is used, not whether it is sent. When you disconnect an advertiser in TikTok's Off-TikTok Activity settings, the pixel on that advertiser's website still fires. The data still reaches TikTok's servers. The toggle controls whether that data gets applied to your ad profile.</p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div slot="how-it-works">
+    <ol class="steps-list">
+      <li>
+        <strong>A business installs tracking code.</strong> A retailer, news publisher, or app developer installs a platform's pixel (a small JavaScript snippet) or SDK on their website or app. They do this to access the platform's advertising measurement and targeting tools.
+      </li>
+      <li>
+        <strong>You visit that property.</strong> When you load a page that has the tracking code installed, it fires automatically. No action on your part is required.
+      </li>
+      <li>
+        <strong>An event is sent to the platform.</strong> The code sends a signal — your device identifiers, IP address, the page you visited, and often the specific product or content you viewed — back to the platform's servers.
+      </li>
+      <li>
+        <strong>The platform matches the event to your profile.</strong> Using device fingerprinting, cookies, and login identifiers, the platform links the external visit to your account. The signal gets logged against your behavioral profile.
+      </li>
+      <li>
+        <strong>The data informs targeting and measurement.</strong> Your off-platform behavior is used to build interest categories, populate audience segments for advertisers, and measure whether ad campaigns resulted in real-world actions (site visits, purchases, installs).
+      </li>
+    </ol>
+  </div>
+
+  <!-- WHAT THEY KNOW ABOUT YOU -->
+  <div slot="what-they-know">
+    <p>A platform with a mature off-platform tracking network knows which categories of products you research, not just what you buy. If you spent twelve minutes on a mattress brand's website comparing models, that behavioral signal is richer than a purchase confirmation. It indicates intent, budget range, and consideration stage.</p>
+
+    <p>Aggregated across thousands of advertiser pixel deployments, this data produces a behavioral record that includes your health interests (which supplement or medication sites you visit), financial behavior (which loan comparison or investment tools you use), and personal circumstances (which moving companies, fertility clinics, or legal services you research). None of this requires you to have shared any of it on the platform itself.</p>
+
+    <p>For platforms that also operate login buttons — Sign in with Google, Log in with Meta, Connect with X — the tracking extends to any site using those authentication tools, even if no pixel is present.</p>
+  </div>
+
+  <!-- WHO HAS YOUR DATA -->
+  <div slot="who-has-data">
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Tool Name</th>
+            <th>In-App Setting</th>
+            <th>What the Setting Controls</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Meta (Facebook/Instagram)</td>
+            <td>Meta Pixel, Off-Facebook Activity</td>
+            <td>Settings &rarr; Your Facebook Information &rarr; Off-Facebook Activity</td>
+            <td>Disconnect advertisers from your profile. Does not stop the pixel from firing.</td>
+          </tr>
+          <tr>
+            <td>TikTok</td>
+            <td>TikTok Pixel, TikTok SDK</td>
+            <td>Settings and Privacy &rarr; Ads &rarr; Your Off-TikTok Activity</td>
+            <td>Disconnect advertisers. Clear activity history once per 24 hours. Does not stop pixel events from being sent.</td>
+          </tr>
+          <tr>
+            <td>Google</td>
+            <td>Google Ads Tag, Floodlight, Google Analytics</td>
+            <td>myaccount.google.com &rarr; Data and Privacy &rarr; Ad personalization</td>
+            <td>Opt out of ad personalization. Does not stop Google Analytics data collection on sites using GA.</td>
+          </tr>
+          <tr>
+            <td>X / Twitter</td>
+            <td>X Pixel, X Website Tag</td>
+            <td>Settings &rarr; Privacy and safety &rarr; Off-X activity</td>
+            <td>Disable additional sharing with business partners. Does not stop tag events from being received.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- HOW TO TURN IT OFF -->
+  <div slot="how-to-turn-off">
+    <WarningCallout title="In-app settings are not the ceiling">
+      <p>Every platform's in-app setting for off-platform activity controls how the data is used, not whether it is collected. The pixel fires regardless. For more comprehensive protection, use a browser-level content blocker (uBlock Origin, Privacy Badger) and consider browser extensions that block known tracking domains. On iOS, App Tracking Transparency provides an OS-level control that is more comprehensive than any in-app toggle.</p>
+    </WarningCallout>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Meta</h3>
+      <ol class="turnoff-steps">
+        <li>facebook.com &rarr; Settings &amp; Privacy &rarr; Settings &rarr; Your Facebook Information &rarr; Off-Facebook Activity.</li>
+        <li>Tap "Clear History" to disconnect your past off-Facebook activity from your account.</li>
+        <li>Tap "Manage Future Activity" &rarr; "Future Off-Facebook Activity" &rarr; toggle off.</li>
+        <li>Note: this disconnects data from your account. It does not stop Meta from receiving it under a pseudonymous identifier.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">TikTok</h3>
+      <ol class="turnoff-steps">
+        <li>Profile icon &rarr; hamburger menu &rarr; Settings and Privacy &rarr; Ads &rarr; Your Off-TikTok Activity.</li>
+        <li>Tap "Disconnect All" to remove all advertiser connections at once.</li>
+        <li>Activity history can be cleared once every 24 hours.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Google</h3>
+      <ol class="turnoff-steps">
+        <li>myaccount.google.com &rarr; Data and Privacy &rarr; Ad personalization.</li>
+        <li>Turn off "Ad personalization."</li>
+        <li>Scroll to "Sites, apps, or devices that can use your info for ad personalization" to review and remove specific advertiser connections.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">X / Twitter</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &rarr; Privacy and safety &rarr; Off-X activity.</li>
+        <li>Disable "Personalize based on your inferred identity."</li>
+        <li>Disable "Allow additional information sharing with business partners."</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization and Targeting" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/tiktok" label="TikTok" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/x" label="X / Twitter" type="platform" />
+
+</PracticeLayout>
+
+<style>
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .steps-list {
+    padding-left: 1.5rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .steps-list li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  .steps-list li strong {
+    color: var(--color-text-primary);
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  .data-table th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .data-table td {
+    padding: 0.75rem;
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .data-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .turnoff-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .turnoff-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .turnoff-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .turnoff-steps {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .turnoff-steps li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+</style>

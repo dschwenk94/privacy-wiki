@@ -1,0 +1,347 @@
+---
+import PlatformLayout from '../../layouts/PlatformLayout.astro';
+import SettingCard from '../../components/SettingCard.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import FactCard from '../../components/FactCard.astro';
+---
+
+<PlatformLayout
+  title="X / Twitter"
+  description="X uses your posts to train Grok. You were opted in automatically. Here are the settings that matter and what they actually do."
+  subtitle="X uses your posts to train Grok. You were opted in automatically."
+  category="Social Media Platform"
+  lastVerified="March 23, 2026"
+  settingsCount={7}
+  severity="critical"
+  severityText="Default-on Grok AI training added in 2024 without notification, data sharing with unspecified business partners, cross-device and location-based ad targeting. The AI training is the most consequential. Your writing style and opinions become model training data."
+>
+
+  <!-- WHAT THEY COLLECT -->
+  <div slot="what-they-collect">
+    <div class="fact-grid">
+      <FactCard
+        label="Grok AI training, default-on"
+        text="X opted all users into Grok AI training in 2024 without notification. Your posts, interactions, and Grok conversations are training data for xAI's commercial language model."
+        severity="critical"
+      />
+      <FactCard
+        label="Dwell time on posts you skip"
+        text="X logs how long you linger on a post before scrolling past — without a like, reply, or any interaction. Dwell time is a behavioral signal used for both the algorithm and ad targeting."
+        severity="high"
+      />
+      <FactCard
+        label="Location inferred continuously"
+        text="IP address, device settings, and activity patterns are used to infer your location on every session, separate from any explicit location permission you grant."
+        severity="high"
+      />
+      <FactCard
+        label="Broad business partner sharing"
+        text="X's privacy policy uses deliberately broad language to authorize sharing behavioral data with unnamed business partners. The policy does not enumerate who they are."
+        severity="critical"
+      />
+    </div>
+
+    <div class="collect-detail">
+      <p>X collects everything you post, reply to, like, repost, and quote. It logs what tweets you linger on without engaging. Dwell time is tracked even for content you scroll past. Searches, link clicks, accounts you follow and mute, and direct message metadata — not content, but who you message and when — are all logged.</p>
+
+      <p>Device type, OS, IP address, and unique device identifiers are collected on every session. Since early 2024, content you input into Grok — prompts, follow-up questions, the results you engage with — is also collected as training data for xAI's language model by default.</p>
+
+      <p>Location is inferred from IP and device signals continuously, separate from any explicit location permission you grant. Cross-device tracking links your phone and laptop behavior into a single behavioral profile.</p>
+    </div>
+  </div>
+
+  <!-- SETTINGS THAT MATTER -->
+  <div slot="settings">
+    <h3 class="severity-group-label">Critical</h3>
+
+    <SettingCard
+      name="Grok AI Training Opt-Out"
+      severity="critical"
+      defaultState="On"
+      platform="X"
+      path={['Settings', 'Privacy and safety', 'Grok']}
+      description="X uses your posts, interactions, inputs to Grok, and results to train Grok — xAI's commercial language model. This was enabled by default in 2024 with no user notification. The same setting is also accessible at Settings > Privacy and safety > Third-party collaborators."
+      whatItDoesnt="Opting out stops future data from being used for training. Data already used to train existing model versions cannot be removed. The opt-out is forward-looking only."
+    />
+
+    <SettingCard
+      name="Data Sharing with Business Partners"
+      severity="critical"
+      defaultState="On"
+      platform="X"
+      path={['Settings', 'Privacy and safety', 'Data sharing and off-X activity']}
+      description="X shares behavioral data with unnamed business partners for ad targeting and measurement. The policy language is deliberately broad and covers sharing arrangements not individually disclosed to users."
+      whatItDoesnt="Does not enumerate who the business partners are. Broad policy language may cover arrangements not visible to users even after opting out of this toggle."
+    />
+
+    <h3 class="severity-group-label">High</h3>
+
+    <SettingCard
+      name="Personalized Ads"
+      severity="high"
+      defaultState="On"
+      platform="X"
+      path={['Settings', 'Privacy and safety', 'Ads preferences', 'Personalized ads']}
+      description="X uses your on-platform behavior — tweets you engage with, accounts you follow, searches, link clicks — to select ads. Enabled by default."
+      whatItDoesnt="Turning this off does not stop X from collecting your behavioral data or building your interest profile. You see less relevant ads. The collection continues."
+    />
+
+    <SettingCard
+      name="Inferred Location for Personalization"
+      severity="high"
+      defaultState="On"
+      platform="X"
+      path={['Settings', 'Privacy and safety', 'Location information', 'Personalize based on your inferred location']}
+      description="X infers location from IP address, device settings, and activity patterns. Used for ad targeting and content personalization without requiring explicit location permission."
+      whatItDoesnt="Does not prevent IP-based inference. X derives location signals from network data regardless of this setting. The toggle controls use, not collection."
+    />
+
+    <SettingCard
+      name="Cross-Device Personalization"
+      severity="high"
+      defaultState="On"
+      platform="X"
+      path={['Settings', 'Privacy and safety', 'Off-X activity', 'Personalize based on your devices']}
+      description="X tracks which devices you use and personalizes content and ads based on cross-device behavior patterns."
+      whatItDoesnt="Does not stop X from identifying linked devices. It stops using that linkage for personalization, not from detecting it."
+    />
+
+    <h3 class="severity-group-label">Medium</h3>
+
+    <SettingCard
+      name="Track Where You See X Content"
+      severity="medium"
+      defaultState="On"
+      platform="X"
+      path={['Settings', 'Privacy and safety', 'Off-X activity', 'Allow additional information sharing with business partners']}
+      description="X monitors when you encounter embedded tweets, X widgets, or X login buttons on external websites — even without interacting with them."
+      whatItDoesnt="Does not prevent X from receiving signals when its code is embedded on third-party sites. The toggle controls what X does with those signals, not whether they are received."
+    />
+
+    <SettingCard
+      name="Connected Apps"
+      severity="medium"
+      defaultState="Varies"
+      platform="X"
+      path={['Settings', 'Security and account access', 'Apps and sessions', 'Connected apps']}
+      description="Third-party apps authorized via your X account. Each has ongoing access to account data unless revoked. Access Settings > More > Settings and Support > Settings > Security and account access > Apps and sessions > Connected apps."
+      whatItDoesnt="Does not automatically revoke permissions. Users must manually review and disconnect each app individually. Old apps may retain historical data already accessed."
+    />
+  </div>
+
+  <!-- HOW TO TURN IT OFF -->
+  <div slot="how-to-turn-off">
+    <WarningCallout title="What these settings do not do">
+      <p>Every toggle here stops a specific use of your data. None of them stop X from collecting data in the first place. Turning off personalized ads does not stop the behavioral profile from being built. Opting out of Grok training is forward-looking only — data already used to train the model cannot be removed.</p>
+      <p>The Grok training opt-out is the highest-priority action here. It was enabled by default without notification and represents the most consequential use of your data.</p>
+    </WarningCallout>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Grok AI Training Opt-Out</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &rarr; Privacy and safety &rarr; Grok.</li>
+        <li>Disable "Allow X to use your data to improve Grok."</li>
+        <li>Also check: Settings &rarr; Privacy and safety &rarr; Third-party collaborators &rarr; disable any Grok-related options.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Data Sharing with Business Partners</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &rarr; Privacy and safety &rarr; Data sharing and off-X activity.</li>
+        <li>Disable "Allow additional information sharing with business partners."</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Personalized Ads</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &rarr; Privacy and safety &rarr; Ads preferences &rarr; Personalized ads.</li>
+        <li>Toggle off.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Inferred Location</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &rarr; Privacy and safety &rarr; Location information.</li>
+        <li>Disable "Personalize based on your inferred location."</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Cross-Device Personalization</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &rarr; Privacy and safety &rarr; Off-X activity.</li>
+        <li>Disable "Personalize based on your devices."</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Track Where You See X Content</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &rarr; Privacy and safety &rarr; Off-X activity.</li>
+        <li>Disable "Allow additional information sharing with business partners."</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Connected Apps</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &rarr; Security and account access &rarr; Apps and sessions &rarr; Connected apps.</li>
+        <li>Review each app. Revoke access for anything you do not recognize or no longer use.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- WHO GETS YOUR DATA -->
+  <div slot="who-gets-data">
+    <dl class="data-recipients">
+      <div class="recipient">
+        <dt>xAI (Grok)</dt>
+        <dd>Receives posts, interactions, and Grok conversation data for AI model training under a data sharing arrangement with X Corp. This arrangement was enabled by default for all users in 2024. The opt-out is forward-looking. Data already incorporated into trained model weights is not retrievable.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>X Advertising Partners</dt>
+        <dd>Receive behavioral signals and audience segments for campaign targeting via X Ads platform. Advertisers do not receive your raw data directly, but they benefit from targeting capabilities built from it.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Business Partners</dt>
+        <dd>An undefined category in X's privacy policy that receives behavioral data for measurement and targeting purposes. The policy language is intentionally broad. X does not enumerate who these partners are or what specific data they receive.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Third-Party Measurement Companies</dt>
+        <dd>Receive impression and conversion data to verify ad performance independently of X's self-reported metrics. Your activity on other sites, particularly purchase events, feeds into this pipeline.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- WHAT THEY KNOW -->
+  <div slot="what-they-know">
+    <p>X knows which political accounts you follow, which posts you linger on without liking, what you search for privately, and what links you click. Dwell time data is more revealing than likes — a two-second pause on a post is a signal even if you kept scrolling.</p>
+
+    <p>With Grok training enabled, the specific way you ask questions — your vocabulary, your framing, your opinions stated as prompts — contributes to training a commercial AI product. This is distinct from your public posts. It includes private queries you typed directly to Grok.</p>
+
+    <p>Cross-device tracking links your phone and laptop behavior into a single profile. The result is a behavioral record that reflects your interests, beliefs, and habits more accurately than what you deliberately post.</p>
+
+    <WarningCallout title="Grok Training Was Enabled Without Notification">
+      <p>In 2024, X began using user posts, interactions, and Grok conversations to train the Grok AI model. This was enabled by default for existing accounts with no email notification or in-app prompt. The opt-out is at Settings &rarr; Privacy and safety &rarr; Grok. The opt-out is forward-looking. Data already used to train existing model versions cannot be removed after the fact.</p>
+    </WarningCallout>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/ai-training" label="AI Training Data Usage" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/off-platform-tracking" label="Off-Platform Activity Tracking" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization and Targeting" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/tiktok" label="TikTok" type="platform" />
+
+</PlatformLayout>
+
+<style>
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .collect-detail {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .severity-group-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 1.75rem 0 0.75rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .severity-group-label:first-child {
+    margin-top: 0;
+  }
+
+  .turnoff-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .turnoff-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .turnoff-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .turnoff-steps {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .turnoff-steps li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .data-recipients {
+    margin: 0;
+  }
+
+  .recipient {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .recipient:first-child {
+    padding-top: 0;
+  }
+
+  .recipient:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .recipient dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .recipient dd {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>

@@ -8,7 +8,36 @@ const practices: Array<{
   severity: 'critical' | 'high' | 'medium';
   description: string;
   platformCount?: number;
-}> = [];
+}> = [
+  {
+    name: 'Off-Platform Activity Tracking',
+    href: '/practices/off-platform-tracking',
+    severity: 'critical',
+    description: 'When you close the app, the tracking does not stop. How platforms monitor your behavior across the rest of the internet.',
+    platformCount: 4,
+  },
+  {
+    name: 'AI Training Data Usage',
+    href: '/practices/ai-training',
+    severity: 'high',
+    description: 'Most platforms are using your content to train AI models by default. Opt-outs are forward-looking only.',
+    platformCount: 6,
+  },
+  {
+    name: 'Ad Personalization and Targeting',
+    href: '/practices/ad-personalization',
+    severity: 'high',
+    description: 'Turning off personalized ads does not stop data collection. What the toggle most users find actually controls.',
+    platformCount: 4,
+  },
+  {
+    name: 'Third-Party Data Sharing',
+    href: '/practices/third-party-sharing',
+    severity: 'critical',
+    description: 'Platforms share your data with companies you have never interacted with. What policy language actually covers.',
+    platformCount: 5,
+  },
+];
 
 const breadcrumbs = [
   { label: 'Home', href: '/' },

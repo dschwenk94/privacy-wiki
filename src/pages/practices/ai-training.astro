@@ -1,0 +1,268 @@
+---
+import PracticeLayout from '../../layouts/PracticeLayout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+---
+
+<PracticeLayout
+  title="AI Training Data Usage"
+  description="Most platforms are using your content to train AI models by default. What that means, who does it, and what the opt-outs actually cover."
+  subtitle="Most platforms are using your content to train AI models by default."
+  lastVerified="March 23, 2026"
+  platformCount={6}
+  severity="high"
+  severityText="Consent is retroactive and opaque. Opt-outs are forward-looking only. Data already used to train a model cannot be removed. The value transfer is asymmetric: you create content, platforms build AI products from it."
+>
+
+  <!-- WHAT IT IS -->
+  <div slot="what-it-is">
+    <p>AI training data usage is the practice of using the content you create and the behavioral signals you generate to train, fine-tune, or improve machine learning models. This includes large language models, image generation models, recommendation algorithms, and content moderation classifiers.</p>
+
+    <p>As of 2024 and 2025, most major platforms updated their privacy policies to explicitly include AI training as a permitted use of user content — often without direct user notification. In most cases, this use is opt-in by default, meaning you are enrolled unless you take specific action to opt out.</p>
+
+    <p>The opt-out, where one exists, is forward-looking. Data that has already been ingested into a training pipeline or used to train a model version cannot be removed from that model after the fact. The way neural networks learn does not support surgical removal of individual data contributions.</p>
+  </div>
+
+  <!-- WHY IT MATTERS -->
+  <div slot="why-it-matters">
+    <p>The content you create on social platforms has commercial value beyond advertising. It serves as training material for AI products that platforms sell or use to build competitive advantages. Your writing, images, and behavioral patterns become part of model weights that generate commercial returns for the platform indefinitely.</p>
+
+    <p>The opt-out problem is structural. Because models cannot be un-trained on specific data after the fact, any data collected before you opt out is permanently incorporated. This means the earlier the default-on enrollment, the less meaningful any subsequent opt-out becomes.</p>
+
+    <WarningCallout title="Opt-outs are forward-looking only">
+      <p>No platform currently offers a mechanism to remove your data from an already-trained model. The opt-out prevents future data from being added to future training runs. It does not affect model versions that have already incorporated your content. This is a structural limitation of how machine learning works, not a policy choice.</p>
+    </WarningCallout>
+
+    <p>For platforms where you have a distinctive voice or share specialized knowledge — detailed threads, professional analysis, creative writing — the contribution to training data is more consequential than for casual users. Your writing style, vocabulary, and reasoning patterns are identifiable characteristics that can be learned from even without your name attached.</p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div slot="how-it-works">
+    <ol class="steps-list">
+      <li>
+        <strong>Platform updates privacy policy.</strong> The platform adds AI training to the list of permitted data uses, typically with broad language covering machine learning, model development, and product improvement.
+      </li>
+      <li>
+        <strong>Default-on enrollment.</strong> Existing users are enrolled automatically. New users are enrolled at account creation. In most jurisdictions outside the EU, no affirmative consent is required — the policy update alone is sufficient legal basis.
+      </li>
+      <li>
+        <strong>Data is ingested into training pipelines.</strong> Your posts, interactions, images, and behavioral signals are included in datasets used to train or fine-tune models. This can happen continuously or in periodic batch runs.
+      </li>
+      <li>
+        <strong>Models are trained and deployed.</strong> The resulting model weights incorporate statistical patterns learned from your content. The model is deployed in products — chatbots, recommendation systems, generative tools — that generate commercial value for the platform.
+      </li>
+      <li>
+        <strong>Opt-out stops future ingestion.</strong> When you opt out, your data is excluded from future training runs. Data already incorporated into trained model versions is not affected. The opt-out applies from the date it is exercised forward.
+      </li>
+    </ol>
+  </div>
+
+  <!-- WHAT THEY KNOW ABOUT YOU -->
+  <div slot="what-they-know">
+    <p>From an AI training perspective, what matters is not just what you post but how you post it. Your vocabulary, sentence structure, the topics you return to, and how you reason through problems are all learnable patterns. A language model trained on millions of users' content does not need to know your name to incorporate your writing style into its understanding of how certain types of people communicate.</p>
+
+    <p>For image-generating platforms, your visual aesthetic preferences, the subjects you photograph, and the style of images you engage with are training signals. For platforms with voice features, audio patterns are increasingly included.</p>
+
+    <p>The aggregated behavioral data is particularly valuable for training recommendation and ranking systems. Which content you engage with, how long you watch, what you skip, and what you share are ground-truth labels for training models to predict what content will drive engagement.</p>
+  </div>
+
+  <!-- WHO HAS YOUR DATA -->
+  <div slot="who-has-data">
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>AI Product</th>
+            <th>Opt-Out Available</th>
+            <th>Where to Find It</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>X / Twitter</td>
+            <td>Grok (xAI)</td>
+            <td>Yes (all regions)</td>
+            <td>Settings &rarr; Privacy and safety &rarr; Grok</td>
+          </tr>
+          <tr>
+            <td>TikTok</td>
+            <td>Recommendation algorithm, content AI</td>
+            <td>No (US users); Yes (EU users under GDPR)</td>
+            <td>No US opt-out mechanism as of March 2026</td>
+          </tr>
+          <tr>
+            <td>Meta</td>
+            <td>Meta AI, Llama models</td>
+            <td>Yes (EU/UK); Limited (US)</td>
+            <td>facebook.com/privacy/genai or via Help Center</td>
+          </tr>
+          <tr>
+            <td>Google</td>
+            <td>Gemini, Search, Ads models</td>
+            <td>Partial — varies by product</td>
+            <td>myaccount.google.com &rarr; Data and Privacy</td>
+          </tr>
+          <tr>
+            <td>LinkedIn</td>
+            <td>AI features, recruiter tools</td>
+            <td>Yes</td>
+            <td>Settings &rarr; Data Privacy &rarr; Data for Generative AI Improvement</td>
+          </tr>
+          <tr>
+            <td>Snapchat</td>
+            <td>My AI (Snap's chatbot)</td>
+            <td>Partial (Snapchat+ subscribers)</td>
+            <td>Settings &rarr; Privacy Controls &rarr; My AI</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- HOW TO TURN IT OFF -->
+  <div slot="how-to-turn-off">
+    <WarningCallout title="Opt-outs apply from the date you exercise them">
+      <p>Any data collected before you opt out may already have been used in training runs that have since completed. The opt-out prevents future use. It does not reverse past use. Acting early minimizes the data contributed, but does not eliminate it entirely if you have been using the platform for years.</p>
+    </WarningCallout>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">X / Twitter (Grok)</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &rarr; Privacy and safety &rarr; Grok.</li>
+        <li>Disable "Allow X to use your data to improve Grok."</li>
+        <li>Also check Settings &rarr; Privacy and safety &rarr; Third-party collaborators for any additional Grok-related options.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Meta</h3>
+      <ol class="turnoff-steps">
+        <li>Visit facebook.com/privacy/genai (for EU/UK users, a formal objection form is available).</li>
+        <li>US users: submit a request via the Help Center. There is no dedicated in-app toggle in the same location as EU users.</li>
+        <li>Note: Meta's AI training opt-out does not cover data already used in published model releases.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">LinkedIn</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &amp; Privacy &rarr; Data Privacy &rarr; Data for Generative AI Improvement.</li>
+        <li>Toggle off.</li>
+        <li>This setting covers LinkedIn's use of your data to train generative AI models. It does not affect recommendation algorithm training.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">TikTok (US)</h3>
+      <ol class="turnoff-steps">
+        <li>No opt-out mechanism is available for US users as of March 2026.</li>
+        <li>EU users: Settings and Privacy &rarr; Privacy &rarr; Personalization and data.</li>
+        <li>US users can submit a Data Subject Request via TikTok's privacy portal, though this does not constitute a training opt-out.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/off-platform-tracking" label="Off-Platform Activity Tracking" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/x" label="X / Twitter" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/tiktok" label="TikTok" type="platform" />
+
+</PracticeLayout>
+
+<style>
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .steps-list {
+    padding-left: 1.5rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .steps-list li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  .steps-list li strong {
+    color: var(--color-text-primary);
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  .data-table th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .data-table td {
+    padding: 0.75rem;
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .data-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .turnoff-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .turnoff-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .turnoff-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .turnoff-steps {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .turnoff-steps li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+</style>

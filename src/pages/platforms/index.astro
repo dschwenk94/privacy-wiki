@@ -8,7 +8,22 @@ const platforms: Array<{
   category: string;
   severity: 'critical' | 'high' | 'medium';
   description: string;
-}> = [];
+}> = [
+  {
+    name: 'TikTok',
+    href: '/platforms/tiktok',
+    category: 'Social Media Platform',
+    severity: 'critical',
+    description: 'Off-platform tracking via TikTok Pixel, GPS collection added in January 2026, no AI training opt-out for US users, and default-on ad targeting across platforms.',
+  },
+  {
+    name: 'X / Twitter',
+    href: '/platforms/x',
+    category: 'Social Media Platform',
+    severity: 'critical',
+    description: 'Default-on Grok AI training added in 2024 without notification, data sharing with unspecified business partners, cross-device and location-based ad targeting.',
+  },
+];
 
 const breadcrumbs = [
   { label: 'Home', href: '/' },
