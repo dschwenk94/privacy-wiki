@@ -1,0 +1,366 @@
+---
+import PlatformLayout from '../../layouts/PlatformLayout.astro';
+import SettingCard from '../../components/SettingCard.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import FactCard from '../../components/FactCard.astro';
+---
+
+<PlatformLayout
+  title="Meta / Instagram"
+  description="Meta has tracking code on millions of websites. Visiting any of them feeds your ad profile. Here are the settings that matter and what they actually do."
+  subtitle="Meta has tracking code on millions of websites. Visiting any of them feeds your ad profile."
+  category="Social Media Platform"
+  lastVerified="March 23, 2026"
+  settingsCount={7}
+  severity="critical"
+  severityText="The most mature and comprehensive consumer data infrastructure that exists. Off-Facebook Activity tracking spans millions of third-party websites. Cross-platform data merging between Facebook and Instagram via Accounts Center. AI training on posts and photos with no US opt-out. The Audience Network serves targeted ads on thousands of unrelated apps using your Meta profile."
+>
+
+  <!-- WHAT THEY COLLECT -->
+  <div slot="what-they-collect">
+    <div class="fact-grid">
+      <FactCard
+        label="Tracks you on millions of websites"
+        text="The Meta Pixel is installed on millions of third-party websites. Every visit to a site with the Pixel fires an event back to Meta, whether or not you are logged in or have an account."
+        severity="critical"
+      />
+      <FactCard
+        label="Off-Meta Activity — your entire web history"
+        text="Meta aggregates your activity from every site and app that uses its tracking tools. The Off-Facebook Activity tool lets you view and theoretically clear this data, but the profile used for targeting rebuilds immediately."
+        severity="critical"
+      />
+      <FactCard
+        label="Contact lists uploaded by others"
+        text="When your contacts upload their phone books to Facebook or Instagram, your phone number and email address are included in Meta's systems — regardless of whether you have an account."
+        severity="high"
+      />
+      <FactCard
+        label="AI training on posts and photos"
+        text="Meta uses public posts, comments, and photos (including their captions and metadata) to train its AI models. EU users can object. US users have no equivalent opt-out."
+        severity="high"
+      />
+    </div>
+
+    <div class="collect-detail">
+      <p>Meta collects data in three places: on its platforms, across the web via the Meta Pixel and SDK, and from third-party data partners.</p>
+
+      <p>On platform: everything you post, comment on, react to, and share. Who you message and when (not content). Events you mark as interested or attending. Groups you join. Search queries. Videos you watch and for how long. Products you view in Marketplace and Facebook Shops. The pages and accounts you follow, and the ones you unfollow.</p>
+
+      <p>Off platform: The Meta Pixel is installed on millions of websites. When you visit any of those sites, your activity — pages viewed, products browsed, items added to cart, purchases completed — is reported back to Meta and added to your advertising profile. This occurs whether the site shows a cookie banner or not, whether you are logged into Facebook, and whether you have a Facebook account at all. Meta matches events to user profiles using cookies, device identifiers, email hashes, and IP address matching.</p>
+
+      <p>From third parties: Meta purchases and licenses data from data brokers and business partners. This includes purchase history, loyalty program data, app usage data, and demographic enrichment. When you see an ad for something you researched on a retailer website that has no Meta Pixel, it is likely this data pipeline at work.</p>
+
+      <p>Facebook and Instagram share a single data infrastructure via Accounts Center. Data collected on Instagram informs your Facebook ad profile and vice versa.</p>
+    </div>
+  </div>
+
+  <!-- SETTINGS THAT MATTER -->
+  <div slot="settings">
+    <h3 class="severity-group-label">Critical</h3>
+
+    <SettingCard
+      name="Off-Facebook Activity"
+      severity="critical"
+      defaultState="On"
+      platform="Meta"
+      path={['Settings & Privacy', 'Settings', 'Your Facebook Information', 'Off-Facebook Activity']}
+      description="This is the most important privacy setting Meta offers. The Off-Facebook Activity tool shows you a fraction of what third-party websites and apps have reported back to Meta about your behavior. Every business with the Meta Pixel or Conversions API installed sends your activity to Meta. The tool lets you view recent activity, disconnect individual businesses, and clear your history — but clearing does not delete the underlying data. It dissociates it from your account temporarily. Meta continues receiving new events immediately after clearing."
+      whatItDoesnt="Disconnecting a business or clearing your history does not delete what Meta has already collected or used for targeting. The data remains in Meta's systems. Your ad profile is rebuilt as new events arrive. The only durable reduction requires blocking Meta's tracking code at the browser or network level — ad blockers and tracker-blocking extensions are more effective than this toggle."
+    />
+
+    <SettingCard
+      name="Ad Personalization Using Partner Data"
+      severity="critical"
+      defaultState="On"
+      platform="Meta"
+      path={['Accounts Center', 'Ad preferences', 'Ad settings', 'Ads shown outside of Meta']}
+      description="Meta uses data from its advertising partners — external companies including retailers, apps, and data brokers — to target ads at you. This is separate from your on-platform behavior. It is the mechanism by which your activity on a retailer website appears as a targeted ad in your Facebook or Instagram feed. The partner data pipeline operates independently of the Off-Facebook Activity tool."
+      whatItDoesnt="Turning this off stops Meta from using partner data to select your ads. It does not stop Meta's partners from sending data about you to Meta. The data still arrives; it just does not get applied to your ad targeting. Your off-platform activity continues to be collected and stored."
+    />
+
+    <h3 class="severity-group-label">High</h3>
+
+    <SettingCard
+      name="Audience Network Ads"
+      severity="high"
+      defaultState="On"
+      platform="Meta"
+      path={['Accounts Center', 'Ad preferences', 'Ad settings', 'Ads shown outside of Meta']}
+      description="Meta's Audience Network serves targeted ads on thousands of third-party apps and websites, using your Facebook and Instagram behavioral profile. Your on-platform activity follows you to unrelated apps — games, news apps, utilities — that show ads through Meta's ad network. This is the reverse of off-platform tracking: it is your Meta profile being used to target you elsewhere."
+      whatItDoesnt="Turning off Audience Network ads stops Meta from using your profile to target ads on third-party apps. It does not stop those apps from showing ads — they will show untargeted or generically targeted ads instead. Your Meta profile continues to exist and be used for on-platform targeting."
+    />
+
+    <SettingCard
+      name="Search Engine Indexing of Profile"
+      severity="high"
+      defaultState="On"
+      platform="Meta"
+      path={['Settings & Privacy', 'Settings', 'Privacy', 'How people find and contact you', 'Do you want search engines outside of Facebook to link to your profile?']}
+      description="Facebook allows search engines to index your profile by default. Your name, profile photo, and public content appear in Google and other search results. This applies to accounts with any public content, even if you consider your Facebook presence semi-private."
+      whatItDoesnt="Turning this off removes the permission for future crawling but does not immediately remove existing cached results from search engines. Google and other search engines may retain indexed content for weeks or months. Direct removal requires submitting removal requests through each search engine."
+    />
+
+    <SettingCard
+      name="People Can Look You Up Using Email/Phone"
+      severity="high"
+      defaultState="On"
+      platform="Meta"
+      path={['Settings & Privacy', 'Settings', 'Privacy', 'How people find and contact you']}
+      description="By default, anyone with your email address or phone number can find your Facebook account by searching for it. This applies even if your profile is otherwise private. Facebook and Instagram also use this data to suggest your account to people whose contact lists you appear in."
+      whatItDoesnt="Turning these off stops people from finding you via contact information searches. It does not remove your phone number or email from Meta's systems. Meta continues to use that data internally for account security, fraud prevention, and ad targeting purposes."
+    />
+
+    <h3 class="severity-group-label">Medium</h3>
+
+    <SettingCard
+      name="Connected Third-Party Apps"
+      severity="medium"
+      defaultState="Varies"
+      platform="Meta"
+      path={['Settings & Privacy', 'Settings', 'Security and login', 'Apps and websites']}
+      description="Every app or service you have ever authenticated using Login with Facebook has ongoing access to your account data. The permissions granted at login — which often include profile information, friends list, and email — remain active until you manually revoke them. Many users have dozens of connected apps they no longer use or recognize."
+      whatItDoesnt="Removing an app revokes future access but does not delete data that app has already collected. The data the app acquired during its access period remains in that company's systems, governed by its own privacy policy. There is no mechanism to compel deletion."
+    />
+
+    <SettingCard
+      name="Ad Topic Preferences"
+      severity="medium"
+      defaultState="On"
+      platform="Meta"
+      path={['Accounts Center', 'Ad preferences', 'Ad topics']}
+      description="Meta allows you to indicate categories of ads you prefer to see less of — alcohol, gambling, parenting, political content, and others. Adjusting these preferences affects which ads are displayed. It does not affect data collection."
+      whatItDoesnt="Adjusting ad topic preferences does not reduce the data Meta collects or the sophistication of your ad profile. Meta continues building the same profile; it just displays ads from different categories. This is the most cosmetic of Meta's privacy controls."
+    />
+  </div>
+
+  <!-- HOW TO TURN IT OFF -->
+  <div slot="how-to-turn-off">
+    <WarningCallout title="What these settings do not do">
+      <p>Every toggle here stops a specific use of your data. None of them stop Meta from collecting data in the first place. Clearing your Off-Facebook Activity does not delete the underlying data. Turning off partner data ads does not stop Meta's partners from sending your data to Meta.</p>
+      <p>Ad blockers and tracker-blocking browser extensions (uBlock Origin, Privacy Badger) block the Meta Pixel at the network level. They are more effective than any in-app setting at preventing off-platform data collection. The in-app settings are the minimum, not the ceiling.</p>
+    </WarningCallout>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Off-Facebook Activity</h3>
+      <ol class="turnoff-steps">
+        <li>Facebook app: Menu &rarr; Settings &amp; Privacy &rarr; Settings &rarr; Your Facebook Information &rarr; Off-Facebook Activity.</li>
+        <li>Web: accountscenter.facebook.com &rarr; Your information &rarr; Off-Facebook activity.</li>
+        <li>Review the list of businesses that have sent data about you.</li>
+        <li>Tap "Clear History" to dissociate the data from your account. Tap "More Options" to disconnect future activity from specific businesses.</li>
+        <li>Note: clearing does not delete the data. It dissociates it temporarily. New events begin rebuilding your profile immediately.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Ad Personalization Using Partner Data</h3>
+      <ol class="turnoff-steps">
+        <li>Accounts Center &rarr; Ad preferences &rarr; Ad settings &rarr; Ads shown outside of Meta.</li>
+        <li>Toggle off "Use data from Meta's partners to show you ads."</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Audience Network Ads</h3>
+      <ol class="turnoff-steps">
+        <li>Accounts Center &rarr; Ad preferences &rarr; Ad settings &rarr; Ads shown outside of Meta.</li>
+        <li>Toggle off "See Meta ads on apps and websites outside Meta."</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Search Engine Indexing</h3>
+      <ol class="turnoff-steps">
+        <li>Facebook: Settings &amp; Privacy &rarr; Settings &rarr; Privacy &rarr; How people find and contact you.</li>
+        <li>Tap "Do you want search engines outside of Facebook to link to your profile?"</li>
+        <li>Select "No."</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Email/Phone Lookup</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &amp; Privacy &rarr; Settings &rarr; Privacy &rarr; How people find and contact you.</li>
+        <li>Change "Who can look you up using the email address you provided?" to "Only me."</li>
+        <li>Change "Who can look you up using the phone number you provided?" to "Only me."</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Connected Third-Party Apps</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &amp; Privacy &rarr; Settings &rarr; Security and login &rarr; Apps and websites.</li>
+        <li>Review each listed app under "Active" and "Expired."</li>
+        <li>Remove any app you do not recognize or no longer use.</li>
+        <li>Also accessible via Accounts Center for a unified view across Facebook and Instagram.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Ad Topic Preferences</h3>
+      <ol class="turnoff-steps">
+        <li>Accounts Center &rarr; Ad preferences &rarr; Ad topics.</li>
+        <li>Select topics you want to see less of. Options include alcohol, gambling, parenting, and political content.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- WHO GETS YOUR DATA -->
+  <div slot="who-gets-data">
+    <dl class="data-recipients">
+      <div class="recipient">
+        <dt>Meta's Audience Network</dt>
+        <dd>Thousands of third-party apps and websites that serve ads using Meta's ad platform. Your behavioral profile determines which ads you see on apps that have nothing to do with Meta.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>The Meta Pixel Ecosystem</dt>
+        <dd>Millions of websites that have installed Meta's tracking code. Each of these sites sends your visit data to Meta as a business arrangement. The list is not publicly disclosed.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Instagram (within Meta)</dt>
+        <dd>Facebook and Instagram share a unified data infrastructure via Accounts Center. Activity on Instagram informs your Facebook ad profile and vice versa.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Meta AI</dt>
+        <dd>Meta uses public posts, photos, and interactions to train its large language models, including the models powering Meta AI across its platforms. EU users can submit an objection. No equivalent process exists for US users.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>WhatsApp (limited)</dt>
+        <dd>WhatsApp does not use message content for ad targeting. However, metadata — who you message, how often, when — is shared with Meta and used for purposes including security and product improvement.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Data Broker Partners</dt>
+        <dd>Meta licenses enrichment data from companies including Acxiom, Experian, and others to improve targeting accuracy beyond what its own tracking captures.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- WHAT THEY KNOW -->
+  <div slot="what-they-know">
+    <p>After a typical month of use, Meta's profile on you includes: your approximate income bracket (inferred from engagement patterns and enriched with third-party data), whether you are in a relationship and its status, your rough location history derived from IP and device signals, what you are considering purchasing (from off-platform Pixel data), what news sources you read, what health topics you have searched (via apps with Meta's SDK), and the contact information of your entire social network — including people who have never had a Facebook account but appear in your friends' contact lists.</p>
+
+    <p>The profile is not stored as a readable document. It exists as targeting parameters in Meta's ad platform, expressed as the ads you see.</p>
+
+    <WarningCallout title="No AI Training Opt-Out for US Users">
+      <p>Meta uses public posts, photos, and interactions to train its AI models. EU users can submit a formal objection under GDPR. US users have no equivalent mechanism. The opt-out that exists for EU users does not apply in the United States. This includes content posted to Facebook, Instagram, and comments left on public pages.</p>
+    </WarningCallout>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/off-platform-tracking" label="Off-Platform Activity Tracking" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ai-training" label="AI Training Data Usage" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/tiktok" label="TikTok" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/x" label="X / Twitter" type="platform" />
+
+</PlatformLayout>
+
+<style>
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .collect-detail {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .severity-group-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 1.75rem 0 0.75rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .severity-group-label:first-child {
+    margin-top: 0;
+  }
+
+  .turnoff-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .turnoff-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .turnoff-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .turnoff-steps {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .turnoff-steps li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .data-recipients {
+    margin: 0;
+  }
+
+  .recipient {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .recipient:first-child {
+    padding-top: 0;
+  }
+
+  .recipient:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .recipient dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .recipient dd {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>
