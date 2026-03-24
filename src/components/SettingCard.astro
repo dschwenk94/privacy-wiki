@@ -63,15 +63,15 @@ const color = severityColors[severity];
 
   <p class="setting-description">{description}</p>
 
-  {whatItDoesnt && (
-    <p class="what-it-doesnt">
-      <span class="doesnt-label">Note:</span> {whatItDoesnt}
-    </p>
-  )}
-
   {howToTurnOff && (
     <p class="how-to-turn-off">
       <span class="turn-off-label">Turn off:</span> {howToTurnOff}
+    </p>
+  )}
+
+  {whatItDoesnt && (
+    <p class="what-it-doesnt">
+      <span class="doesnt-label">Note:</span> {whatItDoesnt}
     </p>
   )}
 </div>
