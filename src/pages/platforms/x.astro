@@ -59,8 +59,7 @@ import FactCard from '../../components/FactCard.astro';
       name="Grok AI Training"
       severity="critical"
       defaultState="On"
-      platform="X"
-      path={['Settings and Privacy', 'Privacy and Safety', 'Grok & Third-party Collaborators']}
+      howToTurnOff="Opt out in Privacy settings"
       webUrl="https://x.com/settings/grok_settings"
       webPath={['Privacy and Safety', 'Grok & Third-party Collaborators']}
       description="Three default-on checkboxes control how X feeds your data to xAI. The first allows your public posts, interactions, inputs to Grok, and results to be used for training and fine-tuning. The second allows X to personalize your Grok experience. The third allows Grok to remember your conversation history. All three were enabled by default in 2024 with no user notification."
@@ -71,8 +70,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Data Sharing with Business Partners"
       severity="critical"
       defaultState="On"
-      platform="X"
-      path={['Settings and Privacy', 'Privacy and Safety', 'Data sharing and off-X activity']}
       webUrl="https://x.com/settings/privacy_and_safety"
       webPath={['Data sharing and off-X activity']}
       description="X shares behavioral data with unnamed business partners for ad targeting and measurement. The policy language is deliberately broad and covers sharing arrangements not individually disclosed to users."
@@ -85,8 +82,7 @@ import FactCard from '../../components/FactCard.astro';
       name="Personalized Ads"
       severity="high"
       defaultState="On"
-      platform="X"
-      path={['Settings and Privacy', 'Privacy and Safety', 'Ads preferences', 'Personalized ads']}
+      howToTurnOff="Toggle off"
       webUrl="https://x.com/settings/ads_preferences"
       webPath={['Personalized ads']}
       description="X uses your on-platform behavior to select ads. Tweets you engage with, accounts you follow, searches, link clicks. Enabled by default."
@@ -97,8 +93,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Inferred Location for Personalization"
       severity="high"
       defaultState="On"
-      platform="X"
-      path={['Settings and Privacy', 'Privacy and Safety', 'Location information', 'Personalize based on your inferred location']}
       webUrl="https://x.com/settings/location_information"
       webPath={['Personalize based on your inferred location']}
       description="X infers location from IP address, device settings, and activity patterns. Used for ad targeting and content personalization without requiring explicit location permission."
@@ -109,8 +103,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Cross-Device Personalization"
       severity="high"
       defaultState="On"
-      platform="X"
-      path={['Settings and Privacy', 'Privacy and Safety', 'Off-X activity', 'Personalize based on your devices']}
       webUrl="https://x.com/settings/off_x_activity"
       webPath={['Personalize based on your devices']}
       description="X tracks which devices you use and personalizes content and ads based on cross-device behavior patterns."
@@ -123,8 +115,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Track Where You See X Content"
       severity="medium"
       defaultState="On"
-      platform="X"
-      path={['Settings and Privacy', 'Privacy and Safety', 'Off-X activity', 'Allow additional information sharing with business partners']}
       webUrl="https://x.com/settings/off_x_activity"
       webPath={['Allow additional information sharing with business partners']}
       description="X monitors when you encounter embedded tweets, X widgets, or X login buttons on external websites. This happens without any interaction on your part."
@@ -135,8 +125,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Discoverability by Email and Phone"
       severity="medium"
       defaultState="On"
-      platform="X"
-      path={['Settings and Privacy', 'Privacy and Safety', 'Discoverability and contacts']}
       webUrl="https://x.com/settings/contacts"
       webPath={['Discoverability and contacts']}
       description="Two separate toggles let people who have your email address or phone number find your X account. Enabled by default. Also controls whether X can sync your address book to suggest connections."
@@ -147,8 +135,7 @@ import FactCard from '../../components/FactCard.astro';
       name="Connected Apps"
       severity="medium"
       defaultState="Varies"
-      platform="X"
-      path={['Settings and Privacy', 'Security and Account Access', 'Apps and sessions', 'Connected apps']}
+      howToTurnOff="Revoke access for unused apps"
       webUrl="https://x.com/settings/connected_apps"
       webPath={['Apps and sessions', 'Connected apps']}
       description="Third-party apps authorized via your X account. Each has ongoing access to account data unless revoked."
@@ -156,23 +143,6 @@ import FactCard from '../../components/FactCard.astro';
     />
   </div>
 
-  <!-- HOW TO TURN IT OFF -->
-  <div slot="how-to-turn-off">
-    <WarningCallout title="What these settings do not do">
-      <p>Every toggle here stops a specific use of your data. None of them stop X from collecting data in the first place. Turning off personalized ads does not stop the behavioral profile from being built. Opting out of Grok training is forward-looking only. Data already used to train the model cannot be removed.</p>
-      <p>The Grok training opt-out is the highest-priority action here. It was enabled by default without notification and feeds your data directly to xAI's commercial AI lab.</p>
-    </WarningCallout>
-
-    <div class="turnoff-group">
-      <h3 class="turnoff-heading">Grok AI Training</h3>
-      <ol class="turnoff-steps">
-        <li>Settings and Privacy &rarr; Privacy and Safety &rarr; Grok & Third-party Collaborators.</li>
-        <li>Uncheck "Allow your public data as well as your interactions, inputs, and results with Grok and xAI to be used for training and fine-tuning."</li>
-        <li>Optionally also uncheck "Allow X to personalize your experience with Grok" and "Allow Grok to remember your conversation history."</li>
-        <li>To delete existing Grok conversations: click "Delete conversation history" on the same page. Deleted conversations are removed within 30 days.</li>
-        <li>On web: go to x.com/settings/grok_settings directly.</li>
-      </ol>
-    </div>
 
     <div class="turnoff-group">
       <h3 class="turnoff-heading">Data Sharing with Business Partners</h3>

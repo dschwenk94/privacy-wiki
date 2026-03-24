@@ -61,8 +61,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Web and App Activity"
       severity="critical"
       defaultState="On"
-      platform="Google"
-      path={['myaccount.google.com', 'Data and Privacy', 'Web and App Activity']}
       webUrl="https://myaccount.google.com/activitycontrols"
       webPath={['Data and Privacy', 'Web and App Activity']}
       description="This is the master switch for Google's behavioral data collection across Search, Maps, YouTube (when not signed in), Chrome, and Android apps. When on, Google logs your activity across these products and uses it to personalize search results, recommendations, and ads. It includes a sub-option to include Chrome history and activity from sites and apps that use Google services. That sub-option covers the off-platform Google Analytics and Google Ads tracking network."
@@ -75,8 +73,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Location History (Timeline)"
       severity="high"
       defaultState="Off for new accounts (since 2024); server-side for accounts that had it enabled"
-      platform="Google"
-      path={['myaccount.google.com', 'Data and Privacy', 'Location History']}
       webUrl="https://myaccount.google.com/activitycontrols/location"
       webPath={['Data and Privacy', 'Location History']}
       description="Controls whether Google Maps saves a detailed record of every place you visit to your Google Account. When enabled and synced to Google's servers, this produces a day-by-day record of your physical movements including home, work, and locations you visit regularly. Since 2024, new accounts default to on-device storage only. Existing accounts with server-side Timeline retain that data on Google's servers until manually deleted. The setting also controls whether Google can infer your home and work locations from your movement patterns."
@@ -87,8 +83,7 @@ import FactCard from '../../components/FactCard.astro';
       name="YouTube History"
       severity="high"
       defaultState="On"
-      platform="Google"
-      path={['myaccount.google.com', 'Data and Privacy', 'YouTube History']}
+      howToTurnOff="Toggle off"
       webUrl="https://myaccount.google.com/activitycontrols/youtube"
       webPath={['Data and Privacy', 'YouTube History']}
       description="Logs every video you watch and every search you perform on YouTube to your Google Account. YouTube watch history directly feeds the recommendation algorithm and is used for ad targeting. Separate from Web and App Activity, this toggle covers YouTube-specific activity only. Auto-delete options are available at 3, 18, and 36 months."
@@ -99,8 +94,7 @@ import FactCard from '../../components/FactCard.astro';
       name="Ad Personalization"
       severity="high"
       defaultState="On"
-      platform="Google"
-      path={['myaccount.google.com', 'Data and Privacy', 'Ad personalization']}
+      howToTurnOff="Disable"
       webUrl="https://myaccount.google.com/data-and-privacy"
       webPath={['Ad personalization', 'Go to ad settings']}
       description="Controls whether Google uses your behavioral data to select which ads you see across Google Search, YouTube, Gmail, and the Google Display Network (which covers millions of third-party websites). You can also view and remove individual interest categories Google has inferred about you. The page shows inferred demographics including estimated age range, gender, and household income bracket. Advertisers bid on these segments through Google Ads and DV360 (DoubleClick)."
@@ -111,8 +105,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Connected Apps and Sites"
       severity="high"
       defaultState="Varies"
-      platform="Google"
-      path={['myaccount.google.com', 'Data and Privacy', 'Data from apps and services you use', 'Connected apps']}
       webUrl="https://myaccount.google.com/permissions"
       webPath={['Data from apps and services you use', 'Connected apps']}
       description="Third-party apps and websites you have signed into using Sign in with Google. Each may have read or write access to Google data including your email address, profile information, calendar, contacts, or Drive files — depending on the permissions you granted. Some apps request only basic profile data; others request ongoing access to Gmail or Calendar. Permissions persist until manually revoked, even if you have stopped using the app."
@@ -125,8 +117,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Shared Endorsements in Ads"
       severity="medium"
       defaultState="On"
-      platform="Google"
-      path={['myaccount.google.com', 'Data and Privacy', 'Shared endorsements in ads']}
       webUrl="https://myaccount.google.com/shared-endorsements"
       webPath={['Data and Privacy', 'Shared endorsements in ads']}
       description="When this is on, your name, profile photo, and ratings or reviews you've left in Google products (Maps, Play Store, etc.) can appear next to ads shown to your Google connections. This is a form of social proof advertising. Your review of a restaurant may appear as an endorsement in an ad shown to someone in your contacts."
@@ -134,22 +124,6 @@ import FactCard from '../../components/FactCard.astro';
     />
   </div>
 
-  <!-- HOW TO TURN IT OFF -->
-  <div slot="how-to-turn-off">
-    <WarningCallout title="What these settings do not cover">
-      <p>Google's Activity Controls at myaccount.google.com are the primary interface for managing what Google saves to your account. They are not a comprehensive off-switch for data collection. Google Analytics on third-party websites still sends data to Google. IP-based location is used regardless of Location History settings. Incognito mode in Chrome prevents local history storage but does not prevent Google's servers from receiving queries made through Google Search, and does not block Google Analytics from tracking visits to sites you navigate to.</p>
-      <p>Browser-level content blockers and DNS-level filtering are more comprehensive than any Google account setting. uBlock Origin blocks the Google Analytics script on most sites it is installed on.</p>
-    </WarningCallout>
-
-    <div class="turnoff-group">
-      <h3 class="turnoff-heading">Web and App Activity</h3>
-      <ol class="turnoff-steps">
-        <li>Go to myaccount.google.com &rarr; Data and Privacy &rarr; Web and App Activity.</li>
-        <li>Toggle off "Web and App Activity."</li>
-        <li>Also toggle off "Include Chrome history and activity from sites, apps, and devices that use Google services" — this sub-option covers Google Analytics off-platform data.</li>
-        <li>Set auto-delete to 3 months to limit accumulation of existing history.</li>
-      </ol>
-    </div>
 
     <div class="turnoff-group">
       <h3 class="turnoff-heading">Location History (Timeline)</h3>

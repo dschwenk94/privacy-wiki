@@ -61,8 +61,7 @@ import FactCard from '../../components/FactCard.astro';
       name="Off-Facebook Activity"
       severity="critical"
       defaultState="On"
-      platform="Meta"
-      path={['Settings & Privacy', 'Settings', 'Your Facebook Information', 'Off-Facebook Activity']}
+      howToTurnOff="Disconnect All or individual partners"
       webUrl="https://accountscenter.facebook.com/info_and_permissions/off_facebook_activity"
       webPath={['Your information', 'Off-Facebook activity']}
       description="This is the most important privacy setting Meta offers. The Off-Facebook Activity tool shows you a fraction of what third-party websites and apps have reported back to Meta about your behavior. Every business with the Meta Pixel or Conversions API installed sends your activity to Meta. The tool lets you view recent activity, disconnect individual businesses, and clear your history — but clearing does not delete the underlying data. It dissociates it from your account temporarily. Meta continues receiving new events immediately after clearing."
@@ -73,8 +72,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Ad Personalization Using Partner Data"
       severity="critical"
       defaultState="On"
-      platform="Meta"
-      path={['Accounts Center', 'Ad preferences', 'Ad settings', 'Ads shown outside of Meta']}
       webUrl="https://accountscenter.facebook.com/ad_preferences/ad_settings"
       webPath={['Ad preferences', 'Ad settings']}
       description="Meta uses data from its advertising partners — external companies including retailers, apps, and data brokers — to target ads at you. This is separate from your on-platform behavior. It is the mechanism by which your activity on a retailer website appears as a targeted ad in your Facebook or Instagram feed. The partner data pipeline operates independently of the Off-Facebook Activity tool."
@@ -87,8 +84,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Audience Network Ads"
       severity="high"
       defaultState="On"
-      platform="Meta"
-      path={['Accounts Center', 'Ad preferences', 'Ad settings', 'Ads shown outside of Meta']}
       webUrl="https://accountscenter.facebook.com/ad_preferences/ad_settings"
       webPath={['Ad preferences', 'Ad settings', 'Ads shown outside of Meta']}
       description="Meta's Audience Network serves targeted ads on thousands of third-party apps and websites, using your Facebook and Instagram behavioral profile. Your on-platform activity follows you to unrelated apps — games, news apps, utilities — that show ads through Meta's ad network. This is the reverse of off-platform tracking: it is your Meta profile being used to target you elsewhere."
@@ -99,8 +94,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Search Engine Indexing of Profile"
       severity="high"
       defaultState="On"
-      platform="Meta"
-      path={['Settings & Privacy', 'Settings', 'Privacy', 'How people find and contact you', 'Do you want search engines outside of Facebook to link to your profile?']}
       webUrl="https://www.facebook.com/settings?tab=privacy"
       webPath={['Privacy', 'How people find and contact you', 'Search engines outside of Facebook']}
       description="Facebook allows search engines to index your profile by default. Your name, profile photo, and public content appear in Google and other search results. This applies to accounts with any public content, even if you consider your Facebook presence semi-private."
@@ -111,8 +104,6 @@ import FactCard from '../../components/FactCard.astro';
       name="People Can Look You Up Using Email/Phone"
       severity="high"
       defaultState="On"
-      platform="Meta"
-      path={['Settings & Privacy', 'Settings', 'Privacy', 'How people find and contact you']}
       webUrl="https://www.facebook.com/settings?tab=privacy"
       webPath={['Privacy', 'How people find and contact you']}
       description="By default, anyone with your email address or phone number can find your Facebook account by searching for it. This applies even if your profile is otherwise private. Facebook and Instagram also use this data to suggest your account to people whose contact lists you appear in."
@@ -125,8 +116,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Connected Third-Party Apps"
       severity="medium"
       defaultState="Varies"
-      platform="Meta"
-      path={['Settings & Privacy', 'Settings', 'Security and login', 'Apps and websites']}
       webUrl="https://www.facebook.com/settings?tab=applications"
       webPath={['Security and login', 'Apps and websites']}
       description="Every app or service you have ever authenticated using Login with Facebook has ongoing access to your account data. The permissions granted at login — which often include profile information, friends list, and email — remain active until you manually revoke them. Many users have dozens of connected apps they no longer use or recognize."
@@ -137,8 +126,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Ad Topic Preferences"
       severity="medium"
       defaultState="On"
-      platform="Meta"
-      path={['Accounts Center', 'Ad preferences', 'Ad topics']}
       webUrl="https://accountscenter.facebook.com/ad_preferences/ad_topics"
       webPath={['Ad preferences', 'Ad topics']}
       description="Meta allows you to indicate categories of ads you prefer to see less of — alcohol, gambling, parenting, political content, and others. Adjusting these preferences affects which ads are displayed. It does not affect data collection."
@@ -146,23 +133,6 @@ import FactCard from '../../components/FactCard.astro';
     />
   </div>
 
-  <!-- HOW TO TURN IT OFF -->
-  <div slot="how-to-turn-off">
-    <WarningCallout title="What these settings do not do">
-      <p>Every toggle here stops a specific use of your data. None of them stop Meta from collecting data in the first place. Clearing your Off-Facebook Activity does not delete the underlying data. Turning off partner data ads does not stop Meta's partners from sending your data to Meta.</p>
-      <p>Ad blockers and tracker-blocking browser extensions (uBlock Origin, Privacy Badger) block the Meta Pixel at the network level. They are more effective than any in-app setting at preventing off-platform data collection. The in-app settings are the minimum, not the ceiling.</p>
-    </WarningCallout>
-
-    <div class="turnoff-group">
-      <h3 class="turnoff-heading">Off-Facebook Activity</h3>
-      <ol class="turnoff-steps">
-        <li>Facebook app: Menu &rarr; Settings &amp; Privacy &rarr; Settings &rarr; Your Facebook Information &rarr; Off-Facebook Activity.</li>
-        <li>Web: accountscenter.facebook.com &rarr; Your information &rarr; Off-Facebook activity.</li>
-        <li>Review the list of businesses that have sent data about you.</li>
-        <li>Tap "Clear History" to dissociate the data from your account. Tap "More Options" to disconnect future activity from specific businesses.</li>
-        <li>Note: clearing does not delete the data. It dissociates it temporarily. New events begin rebuilding your profile immediately.</li>
-      </ol>
-    </div>
 
     <div class="turnoff-group">
       <h3 class="turnoff-heading">Ad Personalization Using Partner Data</h3>

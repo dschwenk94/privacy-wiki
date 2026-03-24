@@ -57,8 +57,6 @@ import FactCard from '../../components/FactCard.astro';
       name="YouTube History (Watch History and Search History)"
       severity="critical"
       defaultState="On"
-      platform="YouTube"
-      path={['myaccount.google.com', 'Data & privacy', 'YouTube History']}
       webUrl="https://myactivity.google.com/activitycontrols?settings=youtube"
       webPath={['Data & privacy', 'YouTube History']}
       description="YouTube Watch History and Search History are managed under your Google Account, not YouTube settings. Pausing Watch History stops new videos from being saved to your history. Pausing Search History stops YouTube searches from being saved. Both histories are used by YouTube's recommendation algorithm and by Google's advertising systems."
@@ -71,8 +69,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Ad Personalization (Google Account Level)"
       severity="high"
       defaultState="On"
-      platform="YouTube"
-      path={['myaccount.google.com', 'Data & privacy', 'Ad settings', 'Ad personalization']}
       webUrl="https://myadcenter.google.com/personalization"
       webPath={['Ad settings', 'Ad personalization']}
       description="Because YouTube is a Google product, ad personalization is controlled at the Google Account level, not within YouTube. Turning off ad personalization in your Google Account stops behavioral targeting across YouTube, Search, Gmail, and the Display Network simultaneously."
@@ -83,8 +79,6 @@ import FactCard from '../../components/FactCard.astro';
       name="YouTube Activity Used Across Google Products"
       severity="high"
       defaultState="On"
-      platform="YouTube"
-      path={['myaccount.google.com', 'Data & privacy', 'Web & App Activity']}
       webUrl="https://myactivity.google.com/activitycontrols"
       webPath={['Data & privacy', 'Web & App Activity']}
       description="YouTube watch history and search behavior are included in Web & App Activity and shared across Google products. A YouTube search for a medical symptom can influence ads you see in Gmail. A YouTube binge of home renovation content can appear as targeting parameters for home improvement advertisers in Google Search."
@@ -95,8 +89,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Location (for Recommendations and Ads)"
       severity="high"
       defaultState="On"
-      platform="YouTube"
-      path={['YouTube app', 'Account icon', 'Settings', 'Privacy', 'Pause watch history']}
       description="YouTube uses your location (from device GPS, IP address, or Google Account location settings) to serve local content, local ads, and adjust recommendations by region. Location is not a separate toggle within YouTube — it is governed by your Google Account's location settings and your device's location permissions for the YouTube app."
       whatItDoesnt="Revoking location permission from the YouTube app stops GPS-based location from reaching YouTube. IP-based location inference continues regardless of app permissions and cannot be disabled at the app level."
     />
@@ -107,8 +99,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Connected Apps with YouTube Access"
       severity="medium"
       defaultState="Varies"
-      platform="YouTube"
-      path={['myaccount.google.com', 'Security', 'Third-party apps with account access']}
       webUrl="https://myaccount.google.com/permissions"
       webPath={['Security', 'Third-party apps with account access']}
       description="Third-party services authenticated via Google or YouTube OAuth may have access to YouTube account data, including watch history, subscriptions, and playlist management. Review connected apps periodically to revoke access from services no longer in use."
@@ -119,28 +109,11 @@ import FactCard from '../../components/FactCard.astro';
       name="Autoplay"
       severity="medium"
       defaultState="On"
-      platform="YouTube"
-      path={['YouTube', 'Settings', 'Autoplay', 'Autoplay next video']}
       description="Autoplay is a recommendation algorithm feature, not a data collection setting. It continuously feeds you recommended content based on your viewing history. While it does not directly affect data collection, it is the mechanism by which YouTube viewing sessions extend and engagement data accumulates."
       whatItDoesnt="Turning off Autoplay stops the automatic progression to the next video. It does not reduce data collection during videos you choose to watch."
     />
   </div>
 
-  <!-- HOW TO TURN IT OFF -->
-  <div slot="how-to-turn-off">
-    <WarningCallout title="YouTube settings live in Google Account, not YouTube">
-      <p>Most YouTube privacy controls are at myaccount.google.com, not inside the YouTube app or website. Pausing YouTube history from within YouTube only pauses watch history. The broader Web & App Activity setting that shares your YouTube data across Google products must be paused separately in your Google Account.</p>
-    </WarningCallout>
-
-    <div class="turnoff-group">
-      <h3 class="turnoff-heading">YouTube History</h3>
-      <ol class="turnoff-steps">
-        <li>myaccount.google.com &rarr; Data &amp; privacy &rarr; YouTube History.</li>
-        <li>Click "Turn off" for Watch History and Search History separately.</li>
-        <li>Optionally enable "Auto-delete" to remove history after 3, 18, or 36 months automatically.</li>
-        <li>To delete existing history: click "Manage history" and use the delete options.</li>
-      </ol>
-    </div>
 
     <div class="turnoff-group">
       <h3 class="turnoff-heading">Ad Personalization</h3>

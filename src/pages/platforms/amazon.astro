@@ -57,8 +57,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Alexa Voice History"
       severity="critical"
       defaultState="On"
-      platform="Amazon"
-      path={['Alexa app', 'More', 'Settings', 'Alexa Privacy', 'Review Voice History']}
       webUrl="https://www.amazon.com/alexa-privacy/apd/rvh"
       webPath={['Alexa Privacy', 'Review Voice History']}
       description="Amazon stores every Alexa voice recording by default. These recordings are used to improve voice recognition accuracy and may be reviewed by Amazon employees or contractors. The recordings are linked to your Amazon account and stored indefinitely unless manually deleted. Amazon offers automatic deletion options (3 months or 18 months) under Manage Your Alexa Data."
@@ -69,8 +67,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Interest-Based Ads (Amazon DSP)"
       severity="critical"
       defaultState="On"
-      platform="Amazon"
-      path={['amazon.com', 'Account & Lists', 'Your Account', 'Advertising Preferences']}
       webUrl="https://www.amazon.com/adprefs"
       webPath={['Your Account', 'Advertising Preferences']}
       description="Amazon uses your purchase history, browsing behavior, and Prime Video watch history to serve targeted ads on Amazon and on third-party websites and apps through Amazon DSP. This is distinct from ads within Amazon search results. Amazon DSP ads follow you to news sites, apps, and other unrelated destinations using your Amazon behavioral profile."
@@ -83,8 +79,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Ring Camera Law Enforcement Sharing"
       severity="high"
       defaultState="Amazon may share without explicit consent in emergencies"
-      platform="Amazon"
-      path={['Ring app', 'Control Center', 'Video Privacy Settings']}
       description="Amazon Ring has disclosed that it shares camera footage with law enforcement in response to emergency requests without requiring a warrant or notifying the device owner. The definition of emergency is determined by Amazon. Users can control who they share footage with voluntarily, but emergency sharing operates outside user control."
       whatItDoesnt="Adjusting Ring privacy settings controls voluntary sharing — who you choose to share clips with and whether your clips appear in the Neighbors feed. It does not prevent Amazon from complying with emergency requests or legal process. There is no user-facing toggle to opt out of emergency law enforcement sharing."
     />
@@ -93,8 +87,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Amazon Sidewalk"
       severity="high"
       defaultState="On"
-      platform="Amazon"
-      path={['Alexa app', 'More', 'Settings', 'Account Settings', 'Amazon Sidewalk']}
       description="Amazon Sidewalk is a shared mesh network that uses the bandwidth and hardware of your Echo, Ring, and other compatible devices to extend connectivity for nearby Sidewalk-enabled devices. It was enabled by default for most existing Echo and Ring customers in 2021 without prominent notification. The network uses a small portion of your internet bandwidth and your device hardware to serve as a relay node for others."
       whatItDoesnt="Turning off Sidewalk stops your device from participating in the shared network. It does not affect Amazon's ability to collect data from your own device usage. If neighbors' Sidewalk devices remain active, they may still use infrastructure near your home."
     />
@@ -103,8 +95,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Personalized Ads on Amazon"
       severity="high"
       defaultState="On"
-      platform="Amazon"
-      path={['amazon.com', 'Account & Lists', 'Your Account', 'Advertising Preferences', 'Personalized Ads Preferences']}
       webUrl="https://www.amazon.com/adprefs"
       webPath={['Your Account', 'Advertising Preferences', 'Personalized Ads Preferences']}
       description="Amazon uses your search queries, product views, purchase history, and Prime Video watch history to select which ads appear in Amazon search results, on product pages, and within Prime Video. This is the in-platform targeting system, separate from the DSP network that extends to third-party sites."
@@ -117,8 +107,6 @@ import FactCard from '../../components/FactCard.astro';
       name="Alexa Voice Profile (Voice ID)"
       severity="medium"
       defaultState="Off by default"
-      platform="Amazon"
-      path={['Alexa app', 'More', 'Settings', 'Your Profile & Family', 'Voice ID']}
       description="Voice ID creates a biometric voice profile linked to your Amazon account, enabling Alexa to recognize who is speaking and personalize responses. The biometric voice data is stored on Amazon servers."
       whatItDoesnt="If Voice ID was previously enabled and is now disabled, the stored voice profile should be deleted per Amazon policy. Review Alexa Privacy settings to confirm deletion."
     />
@@ -127,27 +115,11 @@ import FactCard from '../../components/FactCard.astro';
       name="Alexa Skill Data Access"
       severity="medium"
       defaultState="Varies by skill"
-      platform="Amazon"
-      path={['Alexa app', 'Skills & Games', 'Your Skills', '[Skill Name]', 'Settings']}
       description="Third-party Alexa skills — games, productivity tools, media integrations — request permissions to access account data, smart home devices, or the ability to send notifications. Each skill operates under its own developer's privacy policy, not Amazon's. Skills can request access to your name, email, phone number, and customer profile."
       whatItDoesnt="Disabling a skill revokes future access but does not delete data that skill has already collected. The skill developer retains data per their own policy."
     />
   </div>
 
-  <!-- HOW TO TURN IT OFF -->
-  <div slot="how-to-turn-off">
-    <WarningCallout title="What these settings do not do">
-      <p>Every toggle here stops a specific use of your data. None of them stop Amazon from collecting data in the first place. Opting out of interest-based ads does not stop Amazon from building a behavioral profile. Enabling Alexa voice deletion does not stop the device from listening for the wake word.</p>
-    </WarningCallout>
-
-    <div class="turnoff-group">
-      <h3 class="turnoff-heading">Alexa Voice History</h3>
-      <ol class="turnoff-steps">
-        <li>Alexa app &rarr; More &rarr; Settings &rarr; Alexa Privacy &rarr; Review Voice History.</li>
-        <li>Tap "Delete All Recordings for All History" to remove stored recordings.</li>
-        <li>To enable automatic deletion: Alexa app &rarr; More &rarr; Settings &rarr; Alexa Privacy &rarr; Manage Your Alexa Data &rarr; choose "Automatically delete recordings" and select 3 months or 18 months.</li>
-      </ol>
-    </div>
 
     <div class="turnoff-group">
       <h3 class="turnoff-heading">Interest-Based Ads (Amazon DSP)</h3>
