@@ -9,7 +9,7 @@ import FactCard from '../../components/FactCard.astro';
 <PlatformLayout
   title="YouTube"
   description="YouTube builds a detailed behavioral profile from every video you watch, including the ones you never finish. Here are the settings that matter and what they actually do."
-  subtitle="YouTube builds a detailed behavioral profile from every video you watch, including the ones you never finish."
+  subtitle=""
   category="Video Platform"
   lastVerified="March 23, 2026"
   settingsCount={6}
@@ -53,14 +53,14 @@ import FactCard from '../../components/FactCard.astro';
 
   <!-- SETTINGS THAT MATTER -->
   <div slot="settings">
-    <h3 class="severity-group-label">Critical</h3>
-
     <SettingCard
       name="YouTube History (Watch History and Search History)"
       severity="critical"
       defaultState="On"
       platform="YouTube"
       path={['myaccount.google.com', 'Data & privacy', 'YouTube History']}
+      webUrl="https://myactivity.google.com/activitycontrols?settings=youtube"
+      webPath={['Data & privacy', 'YouTube History']}
       description="YouTube Watch History and Search History are managed under your Google Account, not YouTube settings. Pausing Watch History stops new videos from being saved to your history. Pausing Search History stops YouTube searches from being saved. Both histories are used by YouTube's recommendation algorithm and by Google's advertising systems."
       whatItDoesnt="Pausing does not delete existing history. YouTube continues using engagement signals (pause, skip, rewind) within the current session for real-time recommendations. Pausing YouTube history does not pause your broader Web & App Activity, which continues to log YouTube visits at the Google level."
     />
@@ -73,6 +73,8 @@ import FactCard from '../../components/FactCard.astro';
       defaultState="On"
       platform="YouTube"
       path={['myaccount.google.com', 'Data & privacy', 'Ad settings', 'Ad personalization']}
+      webUrl="https://myadcenter.google.com/personalization"
+      webPath={['Ad settings', 'Ad personalization']}
       description="Because YouTube is a Google product, ad personalization is controlled at the Google Account level, not within YouTube. Turning off ad personalization in your Google Account stops behavioral targeting across YouTube, Search, Gmail, and the Display Network simultaneously."
       whatItDoesnt="Turning off ad personalization does not remove YouTube from Google's data collection. Your viewing history, search queries, and engagement behavior continue to be recorded. You will see contextual ads — ads based on the content of the video you are watching — rather than ads based on your behavioral history."
     />
@@ -83,6 +85,8 @@ import FactCard from '../../components/FactCard.astro';
       defaultState="On"
       platform="YouTube"
       path={['myaccount.google.com', 'Data & privacy', 'Web & App Activity']}
+      webUrl="https://myactivity.google.com/activitycontrols"
+      webPath={['Data & privacy', 'Web & App Activity']}
       description="YouTube watch history and search behavior are included in Web & App Activity and shared across Google products. A YouTube search for a medical symptom can influence ads you see in Gmail. A YouTube binge of home renovation content can appear as targeting parameters for home improvement advertisers in Google Search."
       whatItDoesnt="Pausing Web & App Activity stops the cross-product data sharing. It does not stop YouTube from using your current session behavior for recommendations within YouTube."
     />
@@ -105,6 +109,8 @@ import FactCard from '../../components/FactCard.astro';
       defaultState="Varies"
       platform="YouTube"
       path={['myaccount.google.com', 'Security', 'Third-party apps with account access']}
+      webUrl="https://myaccount.google.com/permissions"
+      webPath={['Security', 'Third-party apps with account access']}
       description="Third-party services authenticated via Google or YouTube OAuth may have access to YouTube account data, including watch history, subscriptions, and playlist management. Review connected apps periodically to revoke access from services no longer in use."
       whatItDoesnt="Revoking access removes future permissions. It does not delete data that the third-party service has already collected."
     />

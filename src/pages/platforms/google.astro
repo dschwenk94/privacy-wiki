@@ -69,6 +69,8 @@ import FactCard from '../../components/FactCard.astro';
       whatItDoesnt="Turning off Web and App Activity stops Google from saving new activity to your account. It does not delete what has already been collected. Google Analytics on third-party websites still reports your visits to Google — the setting controls whether that data is saved to your profile, not whether it is transmitted. Off-platform tracking via Google's ad network continues; this setting controls what is logged against your account."
     />
 
+    <h3 class="severity-group-label">High</h3>
+
     <SettingCard
       name="Location History (Timeline)"
       severity="high"
@@ -92,8 +94,6 @@ import FactCard from '../../components/FactCard.astro';
       description="Logs every video you watch and every search you perform on YouTube to your Google Account. YouTube watch history directly feeds the recommendation algorithm and is used for ad targeting. Separate from Web and App Activity, this toggle covers YouTube-specific activity only. Auto-delete options are available at 3, 18, and 36 months."
       whatItDoesnt="Turning off YouTube History stops history from being saved to your account. It does not prevent YouTube from using your current session behavior to personalize recommendations during that session. It does not affect ad targeting based on other Google signals outside of YouTube."
     />
-
-    <h3 class="severity-group-label">High</h3>
 
     <SettingCard
       name="Ad Personalization"

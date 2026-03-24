@@ -9,12 +9,12 @@ import FactCard from '../../components/FactCard.astro';
 <PlatformLayout
   title="X / Twitter"
   description="X uses your posts to train Grok. You were opted in automatically. Here are the settings that matter and what they actually do."
-  subtitle="X uses your posts to train Grok. You were opted in automatically."
+  subtitle=""
   category="Social Media Platform"
   lastVerified="March 23, 2026"
-  settingsCount={7}
+  settingsCount={8}
   severity="critical"
-  severityText="Default-on Grok AI training added in 2024 without notification, data sharing with unspecified business partners, cross-device and location-based ad targeting. The AI training is the most consequential. Your writing style and opinions become model training data."
+  severityText="Default-on Grok AI training added in 2024 without notification. xAI now owns X outright and shares data freely between the platform and its AI lab. Your writing style and opinions are model training data. Data sharing with unspecified business partners, cross-device and location-based ad targeting."
 >
 
   <!-- WHAT THEY COLLECT -->
@@ -22,17 +22,17 @@ import FactCard from '../../components/FactCard.astro';
     <div class="fact-grid">
       <FactCard
         label="Grok AI training, default-on"
-        text="X opted all users into Grok AI training in 2024 without notification. Your posts, interactions, and Grok conversations are training data for xAI's commercial language model."
+        text="X opted all users into Grok AI training in 2024 without notification. Your posts, interactions, and Grok conversations train xAI's commercial language model. xAI now owns X."
         severity="critical"
       />
       <FactCard
         label="Dwell time on posts you skip"
-        text="X logs how long you linger on a post before scrolling past — without a like, reply, or any interaction. Dwell time is a behavioral signal used for both the algorithm and ad targeting."
+        text="X logs how long you linger on a post before scrolling past. No like, no reply, no interaction required. Dwell time is a behavioral signal used for both the algorithm and ad targeting."
         severity="high"
       />
       <FactCard
         label="Location inferred continuously"
-        text="IP address, device settings, and activity patterns are used to infer your location on every session, separate from any explicit location permission you grant."
+        text="IP address, device settings, and activity patterns are used to infer your location on every session. This is separate from any explicit location permission you grant."
         severity="high"
       />
       <FactCard
@@ -43,26 +43,28 @@ import FactCard from '../../components/FactCard.astro';
     </div>
 
     <div class="collect-detail">
-      <p>X collects everything you post, reply to, like, repost, and quote. It logs what tweets you linger on without engaging. Dwell time is tracked even for content you scroll past. Searches, link clicks, accounts you follow and mute, and direct message metadata — not content, but who you message and when — are all logged.</p>
+      <p>X collects everything you post, reply to, like, repost, and quote. It logs what tweets you linger on without engaging. Dwell time is tracked even for content you scroll past. Searches, link clicks, accounts you follow and mute, and direct message metadata are all logged. Not message content, but who you message and when.</p>
 
-      <p>Device type, OS, IP address, and unique device identifiers are collected on every session. Since early 2024, content you input into Grok — prompts, follow-up questions, the results you engage with — is also collected as training data for xAI's language model by default.</p>
+      <p>Device type, OS, IP address, and unique device identifiers are collected on every session. Content you input into Grok, including prompts, follow-up questions, and the results you engage with, is collected as training data for xAI's language model by default. Voice inputs and their transcriptions are also collected.</p>
 
       <p>Location is inferred from IP and device signals continuously, separate from any explicit location permission you grant. Cross-device tracking links your phone and laptop behavior into a single behavioral profile.</p>
+
+      <p>Since March 2025, xAI owns X outright. In February 2026, SpaceX acquired xAI, making the social platform a subsidiary of an aerospace company. The corporate structure has changed. The data pipeline has not. X feeds xAI. xAI trains Grok. The user data that powers the social platform is the same data that trains the AI.</p>
     </div>
   </div>
 
   <!-- SETTINGS THAT MATTER -->
   <div slot="settings">
-    <h3 class="severity-group-label">Critical</h3>
-
     <SettingCard
-      name="Grok AI Training Opt-Out"
+      name="Grok AI Training"
       severity="critical"
       defaultState="On"
       platform="X"
-      path={['Settings', 'Privacy and safety', 'Grok']}
-      description="X uses your posts, interactions, inputs to Grok, and results to train Grok — xAI's commercial language model. This was enabled by default in 2024 with no user notification. The same setting is also accessible at Settings > Privacy and safety > Third-party collaborators."
-      whatItDoesnt="Opting out stops future data from being used for training. Data already used to train existing model versions cannot be removed. The opt-out is forward-looking only."
+      path={['Settings and Privacy', 'Privacy and Safety', 'Grok & Third-party Collaborators']}
+      webUrl="https://x.com/settings/grok_settings"
+      webPath={['Privacy and Safety', 'Grok & Third-party Collaborators']}
+      description="Three default-on checkboxes control how X feeds your data to xAI. The first allows your public posts, interactions, inputs to Grok, and results to be used for training and fine-tuning. The second allows X to personalize your Grok experience. The third allows Grok to remember your conversation history. All three were enabled by default in 2024 with no user notification."
+      whatItDoesnt="Opting out stops future data from being used for training. Data already used to train existing model versions cannot be removed. The opt-out is forward-looking only. Making your account private also prevents your posts from being used for Grok training."
     />
 
     <SettingCard
@@ -70,9 +72,11 @@ import FactCard from '../../components/FactCard.astro';
       severity="critical"
       defaultState="On"
       platform="X"
-      path={['Settings', 'Privacy and safety', 'Data sharing and off-X activity']}
+      path={['Settings and Privacy', 'Privacy and Safety', 'Data sharing and off-X activity']}
+      webUrl="https://x.com/settings/privacy_and_safety"
+      webPath={['Data sharing and off-X activity']}
       description="X shares behavioral data with unnamed business partners for ad targeting and measurement. The policy language is deliberately broad and covers sharing arrangements not individually disclosed to users."
-      whatItDoesnt="Does not enumerate who the business partners are. Broad policy language may cover arrangements not visible to users even after opting out of this toggle."
+      whatItDoesnt="Does not enumerate who the business partners are. Broad policy language may cover data-sharing arrangements not visible to users even after toggling this off."
     />
 
     <h3 class="severity-group-label">High</h3>
@@ -82,8 +86,10 @@ import FactCard from '../../components/FactCard.astro';
       severity="high"
       defaultState="On"
       platform="X"
-      path={['Settings', 'Privacy and safety', 'Ads preferences', 'Personalized ads']}
-      description="X uses your on-platform behavior — tweets you engage with, accounts you follow, searches, link clicks — to select ads. Enabled by default."
+      path={['Settings and Privacy', 'Privacy and Safety', 'Ads preferences', 'Personalized ads']}
+      webUrl="https://x.com/settings/ads_preferences"
+      webPath={['Personalized ads']}
+      description="X uses your on-platform behavior to select ads. Tweets you engage with, accounts you follow, searches, link clicks. Enabled by default."
       whatItDoesnt="Turning this off does not stop X from collecting your behavioral data or building your interest profile. You see less relevant ads. The collection continues."
     />
 
@@ -92,7 +98,9 @@ import FactCard from '../../components/FactCard.astro';
       severity="high"
       defaultState="On"
       platform="X"
-      path={['Settings', 'Privacy and safety', 'Location information', 'Personalize based on your inferred location']}
+      path={['Settings and Privacy', 'Privacy and Safety', 'Location information', 'Personalize based on your inferred location']}
+      webUrl="https://x.com/settings/location_information"
+      webPath={['Personalize based on your inferred location']}
       description="X infers location from IP address, device settings, and activity patterns. Used for ad targeting and content personalization without requiring explicit location permission."
       whatItDoesnt="Does not prevent IP-based inference. X derives location signals from network data regardless of this setting. The toggle controls use, not collection."
     />
@@ -102,7 +110,9 @@ import FactCard from '../../components/FactCard.astro';
       severity="high"
       defaultState="On"
       platform="X"
-      path={['Settings', 'Privacy and safety', 'Off-X activity', 'Personalize based on your devices']}
+      path={['Settings and Privacy', 'Privacy and Safety', 'Off-X activity', 'Personalize based on your devices']}
+      webUrl="https://x.com/settings/off_x_activity"
+      webPath={['Personalize based on your devices']}
       description="X tracks which devices you use and personalizes content and ads based on cross-device behavior patterns."
       whatItDoesnt="Does not stop X from identifying linked devices. It stops using that linkage for personalization, not from detecting it."
     />
@@ -114,9 +124,23 @@ import FactCard from '../../components/FactCard.astro';
       severity="medium"
       defaultState="On"
       platform="X"
-      path={['Settings', 'Privacy and safety', 'Off-X activity', 'Allow additional information sharing with business partners']}
-      description="X monitors when you encounter embedded tweets, X widgets, or X login buttons on external websites — even without interacting with them."
+      path={['Settings and Privacy', 'Privacy and Safety', 'Off-X activity', 'Allow additional information sharing with business partners']}
+      webUrl="https://x.com/settings/off_x_activity"
+      webPath={['Allow additional information sharing with business partners']}
+      description="X monitors when you encounter embedded tweets, X widgets, or X login buttons on external websites. This happens without any interaction on your part."
       whatItDoesnt="Does not prevent X from receiving signals when its code is embedded on third-party sites. The toggle controls what X does with those signals, not whether they are received."
+    />
+
+    <SettingCard
+      name="Discoverability by Email and Phone"
+      severity="medium"
+      defaultState="On"
+      platform="X"
+      path={['Settings and Privacy', 'Privacy and Safety', 'Discoverability and contacts']}
+      webUrl="https://x.com/settings/contacts"
+      webPath={['Discoverability and contacts']}
+      description="Two separate toggles let people who have your email address or phone number find your X account. Enabled by default. Also controls whether X can sync your address book to suggest connections."
+      whatItDoesnt="Disabling these toggles stops new lookups. If someone already found your account through these methods, that connection is not reversed. Previously uploaded contacts are not automatically deleted."
     />
 
     <SettingCard
@@ -124,32 +148,36 @@ import FactCard from '../../components/FactCard.astro';
       severity="medium"
       defaultState="Varies"
       platform="X"
-      path={['Settings', 'Security and account access', 'Apps and sessions', 'Connected apps']}
-      description="Third-party apps authorized via your X account. Each has ongoing access to account data unless revoked. Access Settings > More > Settings and Support > Settings > Security and account access > Apps and sessions > Connected apps."
-      whatItDoesnt="Does not automatically revoke permissions. Users must manually review and disconnect each app individually. Old apps may retain historical data already accessed."
+      path={['Settings and Privacy', 'Security and Account Access', 'Apps and sessions', 'Connected apps']}
+      webUrl="https://x.com/settings/connected_apps"
+      webPath={['Apps and sessions', 'Connected apps']}
+      description="Third-party apps authorized via your X account. Each has ongoing access to account data unless revoked."
+      whatItDoesnt="Revoking permissions stops future access. It does not delete data the app already collected before revocation."
     />
   </div>
 
   <!-- HOW TO TURN IT OFF -->
   <div slot="how-to-turn-off">
     <WarningCallout title="What these settings do not do">
-      <p>Every toggle here stops a specific use of your data. None of them stop X from collecting data in the first place. Turning off personalized ads does not stop the behavioral profile from being built. Opting out of Grok training is forward-looking only — data already used to train the model cannot be removed.</p>
-      <p>The Grok training opt-out is the highest-priority action here. It was enabled by default without notification and represents the most consequential use of your data.</p>
+      <p>Every toggle here stops a specific use of your data. None of them stop X from collecting data in the first place. Turning off personalized ads does not stop the behavioral profile from being built. Opting out of Grok training is forward-looking only. Data already used to train the model cannot be removed.</p>
+      <p>The Grok training opt-out is the highest-priority action here. It was enabled by default without notification and feeds your data directly to xAI's commercial AI lab.</p>
     </WarningCallout>
 
     <div class="turnoff-group">
-      <h3 class="turnoff-heading">Grok AI Training Opt-Out</h3>
+      <h3 class="turnoff-heading">Grok AI Training</h3>
       <ol class="turnoff-steps">
-        <li>Settings &rarr; Privacy and safety &rarr; Grok.</li>
-        <li>Disable "Allow X to use your data to improve Grok."</li>
-        <li>Also check: Settings &rarr; Privacy and safety &rarr; Third-party collaborators &rarr; disable any Grok-related options.</li>
+        <li>Settings and Privacy &rarr; Privacy and Safety &rarr; Grok & Third-party Collaborators.</li>
+        <li>Uncheck "Allow your public data as well as your interactions, inputs, and results with Grok and xAI to be used for training and fine-tuning."</li>
+        <li>Optionally also uncheck "Allow X to personalize your experience with Grok" and "Allow Grok to remember your conversation history."</li>
+        <li>To delete existing Grok conversations: click "Delete conversation history" on the same page. Deleted conversations are removed within 30 days.</li>
+        <li>On web: go to x.com/settings/grok_settings directly.</li>
       </ol>
     </div>
 
     <div class="turnoff-group">
       <h3 class="turnoff-heading">Data Sharing with Business Partners</h3>
       <ol class="turnoff-steps">
-        <li>Settings &rarr; Privacy and safety &rarr; Data sharing and off-X activity.</li>
+        <li>Settings and Privacy &rarr; Privacy and Safety &rarr; Data sharing and off-X activity.</li>
         <li>Disable "Allow additional information sharing with business partners."</li>
       </ol>
     </div>
@@ -157,15 +185,15 @@ import FactCard from '../../components/FactCard.astro';
     <div class="turnoff-group">
       <h3 class="turnoff-heading">Personalized Ads</h3>
       <ol class="turnoff-steps">
-        <li>Settings &rarr; Privacy and safety &rarr; Ads preferences &rarr; Personalized ads.</li>
-        <li>Toggle off.</li>
+        <li>Settings and Privacy &rarr; Privacy and Safety &rarr; Ads preferences.</li>
+        <li>Toggle off "Personalized ads."</li>
       </ol>
     </div>
 
     <div class="turnoff-group">
       <h3 class="turnoff-heading">Inferred Location</h3>
       <ol class="turnoff-steps">
-        <li>Settings &rarr; Privacy and safety &rarr; Location information.</li>
+        <li>Settings and Privacy &rarr; Privacy and Safety &rarr; Location information.</li>
         <li>Disable "Personalize based on your inferred location."</li>
       </ol>
     </div>
@@ -173,7 +201,7 @@ import FactCard from '../../components/FactCard.astro';
     <div class="turnoff-group">
       <h3 class="turnoff-heading">Cross-Device Personalization</h3>
       <ol class="turnoff-steps">
-        <li>Settings &rarr; Privacy and safety &rarr; Off-X activity.</li>
+        <li>Settings and Privacy &rarr; Privacy and Safety &rarr; Off-X activity.</li>
         <li>Disable "Personalize based on your devices."</li>
       </ol>
     </div>
@@ -181,15 +209,24 @@ import FactCard from '../../components/FactCard.astro';
     <div class="turnoff-group">
       <h3 class="turnoff-heading">Track Where You See X Content</h3>
       <ol class="turnoff-steps">
-        <li>Settings &rarr; Privacy and safety &rarr; Off-X activity.</li>
+        <li>Settings and Privacy &rarr; Privacy and Safety &rarr; Off-X activity.</li>
         <li>Disable "Allow additional information sharing with business partners."</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Discoverability by Email and Phone</h3>
+      <ol class="turnoff-steps">
+        <li>Settings and Privacy &rarr; Privacy and Safety &rarr; Discoverability and contacts.</li>
+        <li>Disable "Let people who have your email address find you on X."</li>
+        <li>Disable "Let people who have your phone number find you on X."</li>
       </ol>
     </div>
 
     <div class="turnoff-group">
       <h3 class="turnoff-heading">Connected Apps</h3>
       <ol class="turnoff-steps">
-        <li>Settings &rarr; Security and account access &rarr; Apps and sessions &rarr; Connected apps.</li>
+        <li>Settings and Privacy &rarr; Security and Account Access &rarr; Apps and sessions &rarr; Connected apps.</li>
         <li>Review each app. Revoke access for anything you do not recognize or no longer use.</li>
       </ol>
     </div>
@@ -199,8 +236,8 @@ import FactCard from '../../components/FactCard.astro';
   <div slot="who-gets-data">
     <dl class="data-recipients">
       <div class="recipient">
-        <dt>xAI (Grok)</dt>
-        <dd>Receives posts, interactions, and Grok conversation data for AI model training under a data sharing arrangement with X Corp. This arrangement was enabled by default for all users in 2024. The opt-out is forward-looking. Data already incorporated into trained model weights is not retrievable.</dd>
+        <dt>xAI / SpaceX</dt>
+        <dd>xAI acquired X Corp. in March 2025 in an all-stock deal. SpaceX then acquired xAI in February 2026. Your posts, interactions, and Grok conversations are training data for Grok and future xAI models. This is no longer a third-party data sharing arrangement. xAI and X are the same company. The opt-out at Settings &rarr; Grok & Third-party Collaborators is forward-looking only. Data already incorporated into trained model weights is not retrievable.</dd>
       </div>
 
       <div class="recipient">
@@ -209,7 +246,7 @@ import FactCard from '../../components/FactCard.astro';
       </div>
 
       <div class="recipient">
-        <dt>Business Partners</dt>
+        <dt>Business Partners (Unnamed)</dt>
         <dd>An undefined category in X's privacy policy that receives behavioral data for measurement and targeting purposes. The policy language is intentionally broad. X does not enumerate who these partners are or what specific data they receive.</dd>
       </div>
 
@@ -222,14 +259,14 @@ import FactCard from '../../components/FactCard.astro';
 
   <!-- WHAT THEY KNOW -->
   <div slot="what-they-know">
-    <p>X knows which political accounts you follow, which posts you linger on without liking, what you search for privately, and what links you click. Dwell time data is more revealing than likes — a two-second pause on a post is a signal even if you kept scrolling.</p>
+    <p>X knows which political accounts you follow, which posts you linger on without liking, what you search for privately, and what links you click. Dwell time data is more revealing than likes. A two-second pause on a post is a signal even if you kept scrolling.</p>
 
-    <p>With Grok training enabled, the specific way you ask questions — your vocabulary, your framing, your opinions stated as prompts — contributes to training a commercial AI product. This is distinct from your public posts. It includes private queries you typed directly to Grok.</p>
+    <p>With Grok training enabled, the specific way you ask questions, your vocabulary, your framing, your opinions stated as prompts, contributes to training a commercial AI product. This is distinct from your public posts. It includes private queries you typed directly to Grok, including voice inputs.</p>
 
     <p>Cross-device tracking links your phone and laptop behavior into a single profile. The result is a behavioral record that reflects your interests, beliefs, and habits more accurately than what you deliberately post.</p>
 
     <WarningCallout title="Grok Training Was Enabled Without Notification">
-      <p>In 2024, X began using user posts, interactions, and Grok conversations to train the Grok AI model. This was enabled by default for existing accounts with no email notification or in-app prompt. The opt-out is at Settings &rarr; Privacy and safety &rarr; Grok. The opt-out is forward-looking. Data already used to train existing model versions cannot be removed after the fact.</p>
+      <p>In 2024, X began using user posts, interactions, and Grok conversations to train the Grok AI model. This was enabled by default for existing accounts with no email notification or in-app prompt. Since March 2025, xAI owns X outright. The data no longer crosses a corporate boundary. It flows within a single company, from social platform to AI lab. The opt-out is at Settings &rarr; Privacy and Safety &rarr; Grok & Third-party Collaborators. It is forward-looking. Data already used to train existing model versions cannot be removed.</p>
     </WarningCallout>
   </div>
 
@@ -241,6 +278,8 @@ import FactCard from '../../components/FactCard.astro';
 
   <!-- RELATED PLATFORMS -->
   <CrossLinkChip slot="related-platforms" href="/platforms/tiktok" label="TikTok" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/meta" label="Meta / Instagram" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/google" label="Google" type="platform" />
 
 </PlatformLayout>
 
@@ -257,17 +296,6 @@ import FactCard from '../../components/FactCard.astro';
     padding-top: 1.25rem;
   }
 
-  p {
-    font-size: 0.9375rem;
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-    margin-bottom: 1rem;
-  }
-
-  p:last-child {
-    margin-bottom: 0;
-  }
-
   .severity-group-label {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
@@ -282,6 +310,17 @@ import FactCard from '../../components/FactCard.astro';
 
   .severity-group-label:first-child {
     margin-top: 0;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
   }
 
   .turnoff-group {
