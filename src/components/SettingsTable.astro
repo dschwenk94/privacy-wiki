@@ -1,0 +1,104 @@
+---
+interface SettingRow {
+  name: string;
+  severity: 'critical' | 'high' | 'medium';
+  defaultState: string;
+  path: string;
+}
+
+interface Props {
+  rows: SettingRow[];
+}
+
+const { rows } = Astro.props;
+---
+
+<div class="settings-table-wrap">
+  <table class="settings-table">
+    <thead>
+      <tr>
+        <th>Setting</th>
+        <th>Severity</th>
+        <th>Default</th>
+        <th>Path</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map(row => (
+        <tr>
+          <td class="setting-name">{row.name}</td>
+          <td>
+            <span class={`sev-dot sev-dot--${row.severity}`}></span>
+            {row.severity.charAt(0).toUpperCase() + row.severity.slice(1)}
+          </td>
+          <td>{row.defaultState}</td>
+          <td class="setting-path">{row.path}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .settings-table-wrap {
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  .settings-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .settings-table th {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+    white-space: nowrap;
+  }
+
+  .settings-table td {
+    font-size: 0.875rem;
+    padding: 0.625rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    vertical-align: top;
+  }
+
+  .settings-table tr:last-child td {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .setting-name {
+    color: var(--color-text-primary) !important;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .setting-path {
+    font-family: var(--font-mono);
+    font-size: 0.75rem !important;
+    color: var(--color-text-muted) !important;
+  }
+
+  .sev-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 0.375rem;
+    position: relative;
+    top: -1px;
+  }
+
+  .sev-dot--critical { background: var(--color-critical); }
+  .sev-dot--high { background: var(--color-high); }
+  .sev-dot--medium { background: var(--color-medium); }
+</style>

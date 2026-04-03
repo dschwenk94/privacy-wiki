@@ -1,9 +1,14 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
-import CategoryTag from '../components/CategoryTag.astro';
-import MetaBar from '../components/MetaBar.astro';
 import SeverityBanner from '../components/SeverityBanner.astro';
+import InfoboxCard from '../components/InfoboxCard.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+interface Practice {
+  label: string;
+  href: string;
+}
 
 interface Props {
   title: string;
@@ -14,6 +19,11 @@ interface Props {
   settingsCount: number;
   severity: 'critical' | 'high' | 'medium';
   severityText: string;
+  owner?: string;
+  ownerHQ?: string;
+  headquarters?: string;
+  monthlyUsers?: string;
+  relatedPractices?: Practice[];
   canonicalUrl?: string;
   ogImage?: string;
 }
@@ -27,6 +37,11 @@ const {
   settingsCount,
   severity,
   severityText,
+  owner = '',
+  ownerHQ = '',
+  headquarters = '',
+  monthlyUsers = '',
+  relatedPractices = [],
   canonicalUrl,
   ogImage,
 } = Astro.props;
@@ -39,23 +54,35 @@ const breadcrumbs = [
 ---
 
 <BaseLayout {title} {description} {canonicalUrl} {ogImage}>
-  <div class="page-container">
-    <header class="page-header">
-      <Breadcrumb crumbs={breadcrumbs} />
-      <CategoryTag label={category} />
-      <h1 class="page-title">{title}</h1>
-      {subtitle && <p class="page-subtitle">{subtitle}</p>}
-      <MetaBar
-        lastVerified={lastVerified}
-        category={category}
-        count={settingsCount}
-        countLabel="settings covered"
-      />
-      <SeverityBanner level={severity} text={severityText} />
-    </header>
+  <div class="site-nav">
+    <div class="nav-logo">Privacy<span>Wiki</span></div>
+    <span class="nav-sep">/</span>
+    <a href="/platforms">Platforms</a>
+    <a href="/practices">Practices</a>
+  </div>
 
-    <main>
-      <section class="page-section" aria-labelledby="settings-heading">
+  <div class="breadcrumb-wrap">
+    <Breadcrumb crumbs={breadcrumbs} />
+  </div>
+
+  <div class="page-wrap">
+    <!-- MAIN CONTENT -->
+    <main class="content-main">
+      <h1 class="page-title">{title}</h1>
+      {description && <p class="page-subtitle">{description}</p>}
+
+      <SeverityBanner level={severity} text={severityText} />
+
+      <section class="page-section" id="what-they-collect" aria-labelledby="collect-heading">
+        <h2 id="collect-heading" class="section-heading">What They Collect</h2>
+        <slot name="what-they-collect">
+          <p class="placeholder-text">Content coming soon.</p>
+        </slot>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="page-section" id="settings" aria-labelledby="settings-heading">
         <h2 id="settings-heading" class="section-heading">The Settings That Matter</h2>
         <slot name="settings">
           <p class="placeholder-text">Settings content coming soon.</p>
@@ -64,17 +91,8 @@ const breadcrumbs = [
 
       <hr class="divider" />
 
-      <section class="page-section" aria-labelledby="what-they-collect-heading">
-        <h2 id="what-they-collect-heading" class="section-heading">What They Collect</h2>
-        <slot name="what-they-collect">
-          <p class="placeholder-text">Content coming soon.</p>
-        </slot>
-      </section>
-
-      <hr class="divider" />
-
-      <section class="page-section" aria-labelledby="who-gets-data-heading">
-        <h2 id="who-gets-data-heading" class="section-heading">Who Gets Your Data</h2>
+      <section class="page-section" id="who-gets-data" aria-labelledby="who-heading">
+        <h2 id="who-heading" class="section-heading">Who Gets Your Data</h2>
         <slot name="who-gets-data">
           <p class="placeholder-text">Third-party relationships coming soon.</p>
         </slot>
@@ -82,8 +100,8 @@ const breadcrumbs = [
 
       <hr class="divider" />
 
-      <section class="page-section" aria-labelledby="what-they-know-heading">
-        <h2 id="what-they-know-heading" class="section-heading">What They Know About You</h2>
+      <section class="page-section" id="what-they-know" aria-labelledby="know-heading">
+        <h2 id="know-heading" class="section-heading">What They Know About You</h2>
         <slot name="what-they-know">
           <p class="placeholder-text">Data profile example coming soon.</p>
         </slot>
@@ -91,54 +109,163 @@ const breadcrumbs = [
 
       <hr class="divider" />
 
-      <section class="page-section" aria-labelledby="related-practices-heading">
-        <h2 id="related-practices-heading" class="section-heading">Related Practices</h2>
+      <section class="page-section" id="related" aria-labelledby="related-heading">
+        <h2 id="related-heading" class="section-heading">Related</h2>
+        <h4 class="related-sub-heading">Practices</h4>
         <div class="chip-group">
           <slot name="related-practices">
             <p class="placeholder-text">Practice cross-links coming soon.</p>
           </slot>
         </div>
-      </section>
-
-      <section class="page-section" aria-labelledby="related-platforms-heading">
-        <h2 id="related-platforms-heading" class="section-heading">Related Platforms</h2>
+        <h4 class="related-sub-heading" style="margin-top: 1rem;">Platforms</h4>
         <div class="chip-group">
           <slot name="related-platforms">
             <p class="placeholder-text">Platform cross-links coming soon.</p>
           </slot>
         </div>
       </section>
+
+      <footer class="page-footer">
+        <p class="footer-updated">Last updated: {lastVerified}</p>
+        <p class="footer-feedback">
+          Something changed?
+          <a href="mailto:feedback@privacywiki.io">Let us know.</a>
+        </p>
+      </footer>
     </main>
 
-    <footer class="page-footer">
-      <p class="footer-updated">Last updated: {lastVerified}</p>
-      <p class="footer-feedback">
-        Something changed?
-        <a href="mailto:feedback@privacywiki.io">Let us know.</a>
-      </p>
-    </footer>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      {(owner || headquarters || monthlyUsers) ? (
+        <InfoboxCard
+          title={title}
+          category={category}
+          owner={owner}
+          ownerHQ={ownerHQ}
+          headquarters={headquarters}
+          monthlyUsers={monthlyUsers}
+          settingsCount={settingsCount}
+          severity={severity}
+          lastVerified={lastVerified}
+          relatedPractices={relatedPractices}
+        />
+      ) : null}
+
+      <div class="toc-wrap">
+        <TableOfContents items={[
+          { label: 'What They Collect', href: '#what-they-collect' },
+          { label: 'The Settings That Matter', href: '#settings' },
+          { label: 'Who Gets Your Data', href: '#who-gets-data' },
+          { label: 'What They Know About You', href: '#what-they-know' },
+          { label: 'Related', href: '#related' },
+        ]} />
+      </div>
+    </aside>
   </div>
 </BaseLayout>
 
 <style>
-  .page-header {
-    margin-bottom: 2.5rem;
+  .site-nav {
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.75rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    position: sticky;
+    top: 0;
+    background: var(--color-bg);
+    z-index: 100;
+  }
+
+  .nav-logo {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo span {
+    color: var(--color-critical);
+  }
+
+  .site-nav a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .site-nav a:hover {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+
+  .nav-sep {
+    color: var(--color-border);
+  }
+
+  .breadcrumb-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem 0;
+  }
+
+  .page-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .content-main {
+    min-width: 0;
   }
 
   .page-title {
     font-size: 2rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
-    margin: 0.75rem 0 0.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.25rem;
     line-height: 1.2;
+    color: var(--color-text-primary);
   }
 
   .page-subtitle {
-    font-size: 1.0625rem;
+    font-size: 0.9375rem;
     color: var(--color-text-secondary);
-    line-height: 1.6;
-    max-width: 620px;
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    max-width: 640px;
+  }
+
+  .section-heading {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding-bottom: 0.625rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+    margin-top: 0;
+  }
+
+  .page-section {
     margin-bottom: 0;
+  }
+
+  .related-sub-heading {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
   }
 
   .chip-group {
@@ -147,8 +274,26 @@ const breadcrumbs = [
     gap: 0.5rem;
   }
 
+  .sidebar {
+    position: sticky;
+    top: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .toc-wrap {
+    /* TOC sits below infobox in sidebar */
+  }
+
+  .placeholder-text {
+    color: var(--color-text-muted);
+    font-style: italic;
+    font-size: 0.9375rem;
+  }
+
   .page-footer {
-    margin-top: 4rem;
+    margin-top: 3rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--color-border);
     display: flex;
@@ -174,9 +319,28 @@ const breadcrumbs = [
     color: var(--color-text-primary);
   }
 
-  .placeholder-text {
-    color: var(--color-text-muted);
-    font-style: italic;
-    font-size: 0.9375rem;
+  @media (max-width: 900px) {
+    .page-wrap {
+      grid-template-columns: 1fr;
+      padding: 1.25rem 1rem 3rem;
+    }
+
+    .sidebar {
+      position: static;
+      order: -1;
+    }
+
+    .toc-wrap {
+      display: none;
+    }
+
+    .site-nav {
+      padding: 0.75rem 1rem;
+      gap: 1rem;
+    }
+
+    .breadcrumb-wrap {
+      padding: 1rem 1rem 0;
+    }
   }
 </style>

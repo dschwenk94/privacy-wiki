@@ -278,3 +278,200 @@ a:visited {
 .page-section:last-child {
   margin-bottom: 0;
 }
+
+/* =====================
+   Two-column wiki layout
+   ===================== */
+.wiki-page-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.wiki-content-main {
+  min-width: 0;
+}
+
+.wiki-sidebar {
+  position: sticky;
+  top: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* =====================
+   Infobox (sidebar card)
+   ===================== */
+.infobox {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  width: 100%;
+}
+
+.infobox-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.75rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-raised);
+}
+
+.infobox-row {
+  display: flex;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.8125rem;
+}
+
+.infobox-row:last-child {
+  border-bottom: none;
+}
+
+.infobox-label {
+  width: 110px;
+  flex-shrink: 0;
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: rgba(17, 17, 17, 0.5);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+}
+
+.infobox-value {
+  padding: 0.5rem 0.75rem;
+  color: var(--color-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  flex: 1;
+  min-width: 0;
+}
+
+/* =====================
+   Settings summary table
+   ===================== */
+.settings-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.settings-table th {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.settings-table td {
+  font-size: 0.875rem;
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  vertical-align: top;
+}
+
+/* =====================
+   Sticky TOC
+   ===================== */
+.wiki-toc {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  padding: 1rem;
+}
+
+.wiki-toc-title {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 0.625rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.wiki-toc a {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  padding: 0.25rem 0;
+  transition: color 0.15s;
+}
+
+.wiki-toc a:hover {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+/* =====================
+   Severity dot
+   ===================== */
+.sev-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 0.375rem;
+  position: relative;
+  top: -1px;
+}
+
+.sev-dot.critical,
+.sev-dot--critical { background: var(--color-critical); }
+
+.sev-dot.high,
+.sev-dot--high { background: var(--color-high); }
+
+.sev-dot.medium,
+.sev-dot--medium { background: var(--color-medium); }
+
+/* =====================
+   Wiki chip links
+   ===================== */
+.wiki-link {
+  color: var(--color-accent-blue);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(66, 153, 225, 0.25);
+  transition: border-color 0.15s;
+}
+
+.wiki-link:hover {
+  border-color: var(--color-accent-blue);
+}
+
+/* =====================
+   Responsive: collapse sidebar
+   ===================== */
+@media (max-width: 900px) {
+  .wiki-page-wrap {
+    grid-template-columns: 1fr;
+    padding: 1.25rem 1rem 3rem;
+  }
+
+  .wiki-sidebar {
+    position: static;
+    order: -1;
+  }
+
+  .wiki-toc {
+    display: none;
+  }
+}

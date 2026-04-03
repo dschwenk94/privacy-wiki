@@ -1,0 +1,62 @@
+---
+interface TocItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  items?: TocItem[];
+}
+
+const defaultItems: TocItem[] = [
+  { label: 'What They Collect', href: '#what-they-collect' },
+  { label: 'The Settings That Matter', href: '#settings' },
+  { label: 'How to Turn It Off', href: '#how-to' },
+  { label: 'Who Gets Your Data', href: '#who-gets-data' },
+  { label: 'What They Know About You', href: '#what-they-know' },
+  { label: 'Related', href: '#related' },
+];
+
+const { items = defaultItems } = Astro.props;
+---
+
+<nav class="toc" aria-label="Table of contents">
+  <div class="toc-title">Contents</div>
+  {items.map(item => (
+    <a href={item.href}>{item.label}</a>
+  ))}
+</nav>
+
+<style>
+  .toc {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: 1rem;
+  }
+
+  .toc-title {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.625rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .toc a {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    padding: 0.25rem 0;
+    transition: color 0.15s;
+  }
+
+  .toc a:hover {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+</style>

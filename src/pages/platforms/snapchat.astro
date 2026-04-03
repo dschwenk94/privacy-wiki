@@ -1,0 +1,272 @@
+---
+import PlatformLayout from '../../layouts/PlatformLayout.astro';
+import SettingCard from '../../components/SettingCard.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import FactCard from '../../components/FactCard.astro';
+---
+
+<PlatformLayout
+  title="Snapchat"
+  description="Snapchat's ephemerality is a feature, not a privacy guarantee. The platform collects precise location from Snap Map, behavioral signals from Stories and Spotlight, and off-Snap activity via its ad network."
+  subtitle=""
+  category="Social Media Platform"
+  lastVerified="March 23, 2026"
+  settingsCount={7}
+  severity="high"
+  severityText="Snap Map collects and displays precise real-time location by default for users who enable Ghost Mode for the first time — but defaults on for many existing accounts. Off-Snap activity tracking via Snap Pixel. Ad personalization using detailed behavioral and interest data. Messages disappear visually but Snap retains metadata. My AI (Snapchat's chatbot) conversations are used to train AI models."
+  owner="Snap Inc."
+  ownerHQ="Santa Monica, CA"
+  headquarters="Santa Monica, CA"
+  monthlyUsers="~800M MAU"
+  relatedPractices={[
+    { label: 'Location Data', href: '/practices/location-data' },
+    { label: 'Ad Personalization & Targeting', href: '/practices/ad-personalization' },
+    { label: 'Off-Platform Activity Tracking', href: '/practices/off-platform-tracking' },
+    { label: 'AI Training Data Usage', href: '/practices/ai-training' },
+  ]}
+>
+
+  <!-- WHAT THEY COLLECT -->
+  <div slot="what-they-collect">
+    <div class="fact-grid">
+      <FactCard
+        label="Precise real-time location via Snap Map"
+        text="When Snap Map is enabled, Snapchat collects and may display your real-time precise location to your friends. Location is also collected in the background when the app is open, regardless of whether you are actively using Snap Map."
+        severity="critical"
+      />
+      <FactCard
+        label="Messages disappear visually, not from servers"
+        text="Snaps and messages are deleted from Snap's servers after they are opened or expire. However, metadata — who you message, when, how often — is retained. Content shared to Memories and Stories has different retention than direct messages."
+        severity="high"
+      />
+      <FactCard
+        label="My AI conversations train Snap's AI"
+        text="Conversations with My AI (Snapchat's built-in chatbot) are used to train and improve Snap's AI models. The chatbot is pinned to the top of your Chat feed by default and cannot be unpinned without a Snapchat+ subscription."
+        severity="high"
+      />
+      <FactCard
+        label="Off-Snap tracking via Snap Pixel"
+        text="Businesses install the Snap Pixel on their websites to run Snapchat ads. When you visit those sites, your activity is reported back to Snap. This happens whether the app is open or not."
+        severity="high"
+      />
+    </div>
+
+    <div class="collect-detail">
+      <p>Snapchat collects extensive data from every session. Device identifiers, IP address, operating system, carrier, and hardware information are collected at login. Your interaction patterns — which Stories you watch and for how long, which Spotlight videos you engage with, which Lenses you use, and how you navigate the app — are logged as behavioral signals.</p>
+
+      <p>Location data is a significant part of Snapchat's collection. When Snap Map is enabled, precise GPS coordinates are collected and updated continuously while the app is active. Snap states it also uses location to personalize content, show local Stories, and serve geo-targeted ads. Location is collected via GPS, Wi-Fi network positions, and IP address inference. The Snap Map setting controls what Snap shows other users, not whether Snap itself collects your location.</p>
+
+      <p>Content posted to Stories, Spotlight, and Snap Map is treated differently from direct Snaps. Stories you post publicly are available to Snap's systems for content moderation, safety analysis, and advertising purposes. Spotlight videos submitted for monetization review are retained by Snap. Memories are stored encrypted on Snap's servers.</p>
+
+      <p>Snap's advertising business is built on behavioral targeting. Through the Snap Pixel and Snap's SDK installed in third-party apps, Snap collects off-platform behavioral data to supplement your in-app profile. Snapchat's Audience Match product allows advertisers to upload customer email lists to match against Snap user accounts for targeting.</p>
+    </div>
+  </div>
+
+  <!-- SETTINGS THAT MATTER -->
+  <div slot="settings">
+    <SettingCard
+      name="Snap Map Location Sharing"
+      severity="critical"
+      defaultState="Varies (Ghost Mode recommended)"
+      howToTurnOff="Enable Ghost Mode in Snap Map settings"
+      webUrl="https://myaccount.snapchat.com/"
+      webPath={['Privacy Controls', 'See My Location']}
+      description="Snap Map shows your real-time location to selected friends or all friends by default if you have previously shared your location. Ghost Mode prevents your location from appearing on the Snap Map for other users. However, enabling Ghost Mode stops your location from being shown to friends — it does not stop Snap from collecting your location internally. Snap continues to use location data for ad targeting, local content, and product personalization regardless of Ghost Mode."
+      whatItDoesnt="Ghost Mode hides your location from other Snapchat users. It does not stop Snapchat from collecting your location. Snap's privacy policy explicitly states that location data is used for advertising and personalization regardless of Snap Map visibility settings. To limit location collection, deny Snapchat's location permission in your phone's Settings app entirely."
+    />
+
+    <SettingCard
+      name="Ad Preferences (Lifestyle Categories)"
+      severity="high"
+      defaultState="On"
+      howToTurnOff="Toggle off individual categories in Ad Preferences"
+      webUrl="https://myaccount.snapchat.com/"
+      webPath={['Ad Preferences', 'Lifestyle & Interests']}
+      description="Snap builds an interest profile based on your in-app behavior and uses it to target ads. Your Snap Map activity, Stories views, Spotlight engagement, search queries, and Lens usage all contribute to this profile. The Ad Preferences section shows the inferred interest categories Snap has assigned to you. Each category can be toggled off individually."
+      whatItDoesnt="Toggling off interest categories stops Snap from using those specific inferences for ad selection. It does not stop Snap from collecting behavioral data or updating the inferred interest model. Your profile continues to exist; the categories you disable are excluded from targeting use until Snap re-infers them from future behavior."
+    />
+
+    <SettingCard
+      name="Data Sharing for Personalized Ads"
+      severity="high"
+      defaultState="On"
+      howToTurnOff="Toggle off in Ad Preferences"
+      webUrl="https://myaccount.snapchat.com/"
+      webPath={['Ad Preferences', 'Audience-Based Ads']}
+      description="Snap allows advertisers to upload customer lists (email addresses, phone numbers) to match against Snap user accounts for targeting. This is called Audience Match. If an advertiser has your contact information, they can target you on Snapchat even if you have no direct relationship with that brand on the platform. Advertisers also receive aggregated audience data and behavioral signals for campaign optimization."
+      whatItDoesnt="Turning off audience-based ad targeting stops advertisers from reaching you via uploaded contact lists. It does not stop contextual or interest-based ad targeting. Snap continues to use your in-app behavioral profile to serve ads; the mechanism excluded is the customer list matching specifically."
+    />
+
+    <h3 class="severity-group-label">High</h3>
+
+    <SettingCard
+      name="Third-Party Activity for Ads"
+      severity="high"
+      defaultState="On"
+      howToTurnOff="Toggle off in Ad Preferences"
+      webUrl="https://myaccount.snapchat.com/"
+      webPath={['Ad Preferences', 'Third-party activity for ads']}
+      description="Snap uses data from the Snap Pixel and Snap SDK installed on third-party websites and apps to build your ad targeting profile and measure ad effectiveness. When you visit a website that has Snap's tracking code, your activity is reported to Snap. Turning this off instructs Snap not to use that off-platform data for ad targeting."
+      whatItDoesnt="Turning this off stops Snap from using off-platform data to target ads at you. It does not stop the Snap Pixel from firing when you visit third-party sites. The data is still sent to Snap's servers; the setting controls how it is applied to your profile, not whether it is collected."
+    />
+
+    <SettingCard
+      name="My AI Data Usage"
+      severity="high"
+      defaultState="On"
+      howToTurnOff="Clear My AI history in Chat settings; no full opt-out available"
+      webUrl="https://myaccount.snapchat.com/"
+      webPath={['Privacy Controls', 'Clear My AI History']}
+      description="My AI is Snapchat's chatbot powered by OpenAI's GPT models, pinned to the top of the Chat feed. Conversations with My AI are retained by Snap and used to improve AI products. You can clear your My AI conversation history, which removes the visible chat. Snap retains usage data for safety and product improvement. Removing the My AI pin from the chat feed requires a Snapchat+ paid subscription."
+      whatItDoesnt="Clearing My AI history removes the visible conversation. It does not guarantee deletion of all data derived from those conversations from Snap's systems. There is no setting to opt out of My AI data being used for AI model improvement. The only way to avoid this data collection is to not use My AI."
+    />
+
+    <h3 class="severity-group-label">Medium</h3>
+
+    <SettingCard
+      name="Connected Apps"
+      severity="medium"
+      defaultState="Varies"
+      howToTurnOff="Revoke unused app permissions in Connected Apps settings"
+      webUrl="https://myaccount.snapchat.com/"
+      webPath={['Privacy Controls', 'Connected Apps']}
+      description="Third-party apps and services you have authorized with your Snapchat account via Snap Kit (Snap's login and sharing SDK). These apps may have ongoing access to your Snapchat profile, Bitmoji, and in some cases your friend list. Each app operates under its own privacy policy."
+      whatItDoesnt="Revoking a connected app's access stops future data collection by that app. It does not delete data the app already collected before revocation."
+    />
+
+    <SettingCard
+      name="My Data Download"
+      severity="medium"
+      defaultState="Available on request"
+      howToTurnOff="Download at myaccount.snapchat.com to understand your data"
+      webUrl="https://accounts.snapchat.com/accounts/downloadmydata"
+      webPath={['Privacy Controls', 'My Data', 'Submit Request']}
+      description="Snap allows you to request a download of your account data including account history, search history, location history, ad preferences, purchase history, and login history. The download does not include the content of expired Snaps but does include metadata about sent and received messages."
+      whatItDoesnt="The My Data download provides a snapshot of data Snap has about you. It does not include all data in Snap's systems, particularly data derived from your behavior that is used for targeting but not stored in user-readable form. Downloading your data does not delete it."
+    />
+  </div>
+
+  <!-- WHO GETS YOUR DATA -->
+  <div slot="who-gets-data">
+    <dl class="data-recipients">
+      <div class="recipient">
+        <dt>Snap Advertisers (via Snap Ads Platform)</dt>
+        <dd>Brands running campaigns on Snapchat receive audience targeting capabilities based on your behavioral profile, interest categories, location data, and Audience Match results. Advertisers receive aggregate performance data and audience insights, not individual user records. However, the targeting precision means the profile Snap holds is used to match you to campaigns with significant accuracy.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>The Snap Pixel Ecosystem</dt>
+        <dd>Third-party websites and apps that have installed the Snap Pixel or Snap's SDK. Every time you visit a property with Snap's code installed, your visit is reported back to Snap. Retailers, e-commerce sites, and apps use this to measure ad effectiveness and build retargeting audiences. This operates whether you are logged into Snapchat or not.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>OpenAI (My AI)</dt>
+        <dd>My AI is powered by OpenAI's GPT models. Conversations you have with My AI are processed via OpenAI's API. Snap's privacy policy governs data use on Snap's side; OpenAI's privacy policy applies to how OpenAI processes API inputs. API data sent to OpenAI by business customers like Snap is not used by OpenAI to train models by default under enterprise API terms.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Third-Party Measurement Partners</dt>
+        <dd>Snap works with mobile measurement partners including AppsFlyer, Branch, and Adjust to verify ad attribution. When you see a Snapchat ad and later take an action in an app or on a website, that conversion event travels through measurement partners back to the advertiser.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- WHAT THEY KNOW -->
+  <div slot="what-they-know">
+    <p>Snapchat's data profile reflects where you physically go, who your close contacts are, what your face looks like (from Lens usage and selfie camera interactions), and your behavioral patterns across the day. Snap Map data provides a location history that reveals home address, workplace, frequented businesses, and travel patterns for users who have had location enabled. Unlike platforms where location is inferred from IP, Snap Map collects precise GPS coordinates when the app is active.</p>
+
+    <p>The ephemeral messaging model has shaped how users communicate on Snapchat. Many users share things in Snaps they would not post on Instagram precisely because they expect the content to disappear. The content does disappear from the conversation view. What remains is metadata: who you contacted, how frequently, at what hours, and what type of content was exchanged. For close relationships, this metadata is often more revealing than the content itself.</p>
+
+    <p>Snap's ad targeting categories are more granular than most users expect. The Lifestyle and Interests categories in Ad Preferences reveal what Snap has inferred. Categories can include health conditions (inferred from behavior, not stated), financial situation indicators, relationship status, and purchasing intent signals drawn from Snap Map visits to retail locations and off-platform Pixel data.</p>
+
+    <WarningCallout title="Ghost Mode does not stop Snap from tracking your location">
+      <p>Ghost Mode is often described as a privacy feature. It is a social visibility feature. It controls what your friends see on the Snap Map, not what Snap collects. Snap's privacy policy states that location data is used for advertising personalization, local content, and product features regardless of Ghost Mode status. If you want to limit Snap's access to your location, you need to revoke Snapchat's location permission entirely in your device's Settings app. On iOS: Settings &rarr; Privacy & Security &rarr; Location Services &rarr; Snapchat &rarr; Never.</p>
+    </WarningCallout>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/location-data" label="Location Data" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization & Targeting" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/off-platform-tracking" label="Off-Platform Activity Tracking" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ai-training" label="AI Training Data Usage" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/tiktok" label="TikTok" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/meta" label="Meta / Instagram" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/reddit" label="Reddit" type="platform" />
+
+</PlatformLayout>
+
+<style>
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .collect-detail {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .severity-group-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 1.75rem 0 0.75rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .severity-group-label:first-child {
+    margin-top: 0;
+  }
+
+  .data-recipients {
+    margin: 0;
+  }
+
+  .recipient {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .recipient:first-child {
+    padding-top: 0;
+  }
+
+  .recipient:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .recipient dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .recipient dd {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,261 @@
+---
+import PlatformLayout from '../../layouts/PlatformLayout.astro';
+import SettingCard from '../../components/SettingCard.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import FactCard from '../../components/FactCard.astro';
+---
+
+<PlatformLayout
+  title="Reddit"
+  description="Reddit sold its user data to train AI models before going public. Ad targeting uses your post history, community memberships, and off-Reddit activity. Here are the settings that matter."
+  subtitle=""
+  category="Social Media Platform"
+  lastVerified="March 23, 2026"
+  settingsCount={6}
+  severity="high"
+  severityText="Reddit signed a $60M annual data licensing deal with Google in early 2024 ahead of its IPO, allowing Google to use Reddit content to train AI models. Users have no individual opt-out from historical data licensing. Ad targeting combines your community memberships, post/comment history, and off-Reddit activity. Default-on personalized ads and ad partner data sharing."
+  owner="Advance Publications"
+  ownerHQ="New York, NY"
+  headquarters="San Francisco, CA"
+  monthlyUsers="~1.5B MAU"
+  relatedPractices={[
+    { label: 'Ad Personalization & Targeting', href: '/practices/ad-personalization' },
+    { label: 'Off-Platform Activity Tracking', href: '/practices/off-platform-tracking' },
+    { label: 'AI Training Data Usage', href: '/practices/ai-training' },
+    { label: 'Third-Party Data Sharing', href: '/practices/third-party-sharing' },
+  ]}
+>
+
+  <!-- WHAT THEY COLLECT -->
+  <div slot="what-they-collect">
+    <div class="fact-grid">
+      <FactCard
+        label="Sold post history to Google for AI training"
+        text="Reddit signed a $60M annual data licensing deal with Google in early 2024 giving Google access to Reddit's Data API for AI training. Individual users cannot opt out of this historical licensing."
+        severity="critical"
+      />
+      <FactCard
+        label="Community membership as identity signal"
+        text="The subreddits you join, post in, and vote in are treated as explicit interest and identity signals. Membership in health, political, religious, or support communities is in your profile."
+        severity="high"
+      />
+      <FactCard
+        label="Upvotes and downvotes are behavioral data"
+        text="Every vote you cast — including downvotes — is logged and associated with your account. Voting patterns reveal opinions on topics you never publicly comment on."
+        severity="high"
+      />
+      <FactCard
+        label="Deleted posts and comments are retained"
+        text="When you delete a post or comment, it is removed from public view. Reddit retains the content on its servers. It also continues to appear in Reddit's data licensing exports."
+        severity="high"
+      />
+    </div>
+
+    <div class="collect-detail">
+      <p>Reddit collects account registration information (email, username, password), device and network data (IP address, device type, browser, OS), and detailed behavioral logs from every session. Posts, comments, upvotes, downvotes, and awards you give or receive are all logged. Posts and comments you draft but delete before submitting are not retained after the session ends, but content you post and later delete is retained on Reddit's servers even after removal from public view.</p>
+
+      <p>Subreddit membership is the core identity signal Reddit's ad platform uses. The combination of communities you join creates a detailed interest and behavioral profile. r/diabetes, r/bipolar, r/legaladvice, r/alcoholism — memberships in communities like these are part of your targeting data. Reddit does not treat health or sensitive community memberships differently from entertainment or sports communities for targeting purposes.</p>
+
+      <p>Reddit's off-platform data collection operates through a tracking pixel and partnership with advertising measurement companies. Reddit's Pixel can be installed on third-party websites to track conversions and build retargeting audiences. If a brand has Reddit's Pixel on their site, your visit is reported back to Reddit and matched to your account if you are logged in, or to your device fingerprint if you are not.</p>
+
+      <p>Following its IPO in March 2024, Reddit is under pressure to grow advertising revenue. The platform has expanded its ad targeting capabilities and data partnerships significantly since going public.</p>
+    </div>
+  </div>
+
+  <!-- SETTINGS THAT MATTER -->
+  <div slot="settings">
+    <SettingCard
+      name="Ad Personalization"
+      severity="high"
+      defaultState="On"
+      howToTurnOff="Toggle off in Privacy & Safety settings"
+      webUrl="https://www.reddit.com/settings/privacy"
+      webPath={['Privacy & Safety', 'Ad Personalization']}
+      description="Reddit uses your on-platform activity — subreddit memberships, post and comment history, upvote patterns, and search queries — to select which ads you see. This is the primary ad targeting toggle. With it on, Reddit can use your full behavioral profile to match you to advertiser campaigns."
+      whatItDoesnt="Turning this off stops Reddit from using your behavioral profile for ad selection. It does not stop Reddit from collecting that data. Ads are still shown; they are based on the current page context rather than your account history. Off-Reddit tracking via the Reddit Pixel continues regardless of this setting."
+    />
+
+    <SettingCard
+      name="Use Data from Reddit Partners to Show Ads"
+      severity="high"
+      defaultState="On"
+      howToTurnOff="Toggle off in Privacy & Safety settings"
+      webUrl="https://www.reddit.com/settings/privacy"
+      webPath={['Privacy & Safety', 'Use data from Reddit partners to show you ads']}
+      description="Reddit receives data from its advertising partners — external companies including retailers, apps, and data providers — and uses it to supplement your Reddit behavioral profile for ad targeting. This is the mechanism by which your activity on non-Reddit websites can inform the ads you see on Reddit."
+      whatItDoesnt="Turning this off stops Reddit from using partner-provided data to target ads at you. It does not stop Reddit's advertising partners from sending data about you to Reddit. The data is still received by Reddit; it just does not get applied to your ad profile."
+    />
+
+    <h3 class="severity-group-label">High</h3>
+
+    <SettingCard
+      name="Allow Reddit to Use Your Data for Research"
+      severity="high"
+      defaultState="On"
+      howToTurnOff="Toggle off in Privacy & Safety settings"
+      webUrl="https://www.reddit.com/settings/privacy"
+      webPath={['Privacy & Safety', 'Allow Reddit to use your data to improve Reddit\'s products and services']}
+      description="Reddit uses your activity data for internal research and product development. This covers analysis of behavior patterns, A/B testing, and improving recommendation systems. It is separate from advertising but draws on the same behavioral data."
+      whatItDoesnt="Turning this off opts you out of Reddit's internal research uses of your data. It does not affect ad targeting or the data licensing deals Reddit has with third parties like Google. Content you have already posted remains part of any existing licensing arrangements."
+    />
+
+    <SettingCard
+      name="Profile Visibility"
+      severity="high"
+      defaultState="Public"
+      howToTurnOff="Set profile to private in Safety & Privacy settings"
+      webUrl="https://www.reddit.com/settings/privacy"
+      webPath={['Privacy & Safety', 'Profile visibility']}
+      description="By default, your Reddit profile, post history, and comment history are publicly visible to anyone on the internet, including search engines and data scrapers. This means everything you have ever posted on Reddit under your account is indexable. Setting your profile to private limits visibility to approved followers only, but does not remove your content from Reddit's servers or from data licensing exports."
+      whatItDoesnt="Making your profile private stops public indexing going forward. It does not delete your post history. It does not remove your content from data licensing agreements Reddit has with third parties. Content already indexed by search engines remains cached in those indexes until those caches expire."
+    />
+
+    <h3 class="severity-group-label">Medium</h3>
+
+    <SettingCard
+      name="Reddit Ads Personalization Opt-Out (Web)"
+      severity="medium"
+      defaultState="On"
+      howToTurnOff="Opt out at redditinc.com/policies/opt-out"
+      webUrl="https://redditinc.com/policies/opt-out"
+      webPath={['Reddit Inc.', 'Ad Personalization Opt-Out']}
+      description="Reddit offers a separate opt-out for interest-based advertising via its ad partner network. This is distinct from the in-app personalization toggle and applies to Reddit's programmatic advertising partnerships with third-party ad platforms and exchanges."
+      whatItDoesnt="This opt-out applies to Reddit's use of interest-based advertising via ad exchanges. It does not cover all Reddit advertising, and it does not prevent data collection. The opt-out is cookie-based and must be re-applied if you clear cookies or switch browsers."
+    />
+
+    <SettingCard
+      name="Location Personalization"
+      severity="medium"
+      defaultState="On"
+      howToTurnOff="Toggle off in Privacy & Safety settings"
+      webUrl="https://www.reddit.com/settings/privacy"
+      webPath={['Privacy & Safety', 'Location Personalization']}
+      description="Reddit uses your inferred location (from IP address) to personalize content and ads. Location inference happens on every session without requiring explicit location permission from your device. It is used for local community recommendations and geo-targeted advertising."
+      whatItDoesnt="Turning off location personalization stops Reddit from using inferred location for content and ad selection. It does not prevent Reddit from logging your IP address, which is standard technical logging. IP-based location inference still occurs at the network level regardless of this setting."
+    />
+  </div>
+
+  <!-- WHO GETS YOUR DATA -->
+  <div slot="who-gets-data">
+    <dl class="data-recipients">
+      <div class="recipient">
+        <dt>Google (AI Training Licensing)</dt>
+        <dd>Reddit signed a $60M annual data licensing deal with Google in early 2024. The agreement gives Google access to Reddit's Data API to use post and comment content for training AI models. This deal was disclosed ahead of Reddit's IPO. Individual users do not have a mechanism to opt out of their historical posts being included in this licensing arrangement.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Reddit Advertising Partners</dt>
+        <dd>Brands running campaigns on Reddit receive audience targeting based on your behavioral profile. They do not receive individual user data directly but benefit from Reddit's segmentation capabilities. Reddit's ad platform matches users to campaigns based on community memberships, engagement history, and interest signals.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Third-Party Measurement and Analytics Companies</dt>
+        <dd>Reddit works with measurement partners to verify ad impressions and attribute conversions. When you see a Reddit ad and later take an action on an advertiser's website, that conversion signal travels through measurement partners back to the advertiser.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Law Enforcement</dt>
+        <dd>Reddit complies with valid legal process including subpoenas, court orders, and search warrants. Reddit publishes a transparency report. IP address logs, account information, and private message metadata are among the categories disclosed in response to legal requests. Content you delete does not disappear from Reddit's systems and may be produced in response to legal process.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- WHAT THEY KNOW -->
+  <div slot="what-they-know">
+    <p>A Reddit account with several years of history is a detailed opinion and interest record. The combination of subreddit memberships, post content, comment history, and voting patterns produces a profile that reflects your health concerns, political views, financial situation, relationship status, hobbies, and worldview. Most of this was posted under conditions where users expected some degree of pseudonymity and community context, not advertising data extraction.</p>
+
+    <p>Subreddit membership is particularly revealing because communities are topically specific. Joining r/type2diabetes or r/sobriety or r/ADHD is a more direct signal than watching a loosely related video on another platform. Reddit's ad targeting knows this. Health and financial communities command premium CPMs precisely because membership is a near-explicit interest declaration.</p>
+
+    <p>Deleted posts and comments are removed from public view but retained by Reddit. They are part of the data profile Reddit maintains on your account. They were included in the API data Reddit licensed to Google for AI training unless explicitly excluded. There is no user-facing tool to verify what was included.</p>
+
+    <WarningCallout title="The IPO data licensing deal has no individual opt-out">
+      <p>Reddit's $60M annual deal with Google, disclosed in its S-1 filing in early 2024, grants Google the right to use Reddit's content via the Data API for AI training purposes. This covers content posted before and after the deal. Reddit's privacy policy grants Reddit broad rights to use your content for improving its services, which provides the contractual basis for third-party licensing arrangements. Individual opt-out from this historical licensing is not available.</p>
+    </WarningCallout>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization & Targeting" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/off-platform-tracking" label="Off-Platform Activity Tracking" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ai-training" label="AI Training Data Usage" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/meta" label="Meta / Instagram" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/google" label="Google" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/snapchat" label="Snapchat" type="platform" />
+
+</PlatformLayout>
+
+<style>
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .collect-detail {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .severity-group-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 1.75rem 0 0.75rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .severity-group-label:first-child {
+    margin-top: 0;
+  }
+
+  .data-recipients {
+    margin: 0;
+  }
+
+  .recipient {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .recipient:first-child {
+    padding-top: 0;
+  }
+
+  .recipient:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .recipient dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .recipient dd {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>
