@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TikTok – Privacy Wiki</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg: #0a0a0a;
+    --color-surface: #111111;
+    --color-surface-raised: #1a1a1a;
+    --color-border: #2a2a2a;
+    --color-border-subtle: #1e1e1e;
+    --color-text-primary: #e8e8e8;
+    --color-text-secondary: #a8a8a8;
+    --color-text-muted: #555555;
+    --color-critical: #e53e3e;
+    --color-critical-dim: rgba(229, 62, 62, 0.08);
+    --color-high: #d69e2e;
+    --color-high-dim: rgba(214, 158, 46, 0.08);
+    --color-medium: #b7791f;
+    --color-accent-blue: #4299e1;
+    --color-accent-blue-dim: rgba(66, 153, 225, 0.08);
+    --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--color-bg);
+    color: var(--color-text-primary);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  .site-nav {
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.75rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    position: sticky;
+    top: 0;
+    background: var(--color-bg);
+    z-index: 100;
+  }
+
+  .site-nav .logo {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .site-nav .logo span { color: var(--color-critical); }
+
+  .site-nav a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .site-nav a:hover { color: var(--color-text-secondary); }
+
+  .nav-sep { color: var(--color-border); }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    padding: 1rem 2rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .breadcrumb a { color: var(--color-text-muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-text-secondary); }
+  .breadcrumb .sep { margin: 0 0.375rem; }
+
+  /* ── PAGE LAYOUT ── */
+  .page-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .content-main { min-width: 0; }
+
+  .page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+  }
+
+  .page-subtitle {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    max-width: 640px;
+  }
+
+  /* severity banner */
+  .severity-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    padding: 0.875rem 1rem;
+    border-left: 3px solid var(--color-critical);
+    background: var(--color-critical-dim);
+    margin-bottom: 2.5rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  .severity-banner .sev-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-critical);
+    white-space: nowrap;
+    padding-top: 0.125rem;
+  }
+
+  /* section headings */
+  .section-heading {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding-bottom: 0.625rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+    margin-top: 2.5rem;
+  }
+
+  .section-heading:first-child { margin-top: 0; }
+
+  /* body prose */
+  .prose p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .prose p:last-child { margin-bottom: 0; }
+
+  /* inline wiki links */
+  .wiki-link {
+    color: var(--color-accent-blue);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(66, 153, 225, 0.25);
+    transition: border-color 0.15s;
+  }
+
+  .wiki-link:hover { border-color: var(--color-accent-blue); }
+
+  /* settings table */
+  .settings-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+  }
+
+  .settings-table th {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .settings-table td {
+    font-size: 0.875rem;
+    padding: 0.625rem 0.75rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+    color: var(--color-text-secondary);
+    vertical-align: top;
+  }
+
+  .settings-table tr:last-child td { border-bottom: 1px solid var(--color-border); }
+
+  .settings-table .setting-name {
+    color: var(--color-text-primary);
+    font-weight: 500;
+  }
+
+  .sev-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 0.375rem;
+    position: relative;
+    top: -1px;
+  }
+
+  .sev-dot.critical { background: var(--color-critical); }
+  .sev-dot.high { background: var(--color-high); }
+  .sev-dot.medium { background: var(--color-medium); }
+
+  .setting-path {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  /* expandable setting detail */
+  .setting-detail {
+    margin-top: 1.25rem;
+    padding: 1rem 1.125rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .setting-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .setting-detail-header h4 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .setting-detail-header .toggle-icon {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    transition: transform 0.2s;
+  }
+
+  .setting-detail[open] .toggle-icon { transform: rotate(90deg); }
+
+  .setting-detail-body {
+    padding-top: 0.875rem;
+    margin-top: 0.875rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .setting-detail-body p {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
+  .setting-detail-body p:last-child { margin-bottom: 0; }
+
+  .what-it-doesnt {
+    font-size: 0.8125rem !important;
+    color: var(--color-text-muted) !important;
+    font-style: italic;
+    border-left: 2px solid var(--color-border);
+    padding-left: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .setting-path-full {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .setting-path-full span {
+    color: var(--color-text-secondary);
+  }
+
+  .default-badge {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    padding: 0.125rem 0.5rem;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    background: var(--color-surface-raised);
+  }
+
+  /* callout */
+  .callout {
+    padding: 1rem 1.125rem;
+    border-left: 3px solid var(--color-high);
+    background: var(--color-high-dim);
+    margin-top: 1.5rem;
+  }
+
+  .callout-title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-high);
+    margin-bottom: 0.5rem;
+  }
+
+  .callout p {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  /* who gets data section */
+  .recipient-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .recipient-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .recipient-item dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .recipient-item dd {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  /* related links */
+  .related-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: all 0.15s;
+    background: transparent;
+  }
+
+  .chip:hover {
+    border-color: var(--color-accent-blue);
+    color: var(--color-accent-blue);
+    background: var(--color-accent-blue-dim);
+  }
+
+  .chip.practice { border-left: 2px solid var(--color-critical); }
+  .chip.platform { border-left: 2px solid var(--color-accent-blue); }
+
+  /* ── INFOBOX (right sidebar card) ── */
+  .infobox {
+    position: sticky;
+    top: 4rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    width: 300px;
+  }
+
+  .infobox-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.75rem 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface-raised);
+  }
+
+  .infobox-logo svg {
+    height: 40px;
+    width: auto;
+  }
+
+  .infobox-rows { }
+
+  .infobox-row {
+    display: flex;
+    border-bottom: 1px solid var(--color-border-subtle);
+    font-size: 0.8125rem;
+  }
+
+  .infobox-row:last-child { border-bottom: none; }
+
+  .infobox-label {
+    width: 110px;
+    flex-shrink: 0;
+    padding: 0.5rem 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    background: rgba(17, 17, 17, 0.5);
+    border-right: 1px solid var(--color-border-subtle);
+    display: flex;
+    align-items: center;
+  }
+
+  .infobox-value {
+    padding: 0.5rem 0.75rem;
+    color: var(--color-text-secondary);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .infobox-value a {
+    color: var(--color-accent-blue);
+    text-decoration: none;
+    font-size: 0.8125rem;
+  }
+
+  .infobox-value a:hover { text-decoration: underline; }
+
+  .verified-badge {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+  }
+
+  .verified-badge .date { color: var(--color-text-secondary); }
+
+  .infobox-practices {
+    padding: 0.625rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .infobox-practices a {
+    font-size: 0.75rem;
+    color: var(--color-accent-blue);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .infobox-practices a:hover { text-decoration: underline; }
+
+  .infobox-practices a::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-critical);
+    flex-shrink: 0;
+  }
+
+  /* ── TABLE OF CONTENTS (in sidebar below infobox) ── */
+  .toc {
+    margin-top: 1rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: 1rem;
+  }
+
+  .toc-title {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.625rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .toc a {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    padding: 0.25rem 0;
+    transition: color 0.15s;
+  }
+
+  .toc a:hover { color: var(--color-text-secondary); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .page-wrap {
+      grid-template-columns: 1fr;
+      padding: 1.25rem 1rem 3rem;
+    }
+
+    .infobox {
+      position: static;
+      width: 100%;
+      order: -1;
+    }
+
+    .toc { display: none; }
+
+    .site-nav { padding: 0.75rem 1rem; gap: 1rem; }
+    .breadcrumb { padding: 1rem 1rem 0; }
+  }
+
+  /* ── STEP LIST ── */
+  .step-list {
+    padding-left: 1.25rem;
+    margin: 0.5rem 0 0;
+  }
+
+  .step-list li {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin-bottom: 0.25rem;
+  }
+
+  .turnoff-block {
+    margin-bottom: 1.25rem;
+  }
+
+  .turnoff-block:last-child { margin-bottom: 0; }
+
+  .turnoff-block h4 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="logo">Privacy<span>Wiki</span></div>
+  <span class="nav-sep">/</span>
+  <a href="#">Platforms</a>
+  <a href="#">Practices</a>
+  <a href="#">About</a>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="#">Home</a><span class="sep">&rsaquo;</span>
+  <a href="#">Platforms</a><span class="sep">&rsaquo;</span>
+  <span style="color: var(--color-text-secondary);">TikTok</span>
+</div>
+
+<!-- PAGE -->
+<div class="page-wrap">
+
+  <!-- ════════ MAIN CONTENT ════════ -->
+  <main class="content-main">
+
+    <h1 class="page-title">TikTok</h1>
+    <p class="page-subtitle">TikTok tracks your behavior across the internet, not just inside the app. Here are the settings that matter and what they actually do.</p>
+
+    <!-- Severity banner -->
+    <div class="severity-banner">
+      <span class="sev-label">Critical</span>
+      <span>Off-platform tracking via TikTok Pixel, a 2026 privacy policy that added precise GPS collection, no AI training opt-out for US users, and default-on ad targeting across platforms. The data profile extends well beyond what you do in the app.</span>
+    </div>
+
+    <!-- ── WHAT THEY COLLECT ── -->
+    <h2 class="section-heading" id="what-they-collect">What They Collect</h2>
+    <div class="prose">
+      <p>TikTok collects data in two places: inside the app and outside it.</p>
+
+      <p>Inside the app: everything you watch, skip, and replay, and for how long. Searches, likes, comments, shares, saves. Sounds you save. Products you tap in TikTok Shop. Content you draft but delete before posting. The keystrokes you make in the caption field. Your device model, OS, unique device identifiers, and IP address.</p>
+
+      <p>Outside the app: TikTok operates a tracking network via the <a class="wiki-link" href="#">TikTok Pixel</a> and TikTok SDK. Businesses install this code on their websites and apps to use TikTok's advertising tools. When you visit any of those properties, your activity is reported back to TikTok. This happens whether the app is open or not. It happens whether you have a TikTok account or not.</p>
+
+      <p>TikTok's January 2026 privacy policy update added two things that were not in the prior policy: precise GPS location collection for US users (the previous policy explicitly excluded this) and explicit collection of <a class="wiki-link" href="#">AI interaction data</a>, including prompts and content at the pre-upload stage. Both are now covered under TikTok's worldwide, irrevocable license to use your content for developing machine learning models.</p>
+
+      <p>US user data is stored on Oracle Cloud Infrastructure. Oracle holds a 15% equity stake in TikTok's US entity and serves as the exclusive US cloud provider, following the ByteDance divestiture deal closed in January 2026. Oracle also audits TikTok's source code and oversees retraining of the recommendation algorithm on US user data.</p>
+    </div>
+
+    <!-- ── SETTINGS THAT MATTER ── -->
+    <h2 class="section-heading" id="settings">The Settings That Matter</h2>
+
+    <table class="settings-table">
+      <thead>
+        <tr>
+          <th>Setting</th>
+          <th>Severity</th>
+          <th>Default</th>
+          <th>Path</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="setting-name">Off-TikTok Activity</td>
+          <td><span class="sev-dot critical"></span>Critical</td>
+          <td>On</td>
+          <td class="setting-path">Ads &rsaquo; Your Off-TikTok Activity</td>
+        </tr>
+        <tr>
+          <td class="setting-name">Targeted Ads Outside of TikTok</td>
+          <td><span class="sev-dot critical"></span>Critical</td>
+          <td>On</td>
+          <td class="setting-path">Ads &rsaquo; Targeted Ads</td>
+        </tr>
+        <tr>
+          <td class="setting-name">Personalized Ads</td>
+          <td><span class="sev-dot high"></span>High</td>
+          <td>On</td>
+          <td class="setting-path">Ads &rsaquo; Personalized Ads</td>
+        </tr>
+        <tr>
+          <td class="setting-name">Sync Contacts &amp; Facebook Friends</td>
+          <td><span class="sev-dot high"></span>High</td>
+          <td>Off</td>
+          <td class="setting-path">Privacy &rsaquo; Sync contacts</td>
+        </tr>
+        <tr>
+          <td class="setting-name">Suggest Your Account to Others</td>
+          <td><span class="sev-dot medium"></span>Medium</td>
+          <td>On</td>
+          <td class="setting-path">Privacy &rsaquo; Suggest your account</td>
+        </tr>
+        <tr>
+          <td class="setting-name">Browser Autofill</td>
+          <td><span class="sev-dot medium"></span>Medium</td>
+          <td>On</td>
+          <td class="setting-path">Security &rsaquo; User Information</td>
+        </tr>
+        <tr>
+          <td class="setting-name">Connected Apps</td>
+          <td><span class="sev-dot medium"></span>Medium</td>
+          <td>Varies</td>
+          <td class="setting-path">Security &rsaquo; Apps and Services</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Expanded details for critical settings -->
+    <details class="setting-detail" open>
+      <summary class="setting-detail-header">
+        <h4><span class="sev-dot critical"></span>Off-TikTok Activity</h4>
+        <span class="toggle-icon">&#9654;</span>
+      </summary>
+      <div class="setting-detail-body">
+        <div class="setting-path-full">
+          <span>Settings and Privacy</span> &rsaquo; <span>Ads</span> &rsaquo; <span>Your Off-TikTok Activity</span>
+          &nbsp;&nbsp;<span class="default-badge">Default: On</span>
+        </div>
+        <p>This is TikTok's equivalent of Meta's <a class="wiki-link" href="#">Off-Facebook Activity</a>. Advertisers install TikTok's Pixel or SDK on their websites and apps. When you visit those properties, your activity is reported back to TikTok and used to target ads at you. You can view which advertisers have shared data about you, disconnect individual ones, and clear the activity history once every 24 hours. There is also a "Disconnect All" option.</p>
+        <p class="what-it-doesnt">Disconnecting advertisers stops them from using your off-TikTok data for future targeting. It does not delete what TikTok has already collected or processed. The TikTok Pixel on third-party sites still fires when you visit them. The data still goes to TikTok's servers. The setting controls how that data is applied to your profile, not whether it is sent.</p>
+      </div>
+    </details>
+
+    <details class="setting-detail">
+      <summary class="setting-detail-header">
+        <h4><span class="sev-dot critical"></span>Targeted Ads Outside of TikTok</h4>
+        <span class="toggle-icon">&#9654;</span>
+      </summary>
+      <div class="setting-detail-body">
+        <div class="setting-path-full">
+          <span>Settings and Privacy</span> &rsaquo; <span>Ads</span> &rsaquo; <span>Targeted Ads</span>
+          &nbsp;&nbsp;<span class="default-badge">Default: On</span>
+        </div>
+        <p>Your TikTok behavioral profile is used to serve you TikTok-informed ads on third-party platforms and websites. Your behavior inside TikTok follows you to other apps and sites. Turning this off tells TikTok not to share your profile data with ad partners for <a class="wiki-link" href="#">off-platform targeting</a>. On iOS 14.5 and later, denying TikTok's App Tracking Transparency prompt via iPhone Settings overrides this toggle at the OS level.</p>
+        <p class="what-it-doesnt">Turning this off stops TikTok from using your data to target ads on other platforms. It does not stop TikTok from building or maintaining your ad profile. Your on-platform behavior is still logged and still used for ads within TikTok.</p>
+      </div>
+    </details>
+
+    <details class="setting-detail">
+      <summary class="setting-detail-header">
+        <h4><span class="sev-dot high"></span>Personalized Ads</h4>
+        <span class="toggle-icon">&#9654;</span>
+      </summary>
+      <div class="setting-detail-body">
+        <div class="setting-path-full">
+          <span>Settings and Privacy</span> &rsaquo; <span>Ads</span> &rsaquo; <span>Personalized Ads</span>
+          &nbsp;&nbsp;<span class="default-badge">Default: On</span>
+        </div>
+        <p>Controls whether TikTok uses your in-app behavior to select the ads you see in your For You feed. Watch history, search queries, likes, follows, and engagement patterns all feed into this. With this on, the ads are tuned to what TikTok infers about your interests and intent.</p>
+        <p class="what-it-doesnt">Turning this off does not stop TikTok from collecting your behavioral data. The profile still gets built. You see generic ads instead of targeted ones. The data collection is unchanged. The Off-TikTok Activity and location settings need to be addressed separately.</p>
+      </div>
+    </details>
+
+    <details class="setting-detail">
+      <summary class="setting-detail-header">
+        <h4><span class="sev-dot high"></span>Sync Contacts &amp; Facebook Friends</h4>
+        <span class="toggle-icon">&#9654;</span>
+      </summary>
+      <div class="setting-detail-body">
+        <div class="setting-path-full">
+          <span>Settings and Privacy</span> &rsaquo; <span>Privacy</span> &rsaquo; <span>Sync contacts and Facebook friends</span>
+          &nbsp;&nbsp;<span class="default-badge">Default: Off (prompted during onboarding)</span>
+        </div>
+        <p>When enabled, TikTok uploads your phone contacts and Facebook friends list to its servers to find people you know and suggest your account to them. The data is sent regardless of whether any matches are found. TikTok uses this to build social graphs. If you previously synced contacts, tap "Remove previously synced contacts" to request deletion.</p>
+        <p class="what-it-doesnt">Removing previously synced contacts deletes them from TikTok's contact-sync database for future use. It does not affect inferences already drawn from that data. Your account may still be suggested to people who synced contacts containing your phone number.</p>
+      </div>
+    </details>
+
+    <details class="setting-detail">
+      <summary class="setting-detail-header">
+        <h4><span class="sev-dot medium"></span>Suggest Your Account to Others</h4>
+        <span class="toggle-icon">&#9654;</span>
+      </summary>
+      <div class="setting-detail-body">
+        <div class="setting-path-full">
+          <span>Settings and Privacy</span> &rsaquo; <span>Privacy</span> &rsaquo; <span>Suggest your account to others</span>
+          &nbsp;&nbsp;<span class="default-badge">Default: On</span>
+        </div>
+        <p>TikTok recommends your profile to other users based on your phone number, email, or contacts who have your information. Separate toggles exist for contacts, Facebook friends, and people who open or send links. Each can be disabled independently.</p>
+        <p class="what-it-doesnt">Turning off all suggestion toggles reduces account recommendations driven by contact data. It does not make your public profile unsearchable or prevent your content from appearing in the For You feed of people you do not know.</p>
+      </div>
+    </details>
+
+    <details class="setting-detail">
+      <summary class="setting-detail-header">
+        <h4><span class="sev-dot medium"></span>Browser Autofill</h4>
+        <span class="toggle-icon">&#9654;</span>
+      </summary>
+      <div class="setting-detail-body">
+        <div class="setting-path-full">
+          <span>Settings and Privacy</span> &rsaquo; <span>Security and Permissions</span> &rsaquo; <span>User Information</span>
+          &nbsp;&nbsp;<span class="default-badge">Default: On</span>
+        </div>
+        <p>TikTok has its own in-app browser used when you tap links inside the app. This browser can autofill payment information and contact information on sites you visit within TikTok. Separate toggles exist for each.</p>
+        <p class="what-it-doesnt">Turning off autofill stops TikTok from pre-filling forms in its in-app browser. TikTok's in-app browser can still observe your activity on pages you open inside the app. Autofill and page-level browsing data are separate behaviors.</p>
+      </div>
+    </details>
+
+    <details class="setting-detail">
+      <summary class="setting-detail-header">
+        <h4><span class="sev-dot medium"></span>Connected Apps</h4>
+        <span class="toggle-icon">&#9654;</span>
+      </summary>
+      <div class="setting-detail-body">
+        <div class="setting-path-full">
+          <span>Settings and Privacy</span> &rsaquo; <span>Security and Permissions</span> &rsaquo; <span>Apps and Services Permissions</span>
+          &nbsp;&nbsp;<span class="default-badge">Default: Varies</span>
+        </div>
+        <p>Third-party apps you have authenticated with your TikTok account via TikTok login. Each may have ongoing access to your profile, follower list, and in some cases content permissions. TikTok's Security Checkup tool walks through connected apps as part of an account review.</p>
+        <p class="what-it-doesnt">Revoking a connected app's permissions stops future access. It does not delete data the app already collected before revocation.</p>
+      </div>
+    </details>
+
+    <!-- ── HOW TO TURN IT OFF ── -->
+    <h2 class="section-heading" id="how-to">How to Turn It Off</h2>
+
+    <div class="callout">
+      <div class="callout-title">What these settings do not do</div>
+      <p>Every toggle here stops a specific use of your data. None of them stop TikTok from collecting data in the first place. Turning off personalized ads does not stop the behavioral profile from being built. Disconnecting advertisers from Your Off-TikTok Activity does not stop the TikTok Pixel from firing on third-party sites. iOS App Tracking Transparency and browser-level tracker blockers are more comprehensive than any in-app toggle.</p>
+    </div>
+
+    <div style="margin-top: 1.5rem;">
+      <div class="turnoff-block">
+        <h4>Off-TikTok Activity</h4>
+        <ol class="step-list">
+          <li>Profile icon &rarr; hamburger menu &rarr; Settings and Privacy &rarr; Ads &rarr; Your Off-TikTok Activity.</li>
+          <li>Review the list of advertisers that have shared data about you.</li>
+          <li>Tap Disconnect All, or disconnect individual advertisers.</li>
+          <li>Note: data can only be cleared once every 24 hours.</li>
+        </ol>
+      </div>
+
+      <div class="turnoff-block">
+        <h4>Targeted Ads Outside of TikTok</h4>
+        <ol class="step-list">
+          <li>Settings and Privacy &rarr; Ads &rarr; Targeted Ads.</li>
+          <li>Toggle off.</li>
+          <li>On iPhone: Settings &rarr; Privacy &amp; Security &rarr; Tracking &rarr; find TikTok &rarr; toggle off. This is an OS-level override.</li>
+        </ol>
+      </div>
+
+      <div class="turnoff-block">
+        <h4>Personalized Ads</h4>
+        <ol class="step-list">
+          <li>Settings and Privacy &rarr; Ads &rarr; Personalized Ads.</li>
+          <li>Toggle off.</li>
+        </ol>
+      </div>
+
+      <div class="turnoff-block">
+        <h4>Contact Syncing</h4>
+        <ol class="step-list">
+          <li>Settings and Privacy &rarr; Privacy &rarr; Sync contacts and Facebook friends.</li>
+          <li>Toggle off phone contacts. Toggle off Facebook friends.</li>
+          <li>Tap "Remove previously synced contacts" to delete contacts already uploaded.</li>
+        </ol>
+      </div>
+
+      <div class="turnoff-block">
+        <h4>Suggest Your Account to Others</h4>
+        <ol class="step-list">
+          <li>Settings and Privacy &rarr; Privacy &rarr; Suggest your account to others.</li>
+          <li>Disable each toggle: Contacts, Facebook friends, People who open or send links.</li>
+        </ol>
+      </div>
+
+      <div class="turnoff-block">
+        <h4>Browser Autofill</h4>
+        <ol class="step-list">
+          <li>Settings and Privacy &rarr; Security and Permissions &rarr; User Information.</li>
+          <li>Toggle off autofill for payment and contact information.</li>
+          <li>To avoid in-app browser tracking entirely: long-press links, copy the URL, open in your default browser.</li>
+        </ol>
+      </div>
+
+      <div class="turnoff-block">
+        <h4>Connected Apps</h4>
+        <ol class="step-list">
+          <li>Settings and Privacy &rarr; Security and Permissions &rarr; Apps and Services Permissions.</li>
+          <li>Review each connected app. Revoke access for anything you do not recognize or no longer use.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ── WHO GETS YOUR DATA ── -->
+    <h2 class="section-heading" id="who-gets-data">Who Gets Your Data</h2>
+    <dl>
+      <div class="recipient-item">
+        <dt>ByteDance</dt>
+        <dd>TikTok's parent company, headquartered in Beijing. Following the USDS deal closed in January 2026, ByteDance holds a 19.9% minority stake in TikTok's US entity. US user data is stored on Oracle Cloud Infrastructure as part of a governance framework designed to address regulatory concerns. Oracle provides independent audits. Whether this fully resolves data sovereignty concerns is subject to ongoing debate.</dd>
+      </div>
+      <div class="recipient-item">
+        <dt>TikTok Ad Partners (DSPs and Ad Networks)</dt>
+        <dd>TikTok operates a demand-side advertising platform. Your behavioral profile is used to match you to campaigns. Advertisers do not receive your raw data directly, but they benefit from TikTok's targeting capabilities. Audience segments and behavioral signals are shared with demand-side platform partners for programmatic campaign delivery.</dd>
+      </div>
+      <div class="recipient-item">
+        <dt>The TikTok Pixel Ecosystem</dt>
+        <dd>Thousands of websites and apps have TikTok's tracking code installed. Every time you visit one, an event fires that reports your activity back to TikTok. Retailers, news publishers, apps, and e-commerce platforms are all part of this ecosystem. You do not need a TikTok account for this to happen.</dd>
+      </div>
+      <div class="recipient-item">
+        <dt>Third-Party Measurement Partners</dt>
+        <dd>Companies like AppsFlyer, Adjust, and Branch receive data to attribute ad conversions. When you see a TikTok ad and later install an app or make a purchase, that conversion signal travels through these partners back to the advertiser.</dd>
+      </div>
+    </dl>
+
+    <!-- ── WHAT THEY KNOW ── -->
+    <h2 class="section-heading" id="what-they-know">What They Know About You</h2>
+    <div class="prose">
+      <p>After a few weeks of normal use, TikTok has a detailed record of your interests built from watch behavior, not just likes. A video you watched twice with sound on counts for more than one you liked and scrolled past. It knows what you skip at two seconds. It knows what you replay. It knows your search history, your TikTok Shop tap history, and which products you lingered on in ads.</p>
+
+      <p>Through <a class="wiki-link" href="#">off-platform tracking</a>, TikTok also receives data from websites you visit after closing the app. If you browsed a mattress brand, a credit card comparison site, or a car dealership, and any of those sites have TikTok's Pixel installed, TikTok logged it. Combined with device identifiers, precise location, and the social graph built from your contact list, that is a behavioral profile granular enough to predict purchasing intent by category.</p>
+
+      <p>That is not a hypothetical. That is what the ad targeting system is designed to produce.</p>
+    </div>
+
+    <div class="callout" style="margin-top: 1.25rem; border-left-color: var(--color-critical); background: var(--color-critical-dim);">
+      <div class="callout-title" style="color: var(--color-critical);">No AI Training Opt-Out for US Users</div>
+      <p>As of March 2026, TikTok does not offer US users an opt-out from having their data used to train AI models. TikTok's 2026 privacy policy explicitly names AI interactions, prompts, and pre-upload content as collected data, and grants TikTok a worldwide, irrevocable, royalty-free license to use content for developing machine learning models. EU users retain stronger protections under GDPR and can object. No equivalent mechanism exists for US users at this time.</p>
+    </div>
+
+    <!-- ── RELATED ── -->
+    <h2 class="section-heading" id="related">Related</h2>
+    <h4 style="font-size: 0.8125rem; color: var(--color-text-muted); margin-bottom: 0.5rem; font-weight: 500;">Practices</h4>
+    <div class="related-links">
+      <a class="chip practice" href="#">Off-Platform Activity Tracking</a>
+      <a class="chip practice" href="#">Ad Personalization &amp; Targeting</a>
+      <a class="chip practice" href="#">Third-Party Data Sharing</a>
+      <a class="chip practice" href="#">AI Training Data Usage</a>
+    </div>
+    <h4 style="font-size: 0.8125rem; color: var(--color-text-muted); margin-bottom: 0.5rem; margin-top: 1rem; font-weight: 500;">Platforms</h4>
+    <div class="related-links">
+      <a class="chip platform" href="#">Meta / Instagram</a>
+      <a class="chip platform" href="#">X / Twitter</a>
+    </div>
+
+  </main>
+
+  <!-- ════════ SIDEBAR ════════ -->
+  <aside>
+    <div class="infobox">
+      <!-- Logo -->
+      <div class="infobox-logo">
+        <!-- TikTok wordmark SVG (simplified) -->
+        <svg viewBox="0 0 120 36" height="36" xmlns="http://www.w3.org/2000/svg">
+          <text x="60" y="26" text-anchor="middle" font-family="'IBM Plex Sans', sans-serif" font-weight="700" font-size="26" fill="#e8e8e8" letter-spacing="-1">TikTok</text>
+        </svg>
+      </div>
+
+      <!-- Info rows -->
+      <div class="infobox-rows">
+        <div class="infobox-row">
+          <div class="infobox-label">Category</div>
+          <div class="infobox-value">Social Media Platform</div>
+        </div>
+        <div class="infobox-row">
+          <div class="infobox-label">Owner</div>
+          <div class="infobox-value">ByteDance Ltd.<br><span style="font-size: 0.75rem; color: var(--color-text-muted);">Beijing, China</span></div>
+        </div>
+        <div class="infobox-row">
+          <div class="infobox-label">US Entity</div>
+          <div class="infobox-value">TikTok US (Oracle Cloud)<br><span style="font-size: 0.75rem; color: var(--color-text-muted);">ByteDance 19.9% &middot; Oracle 15%</span></div>
+        </div>
+        <div class="infobox-row">
+          <div class="infobox-label">HQ</div>
+          <div class="infobox-value">Los Angeles, CA / Singapore</div>
+        </div>
+        <div class="infobox-row">
+          <div class="infobox-label">MAU</div>
+          <div class="infobox-value">~1.5 billion</div>
+        </div>
+        <div class="infobox-row">
+          <div class="infobox-label">Settings</div>
+          <div class="infobox-value">7 reviewed</div>
+        </div>
+        <div class="infobox-row">
+          <div class="infobox-label">Severity</div>
+          <div class="infobox-value"><span class="sev-dot critical"></span>Critical</div>
+        </div>
+        <div class="infobox-row">
+          <div class="infobox-label">Verified</div>
+          <div class="infobox-value">
+            <span class="verified-badge">&#10003;&ensp;<span class="date">March 22, 2026</span></span>
+          </div>
+        </div>
+        <div class="infobox-row" style="flex-direction: column;">
+          <div class="infobox-label" style="width: 100%; border-right: none; border-bottom: 1px solid var(--color-border-subtle);">Data Practices</div>
+          <div class="infobox-practices">
+            <a href="#">Off-Platform Activity Tracking</a>
+            <a href="#">Ad Personalization &amp; Targeting</a>
+            <a href="#">Third-Party Data Sharing</a>
+            <a href="#">AI Training Data Usage</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOC -->
+    <div class="toc">
+      <div class="toc-title">Contents</div>
+      <a href="#what-they-collect">What They Collect</a>
+      <a href="#settings">The Settings That Matter</a>
+      <a href="#how-to">How to Turn It Off</a>
+      <a href="#who-gets-data">Who Gets Your Data</a>
+      <a href="#what-they-know">What They Know About You</a>
+      <a href="#related">Related</a>
+    </div>
+  </aside>
+
+</div>
+
+<script>
+  // Toggle details elements
+  document.querySelectorAll('.setting-detail').forEach(d => {
+    d.querySelector('.setting-detail-header').addEventListener('click', () => {
+      d.toggleAttribute('open');
+    });
+  });
+</script>
+
+</body>
+</html>
