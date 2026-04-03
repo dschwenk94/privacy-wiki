@@ -1,0 +1,268 @@
+---
+import PracticeLayout from '../../layouts/PracticeLayout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+---
+
+<PracticeLayout
+  title="Automatic Content Recognition (ACR)"
+  description="Your smart TV captures what's on screen every few seconds, matches it against a database, and sells that viewership data. How ACR works, who buys it, and how to turn it off."
+  subtitle="Your TV is watching what you watch."
+  lastVerified="April 3, 2026"
+  platformCount={5}
+  severity="critical"
+  severityText="Enabled by default on virtually every major smart TV brand. Captures frames as often as every 500ms. Works regardless of content source — cable, streaming, game console, antenna. Data is sold to Nielsen, Comscore, and ad platforms. Consent is buried in initial TV setup. VIZIO paid $2.2M to the FTC in 2017. Texas AG sued five major TV makers in December 2025."
+  category="Data Collection Practice"
+  alsoKnownAs="Smart TV tracking, viewership data collection, TV ACR"
+  platforms={['VIZIO', 'Samsung', 'Roku', 'LG', 'Amazon Fire TV']}
+>
+
+  <!-- WHAT IT IS -->
+  <div slot="what-it-is">
+    <p>Automatic Content Recognition is technology embedded in smart TVs that identifies what is displayed on screen. The TV captures frames or audio samples at regular intervals — as often as every 500 milliseconds on some platforms — and sends compact fingerprints of that content to a matching server. The server compares the fingerprints against a reference database of known content: TV shows, movies, ads, sporting events. When it finds a match, it returns metadata: title, network, episode number, ad identifier.</p>
+
+    <p>That match result — tied to a device ID, timestamp, and duration — is the record that gets stored. That record is what gets sold.</p>
+
+    <p>ACR works regardless of how content reaches the screen. It does not matter whether you are watching cable, streaming Netflix, playing a Blu-ray, running a game console through HDMI, or receiving over-the-air broadcast. If the TV can see the pixels, ACR runs on them. The TV is the monitoring layer, not the app.</p>
+
+    <p>The fingerprint is not a screenshot. It is a mathematical hash derived from pixel patterns or audio spectral features — compact enough to transmit, robust enough to match across compression levels and display conditions. Raw video is not sent off the device. What is sent is a description precise enough to identify the content uniquely.</p>
+  </div>
+
+  <!-- HOW TO TURN IT OFF -->
+  <div slot="how-to-turn-off">
+    <WarningCallout title="What these settings do not do">
+      <p>Turning off ACR stops the TV from sending viewing fingerprints to the manufacturer's matching server. It does not delete viewership data already collected. It does not affect data collected by streaming apps running on the TV — Netflix, Hulu, and others have their own separate tracking. It does not stop the TV from collecting other telemetry: app usage, network information, and device diagnostics are governed by different settings. On some platforms, firmware updates have been reported to re-enable ACR. Checking these settings after major updates is not a bad idea.</p>
+    </WarningCallout>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">VIZIO</h3>
+      <ol class="turnoff-steps">
+        <li>Menu &rarr; System &rarr; Reset &amp; Admin &rarr; Viewing Data &rarr; OFF.</li>
+        <li>On newer models: Settings &rarr; Admin &amp; Privacy &rarr; Viewing Data &rarr; OFF.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Samsung</h3>
+      <ol class="turnoff-steps">
+        <li>Home &rarr; Settings &rarr; All Settings &rarr; General &amp; Privacy &rarr; Terms &amp; Conditions Privacy Policy.</li>
+        <li>Find Viewing Information Services &rarr; toggle OFF.</li>
+        <li>Also review: Interest-Based Advertising under the same menu.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Roku (including TCL and Hisense Roku TVs)</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &rarr; Privacy &rarr; Smart TV Experience &rarr; Use Info from TV Inputs &rarr; OFF.</li>
+        <li>Also: Settings &rarr; Privacy &rarr; Advertising &rarr; Limit Ad Tracking &rarr; ON.</li>
+        <li>Note: "Use Info from TV Inputs" is Roku's ACR toggle. "Limit Ad Tracking" controls ad profile use. Both matter.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">LG</h3>
+      <ol class="turnoff-steps">
+        <li>Settings (gear icon) &rarr; All Settings &rarr; General &rarr; System &rarr; Additional Settings &rarr; Live Plus &rarr; OFF.</li>
+        <li>Also review: Settings &rarr; General &rarr; About This TV &rarr; User Agreements &rarr; uncheck Personalized Advertising.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Amazon Fire TV</h3>
+      <ol class="turnoff-steps">
+        <li>Settings &rarr; Preferences &rarr; Privacy Settings &rarr; Device Usage Data &rarr; OFF.</li>
+        <li>Also: Collect App Usage Data &rarr; OFF.</li>
+        <li>Also: Interest-Based Ads &rarr; OFF.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- WHY IT MATTERS -->
+  <div slot="why-it-matters">
+    <p>Most people understand, in a general way, that smart TVs collect some data. Few understand what "some data" actually means in practice.</p>
+
+    <p>ACR produces second-by-second proof of what was on your screen, when, and for how long. Not a weekly summary. Not a survey estimate. A timestamped record tied to your device, matched to a specific ad or program, updated multiple times per minute. Combined with household demographics — which VIZIO was appending and selling before the FTC intervened — that record tells an advertiser whether you actually watched their commercial, how long you watched before changing the channel, and what you watched instead.</p>
+
+    <p>That is the foundation of Connected TV advertising. Advertisers pay premium rates for CTV inventory specifically because ACR can prove that a real household saw a real ad. Without ACR, CTV measurement would revert to panel estimates. The economics of the medium depend on this data existing.</p>
+
+    <WarningCallout title="VIZIO collected this data on 11 million TVs before anyone noticed">
+      <p>In 2017, the FTC and New Jersey AG settled with VIZIO for $2.2 million after finding the company had been collecting second-by-second viewing data since 2014 — including on TVs already sold — and selling it with household demographic data appended. VIZIO had not disclosed this to consumers. A $17 million class action settlement followed in 2018. In December 2025, the Texas AG sued Samsung, Sony, LG, TCL, and Hisense under similar allegations, citing a 500-millisecond capture rate and consent screens designed to maximize data extraction. Samsung settled in February 2026. The others are still litigating.</p>
+    </WarningCallout>
+
+    <p>The consent flow is designed to be accepted without reading. It appears during initial TV setup, bundled with terms of service and general privacy agreements, at a moment when the user wants to start watching TV. That's not informed consent. That's friction design.</p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div slot="how-it-works">
+    <ol class="steps-list">
+      <li>
+        <strong>The TV captures frames from the display.</strong> ACR software running on the TV's processor grabs frames at regular intervals — anywhere from every few seconds to as often as every 500 milliseconds, depending on the manufacturer. This runs at the OS level, below streaming apps, so it captures content from any source connected to the TV.
+      </li>
+      <li>
+        <strong>Each frame is reduced to a fingerprint.</strong> The frame is not stored or transmitted. Instead, a compact mathematical hash is generated from pixel patterns, color distribution, and spatial features. Audio ACR works similarly: a spectrogram of the audio waveform is reduced to a hash based on frequency peaks and spectral patterns. The hash is small enough to transmit cheaply and robust enough to survive compression or display artifacts.
+      </li>
+      <li>
+        <strong>Fingerprints are sent to a matching server.</strong> The on-device software transmits the fingerprints, along with the device ID and timestamp, to the manufacturer's (or third-party provider's) ACR server over the internet.
+      </li>
+      <li>
+        <strong>The server matches against a reference database.</strong> The ACR provider maintains a database of fingerprints for known content: TV broadcasts, streaming catalog, ads, movies, sporting events. The incoming fingerprint is matched against this database. A match returns the content ID — show title, network, episode number, ad creative identifier.
+      </li>
+      <li>
+        <strong>Match records are stored and sold.</strong> The result — device ID, timestamp, duration, and content ID — is logged. These records are aggregated and sold to measurement companies, ad platforms, and media buyers. The TV manufacturer earns revenue from this data. For some manufacturers, ACR data is the primary monetization mechanism for hardware sold at thin margins.
+      </li>
+    </ol>
+  </div>
+
+  <!-- WHO HAS YOUR DATA -->
+  <div slot="who-has-data">
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>ACR Program</th>
+            <th>Key Data Buyers / Partners</th>
+            <th>Opt-Out Setting</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>VIZIO</td>
+            <td>Inscape / VIZIO Ads</td>
+            <td>Comscore (since 2018), Nielsen, VideoAmp, iSpot, Data Plus Math. Settled FTC action in 2017 for $2.2M for selling demographic-enriched viewing data without disclosure.</td>
+            <td>Menu &rarr; System &rarr; Reset &amp; Admin &rarr; Viewing Data</td>
+          </tr>
+          <tr>
+            <td>Samsung</td>
+            <td>Samsung Ads / Viewing Information Services</td>
+            <td>Samsung's ACR data feeds its own first-party ad platform. Samsung settled with Texas AG in February 2026 over consent practices. Operates its own ACR stack independently.</td>
+            <td>Settings &rarr; General &amp; Privacy &rarr; Terms &amp; Conditions Privacy Policy &rarr; Viewing Information Services</td>
+          </tr>
+          <tr>
+            <td>Roku</td>
+            <td>Roku OneView / Smart TV Experience</td>
+            <td>Roku sells ACR-derived audience segments directly to advertisers through its OneView ad platform. Also partners with measurement companies for campaign attribution.</td>
+            <td>Settings &rarr; Privacy &rarr; Smart TV Experience &rarr; Use Info from TV Inputs</td>
+          </tr>
+          <tr>
+            <td>LG</td>
+            <td>LG Ad Solutions / Live Plus</td>
+            <td>Nielsen struck a deal with LG Ad Solutions in 2023 to access what they described as the largest ACR data footprint for TV measurement in the US. Data also sold to ad agencies and media buyers via LG's ad platform.</td>
+            <td>Settings &rarr; General &rarr; System &rarr; Additional Settings &rarr; Live Plus</td>
+          </tr>
+          <tr>
+            <td>Amazon Fire TV</td>
+            <td>Amazon Ads / Device Usage Data</td>
+            <td>ACR data feeds Amazon's advertising business. Amazon can connect Fire TV viewership data to its purchase history, browsing data, and Alexa interactions for a unified household profile.</td>
+            <td>Settings &rarr; Preferences &rarr; Privacy Settings &rarr; Device Usage Data</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization and Targeting" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/dark-patterns" label="Dark Patterns" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/data-brokers" label="Data Brokers" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/amazon" label="Amazon" type="platform" />
+
+</PracticeLayout>
+
+<style>
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .steps-list {
+    padding-left: 1.5rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .steps-list li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  .steps-list li strong {
+    color: var(--color-text-primary);
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  .data-table th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .data-table td {
+    padding: 0.75rem;
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .data-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .turnoff-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .turnoff-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .turnoff-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .turnoff-steps {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .turnoff-steps li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+</style>
