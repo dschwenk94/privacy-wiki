@@ -42,6 +42,21 @@ const platforms: Array<{ name: string; href: string; description: string }> = [
     href: '/platforms/snapchat',
     description: 'Ghost Mode does not stop Snap from collecting your location. My AI conversations train Snap\'s AI. Off-Snap tracking via Snap Pixel. Ephemeral messages leave metadata.',
   },
+  {
+    name: 'VIZIO',
+    href: '/platforms/vizio',
+    description: 'TV hardware sold at cost. Revenue comes from ACR data licensing via Inscape. The Walmart acquisition connects viewing history to the largest purchase dataset in the US.',
+  },
+  {
+    name: 'Roku',
+    href: '/platforms/roku',
+    description: 'The largest TV streaming platform in the US. OS-level tracking sees activity across all apps. Roku Ads packages and sells audience segments built from your viewing behavior.',
+  },
+  {
+    name: 'Samsung TV',
+    href: '/platforms/samsung-tv',
+    description: 'Largest global smart TV market share. Samsung Ads is a major CTV ad platform. Tizen OS telemetry, ACR via Samsung and Samba TV, and Samsung account cross-device tracking.',
+  },
 ];
 const practices: Array<{ name: string; href: string; description: string }> = [
   {
@@ -84,6 +99,11 @@ const practices: Array<{ name: string; href: string; description: string }> = [
     href: '/practices/dark-patterns',
     description: 'Deliberate interface design that makes consent frictionless and opt-out hard. The toggle exists; it is just buried, grayed out, and three submenus away.',
   },
+  {
+    name: 'Cross-Device Graph Matching',
+    href: '/practices/cross-device',
+    description: 'How companies link your TV, phone, laptop, and tablet into a single identity profile — without shared logins. IP correlation, timing patterns, and data clean rooms.',
+  },
 ];
 ---
 
@@ -94,8 +114,7 @@ const practices: Array<{ name: string; href: string; description: string }> = [
   <div class="page-container">
     <header class="site-header">
       <div class="site-eyebrow">privacywiki.io</div>
-      <div class="site-logo" aria-hidden="true">Privacy<span>Wiki</span></div>
-      <h1 class="site-title">Privacy Wiki</h1>
+      <h1 class="site-logo">Privacy<span>Wiki</span></h1>
       <p class="site-description">
         What they collect. Why it matters. How to turn it off.
       </p>
@@ -197,22 +216,15 @@ const practices: Array<{ name: string; href: string; description: string }> = [
   .site-logo {
     font-family: var(--font-body);
     font-weight: 700;
-    font-size: 1.5rem;
-    letter-spacing: -0.02em;
+    font-size: 3rem;
+    letter-spacing: -0.03em;
     color: var(--color-text-primary);
     margin-bottom: 0.75rem;
+    line-height: 1.1;
   }
 
   .site-logo span {
     color: var(--color-critical);
-  }
-
-  .site-title {
-    font-size: 2.5rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
   }
 
   .site-description {
