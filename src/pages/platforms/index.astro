@@ -2,14 +2,15 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 
-const platforms: Array<{
+type Platform = {
   name: string;
   href: string;
   category: string;
   severity: 'critical' | 'high' | 'medium';
   description: string;
-  group?: string;
-}> = [
+};
+
+const socialMedia: Platform[] = [
   {
     name: 'TikTok',
     href: '/platforms/tiktok',
@@ -32,27 +33,6 @@ const platforms: Array<{
     description: 'The Meta Pixel tracks you across millions of third-party websites. Off-Facebook Activity, Audience Network ads, AI training on posts and photos with no US opt-out.',
   },
   {
-    name: 'Google',
-    href: '/platforms/google',
-    category: 'Search, Advertising, and Cloud Platform',
-    severity: 'critical',
-    description: 'Google Analytics and the Google Ads network are present on roughly 90% of top websites. Cross-product combination of Search, YouTube, Maps, Gmail, Chrome, and Android data.',
-  },
-  {
-    name: 'Amazon',
-    href: '/platforms/amazon',
-    category: 'E-Commerce & Smart Home Platform',
-    severity: 'critical',
-    description: 'Purchase history reveals income, health, and life stage. Alexa devices record voice inside homes. Ring cameras have law enforcement sharing relationships. Amazon Sidewalk uses customer hardware as a mesh network.',
-  },
-  {
-    name: 'YouTube',
-    href: '/platforms/youtube',
-    category: 'Video Platform',
-    severity: 'high',
-    description: 'A Google product. Watch history, search queries, and granular engagement data (pause points, rewinds, skip decisions) feed the same Google advertising profile used across Search, Gmail, and the Display Network.',
-  },
-  {
     name: 'Reddit',
     href: '/platforms/reddit',
     category: 'Social Media Platform',
@@ -68,13 +48,37 @@ const platforms: Array<{
   },
 ];
 
-const smartTVs: Array<{
-  name: string;
-  href: string;
-  category: string;
-  severity: 'critical' | 'high' | 'medium';
-  description: string;
-}> = [
+const searchBrowsers: Platform[] = [
+  {
+    name: 'Google',
+    href: '/platforms/google',
+    category: 'Search, Advertising, and Cloud Platform',
+    severity: 'critical',
+    description: 'Google Analytics and the Google Ads network are present on roughly 90% of top websites. Cross-product combination of Search, YouTube, Maps, Gmail, Chrome, and Android data.',
+  },
+];
+
+const streaming: Platform[] = [
+  {
+    name: 'YouTube',
+    href: '/platforms/youtube',
+    category: 'Video Platform',
+    severity: 'high',
+    description: 'A Google product. Watch history, search queries, and granular engagement data (pause points, rewinds, skip decisions) feed the same Google advertising profile used across Search, Gmail, and the Display Network.',
+  },
+];
+
+const retail: Platform[] = [
+  {
+    name: 'Amazon',
+    href: '/platforms/amazon',
+    category: 'E-Commerce & Smart Home Platform',
+    severity: 'critical',
+    description: 'Purchase history reveals income, health, and life stage. Alexa devices record voice inside homes. Ring cameras have law enforcement sharing relationships. Amazon Sidewalk uses customer hardware as a mesh network.',
+  },
+];
+
+const smartTVs: Platform[] = [
   {
     name: 'VIZIO',
     href: '/platforms/vizio',
@@ -96,6 +100,14 @@ const smartTVs: Array<{
     severity: 'critical',
     description: 'Largest global smart TV market share. ACR runs via Viewing Information Services on Tizen OS, below any streaming app. Samsung Ads is the advertising platform built on that viewership data. Samba TV may run a second ACR layer simultaneously. Samsung settled with the Texas AG in February 2026 over consent practices.',
   },
+];
+
+const groups: Array<{ label: string; platforms: Platform[] }> = [
+  { label: 'Social Media', platforms: socialMedia },
+  { label: 'Search & Browsers', platforms: searchBrowsers },
+  { label: 'Streaming', platforms: streaming },
+  { label: 'Retail & E-Commerce', platforms: retail },
+  { label: 'Smart TVs', platforms: smartTVs },
 ];
 
 const breadcrumbs = [
@@ -120,64 +132,29 @@ const breadcrumbs = [
     </header>
 
     <main>
-      {platforms.length > 0 ? (
-        <ul class="platform-list">
-          {platforms.map((p) => (
-            <li class="platform-item">
-              <a href={p.href} class="platform-link">
-                <div class="platform-header">
-                  <span class="platform-name">{p.name}</span>
-                  <span class={`severity-badge severity--${p.severity}`}>
-                    {p.severity.toUpperCase()}
-                  </span>
-                </div>
-                <div class="platform-meta">
-                  <span class="platform-category">{p.category}</span>
-                </div>
-                <p class="platform-desc">{p.description}</p>
-              </a>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <div class="empty-state">
-          <div class="empty-header">
-            <span class="empty-label">In progress</span>
-          </div>
-          <p class="empty-text">
-            Platform pages are being built in order of search demand and
-            severity. First up: TikTok, X, and Meta/Instagram.
-          </p>
-          <ul class="upcoming-list">
-            <li>TikTok — off-platform tracking, ad targeting</li>
-            <li>X / Twitter — Grok AI training opt-out</li>
-            <li>Meta / Instagram — Off-Facebook Activity, Meta Pixel</li>
-            <li>Google — Web &amp; App Activity, ad personalization</li>
+      {groups.map((group) => (
+        <div class="group-section">
+          <h2 class="group-heading">{group.label}</h2>
+          <ul class="platform-list">
+            {group.platforms.map((p) => (
+              <li class="platform-item">
+                <a href={p.href} class="platform-link">
+                  <div class="platform-header">
+                    <span class="platform-name">{p.name}</span>
+                    <span class={`severity-badge severity--${p.severity}`}>
+                      {p.severity.toUpperCase()}
+                    </span>
+                  </div>
+                  <div class="platform-meta">
+                    <span class="platform-category">{p.category}</span>
+                  </div>
+                  <p class="platform-desc">{p.description}</p>
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
-      )}
-
-      <div class="group-section">
-        <h2 class="group-heading">Smart TVs</h2>
-        <ul class="platform-list">
-          {smartTVs.map((p) => (
-            <li class="platform-item">
-              <a href={p.href} class="platform-link">
-                <div class="platform-header">
-                  <span class="platform-name">{p.name}</span>
-                  <span class={`severity-badge severity--${p.severity}`}>
-                    {p.severity.toUpperCase()}
-                  </span>
-                </div>
-                <div class="platform-meta">
-                  <span class="platform-category">{p.category}</span>
-                </div>
-                <p class="platform-desc">{p.description}</p>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      ))}
     </main>
 
     <footer class="page-footer">
@@ -297,64 +274,12 @@ const breadcrumbs = [
     margin: 0;
   }
 
-  .empty-state {
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
-    padding: 1.5rem 1.75rem;
-  }
-
-  .empty-header {
-    margin-bottom: 0.75rem;
-  }
-
-  .empty-label {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 0.625rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-text-muted);
-    border: 1px solid var(--color-border);
-    border-radius: 2px;
-    padding: 0.15em 0.5em;
-  }
-
-  .empty-text {
-    font-size: 0.9375rem;
-    color: var(--color-text-secondary);
-    margin-bottom: 1rem;
-    line-height: 1.6;
-  }
-
-  .upcoming-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.375rem;
-  }
-
-  .upcoming-list li {
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-    color: var(--color-text-muted);
-    padding-left: 1rem;
-    position: relative;
-  }
-
-  .upcoming-list li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--color-text-muted);
-    opacity: 0.5;
-  }
-
   .group-section {
     margin-top: 2.5rem;
+  }
+
+  .group-section:first-child {
+    margin-top: 0;
   }
 
   .group-heading {
