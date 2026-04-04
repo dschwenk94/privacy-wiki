@@ -1,0 +1,247 @@
+---
+import PlatformLayout from '../../layouts/PlatformLayout.astro';
+import SettingCard from '../../components/SettingCard.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import FactCard from '../../components/FactCard.astro';
+---
+
+<PlatformLayout
+  title="Roku"
+  description="Roku is the largest TV streaming platform in the US. Its entire revenue model is built on advertising and data — not hardware. Here are the settings that matter and what they actually do."
+  subtitle=""
+  category="Smart TV Platform / Streaming Platform"
+  lastVerified="April 3, 2026"
+  settingsCount={4}
+  severity="critical"
+  severityText="Roku collects at the OS level, which means it sees activity across every app on the device — not just the Roku Channel. ACR, app launch data, viewing duration, and cross-device identity are all on by default. Roku's entire business is advertising and data licensing. The hardware is how it gets into your living room."
+  owner="Roku, Inc."
+  ownerHQ="San Jose, CA"
+  headquarters="San Jose, CA"
+  monthlyUsers="~90M active accounts"
+  relatedPractices={[
+    { label: 'Automatic Content Recognition (ACR)', href: '/practices/acr' },
+    { label: 'Ad Personalization & Targeting', href: '/practices/ad-personalization' },
+    { label: 'Third-Party Data Sharing', href: '/practices/third-party-sharing' },
+    { label: 'Off-Platform Activity Tracking', href: '/practices/off-platform-tracking' },
+  ]}
+>
+
+  <!-- WHAT THEY COLLECT -->
+  <div slot="what-they-collect">
+    <div class="fact-grid">
+      <FactCard
+        label="Sees everything on the device, not just Roku apps"
+        text="Roku operates the OS layer. It tracks app launches, viewing duration, and channel switching across all apps on the device — Netflix, Hulu, Disney+, everything — even without seeing what is playing inside those apps."
+        severity="critical"
+      />
+      <FactCard
+        label="ACR runs on live TV inputs"
+        text="For Roku TVs (not streaming sticks), ACR captures what is on screen from cable, antenna, and HDMI inputs. The setting is called 'Use Info from TV Inputs' and it is on by default."
+        severity="critical"
+      />
+      <FactCard
+        label="Cross-device identity via IP and account"
+        text="Roku ties TV data to mobile and web activity through IP address matching and Roku account login. Your TV viewing profile follows you across devices."
+        severity="high"
+      />
+      <FactCard
+        label="Sells audience segments directly to advertisers"
+        text="Roku Ads (formerly OneView) is Roku's demand-side ad platform. Roku packages viewership data into audience segments and sells them directly. There is no intermediary between Roku's data and the ad buyer."
+        severity="high"
+      />
+    </div>
+
+    <div class="collect-detail">
+      <p>Most platforms have a data business attached to something else — social networking, e-commerce, hardware. Roku's entire revenue model is advertising and data. The hardware exists to get the platform into living rooms. That distinction matters: Roku has more incentive to maximize data collection than a company for which data is a side business.</p>
+
+      <p>Roku collects at the OS level. When you launch Netflix on a Roku device, Roku knows you launched Netflix, how long you ran it, and when you closed it. Roku does not see what you watched inside Netflix — Netflix controls that. But Roku sees every app, every session, every duration, every channel switch, every input change. Across 90 million accounts, that is a detailed picture of television consumption habits.</p>
+
+      <p>For Roku TVs (as opposed to streaming sticks), ACR adds another layer. The TV captures what is displayed on screen from any input: cable box, antenna, HDMI game console. Roku calls this "Use Info from TV Inputs." The fingerprints go to Roku's matching servers. The match records — what was on screen, when, for how long — feed the Roku Ads platform.</p>
+
+      <p>Roku also collects search queries entered on the device, voice queries if you use a voice remote, IP address, and device identifiers. Account-level data includes what you have purchased or subscribed to through Roku's channel store. Roku uses IP address matching and account login to connect TV viewing data to mobile and web activity — building a cross-device profile without requiring you to do anything beyond being logged in.</p>
+
+      <p>The Roku Channel, Roku's free ad-supported streaming service, is fully instrumented. Everything you watch on The Roku Channel is available to Roku's ad platform with full content-level detail, not just app-level session data.</p>
+    </div>
+  </div>
+
+  <!-- SETTINGS THAT MATTER -->
+  <div slot="settings">
+    <WarningCallout title="What these settings do not do">
+      <p>Turning off Use Info from TV Inputs stops Roku from reading screen content via ACR on live TV inputs. It does not stop Roku from tracking app launches, session duration, and device usage across all apps on the device. Roku still owns the OS layer. Limit Ad Tracking controls how your ad profile is used, not whether it is built. Voice data collection requires a separate check. There is no single setting that stops all data collection on a Roku device.</p>
+    </WarningCallout>
+
+    <SettingCard
+      name="Use Info from TV Inputs"
+      severity="critical"
+      defaultState="On"
+      path={['Settings', 'Privacy', 'Smart TV Experience', 'Use Info from TV Inputs']}
+      webUrl="https://my.roku.com/account/privacy"
+      webPath={['Privacy', 'Advertising preferences']}
+      description="This is Roku's ACR toggle, applicable to Roku TVs (not streaming sticks). When enabled, the TV captures what is displayed on screen from cable, antenna, and HDMI inputs and sends fingerprints to Roku's matching server. Match results — content ID, timestamp, duration — feed the Roku Ads platform and are used to build viewership audience segments sold to advertisers. The setting label 'Smart TV Experience' is Roku's name for ACR in this menu. Cross-reference: the ACR practice page covers the underlying technology."
+      whatItDoesnt="Turning this off stops ACR collection from live TV inputs. It does not stop Roku from tracking which apps you use and for how long. Roku's app-level usage data collection is OS-level behavior, not controlled by this setting. It also does not delete previously collected ACR data."
+    />
+
+    <h3 class="severity-group-label">High</h3>
+
+    <SettingCard
+      name="Limit Ad Tracking"
+      severity="high"
+      defaultState="Off (tracking is on by default)"
+      path={['Settings', 'Privacy', 'Advertising', 'Limit Ad Tracking']}
+      webUrl="https://my.roku.com/account/privacy"
+      webPath={['Privacy', 'Advertising preferences']}
+      description="Controls whether Roku uses your behavioral data to build and apply an ad targeting profile. With Limit Ad Tracking off (the default), Roku uses viewing history, app usage, search queries, and cross-device data to serve you targeted ads and to sell audience segments to advertisers through Roku Ads. Turning this on tells Roku not to use your data for interest-based ad targeting. Note the inverted logic: 'Limit Ad Tracking' toggled ON is the privacy-protective state."
+      whatItDoesnt="Enabling Limit Ad Tracking does not stop Roku from collecting data. Roku still logs app launches, session duration, and usage patterns. It stops Roku from applying that data to your ad targeting profile and from including you in audience segments sold to advertisers. You will still see ads; they will not be targeted to your behavior profile."
+    />
+
+    <SettingCard
+      name="Microphone Access"
+      severity="high"
+      defaultState="On (if using voice remote)"
+      path={['Settings', 'Privacy', 'Microphone']}
+      webUrl="https://my.roku.com/account/privacy"
+      webPath={['Privacy', 'Microphone settings']}
+      description="Roku's voice remotes send audio queries to Roku's servers for processing. Roku retains voice search queries and uses them for content recommendations and ad targeting. If you do not use the voice remote button, the microphone is not passively recording — voice capture is push-to-talk, not always-on. But when you do use it, those queries are logged and associated with your account and device."
+      whatItDoesnt="Disabling microphone access prevents voice query data from being sent to Roku's servers. It does not affect the remote's other functions. If you use a third-party remote or navigate via the Roku mobile app instead, those interactions are logged through separate channels."
+    />
+
+    <!-- VERIFY: 'Audience Measurement' may appear as a separate toggle or may have been renamed across OS versions -->
+    <h3 class="severity-group-label">Medium</h3>
+
+    <SettingCard
+      name="Audience Measurement"
+      severity="medium"
+      defaultState="On"
+      path={['Settings', 'Privacy', 'Advertising', 'Audience Measurement']}
+      webUrl="https://my.roku.com/account/privacy"
+      webPath={['Privacy', 'Advertising preferences']}
+      description="Controls whether Roku shares your device usage data with third-party audience measurement companies — Nielsen and Comscore are the primary partners. This is separate from Roku's own first-party ad platform. When enabled, anonymized-but-device-linked viewing data is reported to these measurement firms for panel-level TV industry research. The data contributes to industry viewership ratings and advertiser reach measurement across platforms."
+      whatItDoesnt="Turning this off stops Roku from reporting your device's data to third-party measurement partners. It does not stop Roku from collecting or using that data internally through its own Roku Ads platform. First-party ad targeting is controlled by Limit Ad Tracking, not this setting."
+    />
+  </div>
+
+  <!-- WHO GETS YOUR DATA -->
+  <div slot="who-gets-data">
+    <dl class="data-recipients">
+      <div class="recipient">
+        <dt>Roku Ads (formerly OneView) — Advertisers and Agencies</dt>
+        <dd>Roku operates its own demand-side advertising platform. Brands and agencies buy connected TV ad inventory through it, targeting audiences built from Roku's OS-level data. Unlike platforms that sell data to intermediaries, Roku sells ad inventory directly. The audience segments — built from viewing history, app usage, search queries, and cross-device activity — are Roku's core product. Advertisers pay for access to those segments in the form of targeted ad placements.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Nielsen and Comscore</dt>
+        <dd>Roku shares device-level viewing data with Nielsen and Comscore for TV measurement purposes. This data contributes to national viewership panels and is used by the ad industry to measure campaign reach across platforms. Nielsen and Comscore aggregate and anonymize for reporting, but the source data is household-level records tied to Roku device IDs.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Channel Partners (App Developers)</dt>
+        <dd>Roku shares some device and account data with channel partners — the developers whose apps run on the platform. The data includes device identifiers, account information, and in some cases audience segment data used to support in-app advertising. Roku's developer agreements give the platform access to aggregate usage data from third-party channels, which feeds back into Roku's own measurement and ad products.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Cross-Device Identity Partners</dt>
+        <dd>Roku uses IP address matching and deterministic signals (account login) to connect TV viewing to mobile and web activity. This cross-device linking is used to measure whether someone who saw a TV ad later visited a website or made a purchase. The resulting conversion data flows back to advertisers through Roku Ads attribution. Third-party identity partners may be involved in the IP-matching infrastructure, though Roku does not disclose specific vendors publicly.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- WHAT THEY KNOW -->
+  <div slot="what-they-know">
+    <p>Roku has a complete picture of how your household uses its TV. Not what you watch inside Netflix — Netflix controls that. But which apps you open, in what order, how long you run each one, and when you stop. Across 90 million accounts, that is a granular map of television behavior.</p>
+
+    <p>For Roku TVs with ACR enabled, Roku also knows what is on screen during linear TV and HDMI input sessions. Combined with app-level session data, Roku can construct a continuous record of TV use: cable news in the morning, a streaming drama in the evening, switching to a game console at 10 PM. That behavioral pattern, repeated over weeks and months, produces audience segments that advertisers pay for.</p>
+
+    <p>Cross-device identity connects the TV to everything else. If your household is logged into Roku on the TV and uses the Roku mobile app, those identifiers are linked. If Roku's IP matching finds a mobile device on the same network that visited a car dealership website after a TV ad played, that is a conversion event — and it is reported back to the advertiser as a campaign result.</p>
+
+    <p>Voice queries, if you use a voice remote, are also retained. Search history on the platform is logged and used for content and ad recommendations. Your Roku account captures everything you have subscribed to or purchased through the Roku channel store, which builds a purchase history on top of the viewing history.</p>
+
+    <WarningCallout title="Roku's business is data — not hardware">
+      <p>Roku sells streaming sticks for $25 and licenses its OS to TV manufacturers at low cost because its revenue comes from advertising. In Q4 2025, Roku reported that platform revenue (advertising and data) accounted for the overwhelming majority of total revenue. The hardware business runs at a loss or break-even. This means every design decision on the Roku platform — default settings, privacy menu placement, account requirements — is made by a company whose primary customer is not the person watching the TV. The primary customer is the advertiser buying access to the viewer.</p>
+    </WarningCallout>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/acr" label="Automatic Content Recognition (ACR)" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization & Targeting" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/off-platform-tracking" label="Off-Platform Activity Tracking" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/vizio" label="VIZIO" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/amazon" label="Amazon" type="platform" />
+
+</PlatformLayout>
+
+<style>
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .collect-detail {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .severity-group-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 1.75rem 0 0.75rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .severity-group-label:first-child {
+    margin-top: 0;
+  }
+
+  .data-recipients {
+    margin: 0;
+  }
+
+  .recipient {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .recipient:first-child {
+    padding-top: 0;
+  }
+
+  .recipient:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .recipient dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .recipient dd {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>

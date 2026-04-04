@@ -8,6 +8,7 @@ const platforms: Array<{
   category: string;
   severity: 'critical' | 'high' | 'medium';
   description: string;
+  group?: string;
 }> = [
   {
     name: 'TikTok',
@@ -64,6 +65,29 @@ const platforms: Array<{
     category: 'Social Media Platform',
     severity: 'high',
     description: 'Ghost Mode does not stop Snap from tracking your location. Off-Snap activity tracking via Snap Pixel. My AI conversations are retained and used for AI training. Ephemeral messages leave metadata.',
+  },
+];
+
+const smartTVs: Array<{
+  name: string;
+  href: string;
+  category: string;
+  severity: 'critical' | 'high' | 'medium';
+  description: string;
+}> = [
+  {
+    name: 'VIZIO',
+    href: '/platforms/vizio',
+    category: 'Smart TV Platform',
+    severity: 'critical',
+    description: 'ACR (Automatic Content Recognition) is on by default and runs on every input source. VIZIO paid the FTC $2.2M in 2017 for selling viewership data without disclosure. Now owned by Walmart.',
+  },
+  {
+    name: 'Roku',
+    href: '/platforms/roku',
+    category: 'Smart TV Platform / Streaming Platform',
+    severity: 'critical',
+    description: 'Roku collects at the OS level across all apps on the device. Its entire revenue model is advertising and data licensing. ACR, app-level usage tracking, and cross-device identity are all on by default.',
   },
 ];
 
@@ -125,6 +149,28 @@ const breadcrumbs = [
           </ul>
         </div>
       )}
+
+      <div class="group-section">
+        <h2 class="group-heading">Smart TVs</h2>
+        <ul class="platform-list">
+          {smartTVs.map((p) => (
+            <li class="platform-item">
+              <a href={p.href} class="platform-link">
+                <div class="platform-header">
+                  <span class="platform-name">{p.name}</span>
+                  <span class={`severity-badge severity--${p.severity}`}>
+                    {p.severity.toUpperCase()}
+                  </span>
+                </div>
+                <div class="platform-meta">
+                  <span class="platform-category">{p.category}</span>
+                </div>
+                <p class="platform-desc">{p.description}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </main>
 
     <footer class="page-footer">
@@ -298,6 +344,22 @@ const breadcrumbs = [
     left: 0;
     color: var(--color-text-muted);
     opacity: 0.5;
+  }
+
+  .group-section {
+    margin-top: 2.5rem;
+  }
+
+  .group-heading {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid var(--color-border);
   }
 
   .page-footer {

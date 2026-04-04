@@ -45,6 +45,11 @@ const platforms: Array<{ name: string; href: string; description: string }> = [
 ];
 const practices: Array<{ name: string; href: string; description: string }> = [
   {
+    name: 'Automatic Content Recognition (ACR)',
+    href: '/practices/acr',
+    description: 'Your smart TV captures what is on screen every few seconds and reports it back. It works on every input source — cable, streaming, game consoles, anything.',
+  },
+  {
     name: 'Off-Platform Activity Tracking',
     href: '/practices/off-platform-tracking',
     description: 'When you close the app, the tracking does not stop. How platforms monitor behavior across the rest of the internet.',
@@ -89,6 +94,7 @@ const practices: Array<{ name: string; href: string; description: string }> = [
   <div class="page-container">
     <header class="site-header">
       <div class="site-eyebrow">privacywiki.io</div>
+      <div class="site-logo" aria-hidden="true">Privacy<span>Wiki</span></div>
       <h1 class="site-title">Privacy Wiki</h1>
       <p class="site-description">
         What they collect. Why it matters. How to turn it off.
@@ -186,6 +192,19 @@ const practices: Array<{ name: string; href: string; description: string }> = [
     text-transform: uppercase;
     color: var(--color-text-muted);
     margin-bottom: 0.75rem;
+  }
+
+  .site-logo {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .site-logo span {
+    color: var(--color-critical);
   }
 
   .site-title {

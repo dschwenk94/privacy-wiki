@@ -1,0 +1,234 @@
+---
+import PlatformLayout from '../../layouts/PlatformLayout.astro';
+import SettingCard from '../../components/SettingCard.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import FactCard from '../../components/FactCard.astro';
+---
+
+<PlatformLayout
+  title="VIZIO"
+  description="VIZIO's TV hardware is a loss-leader. The product is viewership data. Here are the settings that matter and what they actually do."
+  subtitle=""
+  category="Smart TV Platform"
+  lastVerified="April 3, 2026"
+  settingsCount={3}
+  severity="critical"
+  severityText="ACR (Automatic Content Recognition) is enabled by default and runs on every input source — cable, streaming, HDMI. VIZIO paid the FTC $2.2M in 2017 for collecting and selling this data without disclosure. Walmart acquired VIZIO in 2024, connecting TV viewership history to the largest retail purchase dataset in the US."
+  owner="Walmart, Inc."
+  ownerHQ="Bentonville, AR"
+  headquarters="Irvine, CA"
+  monthlyUsers="~18M SmartCast users"
+  relatedPractices={[
+    { label: 'Automatic Content Recognition (ACR)', href: '/practices/acr' },
+    { label: 'Ad Personalization & Targeting', href: '/practices/ad-personalization' },
+    { label: 'Third-Party Data Sharing', href: '/practices/third-party-sharing' },
+    { label: 'Data Brokers', href: '/practices/data-brokers' },
+  ]}
+>
+
+  <!-- WHAT THEY COLLECT -->
+  <div slot="what-they-collect">
+    <div class="fact-grid">
+      <FactCard
+        label="Sold viewing data for 3 years without disclosure"
+        text="VIZIO collected second-by-second viewing data on 11 million TVs starting in 2014, appended household demographic data, and sold it — all without telling consumers. FTC settlement: $2.2M in 2017."
+        severity="critical"
+      />
+      <FactCard
+        label="Walmart owns the data now"
+        text="Walmart acquired VIZIO in January 2024 for $2.3 billion. TV viewing history now lives inside a company that operates the largest retail purchase dataset in the US."
+        severity="critical"
+      />
+      <FactCard
+        label="Captures every input source"
+        text="ACR runs at the OS level, below streaming apps. It reads what is on screen whether you are watching cable, streaming, running a game console through HDMI, or playing a Blu-ray."
+        severity="high"
+      />
+      <FactCard
+        label="Sold to major ad measurement companies"
+        text="VIZIO's Inscape division sells viewership segments to Comscore, Nielsen, VideoAmp, and iSpot. The records tell advertisers whether a real household actually watched a specific commercial."
+        severity="high"
+      />
+    </div>
+
+    <div class="collect-detail">
+      <p>VIZIO's business model was built on selling TVs at thin margins and making money on data. That model was formalized through Inscape, a data subsidiary that VIZIO built to license viewership data to the ad industry. Walmart's acquisition extended that model, not changed it.</p>
+
+      <p>ACR captures what is on screen multiple times per minute. The TV generates a compact fingerprint from pixel data, sends it to a matching server, and receives back a content ID: show title, network, episode number, ad creative. The match record — device ID, timestamp, duration, content — is the data that gets sold. This is a second-by-second record, not an estimate.</p>
+
+      <p>The result is a log of what your household watched, when, and for how long. Advertisers buy this data to verify ad exposure. Measurement companies buy it to build viewership panels. A household that watches a specific car commercial and then visits a dealership website is a conversion data point. That signal has commercial value. VIZIO sells it.</p>
+
+      <p>VIZIO also collects SmartCast usage data: which apps you launch, how long you run them, what you interact with on the home screen. The SmartCast home screen is an ad surface. The recommendations displayed are paid placements, not editorial selections. App usage patterns feed VIZIO Ads audience segmentation.</p>
+
+      <p>Beyond viewership, VIZIO collects IP address, WiFi network identifiers, TV model and firmware version, and account data if you create a SmartCast account. Each data type flows to different systems, each governed by separate settings.</p>
+    </div>
+  </div>
+
+  <!-- SETTINGS THAT MATTER -->
+  <div slot="settings">
+    <WarningCallout title="What these settings do not do">
+      <p>Turning off Viewing Data stops the TV from sending ACR fingerprints to VIZIO's matching server. It does not delete viewership data already collected. It does not affect tracking by streaming apps running on the TV — Netflix, Hulu, and others track independently. SmartCast usage data is governed by a separate setting. VIZIO has been reported to re-enable ACR after firmware updates. Check these settings after major software updates.</p>
+    </WarningCallout>
+
+    <!-- VERIFY: VIZIO settings paths vary across firmware versions. Older models use Menu > System > Reset & Admin. Newer SmartCast models use Settings > Admin & Privacy. Both paths are included in descriptions. -->
+    <SettingCard
+      name="Viewing Data"
+      severity="critical"
+      defaultState="On"
+      path={['Settings', 'Admin & Privacy', 'Viewing Data']}
+      webUrl="https://www.vizio.com/en/terms/privacy-policy"
+      webPath={['Privacy Policy', 'Your Privacy Choices']}
+      description="VIZIO's ACR control. The TV captures screen fingerprints and sends them to Inscape (now VIZIO Ads) for content matching. Match records — what your household watched, when, and for how long — are sold to Comscore, Nielsen, VideoAmp, iSpot, and programmatic ad platforms. Data is tied to a device ID and enriched with demographic estimates before sale. This is the setting VIZIO failed to disclose before the 2017 FTC action. On older models: Menu → System → Reset & Admin → Viewing Data → Off. On newer SmartCast models: Settings → Admin & Privacy → Viewing Data → Off."
+      whatItDoesnt="Turning this off stops new ACR collection. It does not delete data already collected or sold. VIZIO's privacy opt-out form can be used to request deletion of previously collected data, but it cannot reverse data already shared with third parties."
+    />
+
+    <h3 class="severity-group-label">High</h3>
+
+    <SettingCard
+      name="Interest Based Ads"
+      severity="high"
+      defaultState="On"
+      path={['Settings', 'Admin & Privacy', 'Interest Based Ads']}
+      webUrl="https://www.vizio.com/en/terms/privacy-policy"
+      webPath={['Privacy Policy', 'Your Privacy Choices']}
+      description="Controls whether VIZIO uses your viewership data to target ads served within SmartCast — the home screen, the SmartCast channel, and VIZIO's ad-supported content. With this off, VIZIO still serves ads; they are contextual rather than audience-targeted. The SmartCast home screen remains an ad surface either way. On older models: Menu → System → Reset & Admin → Interest Based Ads → Off."
+      whatItDoesnt="Turning this off does not stop VIZIO from collecting viewership data or selling it to measurement companies. It stops VIZIO from using that data to personalize the ads it serves on its own platform. Data licensing to Comscore, Nielsen, and others is controlled by the Viewing Data setting, not this one."
+    />
+
+    <h3 class="severity-group-label">Medium</h3>
+
+    <SettingCard
+      name="SmartCast Home Screen Personalization"
+      severity="medium"
+      defaultState="On"
+      path={['Settings', 'Admin & Privacy', 'Personalization']}
+      webUrl="https://www.vizio.com/en/terms/privacy-policy"
+      webPath={['Privacy Policy', 'Your Privacy Choices']}
+      description="Controls whether VIZIO personalizes the SmartCast home screen based on your viewing and app usage history. When enabled, the featured content row, app recommendations, and promoted content are tuned to your usage patterns. These are commercial placements — paid slots — not editorial picks. Personalization uses SmartCast usage data and, if Viewing Data is on, ACR data."
+      whatItDoesnt="Turning this off does not remove ads from the SmartCast home screen. You will see generic promoted content rather than audience-targeted content. The underlying data collection continues; only the personalization layer changes."
+    />
+  </div>
+
+  <!-- WHO GETS YOUR DATA -->
+  <div slot="who-gets-data">
+    <dl class="data-recipients">
+      <div class="recipient">
+        <dt>Walmart, Inc.</dt>
+        <dd>Walmart acquired VIZIO in January 2024. Under Walmart's ownership, VIZIO's viewership data can be correlated with Walmart's retail purchase graph, Walmart+ loyalty program data, and in-store shopping patterns. A TV that knows what you watch, owned by a retailer that knows what you buy, produces audience segmentation that neither company had independently. Walmart was explicit that the acquisition was driven by advertising ambitions — specifically, connecting TV viewership to purchase intent signals.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Comscore</dt>
+        <dd>Comscore has been a primary VIZIO data partner since 2018. VIZIO's Inscape ACR data contributes to Comscore's national TV measurement panel. Comscore uses it to validate linear TV viewership, measure streaming reach, and attribute ad exposure. The data is used at the panel level for industry reporting, but it is derived from individual household-level records tied to device IDs.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Nielsen, VideoAmp, iSpot, and VIZIO Ads Partners</dt>
+        <dd>Multiple measurement companies and programmatic ad platforms license VIZIO viewership data through the VIZIO Ads (formerly Inscape) network. The data is used for campaign attribution (did a household that saw this ad later convert?), audience segment creation, and cross-platform reach measurement. VIZIO does not publicly enumerate all data buyers, and the full list of partners is not disclosed in its privacy policy.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Programmatic Ad Buyers via VIZIO Ads</dt>
+        <dd>VIZIO Ads operates as a connected TV advertising platform. Brands and agencies buy ad inventory on SmartCast through it. Your behavioral profile — viewing history, content preferences, inferred demographics — is used to match campaigns to households. Advertisers receive aggregated campaign performance data. VIZIO retains the household-level records that powered the match.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- WHAT THEY KNOW -->
+  <div slot="what-they-know">
+    <p>After a few weeks of normal use, VIZIO has a second-by-second record of everything displayed on your screen. Not viewing estimates. A timestamped log of exact content, tied to a device identifier that maps to your household.</p>
+
+    <p>That record includes what you watch on linear TV, what you stream, which ads played and whether you changed the channel before they ended, how long you stayed on each piece of content before switching, and which apps you launch and in what order. Combined with IP address — which provides a household-level geographic location — and demographic estimates appended before sale, this is a behavioral profile specific enough to categorize your household into audience segments: sports fans, health-conscious viewers, high-income earners, car intenders.</p>
+
+    <p>Walmart's acquisition adds a dimension. Walmart operates the largest retail loyalty program in the US. If your Walmart account is associated with the same household as your VIZIO TV, those data sets can be correlated. A household that watches financial news and buys generic brands is a different audience segment than one that watches premium sports and buys name-brand goods. That distinction has direct commercial value to advertisers.</p>
+
+    <WarningCallout title="The 2017 FTC settlement did not stop the practice">
+      <p>VIZIO settled with the FTC and New Jersey AG for $2.2 million in 2017 after collecting and selling viewership data from 11 million TVs for three years without disclosure. The settlement required affirmative consent for future collection and improved disclosures — not a halt to collection. VIZIO's data practices continued. The consent flow now exists; it appears during initial TV setup, bundled with general terms of service, at the moment users want to start watching TV. A $17 million class action settlement followed in 2018. In December 2025, the Texas AG sued Samsung, LG, TCL, Sony, and Hisense under similar allegations regarding ACR consent design.</p>
+    </WarningCallout>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/acr" label="Automatic Content Recognition (ACR)" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization & Targeting" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/data-brokers" label="Data Brokers" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/roku" label="Roku" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/amazon" label="Amazon" type="platform" />
+
+</PlatformLayout>
+
+<style>
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .collect-detail {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .severity-group-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 1.75rem 0 0.75rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .severity-group-label:first-child {
+    margin-top: 0;
+  }
+
+  .data-recipients {
+    margin: 0;
+  }
+
+  .recipient {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .recipient:first-child {
+    padding-top: 0;
+  }
+
+  .recipient:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .recipient dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .recipient dd {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>
