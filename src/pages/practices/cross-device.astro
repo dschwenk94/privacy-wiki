@@ -1,0 +1,268 @@
+---
+import PracticeLayout from '../../layouts/PracticeLayout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+---
+
+<PracticeLayout
+  title="Cross-Device Graph Matching"
+  description="How companies link your activity across TV, phone, laptop, and tablet into a single identity profile — even without shared logins. What device graphs are, how they're built, and why clearing cookies doesn't help."
+  subtitle="Your devices look like one person to the ad industry."
+  lastVerified="April 3, 2026"
+  platformCount={5}
+  severity="high"
+  severityText="Device graphs operate above the browser and cookie layer. IP address correlation, Wi-Fi fingerprinting, and shared account logins allow the ad industry to link TV viewing, phone browsing, and purchase history into a single household profile. The technique is industry-standard. Clearing cookies does not affect it."
+  category="Data Collection Practice"
+  alsoKnownAs="Device graph, identity graph, cross-screen targeting, household graph"
+  platforms={['Google', 'Amazon', 'Samsung Ads', 'VIZIO / Walmart', 'LiveRamp']}
+>
+
+  <!-- WHAT IT IS -->
+  <div slot="what-it-is">
+    <p>Cross-device graph matching is how companies link behavioral records from different devices — TV, phone, laptop, tablet — into a single identity profile for a person or household. The same person browses on their phone, watches TV, and searches on their laptop. Those three activities look like three separate users to any single platform. Device graphs are the infrastructure for deciding they are the same person.</p>
+
+    <p>There are two methods: deterministic and probabilistic.</p>
+
+    <p>Deterministic matching is exact. The same login credential appears on multiple devices — a Google account on an Android phone, a Chromebook, a Nest Hub, and a YouTube-enabled TV. Google knows these are the same account. Every behavioral record from each device belongs to the same identity. Deterministic graphs are accurate but limited to users who log in across devices.</p>
+
+    <p>Probabilistic matching is inference. It does not require a shared login. It uses signals that co-occur in ways that suggest the same household: the same IP address active on a TV and a phone at the same time, the same Wi-Fi network identifier appearing in both device records, timing patterns between a TV ad exposure and a phone search 30 seconds later. No individual signal is proof. The combination builds a probability score that two device records belong to the same household.</p>
+
+    <p>The output of either method is a device graph: a database that maps device identifiers to each other and, increasingly, to individual people or households. This graph is the infrastructure that makes cross-device ad targeting and attribution work.</p>
+  </div>
+
+  <!-- HOW TO TURN IT OFF -->
+  <div slot="how-to-turn-off">
+    <WarningCallout title="There is no single toggle for device graph matching">
+      <p>Device graphs are built and maintained by third-party data companies — LiveRamp, The Trade Desk, Google, Amazon — not by any one platform. There is no consumer-facing switch that opts you out of device graph matching industry-wide. The actions below reduce the signals that feed graph construction. None eliminates cross-device tracking entirely.</p>
+    </WarningCallout>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Reduce deterministic matching</h3>
+      <ol class="turnoff-steps">
+        <li>Use separate accounts for separate devices. A phone signed into a personal Google account and a TV signed into a different account are harder to link deterministically.</li>
+        <li>Sign out of streaming apps on shared devices when not in use. Streaming apps report viewing data tied to the signed-in account.</li>
+        <li>Turn off Samsung account linkage on your TV (Settings &rarr; All Settings &rarr; General &amp; Privacy &rarr; Terms &amp; Conditions Privacy Policy) to prevent Samsung from associating TV viewing with your cross-device Samsung account profile.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Reduce probabilistic matching via IP address</h3>
+      <ol class="turnoff-steps">
+        <li>A VPN routes traffic through a shared IP address, masking the household IP that probabilistic matching relies on. Effectiveness varies — some platforms can identify VPN usage and handle it differently.</li>
+        <li>A VPN on a phone but not on a TV breaks the shared-IP signal between those devices. Consistent use across all devices matters.</li>
+        <li>VPN use does not prevent deterministic matching via shared account logins.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Disable ACR on smart TVs</h3>
+      <ol class="turnoff-steps">
+        <li>ACR viewership data is a key input to TV-to-phone attribution matching. Disabling it removes the TV-side data point. See individual TV platform pages for settings paths.</li>
+        <li>Samsung: Settings &rarr; All Settings &rarr; General &amp; Privacy &rarr; Terms &amp; Conditions Privacy Policy &rarr; Viewing Information Services &rarr; OFF.</li>
+        <li>VIZIO: Settings &rarr; Admin &amp; Privacy &rarr; Viewing Data &rarr; OFF.</li>
+        <li>Roku: Settings &rarr; Privacy &rarr; Smart TV Experience &rarr; Use Info from TV Inputs &rarr; OFF.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Opt out of LiveRamp and major identity graph operators</h3>
+      <ol class="turnoff-steps">
+        <li>LiveRamp operates one of the largest device identity graphs. Opt-out available at liveramp.com/opt-out/.</li>
+        <li>The Trade Desk operates the Unified ID 2.0 identity framework. Opt-out at thetradedesk.com/opt-out.</li>
+        <li>These opt-outs cover those companies' use of your data for ad targeting. They do not remove your record from the underlying graph.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- WHY IT MATTERS -->
+  <div slot="why-it-matters">
+    <p>The commercial value of cross-device matching is closed-loop measurement: proof that an ad worked. A TV ad is shown to a household. Thirty seconds later, someone in that household searches for the advertised product on their phone. Same IP address, close timestamp. The advertiser can attribute that search to the TV ad exposure. That proof — connecting ad exposure to downstream intent or purchase — is what the ad industry calls attribution, and it commands premium prices.</p>
+
+    <p>Without device graphs, TV advertising would revert to panel-based estimates: surveys and sample data, not individual household records. With device graphs, a brand can claim their TV campaign drove measurable search lift, measurable site visits, or measurable purchases. That measurement precision changes how TV advertising is priced and sold.</p>
+
+    <p>The VIZIO/Walmart combination is the clearest public example. VIZIO's ACR data tells Walmart what ads a household saw on TV. Walmart's retail data tells Walmart what that household subsequently bought. Matching those two records produces closed-loop retail attribution — the TV ad drove a physical store purchase. That data sells for more than either piece independently. Walmart was explicit that this was the acquisition rationale.</p>
+
+    <WarningCallout title="Household-level TV data gets upgraded to individual-level by phone matching">
+      <p>Smart TV ACR data is fundamentally household-level. The TV does not know who in the household is watching. When TV data is matched to a phone — which is typically tied to one person — the household-level viewing record gets associated with an individual. A sports fan in the household is distinguished from a child who watches cartoons when phone data is brought in. The device graph upgrades the granularity of the TV record without the TV ever knowing who was watching.</p>
+    </WarningCallout>
+
+    <p>Data clean rooms are the mechanism that makes some of this matching happen without companies technically "sharing" raw data. A clean room is a controlled computation environment where two companies bring their respective datasets and run matching queries — without either company receiving the other's raw records. The outputs are aggregated results: match rates, audience overlap counts, attribution lift figures. The underlying records stay separate. The match results come out. Regulators have begun scrutinizing clean rooms, but as of early 2026, they operate in most jurisdictions without specific legal constraints.</p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div slot="how-it-works">
+    <ol class="steps-list">
+      <li>
+        <strong>Each device generates a persistent identifier.</strong> A phone has an advertising ID (IDFA on iOS, GAID on Android). A TV has a device ID assigned by the manufacturer. A laptop has cookies, browser fingerprints, and potentially a logged-in account. Each identifier is the hook that lets a data company log "this device did this thing."
+      </li>
+      <li>
+        <strong>Behavioral records are collected per device.</strong> The phone's ad network logs which apps were open and what ads were shown. The TV's ACR system logs what content was on screen. The laptop's browser sends data to tracking pixels on websites. Each record is tagged with its device identifier and a timestamp.
+      </li>
+      <li>
+        <strong>Shared signals are used to link device records.</strong> Deterministic signals: the same account login appears in records from both devices. Probabilistic signals: the same IP address and approximate timestamp appear in records from multiple devices. Wi-Fi network identifiers, Bluetooth proximity, and GPS location can also contribute.
+      </li>
+      <li>
+        <strong>A graph database maps identifiers to each other.</strong> The output is a data structure that says: Device ID X (TV), Device ID Y (phone), and Cookie Z (laptop) are all the same household. Some graphs resolve further to individual people within a household by incorporating account-level signals.
+      </li>
+      <li>
+        <strong>The graph is used for targeting and attribution.</strong> Advertisers use device graphs to show a TV ad and then follow up with a phone ad to the same household. Measurement companies use the graph to attribute a phone purchase to a TV ad exposure that preceded it. The graph is the infrastructure for the closed-loop measurement that makes CTV advertising valuable.
+      </li>
+    </ol>
+  </div>
+
+  <!-- WHO HAS YOUR DATA -->
+  <div slot="who-has-data">
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Graph Type</th>
+            <th>Data Sources</th>
+            <th>Use Case</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google</td>
+            <td>Deterministic + probabilistic</td>
+            <td>Google Account login across Android, Chrome, YouTube, Nest, Google TV. Probabilistic matching for non-logged-in devices.</td>
+            <td>Cross-device ad targeting and attribution across Search, YouTube, Display Network, and CTV.</td>
+          </tr>
+          <tr>
+            <td>Amazon</td>
+            <td>Deterministic + probabilistic</td>
+            <td>Amazon account login across Fire TV, Alexa devices, Ring, Amazon.com, and Kindle. Purchase history, browsing data, and Alexa interactions.</td>
+            <td>Attribution connecting Fire TV ad exposure to Amazon purchases. Cross-device targeting via Amazon DSP.</td>
+          </tr>
+          <tr>
+            <td>Samsung Ads</td>
+            <td>Deterministic + probabilistic</td>
+            <td>ACR viewership from Tizen OS TVs, Samsung Galaxy device data via Samsung Account, Samsung Internet browser, and Galaxy wearable data.</td>
+            <td>Cross-screen audience targeting and attribution connecting TV exposure to mobile behavior.</td>
+          </tr>
+          <tr>
+            <td>VIZIO / Walmart</td>
+            <td>Probabilistic (TV-to-purchase)</td>
+            <td>VIZIO ACR (Inscape/VIZIO Ads) matched to Walmart retail purchase data and Walmart+ loyalty program via data clean room.</td>
+            <td>Closed-loop attribution: TV ad exposure to physical retail purchase. Retail media targeting for Walmart Connect advertisers.</td>
+          </tr>
+          <tr>
+            <td>LiveRamp</td>
+            <td>Deterministic (identity graph as a service)</td>
+            <td>Email addresses, hashed identifiers, and device IDs contributed by publisher and advertiser partners. Not a consumer-facing product.</td>
+            <td>Enables any two companies to match their datasets without raw data sharing. Powers clean room matching for much of the ad industry.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/acr" label="Automatic Content Recognition (ACR)" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization and Targeting" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/data-brokers" label="Data Brokers" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/vizio" label="VIZIO" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/samsung-tv" label="Samsung TV" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/roku" label="Roku" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/google" label="Google" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/amazon" label="Amazon" type="platform" />
+
+</PracticeLayout>
+
+<style>
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .steps-list {
+    padding-left: 1.5rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .steps-list li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  .steps-list li strong {
+    color: var(--color-text-primary);
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  .data-table th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .data-table td {
+    padding: 0.75rem;
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .data-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .turnoff-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .turnoff-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .turnoff-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .turnoff-steps {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .turnoff-steps li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+</style>

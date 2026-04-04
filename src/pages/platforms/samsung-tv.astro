@@ -1,0 +1,250 @@
+---
+import PlatformLayout from '../../layouts/PlatformLayout.astro';
+import SettingCard from '../../components/SettingCard.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import FactCard from '../../components/FactCard.astro';
+---
+
+<PlatformLayout
+  title="Samsung TV"
+  description="Samsung has the largest global smart TV market share and runs one of the biggest CTV advertising platforms. ACR is enabled by default. Tizen OS is the data collection layer. Samsung Ads is the business built on top of it."
+  subtitle=""
+  category="Smart TV Platform"
+  lastVerified="April 3, 2026"
+  settingsCount={4}
+  severity="critical"
+  severityText="ACR (Automatic Content Recognition) is on by default through Viewing Information Services. Samsung settled with the Texas AG in February 2026 over ACR consent practices — the same issues for which VIZIO paid $2.2M to the FTC in 2017. Samsung Ads is a major connected TV advertising platform built on that viewership data."
+  owner="Samsung Electronics Co., Ltd."
+  ownerHQ="Seoul, South Korea"
+  headquarters="Ridgefield Park, NJ (US HQ)"
+  monthlyUsers="~500M+ Samsung TVs in active use globally"
+  relatedPractices={[
+    { label: 'Automatic Content Recognition (ACR)', href: '/practices/acr' },
+    { label: 'Cross-Device Graph Matching', href: '/practices/cross-device' },
+    { label: 'Ad Personalization & Targeting', href: '/practices/ad-personalization' },
+    { label: 'Third-Party Data Sharing', href: '/practices/third-party-sharing' },
+  ]}
+>
+
+  <!-- WHAT THEY COLLECT -->
+  <div slot="what-they-collect">
+    <div class="fact-grid">
+      <FactCard
+        label="Settled Texas AG suit in February 2026"
+        text="The Texas AG sued Samsung in December 2025 over ACR consent practices — capturing frames at 500ms intervals and consent screens designed to maximize data extraction. Samsung settled in February 2026. The others named in the suit are still litigating."
+        severity="critical"
+      />
+      <FactCard
+        label="ACR operates at the OS level, below apps"
+        text="Viewing Information Services runs on Tizen OS, below any streaming app. It captures content fingerprints from cable, HDMI, streaming, and broadcast inputs. Netflix and Disney+ cannot turn it off."
+        severity="critical"
+      />
+      <FactCard
+        label="Samsung Ads is built on this data"
+        text="Samsung Ads is one of the largest connected TV advertising platforms in the US. The viewership data collected through ACR is the core inventory that powers it. Samsung is both the TV manufacturer and the ad seller."
+        severity="high"
+      />
+      <FactCard
+        label="Samba TV may run a second ACR layer"
+        text="Samsung TVs have historically shipped with Samba TV as a third-party ACR provider running alongside Samsung's own collection. Two companies may be receiving your viewing data simultaneously."
+        severity="high"
+      />
+    </div>
+
+    <div class="collect-detail">
+      <p>Samsung's data collection operates through multiple layers. The primary layer is Viewing Information Services — Samsung's ACR system built into Tizen OS. It captures frame fingerprints from whatever is on screen and sends them to Samsung's matching servers. The match records identify the specific content: show, network, episode, ad creative. Those records feed Samsung Ads, the advertising platform Samsung uses to sell CTV inventory to brands and agencies.</p>
+
+      <p>A second layer involves Samba TV, a third-party ACR provider that Samsung has partnered with. Samba TV runs as a separate service on Samsung TVs, collecting its own viewership data under its own privacy policy and selling it to its own set of customers. Users who accepted the initial TV setup consent may have agreed to both Samsung's collection and Samba TV's collection at the same time without realizing they were separate programs.</p>
+
+      <p>Tizen OS collects additional telemetry beyond ACR: app launch patterns, home screen interactions, search queries entered into the Samsung smart TV interface, and usage durations by app. The Samsung smart TV home screen is an ad surface — promoted content placements are paid slots, and usage data feeds the targeting system that prices them.</p>
+
+      <p>Samsung account linkage adds a cross-device dimension. Signing into a Samsung account on a TV connects the viewing record to the same account used on Samsung phones, tablets, and Galaxy wearables. Samsung's advertising business includes cross-device audience data — households that can be identified across screen types. A phone that knows where you go and a TV that knows what you watch are more valuable together than separately.</p>
+
+      <p>Samsung TV Plus — the free, ad-supported streaming service built into Samsung TVs — adds another data stream. It is an AVOD (advertising video on demand) platform. Viewing within Samsung TV Plus is tracked with higher fidelity than ACR fingerprinting because Samsung owns the content delivery layer directly. Ad exposure in Samsung TV Plus generates first-party impression data that Samsung Ads uses for campaign attribution.</p>
+    </div>
+  </div>
+
+  <!-- SETTINGS THAT MATTER -->
+  <div slot="settings">
+    <WarningCallout title="What these settings do not do">
+      <p>Turning off Viewing Information Services stops Samsung's ACR from sending fingerprints to its matching server. It does not delete viewership data already collected. It does not affect Samba TV's collection, which is governed by a separate setting and a separate consent. It does not affect tracking inside streaming apps — Netflix, Hulu, and others run their own tracking independently of the TV OS. Samsung has been reported to re-enable some data settings after firmware updates. Verify settings after major software updates.</p>
+    </WarningCallout>
+
+    <!-- VERIFY: Samsung menu paths vary across Tizen OS versions. The paths below reflect current 2025/2026 Tizen models. Older models may use Settings > Support > Terms & Conditions > Privacy Choices. -->
+    <SettingCard
+      name="Viewing Information Services"
+      severity="critical"
+      defaultState="On"
+      platform="Samsung TV"
+      path={['Home', 'Settings', 'All Settings', 'General & Privacy', 'Terms & Conditions Privacy Policy', 'Viewing Information Services']}
+      webUrl="https://www.samsung.com/us/privacy/"
+      webPath={['Privacy', 'Your Privacy Choices']}
+      description="Samsung's ACR control. Tizen OS captures frame fingerprints from everything on screen — cable, streaming apps, HDMI sources, broadcast — and sends them to Samsung's matching servers. Matches are logged as device ID, timestamp, duration, and content ID. These records power Samsung Ads and are the data at issue in the Texas AG settlement. On some models the path is: Settings → Support → Terms & Conditions → Samsung Privacy Policy → Viewing Information Services."
+      whatItDoesnt="Turning this off stops Samsung's ACR from sending new fingerprints. It does not delete records already collected. It does not stop Samba TV's collection if Samba TV is enabled separately. It does not affect data collection inside streaming apps."
+    />
+
+    <h3 class="severity-group-label">High</h3>
+
+    <SettingCard
+      name="Samba TV / Personalized Service"
+      severity="high"
+      defaultState="On"
+      platform="Samsung TV"
+      path={['Home', 'Settings', 'All Settings', 'General & Privacy', 'Terms & Conditions Privacy Policy', 'Samba Interactive TV']}
+      webUrl="https://www.samba.tv/legal/privacy-policy/"
+      webPath={['Privacy Policy', 'Opt Out']}
+      description="Samba TV is a third-party ACR provider with its own data collection running independently of Samsung's Viewing Information Services. It operates under Samba TV's privacy policy and sells viewership data to its own set of partners. The consent for Samba TV was bundled into initial TV setup. It is a separate toggle from Viewing Information Services. Path varies by model and firmware version."
+      whatItDoesnt="Turning off Samba TV does not affect Samsung's own ACR. The two systems are independent. Samba TV's previously collected data is not deleted by disabling this setting — Samba TV's own opt-out form is required to request deletion."
+    />
+
+    <SettingCard
+      name="Interest-Based Advertising"
+      severity="high"
+      defaultState="On"
+      platform="Samsung TV"
+      path={['Home', 'Settings', 'All Settings', 'General & Privacy', 'Terms & Conditions Privacy Policy', 'Interest-Based Advertising']}
+      webUrl="https://www.samsung.com/us/privacy/"
+      webPath={['Privacy', 'Your Privacy Choices']}
+      description="Controls whether Samsung uses your viewing and usage data to personalize ads served through Samsung's own ad surfaces — the home screen, Samsung TV Plus, and Samsung's content recommendation system. With this off, Samsung still serves ads on its platforms; they are contextual rather than audience-targeted."
+      whatItDoesnt="Turning this off does not stop ACR data collection. It does not stop Samsung from collecting viewership data or using it for aggregate measurement. It changes how Samsung targets ads on its own surfaces — not whether it collects the underlying data."
+    />
+
+    <h3 class="severity-group-label">Medium</h3>
+
+    <!-- VERIFY: Samsung account cross-device settings path may vary; confirm under Samsung Account > Privacy on newer Tizen firmware -->
+    <SettingCard
+      name="Samsung Account Personalization"
+      severity="medium"
+      defaultState="On"
+      platform="Samsung TV"
+      path={['Home', 'Settings', 'All Settings', 'General & Privacy', 'Terms & Conditions Privacy Policy']}
+      webUrl="https://account.samsung.com"
+      webPath={['Account', 'Privacy', 'Personalization']}
+      description="If a Samsung account is linked to the TV, viewing data can be associated with the same account used across Samsung phones, tablets, and wearables. This enables cross-device audience profiles — the TV viewing record and the mobile device record belong to the same account. Samsung's advertising offering includes cross-screen targeting for this reason."
+      whatItDoesnt="Removing a Samsung account from the TV stops future linkage but does not delete previously associated data. The TV continues to collect device-level data; it is no longer tied to your Samsung account identifier."
+    />
+  </div>
+
+  <!-- WHO GETS YOUR DATA -->
+  <div slot="who-gets-data">
+    <dl class="data-recipients">
+      <div class="recipient">
+        <dt>Samsung Ads</dt>
+        <dd>Samsung Ads is Samsung's first-party connected TV advertising platform. It uses ACR viewership data to build audience segments — households grouped by content preferences, viewing patterns, and inferred demographics. Brands and agencies buy CTV ad inventory through Samsung Ads, and the platform uses household viewing profiles to match ads to audiences. Samsung Ads also sells attribution data: proof that a household that saw an ad later visited a website or converted in some measurable way. Samsung is simultaneously the TV manufacturer, the ACR collector, and the ad seller — a vertically integrated data-to-ad pipeline.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Samba TV</dt>
+        <dd>Samba TV operates an independent ACR data business on Samsung hardware. Under its own privacy policy, Samba TV collects viewership data and sells it to advertisers, measurement companies, and media agencies. Samba TV markets its data to studios for audience measurement, to political campaigns for voter-level TV exposure data, and to brands for ad attribution. Samba TV's data is separate from Samsung's and governed by Samba TV's own retention and sharing policies.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Ad Measurement Partners</dt>
+        <dd>Samsung Ads participates in the broader CTV measurement ecosystem. Viewership data flows to measurement companies that use it for cross-platform reach attribution — determining how many households saw a campaign across linear TV, streaming, and CTV. Samsung does not publicly enumerate all data buyers, and the full list of partners is not disclosed in its privacy policy.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Samsung Account / Cross-Device Graph</dt>
+        <dd>If a Samsung account is linked, viewing data can be correlated with data from Samsung mobile devices, including location history from Galaxy phones, app usage from Samsung devices, and browsing data from Samsung Internet. A Samsung account creates a cross-device identifier that connects the TV viewing record to behavioral data from other Samsung hardware the same account is logged into.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- WHAT THEY KNOW -->
+  <div slot="what-they-know">
+    <p>Samsung's scale makes it different from VIZIO or Roku. It operates the largest smart TV install base globally. The data flowing through Viewing Information Services is not a niche dataset — it is a representative sample of global TV viewing behavior, large enough to build its own measurement panel and sell it to the ad industry as such.</p>
+
+    <p>Within a household, Samsung knows the timestamped record of everything displayed on the screen. It knows which streaming apps were launched and for how long. It knows which ads played, whether they played in full, and what was watched immediately after. It knows the signal from Samsung TV Plus content, where it owns the delivery layer and can attribute engagement directly to ad exposure.</p>
+
+    <p>If a Samsung account is linked, the TV record connects to mobile. A Galaxy phone generates location data, search queries, and app usage. A Galaxy Watch generates biometric and activity data. A linked Samsung account joins these records under one identifier. What the TV knows becomes part of a cross-device profile that includes where the account holder goes, what they search for, and how they spend their time.</p>
+
+    <WarningCallout title="The Texas AG settlement was about consent design, not the practice itself">
+      <p>The Texas AG's December 2025 suit against Samsung (and LG, TCL, Sony, Hisense) alleged that ACR consent screens were designed to maximize acceptance — appearing during initial setup when users want to start watching TV, bundled with general terms, with opt-out as the non-default path. Samsung settled in February 2026. The settlement required changes to consent flow design. It did not prohibit ACR collection. Samsung continues to operate Viewing Information Services. The consent flow now requires a more prominent disclosure — but it still appears at the moment users want to start watching TV.</p>
+    </WarningCallout>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/acr" label="Automatic Content Recognition (ACR)" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/cross-device" label="Cross-Device Graph Matching" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization & Targeting" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/vizio" label="VIZIO" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/roku" label="Roku" type="platform" />
+
+</PlatformLayout>
+
+<style>
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .collect-detail {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .severity-group-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 1.75rem 0 0.75rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .severity-group-label:first-child {
+    margin-top: 0;
+  }
+
+  .data-recipients {
+    margin: 0;
+  }
+
+  .recipient {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .recipient:first-child {
+    padding-top: 0;
+  }
+
+  .recipient:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .recipient dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .recipient dd {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>
