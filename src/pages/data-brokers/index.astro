@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+type Broker = {
+  name: string;
+  href: string;
+  category: string;
+  severity: 'critical' | 'high' | 'medium';
+  description: string;
+};
+
+const brokers: Broker[] = [
+  {
+    name: 'Acxiom',
+    href: '/data-brokers/acxiom',
+    category: 'B2B Marketing Data Broker',
+    severity: 'critical',
+    description: 'One of the oldest and largest consumer data brokers. Claims profiles on ~2.5 billion consumers globally. Sells audience segments to advertisers, insurance companies, financial services, and political campaigns. When platforms say they use "partner data," Acxiom is frequently the partner.',
+  },
+  {
+    name: 'Experian',
+    href: '/data-brokers/experian',
+    category: 'Credit Bureau & Data Broker',
+    severity: 'critical',
+    description: 'Known as a credit bureau, but the marketing services division is a massive data broker. Combines credit data signals with consumer behavioral data. ConsumerView database has records on 300M+ US consumers. The same company that holds your credit score also sells your behavioral profile to advertisers.',
+  },
+  {
+    name: 'LiveRamp',
+    href: '/data-brokers/liveramp',
+    category: 'Identity Resolution & Data Connectivity',
+    severity: 'critical',
+    description: 'The connective tissue of the ad tech ecosystem. LiveRamp does not collect much data itself — it connects everyone else\'s data. Its RampID matches email, phone, device IDs, and cookies into a single persistent identity that follows you across platforms. Powers the data clean rooms used for cross-device matching.',
+  },
+];
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Data Brokers' },
+];
+---
+
+<BaseLayout
+  title="Data Brokers — Privacy Wiki"
+  description="Individual pages for major data brokers: Acxiom, Experian, LiveRamp. What they collect, who they sell to, and how to opt out."
+>
+  <div class="page-container">
+    <header class="page-header">
+      <Breadcrumb crumbs={breadcrumbs} />
+      <h1 class="page-title">Data Brokers</h1>
+      <p class="page-subtitle">
+        These are three of the largest. There are thousands. Data brokers
+        compile detailed profiles on individuals from public records, purchase
+        history, and behavioral data — and sell them without your knowledge or
+        involvement.
+      </p>
+    </header>
+
+    <main>
+      <ul class="broker-list">
+        {brokers.map((b) => (
+          <li class="broker-item">
+            <a href={b.href} class="broker-link">
+              <div class="broker-header">
+                <span class="broker-name">{b.name}</span>
+                <span class={`severity-badge severity--${b.severity}`}>
+                  {b.severity.toUpperCase()}
+                </span>
+              </div>
+              <div class="broker-meta">
+                <span class="broker-category">{b.category}</span>
+              </div>
+              <p class="broker-desc">{b.description}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </main>
+
+    <footer class="page-footer">
+      <p class="footer-note">
+        See the <a href="/practices/data-brokers">Data Brokers practice page</a> for
+        a broader overview of the industry, including people-search sites and how
+        opt-outs work across hundreds of brokers.
+      </p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: 2.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0.75rem 0 0.625rem;
+    color: var(--color-text-primary);
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    max-width: 580px;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .broker-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .broker-item {
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    transition: border-color 0.15s ease;
+  }
+
+  .broker-item:hover {
+    border-color: #3a3a3a;
+  }
+
+  .broker-link {
+    display: block;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+  }
+
+  .broker-link:hover {
+    text-decoration: none;
+  }
+
+  .broker-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.375rem;
+  }
+
+  .broker-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .severity-badge {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    border-radius: 2px;
+    padding: 0.15em 0.5em;
+    border: 1px solid;
+  }
+
+  .severity--critical {
+    color: var(--color-critical);
+    border-color: var(--color-critical);
+  }
+
+  .severity--high {
+    color: var(--color-high);
+    border-color: var(--color-high);
+  }
+
+  .severity--medium {
+    color: var(--color-medium);
+    border-color: var(--color-medium);
+  }
+
+  .broker-meta {
+    margin-bottom: 0.375rem;
+  }
+
+  .broker-category {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+
+  .broker-desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .page-footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .footer-note {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .footer-note a {
+    color: var(--color-text-secondary);
+  }
+</style>

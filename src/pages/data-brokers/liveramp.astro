@@ -1,0 +1,193 @@
+---
+import PlatformLayout from '../../layouts/PlatformLayout.astro';
+import SettingCard from '../../components/SettingCard.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import FactCard from '../../components/FactCard.astro';
+---
+
+<PlatformLayout
+  title="LiveRamp"
+  description="LiveRamp is the connective tissue of the ad tech ecosystem. It does not collect much data itself — it connects everyone else's data. Its RampID links your email, phone, device IDs, and cookies into a single identity that follows you across platforms."
+  subtitle="Publicly traded (RAMP on NYSE), headquartered in San Francisco"
+  category="Identity Resolution & Data Connectivity"
+  lastVerified="April 4, 2026"
+  settingsCount={1}
+  severity="critical"
+  severityText="LiveRamp is the infrastructure layer most people never see. Even if you opt out on every individual platform, LiveRamp may still be matching your identity across them behind the scenes. It powers the data clean rooms that platforms like VIZIO and Walmart use for cross-device matching. Its RampID is embedded in ad tech infrastructure across most major publishers and advertisers. An opt-out at LiveRamp suppresses use of your identity for matching — it does not remove your identity from partner systems where it has already been distributed."
+  owner="LiveRamp Holdings, Inc."
+  ownerHQ="San Francisco, CA"
+  headquarters="San Francisco, CA"
+  relatedPractices={[
+    { label: 'Cross-Device Graph Matching', href: '/practices/cross-device' },
+    { label: 'Data Brokers', href: '/practices/data-brokers' },
+    { label: 'Ad Personalization & Targeting', href: '/practices/ad-personalization' },
+    { label: 'Third-Party Data Sharing', href: '/practices/third-party-sharing' },
+    { label: 'Off-Platform Activity Tracking', href: '/practices/off-platform-tracking' },
+  ]}
+>
+
+  <!-- WHAT THEY COLLECT -->
+  <div slot="what-they-collect">
+    <div class="fact-grid">
+      <FactCard
+        label="Matches email, phone, device IDs, and cookies"
+        text="LiveRamp's core function is matching disparate identifiers to a single person. Your email address, mobile advertising ID, desktop cookies, IP address, and phone number are all matched to a single RampID. This ID follows you across every platform where LiveRamp is active."
+        severity="critical"
+      />
+      <FactCard
+        label="Powers data clean rooms"
+        text="Data clean rooms — secure environments where two companies compare datasets without directly sharing raw data — are primarily built on LiveRamp's infrastructure. When VIZIO and Walmart compare viewership data to purchase data, LiveRamp is typically the matching layer."
+        severity="critical"
+      />
+      <FactCard
+        label="Embedded across the publisher and advertiser ecosystem"
+        text="LiveRamp's tags and SDKs are embedded in most major publishers and advertising platforms. When a publisher logs your visit, LiveRamp infrastructure may resolve your identity and append your RampID — enabling cross-platform targeting from that moment forward."
+        severity="critical"
+      />
+      <FactCard
+        label="Originally spun out of Acxiom"
+        text="LiveRamp was originally Acxiom's data connectivity business before being spun off as an independent public company in 2018. The identity resolution capabilities were built on Acxiom's decades of consumer data. The two companies now operate independently but remain closely linked in the data ecosystem."
+        severity="high"
+      />
+    </div>
+
+    <div class="collect-detail">
+      <p>LiveRamp is unusual among data companies in that its product is not the data itself — it is the ability to connect data. Its RampID is a pseudonymous identifier that represents a person across platforms. When two companies want to match their respective datasets (a retailer's purchase data and a publisher's readership data, for example), they typically do it through LiveRamp: each company resolves their records to RampIDs, and the matching happens on that common identifier without either company seeing the other's raw records.</p>
+
+      <p>This makes LiveRamp structurally invisible but pervasively influential. Most people have never heard of LiveRamp. But if you have ever been targeted with an ad that seemed to know something about you that the platform you were on shouldn't have known, LiveRamp's infrastructure is a plausible explanation. The RampID is the mechanism by which the data you shared with one company informs targeting on a completely different platform.</p>
+
+      <p>LiveRamp's Authenticated Traffic Solution (ATS) is its response to the deprecation of third-party cookies. As browsers have moved away from cookie-based tracking, LiveRamp has worked to get publishers to collect authenticated identifiers (email addresses at login) and resolve them to RampIDs. This effectively replaces cookie-based tracking with a more durable, email-anchored identity graph that does not depend on cookies.</p>
+
+      <p>LiveRamp also operates Safe Haven, its data collaboration platform built on clean room technology. Safe Haven allows brands and publishers to match their first-party data without exposing raw records to each other. A retailer can determine which of its customers are readers of a specific publication, enabling targeting on that publication, without sharing its customer list and without the publication sharing its reader list. LiveRamp holds the RampID layer that makes this possible.</p>
+
+      <p>The cross-device matching capabilities described on the <a href="/practices/cross-device">Cross-Device Graph Matching</a> practice page are largely built on top of identity resolution infrastructure like LiveRamp's. When VIZIO's viewership data is matched to Walmart purchase data, when a streaming platform's subscriber list is matched to an advertiser's CRM, when a brand's offline purchase data is connected to online browsing behavior — these connections run through identity resolution providers, with LiveRamp being the largest.</p>
+    </div>
+  </div>
+
+  <!-- SETTINGS THAT MATTER -->
+  <div slot="settings">
+    <WarningCallout title="Opting out of LiveRamp is unusually important — and unusually limited">
+      <p>Most platform opt-outs affect that platform's use of your data. A LiveRamp opt-out is different: it suppresses use of your identity across the entire ecosystem where LiveRamp operates. But it also has a critical limitation: data already distributed to LiveRamp's partners — advertiser data clean rooms, publisher identity graphs, audience matching records — is not recalled when you opt out. The opt-out prevents future matching. It does not unwind past matching.</p>
+    </WarningCallout>
+
+    <SettingCard
+      name="LiveRamp Opt-Out"
+      severity="critical"
+      defaultState="Not opted out"
+      path={['liveramp.com/opt_out']}
+      webUrl="https://liveramp.com/opt_out/"
+      webPath={['Visit liveramp.com/opt_out']}
+      description="LiveRamp offers an opt-out that suppresses use of your identity for data matching and targeting through LiveRamp's infrastructure. When you opt out, LiveRamp creates an opt-out record associated with your identifiers. This record is checked when LiveRamp resolves identities for matching — if your identifier is in the opt-out list, LiveRamp does not complete the match for advertising purposes. The opt-out must be submitted from each device and browser you want to cover, because it is stored as a browser cookie and a device-level flag."
+      whatItDoesnt="Opting out does not delete your RampID or the identity graph LiveRamp has built around your identifiers. It does not remove your data from partner systems where it has already been shared. It does not prevent LiveRamp from operating its infrastructure on platforms you visit — it prevents your identity from being matched in that infrastructure for advertising purposes going forward. Because the opt-out is stored as a cookie, clearing your cookies removes the opt-out record; you would need to re-submit it."
+    />
+  </div>
+
+  <!-- WHO GETS YOUR DATA -->
+  <div slot="who-gets-data">
+    <dl class="data-recipients">
+      <div class="recipient">
+        <dt>Advertisers (via Data Clean Rooms)</dt>
+        <dd>Brand advertisers use LiveRamp's Safe Haven platform to match their first-party customer data to publisher audiences, streaming subscriber lists, and retail media networks. The RampID is the matching key. Advertisers do not receive raw records from LiveRamp's partners — they receive match results and targeting capabilities powered by LiveRamp's identity resolution.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Publishers and Streaming Platforms</dt>
+        <dd>Most major digital publishers and streaming platforms have integrated LiveRamp's Authenticated Traffic Solution. When you log in to a publisher's site, your email may be resolved to a RampID, connecting your reading behavior to your identity graph across other platforms where LiveRamp operates.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Retail Media Networks</dt>
+        <dd>Walmart Connect, Amazon Advertising, Kroger Precision Marketing, and other retail media networks use identity resolution infrastructure to match retailer purchase data to digital targeting. LiveRamp is a primary infrastructure provider for these matching operations. When a brand targets you on Amazon based on what you bought at a different retailer, that cross-retailer connection often runs through LiveRamp.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Connected TV Platforms</dt>
+        <dd>VIZIO, Roku, and Samsung all use data clean room and identity resolution infrastructure for cross-device matching and audience targeting. LiveRamp's infrastructure is central to how viewership data from these platforms gets matched to other data sources for advertising. See the <a href="/practices/cross-device">Cross-Device Graph Matching</a> practice page and individual platform pages for <a href="/platforms/vizio">VIZIO</a> and <a href="/platforms/roku">Roku</a> for more detail.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- WHAT THEY KNOW -->
+  <div slot="what-they-know">
+    <p>LiveRamp does not maintain a traditional consumer profile in the way Acxiom or Experian do. What it maintains is an identity graph: a network of identifiers (email addresses, device IDs, mobile ad IDs, IP addresses, cookies, phone numbers) that it has determined, through matching algorithms and data partnerships, belong to the same person. The RampID is the node that all those identifiers resolve to.</p>
+
+    <p>The identity graph itself is the data. It does not contain your name, address, or purchase history — those are held by LiveRamp's partners. What it holds is the linkage that allows one partner's record of you to be connected to another partner's record. The graph tells the ecosystem that the email address you used to sign up for a newsletter, the device ID on your phone, and the Roku account on your TV are all the same person. That linkage has commercial value independent of any specific attribute it connects.</p>
+
+    <WarningCallout title="The infrastructure problem">
+      <p>Opting out of platforms individually is valuable. But LiveRamp represents a class of infrastructure that operates below the platform layer. If you opt out of <a href="/platforms/vizio">VIZIO's</a> ACR, VIZIO stops collecting that data. If you opt out of LiveRamp, LiveRamp stops matching your identity for advertising purposes. But the identity graph LiveRamp has already built — the record of which identifiers belong to the same person — does not disappear. And the platforms those identifiers are connected to retain their own copies of the matching relationships. This is the <a href="/practices/cross-device">cross-device problem</a>: the connections that have already been established persist even when the mechanism that created them is turned off.</p>
+    </WarningCallout>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/cross-device" label="Cross-Device Graph Matching" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/data-brokers" label="Data Brokers" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization & Targeting" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/off-platform-tracking" label="Off-Platform Activity Tracking" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/data-brokers/acxiom" label="Acxiom" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/data-brokers/experian" label="Experian" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/vizio" label="VIZIO" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/roku" label="Roku" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/amazon" label="Amazon" type="platform" />
+
+</PlatformLayout>
+
+<style>
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .collect-detail {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .data-recipients {
+    margin: 0;
+  }
+
+  .recipient {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .recipient:first-child {
+    padding-top: 0;
+  }
+
+  .recipient:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .recipient dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .recipient dd {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>

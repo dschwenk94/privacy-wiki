@@ -1,0 +1,213 @@
+---
+import PlatformLayout from '../../layouts/PlatformLayout.astro';
+import SettingCard from '../../components/SettingCard.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import FactCard from '../../components/FactCard.astro';
+---
+
+<PlatformLayout
+  title="Experian"
+  description="Experian is known as a credit bureau, but its marketing services division is one of the largest data brokers in the world. The same company that holds your credit score also sells your behavioral profile to advertisers."
+  subtitle="Publicly traded (EXPN on LSE), headquartered in Dublin"
+  category="Credit Bureau & Data Broker"
+  lastVerified="April 4, 2026"
+  settingsCount={2}
+  severity="critical"
+  severityText="Experian operates two largely separate but institutionally unified businesses: a credit bureau that generates the scores used in lending decisions, and a marketing services division that sells consumer behavioral profiles to advertisers. Consumers frequently conflate the two or don't know the marketing division exists. Your credit dispute rights do not apply to the marketing database. They are governed by separate opt-out mechanisms."
+  owner="Experian plc"
+  ownerHQ="Dublin, Ireland"
+  headquarters="Costa Mesa, CA (North America)"
+  relatedPractices={[
+    { label: 'Data Brokers', href: '/practices/data-brokers' },
+    { label: 'Ad Personalization & Targeting', href: '/practices/ad-personalization' },
+    { label: 'Third-Party Data Sharing', href: '/practices/third-party-sharing' },
+  ]}
+>
+
+  <!-- WHAT THEY COLLECT -->
+  <div slot="what-they-collect">
+    <div class="fact-grid">
+      <FactCard
+        label="300M+ US consumer records in ConsumerView"
+        text="Experian's ConsumerView marketing database contains records on over 300 million US consumers. This is separate from its credit file database and is used specifically for advertising and marketing targeting."
+        severity="critical"
+      />
+      <FactCard
+        label="Credit signals inform marketing profiles"
+        text="Experian uses credit-derived signals — inferred income ranges, financial behavior patterns, homeownership estimates — to enrich its marketing profiles. The exact credit data is firewalled, but behavioral inferences from credit patterns flow into marketing segmentation."
+        severity="critical"
+      />
+      <FactCard
+        label="Identity resolution across channels"
+        text="Experian operates an identity resolution service that links email addresses, device IDs, postal addresses, and phone numbers into unified profiles. This is the mechanism that enables cross-platform targeting using Experian data."
+        severity="high"
+      />
+      <FactCard
+        label="Pre-screening for credit and insurance"
+        text="Experian's prescreening business provides lists of consumers who meet specified credit criteria to financial companies sending pre-approved offers. This is distinct from advertising but uses the same underlying consumer data infrastructure."
+        severity="high"
+      />
+    </div>
+
+    <div class="collect-detail">
+      <p>Experian's public identity is its credit bureau business. The three major US credit bureaus — Experian, Equifax, and TransUnion — are infrastructure that most consumers know exists because their credit scores depend on it. What most consumers do not know is that each of these bureaus also operates a large marketing data business that is structurally separate but institutionally unified.</p>
+
+      <p>Experian's marketing services division, Experian Marketing Services, operates ConsumerView — a database of over 300 million US consumer profiles that draws on publicly available data, commercial data partnerships, survey data, and behavioral signals. The data held in ConsumerView is used to build audience segments sold to advertisers across digital and offline channels.</p>
+
+      <p>The credit bureau and marketing divisions are supposed to maintain data walls. Your specific credit score and the detailed credit tradeline data that generates it are not supposed to flow directly into marketing products. In practice, the division is not as clean as Experian's disclosures suggest. Experian uses credit-derived signals — estimated income ranges derived from credit behavior, homeownership status, financial product holdings — as inputs into marketing profiles. These are inferences from credit data, not the credit data itself, but they are informed by it.</p>
+
+      <p>Experian also operates CrossCore, a fraud detection and identity verification platform used by financial institutions. ConsumerView data and credit data both feed risk products. The lines between Experian's three major business lines — credit, marketing, and fraud/risk — are less distinct than they appear from the outside.</p>
+
+      <p>Experian's marketing data is sold to advertisers as audience segments and as data enrichment for existing customer lists. A company uploads its customer email list; Experian appends demographic, financial, and behavioral attributes to each record; the company uses the enriched data to better target its campaigns or to build lookalike audiences for acquisition. This enrichment business connects Experian data to nearly every major advertiser and most large marketing technology platforms.</p>
+    </div>
+  </div>
+
+  <!-- SETTINGS THAT MATTER -->
+  <div slot="settings">
+    <WarningCallout title="Two separate opt-out processes">
+      <p>Experian's credit bureau opt-outs (freezes, fraud alerts, dispute rights) are completely separate from its marketing opt-outs. Freezing your credit file does not affect Experian's marketing database. If you want to limit both, you need to take separate actions for each. Your FCRA rights apply only to the credit bureau. Your CCPA rights (if applicable) and Experian's voluntary opt-out mechanisms apply to the marketing division.</p>
+    </WarningCallout>
+
+    <SettingCard
+      name="Marketing Opt-Out"
+      severity="critical"
+      defaultState="Not opted out"
+      path={['Experian Marketing Services', 'Opt Out of Marketing']}
+      webUrl="https://www.experian.com/privacy/center.html"
+      webPath={['Privacy Center', 'Marketing Opt-Out']}
+      description="Experian offers an opt-out from use of your data for marketing purposes through its marketing division. This suppresses use of your ConsumerView profile for audience targeting and data enrichment sold to advertisers. The opt-out is submitted through Experian's privacy center and applies to the marketing services division."
+      whatItDoesnt="This opt-out does not affect your credit bureau file, credit score, or Experian's credit products. It does not delete your marketing profile — it suppresses its use for targeted marketing. It does not affect Experian's fraud detection and risk products. It does not remove data already shared with third parties."
+    />
+
+    <h3 class="severity-group-label">High</h3>
+
+    <SettingCard
+      name="Prescreened Offer Opt-Out"
+      severity="high"
+      defaultState="Not opted out"
+      path={['optoutprescreen.com', 'Opt Out']}
+      webUrl="https://www.optoutprescreen.com"
+      webPath={['Visit optoutprescreen.com', 'Opt Out']}
+      description="Pre-screened credit and insurance offers are generated using credit bureau data — including Experian's — to identify consumers who meet specified criteria for financial product offers. Opting out at optoutprescreen.com removes you from pre-screened offer lists maintained by all three major credit bureaus (Experian, Equifax, TransUnion). This is an industry-standard opt-out shared across the bureaus. A permanent opt-out requires a mail-in form; a 5-year opt-out can be done online."
+      whatItDoesnt="This opt-out only affects pre-screened offers generated from credit bureau data. It does not affect marketing communications from companies you already have relationships with. It does not suppress your ConsumerView marketing profile (that requires a separate opt-out). You may still receive unsolicited marketing that is not driven by credit pre-screening."
+    />
+  </div>
+
+  <!-- WHO GETS YOUR DATA -->
+  <div slot="who-gets-data">
+    <dl class="data-recipients">
+      <div class="recipient">
+        <dt>Advertisers and Marketing Technology Platforms</dt>
+        <dd>Experian's ConsumerView data is sold to brands and agencies for audience targeting and customer data enrichment. Marketing technology platforms ingest Experian data to power segmentation and targeting features. When a digital ad platform offers "financial intent" or "high-income household" targeting, Experian data is frequently a component.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Financial Institutions (Pre-screening)</dt>
+        <dd>Banks, credit card companies, and insurance firms use Experian's credit pre-screening to identify consumers for pre-approved offer campaigns. This is a regulated business under the FCRA — Experian must comply with fair credit reporting requirements for pre-screening use — but consumers are included by default until they opt out at optoutprescreen.com.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Fraud Detection and Identity Verification Customers</dt>
+        <dd>Experian's CrossCore platform is used by financial institutions and other businesses for identity verification and fraud risk scoring. This business uses consumer data from both the credit and marketing divisions to build risk scores. Banks, fintech companies, and payment processors are typical CrossCore customers.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Data Enrichment Customers</dt>
+        <dd>Companies upload customer lists and pay Experian to append attributes — income estimates, homeownership status, household composition, behavioral interests — to each record. This enrichment service is one of Experian's core marketing revenue streams. Every major retailer, financial services company, and healthcare organization is a potential data enrichment customer.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- WHAT THEY KNOW -->
+  <div slot="what-they-know">
+    <p>Experian's ConsumerView profile for a US consumer typically includes: name and address history, phone numbers, email addresses, estimated household income, homeownership status and estimated property value, household composition, vehicle ownership, credit-derived financial behavior signals (inferred, not raw credit data), consumer interests inferred from purchase and behavioral data, and life stage estimates.</p>
+
+    <p>The combination of credit-adjacent financial signals with behavioral and demographic data is what makes Experian's marketing profiles distinctive from non-credit-bureau data brokers. The inference that someone is likely to have a certain income, carries mortgage debt, and has recently made large home improvement purchases is more financially actionable than a behavioral interest signal alone.</p>
+
+    <WarningCallout title="The credit bureau perception problem">
+      <p>Most consumers who know about credit bureaus associate them with credit scores and lending decisions. They understand those systems are heavily regulated by the FCRA. What they do not realize is that the same institution also runs an unregulated (relative to FCRA) marketing data operation built on a much larger and less auditable dataset. The reputational authority of the credit bureau — "this is the company your bank trusts with your credit information" — does not automatically extend to the marketing division, but it creates implicit trust that the marketing division benefits from.</p>
+    </WarningCallout>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/data-brokers" label="Data Brokers" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization & Targeting" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/data-brokers/acxiom" label="Acxiom" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/data-brokers/liveramp" label="LiveRamp" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/meta" label="Meta / Instagram" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/google" label="Google" type="platform" />
+
+</PlatformLayout>
+
+<style>
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .collect-detail {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .severity-group-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 1.75rem 0 0.75rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .data-recipients {
+    margin: 0;
+  }
+
+  .recipient {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .recipient:first-child {
+    padding-top: 0;
+  }
+
+  .recipient:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .recipient dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .recipient dd {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>

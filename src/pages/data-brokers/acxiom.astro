@@ -1,0 +1,195 @@
+---
+import PlatformLayout from '../../layouts/PlatformLayout.astro';
+import SettingCard from '../../components/SettingCard.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import FactCard from '../../components/FactCard.astro';
+---
+
+<PlatformLayout
+  title="Acxiom"
+  description="One of the oldest and largest data brokers. Claims profiles on 2.5 billion consumers globally. When platforms say they use 'partner data,' Acxiom is frequently the partner."
+  subtitle="Now Epsilon Data Management, owned by Publicis Groupe"
+  category="B2B Marketing Data Broker"
+  lastVerified="April 4, 2026"
+  settingsCount={1}
+  severity="critical"
+  severityText="Acxiom's profiles are a foundational layer of the digital advertising ecosystem. Most people have never heard of Acxiom, but Acxiom has heard of most people. Profiles are built from public records, purchase history, loyalty programs, survey data, and direct partnerships with retailers and publishers — then sold to advertisers, financial services, insurance companies, and political campaigns. The opt-out at aboutthedata.com suppresses use of your data for marketing. It does not delete it."
+  owner="Publicis Groupe"
+  ownerHQ="Paris, France"
+  headquarters="Conway, AR"
+  relatedPractices={[
+    { label: 'Data Brokers', href: '/practices/data-brokers' },
+    { label: 'Ad Personalization & Targeting', href: '/practices/ad-personalization' },
+    { label: 'Third-Party Data Sharing', href: '/practices/third-party-sharing' },
+    { label: 'Off-Platform Activity Tracking', href: '/practices/off-platform-tracking' },
+  ]}
+>
+
+  <!-- WHAT THEY COLLECT -->
+  <div slot="what-they-collect">
+    <div class="fact-grid">
+      <FactCard
+        label="~2.5 billion consumer profiles globally"
+        text="Acxiom claims to maintain profiles on approximately 2.5 billion individuals worldwide — a number that covers most of the world's adult internet users. US profiles are the most detailed, drawing on decades of public record and commercial data collection."
+        severity="critical"
+      />
+      <FactCard
+        label="Purchases from retailers and loyalty programs"
+        text="When you swipe a grocery store card or shop at a retailer that sells data, that transaction history feeds into Acxiom's profile network. Purchase patterns are among the most commercially valuable data Acxiom holds."
+        severity="critical"
+      />
+      <FactCard
+        label="Public records systematically ingested"
+        text="Voter registration, property ownership, court filings, professional licenses, marriage and divorce records — all public, all systematically collected and incorporated into profiles."
+        severity="high"
+      />
+      <FactCard
+        label="Survey responses and self-reported data"
+        text="Consumer surveys, sweepstakes entries, and product registration cards are a surprisingly common data source. People voluntarily provide detailed personal information in these contexts without realizing it flows to data brokers."
+        severity="high"
+      />
+    </div>
+
+    <div class="collect-detail">
+      <p>Acxiom was founded in 1969, which means it has been building consumer profiles longer than the internet has existed. Before digital advertising, it served direct mail marketers. That core model — collect data, build profiles, sell targeting — transferred directly to digital.</p>
+
+      <p>The data Acxiom holds spans demographics (age, gender, household composition, estimated income, education), geography (current and historical addresses), behavioral interests (inferred from purchase history and media consumption), and life events (homebuying, marriage, children, retirement). Life event data is particularly valuable to advertisers because it predicts purchase intent: a new homeowner is a prospective customer for furniture, appliances, and home improvement products.</p>
+
+      <p>Acxiom operates a product called InfoBase, which is its core US consumer database. InfoBase provides audience segmentation used by major advertisers to identify and target specific consumer profiles across platforms. When Meta, Google, or a programmatic ad platform offers advertisers the ability to target "high-income homeowners interested in financial products," data enriched by Acxiom is frequently part of what makes that targeting possible.</p>
+
+      <p>In 2018, Acxiom sold its Acxiom Marketing Solutions division (including InfoBase) to IPG Interpublic Group, and it was renamed Epsilon Data Management. Acxiom retained its technology and LiveRamp identity resolution subsidiary (later spun off as a separate public company). In 2019, Publicis Groupe acquired Epsilon from IPG. The entity now called "Epsilon" or "Epsilon Data Management" is what most people historically knew as Acxiom's marketing data business.</p>
+
+      <p>The consumer-facing opt-out portal, aboutthedata.com, was a notable transparency effort when launched in 2013. It lets consumers see some of the categories Acxiom holds about them and opt out of targeted marketing use. It does not allow consumers to see the full underlying record, and opting out suppresses marketing use without deleting the data.</p>
+    </div>
+  </div>
+
+  <!-- SETTINGS THAT MATTER -->
+  <div slot="settings">
+    <WarningCallout title="What opt-out actually means here">
+      <p>Acxiom's opt-out at aboutthedata.com suppresses use of your profile for targeted marketing — it signals that Acxiom should not use your data to serve you ads or build advertising audiences. It does not delete your profile. It does not prevent Acxiom from sharing your data for non-marketing purposes such as fraud detection, risk assessment, or identity verification. It does not affect data already shared with third parties before the opt-out was submitted.</p>
+    </WarningCallout>
+
+    <SettingCard
+      name="Marketing Opt-Out (aboutthedata.com)"
+      severity="critical"
+      defaultState="Not opted out"
+      path={['aboutthedata.com', 'Manage Preferences', 'Opt Out of Marketing']}
+      webUrl="https://www.aboutthedata.com"
+      webPath={['Visit aboutthedata.com', 'Opt Out']}
+      description="Acxiom's consumer portal allows you to view some of the data categories they hold about you and opt out of use of your data for targeted advertising and marketing. The opt-out applies to Epsilon's (formerly Acxiom's) marketing products and the audiences built from your profile. This is the primary consumer-facing control Acxiom offers."
+      whatItDoesnt="This opt-out does not delete your profile. It does not remove your data from non-marketing products (risk, identity verification, fraud detection). It does not affect Acxiom data that has already been shared with or sold to other companies. If you want to request data deletion, California residents can submit a CCPA deletion request through the same portal; residents of other states may have limited rights depending on applicable state law."
+    />
+  </div>
+
+  <!-- WHO GETS YOUR DATA -->
+  <div slot="who-gets-data">
+    <dl class="data-recipients">
+      <div class="recipient">
+        <dt>Advertisers and Agencies</dt>
+        <dd>Acxiom's primary customers are brands and advertising agencies that use Acxiom audience segments to target campaigns. A retail brand might buy an Acxiom audience of "high-income households with recent home purchase" and use it to target ads across digital channels. The advertiser receives access to an audience, not individual records — but the audience is built from individual profiles.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Digital Platforms (as "partner data")</dt>
+        <dd>This is the key connection most people miss. When Meta, Google, or other large platforms reference "partner data" in their advertising products, data enrichment companies like Acxiom (Epsilon) are frequently the partners. Platforms ingest third-party audience data to improve targeting precision. Your Acxiom profile may be informing ad targeting on platforms you use without those platforms collecting that data themselves.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Financial Services and Insurance</dt>
+        <dd>B2B data brokers including Acxiom supply data used in pre-screening for credit and insurance offers. The financial profiles built from purchase history and inferred income are used to identify households that are likely to qualify for specific products and to target marketing for those products. This is separate from credit bureau data and is governed by different rules.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Political Campaigns</dt>
+        <dd>Acxiom's consumer profiles have been used by political campaigns for voter targeting and outreach. Political advertising is a significant data broker customer segment. Voter registration data is itself a public record that flows into Acxiom profiles, and the combination of voter file data with behavioral and demographic data is used to model persuadability and issue preferences.</dd>
+      </div>
+
+      <div class="recipient">
+        <dt>Other Data Brokers</dt>
+        <dd>Data brokers buy and sell data from each other. An Acxiom profile may contain data originally sourced from or subsequently shared with LexisNexis, Experian, and smaller brokers. The broker ecosystem is not discrete; data replicates across it.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- WHAT THEY KNOW -->
+  <div slot="what-they-know">
+    <p>A typical Acxiom profile for a US adult includes: full name and aliases, current and historical addresses, phone numbers and email addresses, estimated household income range, homeownership status and estimated property value, vehicle ownership, household composition (ages of adults and children), education level, interests inferred from purchase history and survey data, political affiliation (from voter registration), and life stage (newly married, new parent, approaching retirement).</p>
+
+    <p>These data points combine into audience segment assignments. Acxiom's PersonicX segmentation model assigns consumers to one of dozens of clusters — each with names like "Babies and Bliss" or "Fiscal Conservatives" — that predict consumer behavior. These segments are what advertisers buy. The segment assignment is derived from all the underlying data points combined.</p>
+
+    <WarningCallout title="The platform connection">
+      <p>When you turn off "use of partner data for ad targeting" on Meta, you are opting out of Meta using external data — like Acxiom's — to supplement what Meta knows about you. That setting is meaningful. But it operates at the platform level. It does not remove your Acxiom profile, which continues to be used by other advertisers on other platforms. The settings pages for <a href="/platforms/meta">Meta</a>, <a href="/platforms/google">Google</a>, and other platforms include instructions for disabling partner data use — but those are platform-specific controls for one slice of how Acxiom data affects you.</p>
+    </WarningCallout>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/practices/data-brokers" label="Data Brokers" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/ad-personalization" label="Ad Personalization & Targeting" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/off-platform-tracking" label="Off-Platform Activity Tracking" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/meta" label="Meta / Instagram" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/google" label="Google" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/data-brokers/experian" label="Experian" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/data-brokers/liveramp" label="LiveRamp" type="platform" />
+
+</PlatformLayout>
+
+<style>
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .collect-detail {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .data-recipients {
+    margin: 0;
+  }
+
+  .recipient {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .recipient:first-child {
+    padding-top: 0;
+  }
+
+  .recipient:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .recipient dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .recipient dd {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>

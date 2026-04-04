@@ -58,6 +58,24 @@ const platforms: Array<{ name: string; href: string; description: string }> = [
     description: 'Largest global smart TV market share. Samsung Ads is a major CTV ad platform. Tizen OS telemetry, ACR via Samsung and Samba TV, and Samsung account cross-device tracking.',
   },
 ];
+const dataBrokers: Array<{ name: string; href: string; description: string }> = [
+  {
+    name: 'Acxiom',
+    href: '/data-brokers/acxiom',
+    description: '~2.5 billion consumer profiles globally. The "partner data" that platforms like Meta and Google use for ad targeting often comes from Acxiom.',
+  },
+  {
+    name: 'Experian',
+    href: '/data-brokers/experian',
+    description: 'The credit bureau also runs a 300M-record marketing database. Same company, separate division, separate opt-out.',
+  },
+  {
+    name: 'LiveRamp',
+    href: '/data-brokers/liveramp',
+    description: 'The connective tissue of ad tech. LiveRamp matches your email, phone, device IDs, and cookies into a single identity that follows you across platforms — even after you opt out of each one individually.',
+  },
+];
+
 const practices: Array<{ name: string; href: string; description: string }> = [
   {
     name: 'Automatic Content Recognition (ACR)',
@@ -156,6 +174,31 @@ const practices: Array<{ name: string; href: string; description: string }> = [
             </p>
           </div>
         )}
+      </section>
+
+      <hr class="divider" />
+
+      <section class="index-section">
+        <div class="section-header">
+          <h2 class="section-heading">Data Brokers</h2>
+          <a href="/data-brokers" class="section-link">All brokers →</a>
+        </div>
+        <p class="section-desc">
+          These are three of the largest. There are thousands. The companies
+          that build profiles on you without your knowledge and sell them
+          without your involvement.
+        </p>
+
+        <ul class="page-list">
+          {dataBrokers.map((b) => (
+            <li class="page-list-item">
+              <a href={b.href} class="page-list-link">
+                <span class="page-list-name">{b.name}</span>
+                <span class="page-list-desc">{b.description}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <hr class="divider" />
