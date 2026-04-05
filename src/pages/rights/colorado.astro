@@ -1,0 +1,315 @@
+---
+import PracticeLayout from '../../layouts/PracticeLayout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Your Rights', href: '/rights' },
+  { label: 'Colorado Privacy Act' },
+];
+---
+
+<PracticeLayout
+  title="Colorado Privacy Act (CPA)"
+  description="Colorado's consumer privacy law, effective July 2023. The first US state law to require businesses to honor Global Privacy Control (GPC) browser signals as opt-outs."
+  subtitle="The first US state law requiring companies to honor your browser's privacy signal."
+  lastVerified="April 5, 2026"
+  platformCount={0}
+  severity="high"
+  severityText="The CPA gives Colorado residents five enumerated privacy rights. The most mechanically actionable is the universal opt-out mechanism: Colorado requires businesses to honor Global Privacy Control (GPC) browser signals as opt-outs from targeted advertising and data sales. Enabling GPC takes under two minutes and applies to every covered site you visit — no per-site opt-out required."
+  category="Consumer Privacy Law"
+  alsoKnownAs="HB 21-1190, Colorado Privacy Act, CPA"
+  platforms={[]}
+  breadcrumbs={breadcrumbs}
+>
+
+  <!-- WHAT IT IS / WHAT IT COVERS -->
+  <div slot="what-it-is">
+    <p>The Colorado Privacy Act (HB 21-1190) passed in 2021 and took effect July 1, 2023. It gives Colorado residents five rights over their personal data held by covered businesses:</p>
+
+    <ol class="rights-list">
+      <li>
+        <strong>Right to opt out</strong> of targeted advertising, the sale of personal data, and profiling used to make decisions with legal or similarly significant effects.
+      </li>
+      <li>
+        <strong>Right to access</strong> — you can request confirmation of whether a business processes your personal data and obtain a copy of it.
+      </li>
+      <li>
+        <strong>Right to correction</strong> — you can request that a business correct inaccurate personal data it holds about you.
+      </li>
+      <li>
+        <strong>Right to deletion</strong> — you can request that a business delete personal data it holds about you (subject to exceptions).
+      </li>
+      <li>
+        <strong>Right to data portability</strong> — you can request a copy of your data in a portable, usable format.
+      </li>
+    </ol>
+
+    <p>Businesses covered by the CPA must respond to access, correction, deletion, and portability requests within 45 days (extendable once by another 45 days). Opt-out requests must be honored promptly — and as of July 1, 2024, that includes Global Privacy Control browser signals.</p>
+
+    <h3 class="subsection-heading">Who the CPA Applies To</h3>
+    <p>The CPA applies to any controller that conducts business in Colorado or produces products or services intentionally targeted to Colorado residents, and that meets either of these thresholds:</p>
+    <ul class="threshold-list">
+      <li>Processes personal data of <strong>100,000 or more Colorado consumers</strong> per calendar year, OR</li>
+      <li>Processes personal data of <strong>25,000 or more Colorado consumers</strong> and derives revenue (or discounts) from the sale of personal data</li>
+    </ul>
+    <p>Exemptions: government entities, nonprofits, institutions of higher education, financial institutions subject to GLBA, entities and data covered by HIPAA, and employee and B2B data.</p>
+  </div>
+
+  <!-- HOW TO USE YOUR RIGHTS / GPC SETUP -->
+  <div slot="how-to-turn-off">
+    <p>The most actionable right under the CPA is the universal opt-out. As of July 1, 2024, covered Colorado businesses must recognize Global Privacy Control (GPC) as a valid opt-out signal — treating any request from a browser sending GPC as an opt-out from the sale of personal data and targeted advertising.</p>
+
+    <p>GPC works at the browser level: once enabled, it automatically sends an opt-out signal to every site you visit. You do not need to find each company's opt-out page or submit individual requests.</p>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Brave Browser (simplest)</h3>
+      <ol class="turnoff-steps">
+        <li>Open Brave. Go to <strong>Settings → Privacy and Security</strong>.</li>
+        <li>Find <strong>"Send a 'Do Not Sell My Data' signal to websites"</strong> (Global Privacy Control) and toggle it on.</li>
+        <li>GPC is now active. Every site you visit in Brave will receive the opt-out signal.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">DuckDuckGo Browser</h3>
+      <ol class="turnoff-steps">
+        <li>GPC is <strong>enabled by default</strong> in the DuckDuckGo browser on both desktop and mobile. No configuration needed.</li>
+        <li>To verify: go to Settings → Privacy Protection and confirm "Send GPC Signal" is on.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Firefox</h3>
+      <ol class="turnoff-steps">
+        <li>As of Firefox 120+, you can enable GPC via <strong>Settings → Privacy &amp; Security → Website Privacy Preferences</strong>.</li>
+        <li>Check "Tell websites not to sell or share my data." This sends the GPC signal.</li>
+        <li>Alternatively, install the <strong>Privacy Badger</strong> extension (by EFF), which also sends GPC.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Chrome</h3>
+      <ol class="turnoff-steps">
+        <li>Chrome does not have native GPC support. Install the <strong>"Global Privacy Control — GPC"</strong> extension from the Chrome Web Store (published by globalprivacycontrol.org).</li>
+        <li>Once installed, GPC signals will be sent to every site you visit.</li>
+      </ol>
+    </div>
+
+    <WarningCallout title="GPC is not universal coverage">
+      <p>GPC is only legally binding under state laws that require it — currently Colorado, California (CCPA/CPRA), Connecticut, and a few others. Companies operating outside these jurisdictions, or small companies below CPA thresholds, are not legally required to honor it. GPC also only covers opt-out from data sales and targeted advertising — it does not constitute a deletion request or an access request.</p>
+    </WarningCallout>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Submitting Formal Rights Requests</h3>
+      <ol class="turnoff-steps">
+        <li>For access, correction, deletion, or portability: go to the company's privacy settings page or search "[company name] privacy rights request."</li>
+        <li>Covered businesses must respond within 45 days. If they deny your request, they must provide a reason and tell you how to appeal.</li>
+        <li>If a business refuses or ignores your request, you can file a complaint with the <strong>Colorado Attorney General's office</strong> at coag.gov.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- WHY IT MATTERS / GPC IN PRACTICE -->
+  <div slot="why-it-matters">
+    <p>GPC works by adding a request header (<code>Sec-GPC: 1</code>) to every HTTP request your browser makes, and by setting a JavaScript property (<code>navigator.globalPrivacyControl = true</code>) that sites can read. When a covered business receives this signal, it is legally required to treat your visit as an opt-out — the same as if you had gone to their privacy settings and clicked "Do Not Sell My Data."</p>
+
+    <p>Before GPC, exercising your opt-out rights required finding each company's opt-out page, submitting a form, and repeating that process indefinitely as opt-outs expire. GPC automates the opt-out at the browser level — one setting covers every covered site you visit, including sites you haven't visited yet.</p>
+
+    <WarningCallout title="GPC compliance varies by company">
+      <p>As of early 2026, compliance with GPC varies. Major advertising platforms (Google, Meta) have implemented GPC handling for users in California and Colorado. Many smaller ad tech companies have been slower to implement. The Colorado AG's office has been monitoring compliance and has sent enforcement letters to non-compliant companies, but enforcement actions are still early-stage. GPC works better as a legal opt-out mechanism than as a technical guarantee that data collection stops.</p>
+    </WarningCallout>
+
+    <p>Colorado's GPC requirement is more expansive than California's in one respect: it explicitly covers targeted advertising opt-outs, not just "sale" of data. This matters because many companies argue they don't "sell" data — they "share" it with advertising partners. Under Colorado's framing, the GPC signal covers that sharing for targeted advertising purposes.</p>
+  </div>
+
+  <!-- HOW IT WORKS / ENFORCEMENT -->
+  <div slot="how-it-works">
+    <p>The CPA is enforced exclusively by the Colorado Attorney General and district attorneys. There is <strong>no private right of action</strong> — individual consumers cannot sue companies directly for CPA violations. Only the AG and DAs can bring enforcement actions.</p>
+
+    <ol class="steps-list">
+      <li>
+        <strong>60-day cure period.</strong> Before the AG or a DA can bring an enforcement action, they must notify the business of the alleged violation and give it 60 days to cure. If the business fixes the violation within 60 days, no action can be brought. This period was part of the original law and has not been set to expire (unlike California's cure period, which sunset in 2023).
+      </li>
+      <li>
+        <strong>Civil penalties.</strong> Violations that are not cured can result in civil penalties of up to $20,000 per violation. Each consumer affected can constitute a separate violation.
+      </li>
+      <li>
+        <strong>AG guidance.</strong> The Colorado AG's office has issued formal guidance on GPC compliance, including a 2024 technical specification for how GPC signals must be honored. This guidance is not binding law but is used in enforcement.
+      </li>
+      <li>
+        <strong>Complaint process.</strong> Colorado residents can file complaints with the AG's office at coag.gov. The AG's office uses complaints to prioritize investigations but is not required to act on every complaint.
+      </li>
+    </ol>
+
+    <p>As of early 2026, the Colorado AG's office has focused enforcement activity on GPC compliance and dark patterns in opt-out flows. No major CPA fines have been publicly reported, but the AG has issued warning letters and opened investigations following the GPC requirement's July 2024 effective date.</p>
+  </div>
+
+  <!-- WHAT IT DOESN'T COVER -->
+  <div slot="who-has-data">
+    <p>The CPA has meaningful limitations worth understanding before relying on it:</p>
+
+    <dl class="limits-list">
+      <div class="limit-item">
+        <dt>No private right of action</dt>
+        <dd>Only the AG and DAs can enforce the CPA. You cannot sue a company directly for violating your rights under the CPA. If a company ignores your deletion request, your only recourse is to file a complaint with the AG's office and wait.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>60-day cure period</dt>
+        <dd>Companies have 60 days to fix violations before any enforcement action can proceed. In practice this means a company can violate the CPA repeatedly and face limited consequences as long as it claims to fix each violation when notified.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>Employee and B2B data excluded</dt>
+        <dd>The CPA does not cover personal data collected in an employment context or data about individuals acting in a commercial or professional capacity. A company's HR database and its customer database are treated differently.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>Regulated-sector exemptions</dt>
+        <dd>Entities and data already covered by HIPAA, GLBA, FERPA, and the Fair Credit Reporting Act are largely exempt. A hospital's patient records, a bank's financial data, and a credit bureau's credit file are not covered by the CPA.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>Small business threshold</dt>
+        <dd>Companies processing data of fewer than 100,000 Colorado consumers (or fewer than 25,000 if they don't sell data) are not covered. Many smaller data brokers and apps fall below these thresholds.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>Deletion has exceptions</dt>
+        <dd>Businesses can decline deletion requests when data is necessary to complete a transaction, comply with a legal obligation, detect security incidents, or several other enumerated purposes. "Necessary for our business operations" is not a recognized exception, but companies may interpret exceptions broadly.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/data-brokers" label="Data Broker Industry" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/off-platform-tracking" label="Off-Platform Activity Tracking" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/dark-patterns" label="Dark Patterns" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/google" label="Google" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/meta" label="Meta / Instagram" type="platform" />
+
+</PracticeLayout>
+
+<style>
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .subsection-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  .rights-list,
+  .steps-list {
+    padding-left: 1.5rem;
+    margin: 0 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .rights-list li,
+  .steps-list li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  .rights-list li strong,
+  .steps-list li strong {
+    color: var(--color-text-primary);
+  }
+
+  .threshold-list {
+    padding-left: 1.25rem;
+    margin: 0.5rem 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .threshold-list li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .threshold-list li strong {
+    color: var(--color-text-primary);
+  }
+
+  .turnoff-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .turnoff-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .turnoff-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .turnoff-steps {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .turnoff-steps li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    padding: 0.1em 0.35em;
+    color: var(--color-text-secondary);
+  }
+
+  .limits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
+  }
+
+  .limit-item {
+    border-left: 2px solid var(--color-border);
+    padding-left: 1rem;
+  }
+
+  .limit-item dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .limit-item dd {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>

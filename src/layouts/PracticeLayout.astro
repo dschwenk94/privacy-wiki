@@ -18,6 +18,7 @@ interface Props {
   platforms?: string[];
   canonicalUrl?: string;
   ogImage?: string;
+  breadcrumbs?: Array<{ label: string; href?: string }>;
 }
 
 const {
@@ -33,11 +34,12 @@ const {
   platforms = [],
   canonicalUrl,
   ogImage,
+  breadcrumbs: breadcrumbsProp,
 } = Astro.props;
 
-const breadcrumbs = [
+const breadcrumbs = breadcrumbsProp ?? [
   { label: 'Home', href: '/' },
-  { label: 'Practices', href: '/practices' },
+  { label: 'Data Practices', href: '/practices' },
   { label: title },
 ];
 ---
@@ -47,7 +49,7 @@ const breadcrumbs = [
     <div class="nav-logo">Privacy<span>Wiki</span></div>
     <span class="nav-sep">/</span>
     <a href="/platforms">Platforms</a>
-    <a href="/practices">Practices</a>
+    <a href="/practices">Data Practices</a>
   </div>
 
   <div class="breadcrumb-wrap">
@@ -109,7 +111,7 @@ const breadcrumbs = [
 
       <section class="page-section" id="related" aria-labelledby="related-heading">
         <h2 id="related-heading" class="section-heading">Related</h2>
-        <h4 class="related-sub-heading">Practices</h4>
+        <h4 class="related-sub-heading">Data Practices</h4>
         <div class="chip-group">
           <slot name="related-practices">
             <p class="placeholder-text">Practice cross-links coming soon.</p>

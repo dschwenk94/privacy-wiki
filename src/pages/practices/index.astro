@@ -38,12 +38,6 @@ const practices: Array<{
     platformCount: 5,
   },
   {
-    name: 'Data Brokers',
-    href: '/practices/data-brokers',
-    severity: 'critical',
-    description: 'Data brokers compile profiles from public records, purchase history, and behavioral data and sell them. Opt-outs are piecemeal and do not cover B2B brokers.',
-  },
-  {
     name: 'Location Data',
     href: '/practices/location-data',
     severity: 'critical',
@@ -75,18 +69,18 @@ const practices: Array<{
 
 const breadcrumbs = [
   { label: 'Home', href: '/' },
-  { label: 'Practices' },
+  { label: 'Data Practices' },
 ];
 ---
 
 <BaseLayout
-  title="Practices — Privacy Wiki"
+  title="Data Practices — Privacy Wiki"
   description="Guides to specific data collection practices: off-platform tracking, AI training data usage, ad personalization, third-party data sharing, and more."
 >
   <div class="page-container">
     <header class="page-header">
       <Breadcrumb crumbs={breadcrumbs} />
-      <h1 class="page-title">Practices</h1>
+      <h1 class="page-title">Data Practices</h1>
       <p class="page-subtitle">
         One page per data collection technique. Each practice page explains
         what the technique is, how it works, which platforms use it, and how

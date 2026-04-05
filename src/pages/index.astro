@@ -1,61 +1,89 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const platforms: Array<{ name: string; href: string; description: string }> = [
+type Platform = { name: string; href: string; description: string };
+type PlatformGroup = { label: string; platforms: Platform[] };
+
+const platformGroups: PlatformGroup[] = [
   {
-    name: 'TikTok',
-    href: '/platforms/tiktok',
-    description: 'Off-platform tracking via TikTok Pixel, GPS collection added in 2026, no AI training opt-out for US users.',
+    label: 'Social Media',
+    platforms: [
+      {
+        name: 'TikTok',
+        href: '/platforms/tiktok',
+        description: 'Off-platform tracking via TikTok Pixel, GPS collection added in 2026, no AI training opt-out for US users.',
+      },
+      {
+        name: 'X / Twitter',
+        href: '/platforms/x',
+        description: 'Default-on Grok AI training added in 2024, data sharing with unspecified business partners, cross-device targeting.',
+      },
+      {
+        name: 'Meta / Instagram',
+        href: '/platforms/meta',
+        description: 'The Meta Pixel tracks you across millions of third-party websites. Off-Facebook Activity, Audience Network ads, AI training with no US opt-out.',
+      },
+      {
+        name: 'Reddit',
+        href: '/platforms/reddit',
+        description: 'Sold post history to Google for AI training. Ad targeting uses subreddit memberships and voting behavior. Deleted posts are retained. No opt-out from historical data licensing.',
+      },
+      {
+        name: 'Snapchat',
+        href: '/platforms/snapchat',
+        description: 'Ghost Mode does not stop Snap from collecting your location. My AI conversations train Snap\'s AI. Off-Snap tracking via Snap Pixel. Ephemeral messages leave metadata.',
+      },
+    ],
   },
   {
-    name: 'X / Twitter',
-    href: '/platforms/x',
-    description: 'Default-on Grok AI training added in 2024, data sharing with unspecified business partners, cross-device targeting.',
+    label: 'Search & Advertising',
+    platforms: [
+      {
+        name: 'Google',
+        href: '/platforms/google',
+        description: 'Google Analytics and the Google Ads network reach roughly 90% of top websites. Cross-product data from Search, YouTube, Maps, Gmail, Chrome, and Android.',
+      },
+    ],
   },
   {
-    name: 'Meta / Instagram',
-    href: '/platforms/meta',
-    description: 'The Meta Pixel tracks you across millions of third-party websites. Off-Facebook Activity, Audience Network ads, AI training with no US opt-out.',
+    label: 'Streaming & Entertainment',
+    platforms: [
+      {
+        name: 'YouTube',
+        href: '/platforms/youtube',
+        description: 'A Google product. Watch history, search queries, and granular engagement data feed the same Google advertising profile used across Search, Gmail, and the Display Network.',
+      },
+    ],
   },
   {
-    name: 'Google',
-    href: '/platforms/google',
-    description: 'Google Analytics and the Google Ads network reach roughly 90% of top websites. Cross-product data from Search, YouTube, Maps, Gmail, Chrome, and Android.',
+    label: 'Retail & E-Commerce',
+    platforms: [
+      {
+        name: 'Amazon',
+        href: '/platforms/amazon',
+        description: 'Purchase history, Alexa voice recordings, Ring footage, cross-site ad network, and Amazon One palm biometrics. A household-level behavioral profile.',
+      },
+    ],
   },
   {
-    name: 'Amazon',
-    href: '/platforms/amazon',
-    description: 'Purchase history, Alexa voice recordings, Ring footage, cross-site ad network, and Amazon One palm biometrics. A household-level behavioral profile.',
-  },
-  {
-    name: 'YouTube',
-    href: '/platforms/youtube',
-    description: 'A Google product. Watch history, search queries, and granular engagement data feed the same Google advertising profile used across Search, Gmail, and the Display Network.',
-  },
-  {
-    name: 'Reddit',
-    href: '/platforms/reddit',
-    description: 'Sold post history to Google for AI training. Ad targeting uses subreddit memberships and voting behavior. Deleted posts are retained. No opt-out from historical data licensing.',
-  },
-  {
-    name: 'Snapchat',
-    href: '/platforms/snapchat',
-    description: 'Ghost Mode does not stop Snap from collecting your location. My AI conversations train Snap\'s AI. Off-Snap tracking via Snap Pixel. Ephemeral messages leave metadata.',
-  },
-  {
-    name: 'VIZIO',
-    href: '/platforms/vizio',
-    description: 'TV hardware sold at cost. Revenue comes from ACR data licensing via Inscape. The Walmart acquisition connects viewing history to the largest purchase dataset in the US.',
-  },
-  {
-    name: 'Roku',
-    href: '/platforms/roku',
-    description: 'The largest TV streaming platform in the US. OS-level tracking sees activity across all apps. Roku Ads packages and sells audience segments built from your viewing behavior.',
-  },
-  {
-    name: 'Samsung TV',
-    href: '/platforms/samsung-tv',
-    description: 'Largest global smart TV market share. Samsung Ads is a major CTV ad platform. Tizen OS telemetry, ACR via Samsung and Samba TV, and Samsung account cross-device tracking.',
+    label: 'Smart TVs',
+    platforms: [
+      {
+        name: 'VIZIO',
+        href: '/platforms/vizio',
+        description: 'TV hardware sold at cost. Revenue comes from ACR data licensing via Inscape. The Walmart acquisition connects viewing history to the largest purchase dataset in the US.',
+      },
+      {
+        name: 'Roku',
+        href: '/platforms/roku',
+        description: 'The largest TV streaming platform in the US. OS-level tracking sees activity across all apps. Roku Ads packages and sells audience segments built from your viewing behavior.',
+      },
+      {
+        name: 'Samsung TV',
+        href: '/platforms/samsung-tv',
+        description: 'Largest global smart TV market share. Samsung Ads is a major CTV ad platform. Tizen OS telemetry, ACR via Samsung and Samba TV, and Samsung account cross-device tracking.',
+      },
+    ],
   },
 ];
 const dataBrokers: Array<{ name: string; href: string; description: string }> = [
@@ -103,8 +131,8 @@ const practices: Array<{ name: string; href: string; description: string }> = [
     description: 'Platforms share your data with companies you have never interacted with. What leaves the platform and where it goes.',
   },
   {
-    name: 'Data Brokers',
-    href: '/practices/data-brokers',
+    name: 'Data Broker Industry',
+    href: '/data-brokers',
     description: 'Profiles built from public records, purchase history, and behavioral data — sold without your involvement. Opt-outs are piecemeal.',
   },
   {
@@ -155,25 +183,21 @@ const practices: Array<{ name: string; href: string; description: string }> = [
           how to turn them off.
         </p>
 
-        {platforms.length > 0 ? (
-          <ul class="page-list">
-            {platforms.map((p) => (
-              <li class="page-list-item">
-                <a href={p.href} class="page-list-link">
-                  <span class="page-list-name">{p.name}</span>
-                  <span class="page-list-desc">{p.description}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <div class="empty-state">
-            <span class="empty-label">Coming soon</span>
-            <p class="empty-text">
-              TikTok, Meta/Instagram, X — and more. Pages are being built now.
-            </p>
+        {platformGroups.map((group) => (
+          <div class="platform-group">
+            <h3 class="platform-group-heading">{group.label}</h3>
+            <ul class="page-list">
+              {group.platforms.map((p) => (
+                <li class="page-list-item">
+                  <a href={p.href} class="page-list-link">
+                    <span class="page-list-name">{p.name}</span>
+                    <span class="page-list-desc">{p.description}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
-        )}
+        ))}
       </section>
 
       <hr class="divider" />
@@ -205,8 +229,8 @@ const practices: Array<{ name: string; href: string; description: string }> = [
 
       <section class="index-section">
         <div class="section-header">
-          <h2 class="section-heading">Practices</h2>
-          <a href="/practices" class="section-link">All practices →</a>
+          <h2 class="section-heading">Data Practices</h2>
+          <a href="/practices" class="section-link">All data practices →</a>
         </div>
         <p class="section-desc">
           One page per data collection technique. How it works across every
@@ -314,6 +338,26 @@ const practices: Array<{ name: string; href: string; description: string }> = [
     margin-bottom: 1.5rem;
     max-width: 520px;
     line-height: 1.6;
+  }
+
+  .platform-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .platform-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .platform-group-heading {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid var(--color-border);
   }
 
   .page-list {
