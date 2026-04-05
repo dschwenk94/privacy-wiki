@@ -86,6 +86,29 @@ const platformGroups: PlatformGroup[] = [
     ],
   },
 ];
+const rights: Array<{ name: string; href: string; description: string }> = [
+  {
+    name: 'COPPA',
+    href: '/rights/coppa',
+    description: 'Federal law restricting data collection from children under 13. The reason every app asks your birthday — and why a fake birthdate bypasses every protection.',
+  },
+  {
+    name: 'CCPA / CPRA',
+    href: '/rights/ccpa',
+    description: 'California\'s consumer privacy law — right to know, delete, and opt out of data sales. De facto national standard because most major platforms extend it to all US users.',
+  },
+  {
+    name: 'GDPR',
+    href: '/rights/gdpr',
+    description: 'The EU gold standard. Affirmative consent, deletion rights with teeth, and €1.2B fines. US users get none of this unless companies choose to extend it.',
+  },
+  {
+    name: 'Colorado Privacy Act',
+    href: '/rights/colorado',
+    description: 'Requires platforms to honor Global Privacy Control browser signals as opt-outs from targeted advertising. The most mechanically actionable US state privacy law.',
+  },
+];
+
 const dataBrokers: Array<{ name: string; href: string; description: string }> = [
   {
     name: 'Acxiom',
@@ -219,6 +242,30 @@ const practices: Array<{ name: string; href: string; description: string }> = [
               <a href={b.href} class="page-list-link">
                 <span class="page-list-name">{b.name}</span>
                 <span class="page-list-desc">{b.description}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="index-section">
+        <div class="section-header">
+          <h2 class="section-heading">Your Rights</h2>
+          <a href="/rights" class="section-link">All rights →</a>
+        </div>
+        <p class="section-desc">
+          The laws that give you leverage — what they cover, where they apply,
+          and where the gaps are.
+        </p>
+
+        <ul class="page-list">
+          {rights.map((r) => (
+            <li class="page-list-item">
+              <a href={r.href} class="page-list-link">
+                <span class="page-list-name">{r.name}</span>
+                <span class="page-list-desc">{r.description}</span>
               </a>
             </li>
           ))}

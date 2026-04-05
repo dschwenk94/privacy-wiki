@@ -1,0 +1,336 @@
+---
+import PracticeLayout from '../../layouts/PracticeLayout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Your Rights', href: '/rights' },
+  { label: 'COPPA' },
+];
+---
+
+<PracticeLayout
+  title="COPPA (Children's Online Privacy Protection Act)"
+  description="Federal law, effective April 2000, rule updated 2013. Restricts collection of personal information from children under 13. Requires verifiable parental consent. The FTC enforces it with escalating fines. The law that explains why every app asks your birthday — and why a 12-year-old who types '1990' bypasses every protection."
+  subtitle="The reason every app asks your age — and why it doesn't actually work."
+  lastVerified="April 5, 2026"
+  platformCount={0}
+  severity="high"
+  severityText="COPPA only protects children under 13. A 14-year-old gets the same data treatment as a 30-year-old under federal law. Age verification is also trivially bypassed — platforms are legally required to ask, not to verify. The birthday field with no enforcement mechanism is the industry's minimum-effort compliance."
+  category="Federal Child Privacy Law"
+  alsoKnownAs="Children's Online Privacy Protection Act, 15 U.S.C. § 6501–6508"
+  platforms={[]}
+  breadcrumbs={breadcrumbs}
+>
+
+  <!-- WHAT IT COVERS -->
+  <div slot="what-it-is">
+    <p>The Children's Online Privacy Protection Act was signed into law in 1998 and took effect April 21, 2000. The FTC's implementing regulations were substantially updated in 2013, expanding coverage to mobile apps, plug-ins, and advertising networks. The law is enforced exclusively by the FTC.</p>
+
+    <p>COPPA applies to two categories of operators: websites and online services <em>directed at children under 13</em>, and any operator with <em>actual knowledge</em> that a user is under 13. It does not apply to the general internet — only to services where children are the intended audience or are known to be present.</p>
+
+    <p>When COPPA applies, it requires:</p>
+
+    <ol class="rights-list">
+      <li>
+        <strong>Notice</strong> — the operator must post a clear privacy policy describing what data it collects from children and how it's used, and provide direct notice to parents before collecting data.
+      </li>
+      <li>
+        <strong>Verifiable parental consent</strong> — before collecting, using, or disclosing personal information from a child under 13, the operator must obtain verifiable consent from a parent. Acceptable methods include credit card confirmation, signed forms, or video calls. Checking a box is not verifiable parental consent.
+      </li>
+      <li>
+        <strong>Parental access rights</strong> — parents can review the personal information collected from their child and request its deletion. Operators must delete data upon parental request and cannot condition use of the service on providing more information than necessary.
+      </li>
+      <li>
+        <strong>Data minimization</strong> — operators cannot collect more information than is reasonably necessary for the child to participate in the activity.
+      </li>
+      <li>
+        <strong>Reasonable data security</strong> — personal information from children must be protected with reasonable security measures.
+      </li>
+    </ol>
+
+    <h3 class="subsection-heading">Why Every App Asks Your Age</h3>
+    <p>COPPA is the reason every app has a birthday field at signup. If a service collects any personal data — including device identifiers and persistent cookies — from a user it knows is under 13, it needs verifiable parental consent first. To avoid triggering that requirement, services ask for your birthdate. If you say you're over 13, COPPA doesn't apply.</p>
+
+    <p>That's the design intent. The practical outcome: a 12-year-old who enters a fake birthdate bypasses every legal protection COPPA is supposed to provide. Platforms know this. The FTC knows this. The birthday field without verification is minimum-effort compliance — it creates a paper record that the service asked, not a meaningful barrier that keeps children out of adult data collection environments.</p>
+
+    <WarningCallout title="Age gates are not age verification">
+      <p>There is a meaningful difference between an age gate (asking your birthdate and accepting the answer) and age verification (actually confirming your age). US law requires the former. Age verification technologies exist — government ID matching, credit card confirmation, device-level age signals — but they are expensive, create their own privacy risks, and most platforms have not implemented them. COPPA 2.0 proposals would require stronger verification for minors, but no federal law currently requires it.</p>
+    </WarningCallout>
+
+    <h3 class="subsection-heading">What "Personal Information" Means Under COPPA</h3>
+    <p>COPPA's definition of personal information is broader than most people assume. It includes not just name and email address, but:</p>
+    <ul class="threshold-list">
+      <li>Photos, videos, and audio files containing a child's image or voice</li>
+      <li>Geolocation data sufficient to identify street name and city or town</li>
+      <li>Persistent identifiers — cookies, device IDs, IP addresses — that can be used to recognize a user over time or across sites</li>
+      <li>Screen or user names that function as online contact information</li>
+    </ul>
+    <p>The 2013 update's inclusion of persistent identifiers was significant: it means that behavioral advertising tracking — dropping a cookie on a child's device and using it to build a profile — requires parental consent on services directed at children.</p>
+  </div>
+
+  <!-- HOW PARENTS EXERCISE RIGHTS -->
+  <div slot="how-to-turn-off">
+    <h3 class="turnoff-heading">Exercising Parental Rights Under COPPA</h3>
+
+    <div class="turnoff-group">
+      <p>If your child uses a service covered by COPPA, you have specific rights. The practical challenge is that exercising them requires knowing which services are covered and finding the right contact.</p>
+      <ol class="turnoff-steps">
+        <li>Look for the service's privacy policy — COPPA requires covered services to post a clear policy describing data practices for children.</li>
+        <li>Locate the "Data Protection Officer" or privacy contact. COPPA requires covered operators to provide a direct contact for parental requests.</li>
+        <li>Submit a request to review what data has been collected about your child. Operators must respond within a reasonable time (the FTC guidance suggests 10 business days as a benchmark).</li>
+        <li>Request deletion of your child's data. The operator must delete it, unless they have a specific retention obligation under another law.</li>
+        <li>If the operator refuses or fails to respond, file a complaint with the FTC at reportfraud.ftc.gov.</li>
+      </ol>
+    </div>
+
+    <h3 class="turnoff-heading">Platform-Specific Parental Controls</h3>
+    <div class="turnoff-group">
+      <p>Major platforms have built parental control products that go beyond basic COPPA compliance — partly due to regulatory pressure and partly as product differentiation:</p>
+      <ul class="threshold-list">
+        <li><strong><a href="/platforms/tiktok" class="inline-link">TikTok</a> Family Pairing</strong> — links a parent's account to a child's account, allowing content restrictions, screen time limits, and DM controls. Available in the app under Settings &rarr; Family Pairing.</li>
+        <li><strong><a href="/platforms/youtube" class="inline-link">YouTube Kids</a></strong> — a separate, COPPA-compliant app with curated content and no behavioral advertising. Created in direct response to FTC scrutiny of YouTube's practices with child-directed content. Parental controls available through the app's settings.</li>
+        <li><strong><a href="/platforms/meta" class="inline-link">Instagram Teen Accounts</a></strong> — accounts for users under 16 (or 18 in some regions) automatically get restricted settings including limited DMs and filtered content. Introduced in late 2023, rolled out through 2024.</li>
+        <li><strong><a href="/platforms/snapchat" class="inline-link">Snapchat Family Center</a></strong> — allows parents to see who their child is chatting with (but not content) and report accounts. Available at myaccount.snapchat.com under Family Center.</li>
+      </ul>
+    </div>
+
+    <WarningCallout title="These features are not substitutes for age verification">
+      <p>Family Pairing, parental controls, and teen accounts only work if parents enroll. They don't prevent a child from creating an account without parental involvement — which is exactly the failure mode COPPA was designed to address. The enrollment rate for parental control programs on major platforms is low.</p>
+    </WarningCallout>
+  </div>
+
+  <!-- THE AGE GAP PROBLEM -->
+  <div slot="why-it-matters">
+    <p>COPPA creates a sharp legal cliff at age 13. Below 13: consent required, data minimization required, parental rights to access and deletion. Above 13: the full adult data collection regime applies immediately. A 14-year-old's data can be sold to data brokers, used for behavioral advertising, and retained indefinitely — the same as a 40-year-old.</p>
+
+    <p>This was a deliberate legislative choice in 1998, and it has not been updated since the 2013 rule. Child development research, the proliferation of social media platforms, and the demonstrated harms of algorithmic recommendation to teen mental health have all post-dated that choice.</p>
+
+    <h3 class="subsection-heading">COPPA 2.0 and the Kids Online Safety Act</h3>
+    <p>Two legislative proposals have attempted to address the age-13 gap:</p>
+
+    <dl class="limits-list">
+      <div class="limit-item">
+        <dt>COPPA 2.0</dt>
+        <dd>Would extend COPPA-style protections to children under 17 (or in some versions, under 16). Would ban targeted advertising to minors and require data minimization for users under the protected age. Introduced in Congress multiple times; as of early 2026, it has not been enacted. The Senate passed a version in 2024; the House has not voted on final legislation.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>Kids Online Safety Act (KOSA)</dt>
+        <dd>Would impose a "duty of care" on platforms to prevent harm to minors from algorithmic features including recommendation systems and engagement maximization tools. Passed the Senate 91-3 in July 2024 — one of the strongest bipartisan votes on tech regulation in years. Has not passed the House as of early 2026. The House has considered modified versions. Supporters include a wide coalition of child safety advocates; critics have raised First Amendment concerns.</dd>
+      </div>
+    </dl>
+
+    <p>The bipartisan support in the Senate reflects a broad political consensus that the current framework is inadequate for social media platforms designed around engagement optimization. The gap between Senate passage and House inaction reflects lobbying influence and legislative calendar competition rather than substantive opposition to child privacy protection.</p>
+
+    <h3 class="subsection-heading">Platform Features That Are Legal Requirements in Disguise</h3>
+    <p>Several platform features presented as product improvements are direct responses to COPPA enforcement:</p>
+    <ul class="threshold-list">
+      <li><strong>YouTube Kids</strong> is a COPPA compliance product, not a user experience innovation. It was created after the FTC investigation that produced the $170M fine, and it exists specifically to provide a COPPA-compliant space for child-directed content so the main YouTube platform can continue operating under a general audience designation.</li>
+      <li><strong>TikTok's under-13 restricted mode</strong> (no DMs, no personalized ads, curated content only) is what the platform looks like when it has to comply with COPPA. The contrast between that experience and the adult TikTok illustrates exactly how much data collection COPPA restricts when actually enforced.</li>
+      <li><strong>Instagram Teen Accounts</strong> (introduced 2023-2024) came after the FTC began scrutinizing Meta's practices around minors following research linking Instagram to teen mental health issues. Meta framed it as a product feature. It was a regulatory preemption strategy.</li>
+    </ul>
+
+    <h3 class="subsection-heading">The 2024 COPPA Rule Update</h3>
+    <p>The FTC updated the COPPA Rule in January 2024, with new provisions taking effect July 2024. Key additions:</p>
+    <ul class="threshold-list">
+      <li>Ban on conditioning a child's participation in an activity on collection of more personal information than necessary</li>
+      <li>Prohibition on using personal information collected for an activity for other purposes without separate parental consent</li>
+      <li>Stronger data security and data retention requirements — operators must establish and maintain a written data retention policy and delete data when it is no longer needed for the stated purpose</li>
+      <li>Requirement to obtain separate consent for behavioral advertising to children (cannot bundle ad targeting consent with general service consent)</li>
+      <li>School authorizations: rules about when schools can authorize data collection on behalf of parents, and limits on how that data can be used</li>
+    </ul>
+  </div>
+
+  <!-- NOTABLE ENFORCEMENT -->
+  <div slot="how-it-works">
+    <p>COPPA is enforced by the FTC through civil penalties. The penalty ceiling was raised to $51,744 per violation per day as of 2023 (adjusted for inflation). Because each affected child can represent a separate violation, large-scale non-compliance produces substantial aggregate liability.</p>
+
+    <ol class="steps-list">
+      <li>
+        <strong>Musical.ly / TikTok (2019) — $5.7 million.</strong> Musical.ly, which ByteDance had acquired and rebranded as TikTok, allowed children under 13 to register without parental consent, collected personal information including name, email, and birthdate, and failed to honor parental deletion requests. The $5.7M fine was the largest COPPA penalty at the time.
+      </li>
+      <li>
+        <strong>YouTube / Google (2019) — $170 million.</strong> YouTube collected persistent identifiers (cookies) from viewers of child-directed channels without obtaining parental consent, then used those identifiers to serve targeted ads. The settlement — $136M to the FTC, $34M to the state of New York — included a requirement that YouTube stop serving targeted ads on child-directed content and build a system for channel owners to designate content as child-directed. YouTube Kids was developed in this context.
+      </li>
+      <li>
+        <strong>Epic Games / Fortnite (2022) — $275 million.</strong> The FTC alleged that Epic's default privacy settings connected children and teens in live voice communications with strangers, allowed children to make purchases without parental consent, and used dark patterns to prevent parents from getting refunds. The $275M settlement remains the largest FTC privacy fine ever. A separate $245M in refunds to consumers was negotiated simultaneously.
+      </li>
+      <li>
+        <strong>2024–2026 enforcement trend.</strong> The 2024 COPPA Rule update included a specific focus on ed-tech companies that collect data from children under school authorizations and then use it for advertising or commercial purposes. The FTC has signaled that enforcement of the new rule provisions — particularly the behavioral advertising prohibition and data retention requirements — is a priority.
+      </li>
+    </ol>
+
+    <p>The FTC can also seek injunctive relief: orders that require companies to change practices, appoint privacy compliance officers, undergo audits, and submit to monitoring. These operational requirements often have more practical impact than the fines themselves for large platforms.</p>
+  </div>
+
+  <!-- WHAT IT DOESN'T DO -->
+  <div slot="who-has-data">
+    <p>COPPA is the only federal US law specifically protecting children's privacy online, and it has real limitations that define where protection ends:</p>
+
+    <dl class="limits-list">
+      <div class="limit-item">
+        <dt>Only covers under-13 — and only with verifiable age signals</dt>
+        <dd>The law's coverage depends on a platform either being directed at children or having actual knowledge of a user's age. The "actual knowledge" standard means platforms can avoid COPPA by not asking age at all, or by not acting on signals that a user is underage. A platform that lets children register with a fake birthdate does not have "actual knowledge" of their age — even if it has reason to suspect it. This loophole is structural, not accidental.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>No age verification requirement</dt>
+        <dd>COPPA requires parental consent before collecting data from known children. It does not require platforms to verify user ages. A self-reported birthdate satisfies the platform's obligation. The resulting system has a simple bypass: children lie about their age. The FTC has noted this problem but the law has not been amended to require technical age verification. COPPA 2.0 proposals include verification requirements; none have passed.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>Does not cover 13 to 17-year-olds under federal law</dt>
+        <dd>Teens aged 13–17 have no federal privacy rights specific to their age. They are subject to the same data collection, behavioral advertising, and algorithmic targeting as adults. Their data can be sold to brokers, used for political targeting, and retained indefinitely. This gap is the core policy problem that COPPA 2.0 and KOSA attempt to address.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>No private right of action</dt>
+        <dd>Parents cannot sue platforms directly for COPPA violations. Only the FTC and state attorneys general can bring COPPA enforcement actions. If a platform collects your child's data illegally, your remedy is filing an FTC complaint and waiting for the agency to act — which may not happen for years, if at all. There is no class action mechanism for COPPA violations.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>Only applies to US operators and children in the US</dt>
+        <dd>COPPA is a US federal law. It applies to operators directed at or knowingly collecting data from children in the US. It does not give US children rights over data held by foreign operators outside US jurisdiction, and it does not give non-US children any rights.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>School authorizations create blind spots</dt>
+        <dd>Schools can authorize operators to collect student data on behalf of parents for educational purposes. The 2024 rule clarified that this authorization cannot be used for commercial purposes — but enforcement of that boundary depends on the FTC monitoring ed-tech company practices that are often invisible to parents. Many school-authorized apps have historically used student data for purposes beyond education.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/rights/ccpa" label="CCPA / CPRA" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/rights/gdpr" label="GDPR (EU)" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/rights/colorado" label="Colorado Privacy Act" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/dark-patterns" label="Dark Patterns" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/tiktok" label="TikTok" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/youtube" label="YouTube" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/meta" label="Meta / Instagram" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/snapchat" label="Snapchat" type="platform" />
+
+</PracticeLayout>
+
+<style>
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .subsection-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  .rights-list,
+  .steps-list {
+    padding-left: 1.5rem;
+    margin: 0 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .rights-list li,
+  .steps-list li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  .rights-list li strong,
+  .steps-list li strong {
+    color: var(--color-text-primary);
+  }
+
+  .threshold-list {
+    padding-left: 1.25rem;
+    margin: 0.5rem 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .threshold-list li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .threshold-list li strong {
+    color: var(--color-text-primary);
+  }
+
+  .turnoff-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .turnoff-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .turnoff-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+    margin-top: 1.25rem;
+  }
+
+  .turnoff-steps {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .turnoff-steps li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .inline-link {
+    color: var(--color-text-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .inline-link:hover {
+    color: var(--color-high);
+  }
+
+  .limits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
+  }
+
+  .limit-item {
+    border-left: 2px solid var(--color-border);
+    padding-left: 1rem;
+  }
+
+  .limit-item dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .limit-item dd {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>
