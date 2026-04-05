@@ -1,0 +1,304 @@
+---
+import PracticeLayout from '../../layouts/PracticeLayout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Your Rights', href: '/rights' },
+  { label: 'CCPA / CPRA' },
+];
+---
+
+<PracticeLayout
+  title="CCPA / CPRA (California Consumer Privacy Act)"
+  description="California's consumer privacy law. CCPA effective January 2020, CPRA amendments effective January 2023. The strongest state-level privacy rights in the US — and a de facto national standard because most major platforms extend California controls to all US users."
+  subtitle="California's privacy law is the reason most US users have any data rights at all."
+  lastVerified="April 5, 2026"
+  platformCount={0}
+  severity="high"
+  severityText="CCPA/CPRA technically only applies to California residents, but in practice most major tech companies extend these controls to all US users — building separate experiences per state costs more than just giving everyone the California version. If you've ever seen a 'Do Not Sell or Share My Personal Information' link on a website, you have California law to thank for it existing."
+  category="Consumer Privacy Law"
+  alsoKnownAs="California Consumer Privacy Act, CCPA, California Privacy Rights Act, CPRA, AB 375, Proposition 24"
+  platforms={[]}
+  breadcrumbs={breadcrumbs}
+>
+
+  <!-- WHAT IT IS / WHAT IT COVERS -->
+  <div slot="what-it-is">
+    <p>The California Consumer Privacy Act (CCPA) passed in 2018 and took effect January 1, 2020. The California Privacy Rights Act (CPRA) — passed via ballot initiative in November 2020 — amended and strengthened CCPA, with most provisions effective January 1, 2023. Together, they give California residents five rights over their personal data:</p>
+
+    <ol class="rights-list">
+      <li>
+        <strong>Right to know</strong> — you can request disclosure of what personal information a business collects about you, where it comes from, why it's collected, and who it's shared with.
+      </li>
+      <li>
+        <strong>Right to delete</strong> — you can request that a business delete personal information it has collected about you (subject to exceptions).
+      </li>
+      <li>
+        <strong>Right to opt out of sale or sharing</strong> — you can direct a business not to sell or share your personal information. This is the CCPA's marquee provision. Businesses must honor this request and cannot penalize you for making it.
+      </li>
+      <li>
+        <strong>Right to correct</strong> — added by CPRA. You can request correction of inaccurate personal information.
+      </li>
+      <li>
+        <strong>Right to limit use of sensitive personal information</strong> — added by CPRA. You can direct a business to limit its use of sensitive personal information (including Social Security numbers, financial data, health data, precise geolocation, race and ethnicity, and contents of communications) to what is necessary for the service.
+      </li>
+    </ol>
+
+    <h3 class="subsection-heading">Who It Applies To</h3>
+    <p>CCPA/CPRA applies to for-profit businesses that do business in California and meet any one of these thresholds:</p>
+    <ul class="threshold-list">
+      <li>Annual gross revenues <strong>exceeding $25 million</strong>, OR</li>
+      <li>Annually buys, sells, or shares personal information of <strong>100,000 or more consumers or households</strong>, OR</li>
+      <li>Derives <strong>50% or more of annual revenues</strong> from selling or sharing consumers' personal information</li>
+    </ul>
+    <p>In practice, every major tech company meets at least one of these thresholds. Exemptions apply to nonprofit organizations, government entities, and data covered by certain sector-specific federal laws (HIPAA health data, GLBA financial data, FCRA credit data).</p>
+
+    <h3 class="subsection-heading">The California Privacy Protection Agency</h3>
+    <p>CPRA created the California Privacy Protection Agency (CPPA), the first dedicated state privacy enforcement agency in the US. The CPPA has rulemaking authority and can bring enforcement actions independently of the California Attorney General, which retained concurrent enforcement authority.</p>
+  </div>
+
+  <!-- DO NOT SELL / GPC / HOW TO USE YOUR RIGHTS -->
+  <div slot="how-to-turn-off">
+    <h3 class="turnoff-heading">"Do Not Sell or Share My Personal Information"</h3>
+    <p>CCPA requires businesses to provide a clear and conspicuous link titled "Do Not Sell My Personal Information" (updated to "Do Not Sell or Share" after CPRA). Every "Do Not Sell" link you've ever seen on a website exists because of this requirement.</p>
+
+    <p>The scope of "sale" under CCPA is broader than the everyday meaning of the word. It includes exchanging personal information for "valuable consideration" — which encompasses sharing data with advertising partners, data brokers, and analytics services that provide services in return. Companies initially tried to argue that handing data to advertising platforms wasn't a "sale" because money didn't change hands. CPRA closed that argument by adding "sharing" as a separate category specifically targeting behavioral advertising.</p>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">How to Opt Out</h3>
+      <ol class="turnoff-steps">
+        <li>Look for a "Do Not Sell or Share My Personal Information" or "Your Privacy Choices" link in the footer of any major website or app. Click it and complete the opt-out.</li>
+        <li>Alternatively, enable <strong>Global Privacy Control (GPC)</strong> in your browser. CCPA/CPRA requires covered businesses to honor GPC signals as opt-outs. See the <a href="/rights/colorado" class="inline-link">Colorado Privacy Act page</a> for a step-by-step browser setup walkthrough — GPC works the same way under CCPA.</li>
+        <li>For access, deletion, or correction requests: find the business's privacy request form (usually in privacy settings or accessible by searching "[company name] privacy request"). Businesses must respond within 45 days.</li>
+      </ol>
+    </div>
+
+    <WarningCallout title="Opt-out resets">
+      <p>Some businesses reset opt-out preferences when you clear cookies, create a new account, or switch devices. If you use GPC via browser, the signal is sent automatically on every visit without relying on a cookie, which is more durable. However, GPC only covers businesses that are required to honor it — not every site you visit.</p>
+    </WarningCallout>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Data Broker Opt-Outs</h3>
+      <p>CCPA's opt-out provisions are the primary legal mechanism for opting out of data brokers. Data brokers must register with the California AG and provide opt-out mechanisms. The most direct way to opt out at scale is through broker opt-out services, but you can also submit individual requests.</p>
+    </div>
+  </div>
+
+  <!-- DE FACTO NATIONAL STANDARD -->
+  <div slot="why-it-matters">
+    <p>CCPA technically only applies to California residents, but it functions as a de facto national privacy standard for most major platforms. The reason is economics: building and maintaining separate data handling systems, opt-out mechanisms, and compliance workflows for California users versus everyone else costs significantly more than just applying California controls universally. For companies with nationwide products, the cheaper path is giving all US users the California version.</p>
+
+    <p>This means that if you've ever used a "Do Not Sell My Personal Information" link, submitted a data deletion request to a tech company, or received a response to a privacy rights request — and you're not a California resident — you're benefiting from California law. California's legislature effectively set minimum privacy standards for all US users by being the first state to require them.</p>
+
+    <h3 class="subsection-heading">The GPC Effect</h3>
+    <p>CCPA/CPRA requires covered businesses to treat Global Privacy Control (GPC) signals as valid opt-outs. This is the same GPC requirement that Colorado's privacy law imposes. The combination of California + Colorado GPC requirements means most major platforms must honor GPC — and because they already have GPC handling for California users, the incremental cost of extending it is low. GPC works at the browser level: one setting, applied universally.</p>
+
+    <h3 class="subsection-heading">What Changed with CPRA</h3>
+    <p>The CPRA amendments, effective January 1, 2023, made several meaningful improvements to the original CCPA:</p>
+    <ul class="threshold-list">
+      <li>Added the right to correct inaccurate personal information</li>
+      <li>Added the right to limit use of sensitive personal information</li>
+      <li>Extended opt-out rights to "sharing" for cross-context behavioral advertising (closing the ad-network loophole)</li>
+      <li>Created the California Privacy Protection Agency with independent enforcement authority</li>
+      <li>Required data minimization — businesses must limit collection to what's reasonably necessary</li>
+      <li>Eliminated the 30-day cure period for non-willful violations (previously, companies could violate CCPA and simply fix it when notified, avoiding penalties)</li>
+    </ul>
+  </div>
+
+  <!-- ENFORCEMENT -->
+  <div slot="how-it-works">
+    <p>CCPA/CPRA is enforced by two bodies: the California Privacy Protection Agency (CPPA) and the California Attorney General. The CPPA was created by CPRA and has rulemaking authority in addition to enforcement powers.</p>
+
+    <ol class="steps-list">
+      <li>
+        <strong>Civil penalties.</strong> Violations carry civil penalties of up to $2,500 per unintentional violation and $7,500 per intentional violation. Because each consumer can represent a separate violation, large-scale non-compliance can produce substantial aggregate liability.
+      </li>
+      <li>
+        <strong>No cure period (post-CPRA).</strong> The original CCPA gave businesses 30 days to cure violations before penalties could be imposed. CPRA eliminated the cure period for most violations after January 1, 2023. Businesses can no longer simply wait to get caught and then fix it.
+      </li>
+      <li>
+        <strong>Private right of action — limited.</strong> CCPA includes a private right of action, but only for data breaches. If a business's failure to implement reasonable security results in your personal information being disclosed in a breach, you can sue for statutory damages of $100–$750 per consumer per incident, or actual damages if higher. For all other CCPA violations — ignored deletion requests, unlawful selling of data, failure to honor opt-outs — only the AG and CPPA can enforce. You cannot sue directly.
+      </li>
+      <li>
+        <strong>CPPA rulemaking.</strong> The CPPA has issued regulations on automated decision-making technology (ADMT), cybersecurity audits for high-risk businesses, and risk assessments. These regulations impose proactive compliance obligations beyond responding to individual rights requests.
+      </li>
+    </ol>
+
+    <p>As of 2025-2026, the CPPA has prioritized enforcement of opt-out mechanisms (particularly for mobile apps), data broker registration requirements, and GPC compliance. The CPPA issued enforcement actions against several companies for failing to honor opt-out requests and for deceptive privacy interfaces. The agency is newer than most DPAs and still building its enforcement track record.</p>
+  </div>
+
+  <!-- WHAT IT DOESN'T DO -->
+  <div slot="who-has-data">
+    <p>CCPA/CPRA is the strongest state privacy law in the US, but its limitations matter for understanding what you actually get:</p>
+
+    <dl class="limits-list">
+      <div class="limit-item">
+        <dt>Doesn't prevent collection — only gives you rights after the fact</dt>
+        <dd>CCPA doesn't require businesses to minimize data collection or justify why they collect what they collect (with narrow exceptions for sensitive data under CPRA). Companies can still collect everything; you just get to ask what they have and tell them to delete it. The burden is on you to exercise your rights, platform by platform, indefinitely — because rights expire when your request does, not when the data does.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>Only California residents, technically</dt>
+        <dd>CCPA rights belong to California residents. If you're in another state, you're getting the California treatment only because it's cheaper for companies to apply it universally — not because you have legal rights. If a company decides the cost-benefit changes, they can stop extending California controls to non-California users.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>Regulated-sector exemptions</dt>
+        <dd>Health data governed by HIPAA, financial data covered by GLBA, and consumer credit data under FCRA are largely exempt. A hospital's records, a bank's account data, and a credit bureau's credit file are all outside CCPA's scope.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>Deletion has exceptions</dt>
+        <dd>Businesses can decline deletion requests when the data is necessary to complete a transaction, detect security incidents, comply with a legal obligation, exercise free speech, or conduct research. Businesses interpret these exceptions broadly. A deletion request is not a guarantee of deletion.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>No private right of action for most violations</dt>
+        <dd>You can't sue a company for ignoring your deletion request or selling your data without authorization. Only the CPPA and AG can act on those violations. The private right of action is limited to data breaches — a narrower class of harm than most CCPA violations.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>Employee data partially excluded</dt>
+        <dd>CPRA extended CCPA protections to employee data (previously exempt), but HR data processed in the employment context has different rules. Employees have CCPA rights but the practical enforcement context is different from consumer relationships.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/rights/gdpr" label="GDPR (EU)" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/rights/colorado" label="Colorado Privacy Act" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/data-brokers" label="Data Broker Industry" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/dark-patterns" label="Dark Patterns" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/google" label="Google" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/meta" label="Meta / Instagram" type="platform" />
+
+  <!-- DATA BROKERS -->
+  <CrossLinkChip slot="related-platforms" href="/data-brokers/acxiom" label="Acxiom" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/data-brokers/experian" label="Experian" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/data-brokers/liveramp" label="LiveRamp" type="platform" />
+
+</PracticeLayout>
+
+<style>
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .subsection-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  .rights-list,
+  .steps-list {
+    padding-left: 1.5rem;
+    margin: 0 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .rights-list li,
+  .steps-list li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  .rights-list li strong,
+  .steps-list li strong {
+    color: var(--color-text-primary);
+  }
+
+  .threshold-list {
+    padding-left: 1.25rem;
+    margin: 0.5rem 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .threshold-list li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .threshold-list li strong {
+    color: var(--color-text-primary);
+  }
+
+  .turnoff-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .turnoff-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .turnoff-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+    margin-top: 1.25rem;
+  }
+
+  .turnoff-steps {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .turnoff-steps li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .inline-link {
+    color: var(--color-text-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .inline-link:hover {
+    color: var(--color-high);
+  }
+
+  .limits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
+  }
+
+  .limit-item {
+    border-left: 2px solid var(--color-border);
+    padding-left: 1rem;
+  }
+
+  .limit-item dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .limit-item dd {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>

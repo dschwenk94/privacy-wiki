@@ -1,0 +1,292 @@
+---
+import PracticeLayout from '../../layouts/PracticeLayout.astro';
+import CrossLinkChip from '../../components/CrossLinkChip.astro';
+import WarningCallout from '../../components/WarningCallout.astro';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Your Rights', href: '/rights' },
+  { label: 'GDPR' },
+];
+---
+
+<PracticeLayout
+  title="GDPR (General Data Protection Regulation)"
+  description="The EU's comprehensive data protection law, effective May 2018. Gives EU residents broad rights over their personal data and requires affirmative consent for most data collection. Sets the global benchmark — and exposes the gap between what EU and US users can actually do on the same platforms."
+  subtitle="The gold standard for privacy law — and a useful lens for understanding how much US users are missing."
+  lastVerified="April 5, 2026"
+  platformCount={0}
+  severity="high"
+  severityText="GDPR only protects EU residents. If you're in the US, you get none of these rights unless a company voluntarily extends them. But GDPR matters for American readers anyway: the controls EU users have — AI training opt-outs, data portability, deletion rights with teeth — are the clearest proof that stronger regulation produces better privacy options. The gap between EU and US users on the same platforms is the case for federal privacy legislation."
+  category="Data Protection Law"
+  alsoKnownAs="Regulation (EU) 2016/679, General Data Protection Regulation"
+  platforms={[]}
+  breadcrumbs={breadcrumbs}
+>
+
+  <!-- WHAT IT IS / WHAT IT COVERS -->
+  <div slot="what-it-is">
+    <p>The General Data Protection Regulation took effect May 25, 2018. It applies to any organization processing personal data of EU/EEA residents, regardless of where the organization is based — which means American companies serving EU users are covered.</p>
+
+    <p>GDPR gives EU residents six core rights:</p>
+
+    <ol class="rights-list">
+      <li>
+        <strong>Right to access</strong> — you can request confirmation of whether a company processes your data, what data they hold, and a copy of it.
+      </li>
+      <li>
+        <strong>Right to erasure ("right to be forgotten")</strong> — you can request deletion of your personal data. Companies must comply unless they have a legal basis to retain it (legal obligation, legitimate interest that overrides yours, etc.).
+      </li>
+      <li>
+        <strong>Right to data portability</strong> — you can request your data in a machine-readable format, and in some cases have it transferred directly to another service.
+      </li>
+      <li>
+        <strong>Right to object to processing</strong> — you can object to processing of your data, including for direct marketing and profiling. Companies must stop unless they can demonstrate compelling legitimate grounds.
+      </li>
+      <li>
+        <strong>Right to restrict processing</strong> — you can request that a company limit what it does with your data while a dispute is being resolved or a request is being processed.
+      </li>
+      <li>
+        <strong>Right not to be subject to automated decision-making</strong> — you can request human review of decisions made entirely by automated systems that produce legal or similarly significant effects.
+      </li>
+    </ol>
+
+    <h3 class="subsection-heading">The Consent Standard</h3>
+    <p>GDPR requires affirmative, specific, informed consent for data processing that isn't otherwise legally justified. This means:</p>
+    <ul class="threshold-list">
+      <li>Pre-checked boxes don't count. Consent must be an active opt-in.</li>
+      <li>Bundled consent doesn't count. You can't make consent to marketing a condition of signing up for a service.</li>
+      <li>Vague consent doesn't count. "We may use your data to improve services" isn't specific enough for targeted advertising.</li>
+      <li>Consent must be as easy to withdraw as it was to give.</li>
+    </ul>
+    <p>This is why EU users encounter cookie banners with a "Reject All" button. GDPR compliance requires that declining be as easy as accepting. (Cookie banners exist in the US too, but the reject option is often buried or absent — because US law doesn't require it.)</p>
+
+    <h3 class="subsection-heading">Who It Applies To</h3>
+    <p>GDPR applies to any organization that processes personal data of EU/EEA residents and either (a) has an establishment in the EU, or (b) offers goods or services to EU residents, or (c) monitors behavior of EU residents. This is why US tech companies are subject to GDPR — they serve EU users. The regulation is enforced by national data protection authorities (DPAs) in each EU member state.</p>
+  </div>
+
+  <!-- THE LEGITIMATE INTEREST LOOPHOLE -->
+  <div slot="how-to-turn-off">
+    <p>GDPR requires a legal basis for processing personal data. The six lawful bases are: consent, contract performance, legal obligation, vital interests, public task, and legitimate interest. In practice, "legitimate interest" is the one that gets abused most.</p>
+
+    <h3 class="turnoff-heading">What Legitimate Interest Is Supposed to Mean</h3>
+    <p>Legitimate interest (Article 6(1)(f)) allows companies to process data without consent if they have a genuine business need that isn't overridden by the individual's privacy interests. The idea is that some processing is so obviously expected — like a company keeping records of customer transactions — that asking for consent every time would be unnecessary.</p>
+
+    <h3 class="turnoff-heading">How It Gets Abused</h3>
+    <p>Meta processes personal data for behavioral advertising in the EU under a "legitimate interest" claim — not consent. This means Meta can show you targeted ads based on your data without asking for your permission, as long as it can argue that its advertising business constitutes a legitimate interest that outweighs your privacy rights. The GDPR requires companies to conduct a "legitimate interest assessment" (LIA) balancing their interests against users' rights, but these assessments are internal documents that regulators rarely scrutinize proactively.</p>
+
+    <p>The result: major platforms claim legitimate interest for ad targeting, data analytics, cross-platform tracking, and profile building. Users technically have the right to object (see the access/rights section), but the burden is on each individual to object — not on the company to get consent first.</p>
+
+    <WarningCallout title="Legitimate interest objections">
+      <p>If a company processes your data under legitimate interest, you have the right to object (GDPR Article 21). The company must stop unless it can demonstrate "compelling legitimate grounds" that override your interests. For direct marketing, the right to object is absolute — the company must stop, no balancing required. Submit an objection through the company's privacy settings or directly to their data protection officer (DPO). Every company subject to GDPR is required to have a DPO contact.</p>
+    </WarningCallout>
+
+    <h3 class="turnoff-heading">Exercising Your GDPR Rights (EU/EEA Residents)</h3>
+    <div class="turnoff-group">
+      <ol class="turnoff-steps">
+        <li>Go to the company's privacy settings. Major platforms have dedicated privacy portals for EU users with more granular controls than their US equivalents.</li>
+        <li>For access, deletion, or portability requests: submit through the platform's privacy request form, or email the company's Data Protection Officer (DPO). Companies are required to publish DPO contact information.</li>
+        <li>Companies must respond to requests within one month (extendable by two additional months for complex requests).</li>
+        <li>If a company fails to respond or denies your request without adequate justification, file a complaint with your national DPA. Complaints are free. The DPA is required to investigate.</li>
+        <li>You can also seek judicial remedy in your member state's courts, independent of any DPA complaint.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- WHY AMERICAN READERS SHOULD CARE -->
+  <div slot="why-it-matters">
+    <p>GDPR doesn't protect you if you're in the United States. US users get none of these rights unless a company voluntarily extends them. Most don't. But GDPR is still worth understanding as an American for two reasons.</p>
+
+    <h3 class="subsection-heading">The EU/US Control Gap</h3>
+    <p>The clearest proof that stronger regulation produces better privacy outcomes is comparing what EU and US users can do on the same platform:</p>
+
+    <ul class="threshold-list">
+      <li><strong>Meta AI training:</strong> EU users can opt out of their data being used to train Meta's AI models. US users cannot — Meta does not offer this control in the United States.</li>
+      <li><strong>TikTok targeted advertising:</strong> EU users have more granular controls over targeted advertising on TikTok due to GDPR requirements. US users get a more limited opt-out.</li>
+      <li><strong>Data portability:</strong> While some platforms offer data export tools globally, GDPR legally requires machine-readable portability and imposes response timelines. The US has no equivalent legal requirement.</li>
+      <li><strong>Deletion with consequences:</strong> GDPR deletion requests carry legal weight with meaningful penalties for non-compliance. US deletion requests (outside California) are typically voluntary.</li>
+    </ul>
+
+    <p>These aren't technical limitations — the same engineering that lets EU users opt out of AI training could serve US users. The difference is legal obligation. EU users have rights because the law requires companies to respect them. US users have whatever companies choose to offer.</p>
+
+    <h3 class="subsection-heading">The Case for Federal Privacy Law</h3>
+    <p>GDPR's existence — and the concrete gap it creates between EU and US user experiences — is the strongest practical argument for a US federal privacy law. The current US approach (a patchwork of state laws, sector-specific rules, and voluntary corporate policies) produces fragmented, weaker protections than the EU's unified framework. GDPR demonstrates that comprehensive privacy legislation is implementable at scale without destroying the internet economy.</p>
+  </div>
+
+  <!-- ENFORCEMENT -->
+  <div slot="how-it-works">
+    <p>GDPR enforcement runs through national data protection authorities. The authority of the EU member state where a company has its main establishment is the "lead supervisory authority" for cross-border cases. For most major US tech companies with EU headquarters in Ireland (Apple, Google, Meta, Microsoft, TikTok), the Irish Data Protection Commission (DPC) is the lead authority.</p>
+
+    <ol class="steps-list">
+      <li>
+        <strong>Fine structure.</strong> GDPR fines can reach up to €20 million or 4% of global annual revenue, whichever is higher. For companies with tens of billions in revenue, the 4% calculation produces much larger figures than €20M.
+      </li>
+      <li>
+        <strong>Orders and bans.</strong> Beyond fines, DPAs can issue orders to stop specific processing activities, require changes to systems, and ban data transfers. These operational orders often have more immediate business impact than the fines themselves.
+      </li>
+      <li>
+        <strong>Notable fines.</strong> Meta received a record €1.2 billion fine from the Irish DPC in May 2023 for transferring EU user data to the US via standard contractual clauses that didn't adequately protect users from US surveillance law. TikTok received a €530 million fine from the Irish DPC in 2025 for illegally transferring EEA user data to China without adequate safeguards. Amazon received a €746 million fine from Luxembourg's data protection authority in 2021 (later annulled by a Luxembourg court on procedural grounds and returned to the regulator for reconsideration).
+      </li>
+      <li>
+        <strong>Cross-border coordination.</strong> The European Data Protection Board (EDPB) coordinates between national DPAs and can issue binding decisions in cross-border cases. The Meta €1.2B fine was the result of an EDPB binding dispute resolution decision when other DPAs disagreed with the Irish DPC's initial approach.
+      </li>
+    </ol>
+
+    <p>Cumulative GDPR fines exceeded €7.1 billion as of early 2026. While the fines get headlines, enforcement is uneven — smaller companies face less scrutiny, and the Irish DPC's approach to Big Tech has been criticized by other EU DPAs as too slow and too lenient.</p>
+  </div>
+
+  <!-- WHAT IT DOESN'T DO -->
+  <div slot="who-has-data">
+    <p>GDPR is the strongest consumer privacy framework in existence, but it has real limitations:</p>
+
+    <dl class="limits-list">
+      <div class="limit-item">
+        <dt>Only protects EU/EEA residents</dt>
+        <dd>US users, Canadian users, and everyone outside the EU/EEA gets nothing unless companies choose to extend controls globally. Most don't. The same company that gives an EU user a deletion right enforceable by law gives a US user a voluntary "request" with no legal teeth.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>Legitimate interest undermines consent</dt>
+        <dd>The broad interpretation of legitimate interest means many companies process data for advertising and analytics without consent, and the burden falls on individuals to object rather than on companies to seek permission. The gap between GDPR's stated consent standard and how companies actually operate is wide.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>Enforcement is slow and uneven</dt>
+        <dd>The Irish DPC handles most Big Tech cases and has been repeatedly criticized for slow investigations and insufficient penalties. The Meta €1.2B fine took years and required EDPB intervention to produce. By the time enforcement happens, the violation may have continued for years.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>No private right of action (mostly)</dt>
+        <dd>While individuals can seek judicial remedies in national courts, GDPR enforcement primarily runs through DPAs. This means individuals can't easily sue companies directly for GDPR violations the way US plaintiffs can file class actions. Complaints go to the DPA, which may or may not prioritize them.</dd>
+      </div>
+      <div class="limit-item">
+        <dt>National security carve-outs</dt>
+        <dd>GDPR doesn't apply to national security and law enforcement activities. EU member state intelligence agencies operate under national law, not GDPR. This is part of why US surveillance law (specifically Section 702 of FISA, which allows NSA access to data stored by US companies) remains a live issue for EU-US data transfers.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- RELATED PRACTICES -->
+  <CrossLinkChip slot="related-practices" href="/rights/ccpa" label="CCPA / CPRA" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/rights/colorado" label="Colorado Privacy Act" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/third-party-sharing" label="Third-Party Data Sharing" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/data-brokers" label="Data Broker Industry" type="practice" />
+
+  <!-- RELATED PLATFORMS -->
+  <CrossLinkChip slot="related-platforms" href="/platforms/meta" label="Meta / Instagram" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/tiktok" label="TikTok" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/google" label="Google" type="platform" />
+
+</PracticeLayout>
+
+<style>
+  p {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .subsection-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  .rights-list,
+  .steps-list {
+    padding-left: 1.5rem;
+    margin: 0 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .rights-list li,
+  .steps-list li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  .rights-list li strong,
+  .steps-list li strong {
+    color: var(--color-text-primary);
+  }
+
+  .threshold-list {
+    padding-left: 1.25rem;
+    margin: 0.5rem 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .threshold-list li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .threshold-list li strong {
+    color: var(--color-text-primary);
+  }
+
+  .turnoff-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .turnoff-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .turnoff-heading {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+    margin-top: 1.25rem;
+  }
+
+  .turnoff-steps {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .turnoff-steps li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .limits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
+  }
+
+  .limit-item {
+    border-left: 2px solid var(--color-border);
+    padding-left: 1rem;
+  }
+
+  .limit-item dt {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .limit-item dd {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>
