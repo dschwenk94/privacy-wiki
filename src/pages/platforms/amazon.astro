@@ -12,7 +12,7 @@ import FactCard from '../../components/FactCard.astro';
   subtitle=""
   category="E-Commerce & Smart Home Platform"
   lastVerified="March 23, 2026"
-  settingsCount={7}
+  settingsCount={10}
   severity="critical"
   severityText="Amazon operates across retail, smart home devices, cloud infrastructure, and advertising. Purchase history reveals behaviors that other platforms can only infer. Alexa devices record and store voice activity inside users' homes. Ring cameras have formalized law enforcement data sharing relationships. Amazon Sidewalk creates a mesh network using customer hardware without prominent disclosure."
   owner="Amazon.com Inc."
@@ -58,6 +58,8 @@ import FactCard from '../../components/FactCard.astro';
       <p>The Amazon Ads network is one of the largest digital advertising platforms, rivaling Google in some verticals. It uses purchase history, browsing behavior, and Prime membership activity to target ads both on Amazon properties and across the open web through Amazon DSP.</p>
 
       <p>Ring cameras have formalized relationships with law enforcement. Amazon has disclosed that it provides Ring footage to law enforcement agencies in response to emergency requests, defined broadly, without requiring a warrant or user notification in some circumstances.</p>
+
+      <p>Fire TV devices perform app-level tracking at the OS level. Unlike traditional <a href="/practices/acr">Automatic Content Recognition (ACR)</a>, Fire TV does not use screen fingerprinting — it does not scan what is displayed on screen. Instead, it monitors all app usage across the device: which apps are opened, how long they are used, and what is watched via antenna. This means every third-party app on the device is subject to OS-level observation, regardless of the app's own privacy settings.</p>
     </div>
   </div>
 
@@ -81,6 +83,24 @@ import FactCard from '../../components/FactCard.astro';
       webPath={['Your Account', 'Advertising Preferences']}
       description="Amazon uses your purchase history, browsing behavior, and Prime Video watch history to serve targeted ads on Amazon and on third-party websites and apps through Amazon DSP. This is distinct from ads within Amazon search results. Amazon DSP ads follow you to news sites, apps, and other unrelated destinations using your Amazon behavioral profile."
       whatItDoesnt="Opting out of interest-based ads stops Amazon from using your behavioral profile for off-Amazon ad targeting. You will still see ads on Amazon based on the products you search for and view. Amazon continues to collect your behavioral data; it simply stops applying it to external ad campaigns."
+    />
+
+    <SettingCard
+      name="Fire TV Device Usage Data"
+      severity="critical"
+      defaultState="On"
+      path="Settings > Preferences > Privacy Settings > Device Usage Data"
+      description="Amazon collects data on how you navigate the Fire TV interface — home screen browsing, settings changes, app selections. Used for marketing and product improvement."
+      whatItDoesnt="Turning this off stops marketing and product improvement use of this data. Amazon still collects operational data required to run the device."
+    />
+
+    <SettingCard
+      name="Fire TV App and Over-the-Air Usage Data"
+      severity="critical"
+      defaultState="On"
+      path="Settings > Preferences > Privacy Settings > Collect App and Over-the-Air Usage Data"
+      description="Amazon tracks which third-party apps you open, how long you use them, and what you watch via antenna. This is Amazon's version of viewership tracking — not traditional ACR (no screen fingerprinting), but OS-level monitoring of app activity across every app on the device."
+      whatItDoesnt="Turning this off does not affect data collection from Amazon's own services (Prime Video). It also does not stop individual apps from collecting data under their own policies."
     />
 
     <h3 class="severity-group-label">High</h3>
@@ -109,6 +129,15 @@ import FactCard from '../../components/FactCard.astro';
       webPath={['Your Account', 'Advertising Preferences', 'Personalized Ads Preferences']}
       description="Amazon uses your search queries, product views, purchase history, and Prime Video watch history to select which ads appear in Amazon search results, on product pages, and within Prime Video. This is the in-platform targeting system, separate from the DSP network that extends to third-party sites."
       whatItDoesnt="Turning off personalized ads on Amazon switches you to contextual ads — ads related to the products you are currently searching for rather than your historical behavior. It does not reduce Amazon's data collection. Your purchase and browsing history continues to be stored and used for other purposes."
+    />
+
+    <SettingCard
+      name="Fire TV Manage Sharing From Apps"
+      severity="high"
+      defaultState="On (new as of 2025)"
+      path="Settings > Preferences > Privacy Settings > Manage Sharing From Apps"
+      description="Controls whether third-party apps can send viewing and content information back to Amazon."
+      whatItDoesnt="Only controls what apps share with Amazon. Does not affect what those apps collect independently or share with their own partners."
     />
 
     <h3 class="severity-group-label">Medium</h3>
@@ -166,6 +195,30 @@ import FactCard from '../../components/FactCard.astro';
     </div>
 
     <div class="turnoff-group">
+      <h3 class="turnoff-heading">Fire TV Device Usage Data</h3>
+      <ol class="turnoff-steps">
+        <li>Fire TV remote &rarr; Settings &rarr; Preferences &rarr; Privacy Settings &rarr; Device Usage Data.</li>
+        <li>Toggle off.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Fire TV App and Over-the-Air Usage Data</h3>
+      <ol class="turnoff-steps">
+        <li>Fire TV remote &rarr; Settings &rarr; Preferences &rarr; Privacy Settings &rarr; Collect App and Over-the-Air Usage Data.</li>
+        <li>Toggle off.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
+      <h3 class="turnoff-heading">Fire TV Manage Sharing From Apps</h3>
+      <ol class="turnoff-steps">
+        <li>Fire TV remote &rarr; Settings &rarr; Preferences &rarr; Privacy Settings &rarr; Manage Sharing From Apps.</li>
+        <li>Toggle off.</li>
+      </ol>
+    </div>
+
+    <div class="turnoff-group">
       <h3 class="turnoff-heading">Alexa Skill Permissions</h3>
       <ol class="turnoff-steps">
         <li>Alexa app &rarr; Skills &amp; Games &rarr; Your Skills.</li>
@@ -212,10 +265,13 @@ import FactCard from '../../components/FactCard.astro';
   <CrossLinkChip slot="related-practices" href="/practices/location-data" label="Location Data" type="practice" />
   <CrossLinkChip slot="related-practices" href="/practices/dark-patterns" label="Dark Patterns" type="practice" />
   <CrossLinkChip slot="related-practices" href="/rights/ccpa" label="CCPA (deletion rights)" type="practice" />
+  <CrossLinkChip slot="related-practices" href="/practices/acr" label="Automatic Content Recognition (ACR)" type="practice" />
 
   <!-- RELATED PLATFORMS -->
   <CrossLinkChip slot="related-platforms" href="/platforms/google" label="Google" type="platform" />
   <CrossLinkChip slot="related-platforms" href="/platforms/meta" label="Meta / Instagram" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/vizio" label="VIZIO" type="platform" />
+  <CrossLinkChip slot="related-platforms" href="/platforms/roku" label="Roku" type="platform" />
 
 </PlatformLayout>
 
