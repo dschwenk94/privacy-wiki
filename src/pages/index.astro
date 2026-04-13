@@ -195,6 +195,12 @@ const practices: Array<{ name: string; href: string; description: string }> = [
 
     <hr class="divider" />
 
+    <a href="/your-exposure" class="exposure-cta">
+      <span class="exposure-cta-badge">Interactive</span>
+      <span class="exposure-cta-text">Find out what's tracking you →</span>
+      <span class="exposure-cta-sub">Select the platforms you use. See every setting to change, sorted by severity.</span>
+    </a>
+
     <main>
       <section class="index-section">
         <div class="section-header">
@@ -490,5 +496,50 @@ const practices: Array<{ name: string; href: string; description: string }> = [
     font-size: 0.75rem;
     color: var(--color-text-muted);
     margin: 0;
+  }
+
+  /* ── Your Exposure CTA ── */
+  .exposure-cta {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.625rem 1rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-critical);
+    background: rgba(229, 62, 62, 0.04);
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+
+  .exposure-cta:hover {
+    background: rgba(229, 62, 62, 0.07);
+    text-decoration: none;
+  }
+
+  .exposure-cta-badge {
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-critical);
+    border: 1px solid var(--color-critical);
+    padding: 0.1em 0.45em;
+    flex-shrink: 0;
+  }
+
+  .exposure-cta-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .exposure-cta-sub {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    width: 100%;
+    margin-left: calc(0.5625rem + 0.9em + 1rem); /* badge-width + gap */
   }
 </style>

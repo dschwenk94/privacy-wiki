@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ExposureChecker from "../components/ExposureChecker.tsx";
+---
+
+<BaseLayout title="Your Exposure | Privacy Wiki" description="Find out which settings are tracking you across every platform you use.">
+  <div class="page-container">
+    <h1>Your Exposure</h1>
+    <p class="lead">Check the platforms you use. We show you what to change, worst first.</p>
+    <ExposureChecker client:load />
+  </div>
+</BaseLayout>
+
+<style>
+  .page-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  .lead {
+    color: #999;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+</style>
