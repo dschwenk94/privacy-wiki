@@ -1,0 +1,77 @@
+{
+  "name": "Reddit",
+  "slug": "reddit",
+  "category": "Social Media Platform",
+  "severity": "high",
+  "owner": "Advance Publications",
+  "ownerHQ": "New York, NY",
+  "monthlyUsers": "~1.5B MAU",
+  "settings": [
+    {
+      "name": "Ad Personalization",
+      "severity": "high",
+      "defaultState": "On",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://www.reddit.com/settings/privacy",
+      "webPath": ["Privacy & Safety", "Ad Personalization"],
+      "description": "Reddit uses your on-platform activity — subreddit memberships, post and comment history, upvote patterns, and search queries — to select which ads you see. This is the primary ad targeting toggle. With it on, Reddit can use your full behavioral profile to match you to advertiser campaigns.",
+      "whatItDoesnt": "Turning this off stops Reddit from using your behavioral profile for ad selection. It does not stop Reddit from collecting that data. Ads are still shown; they are based on the current page context rather than your account history. Off-Reddit tracking via the Reddit Pixel continues regardless of this setting."
+    },
+    {
+      "name": "Use Data from Reddit Partners to Show Ads",
+      "severity": "high",
+      "defaultState": "On",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://www.reddit.com/settings/privacy",
+      "webPath": ["Privacy & Safety", "Use data from Reddit partners to show you ads"],
+      "description": "Reddit receives data from its advertising partners — external companies including retailers, apps, and data providers — and uses it to supplement your Reddit behavioral profile for ad targeting. This is the mechanism by which your activity on non-Reddit websites can inform the ads you see on Reddit.",
+      "whatItDoesnt": "Turning this off stops Reddit from using partner-provided data to target ads at you. It does not stop Reddit's advertising partners from sending data about you to Reddit. The data is still received by Reddit; it just does not get applied to your ad profile."
+    },
+    {
+      "name": "Allow Reddit to Use Your Data for Research",
+      "severity": "high",
+      "defaultState": "On",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://www.reddit.com/settings/privacy",
+      "webPath": ["Privacy & Safety", "Allow Reddit to use your data to improve Reddit's products and services"],
+      "description": "Reddit uses your activity data for internal research and product development. This covers analysis of behavior patterns, A/B testing, and improving recommendation systems. It is separate from advertising but draws on the same behavioral data.",
+      "whatItDoesnt": "Turning this off opts you out of Reddit's internal research uses of your data. It does not affect ad targeting or the data licensing deals Reddit has with third parties like Google. Content you have already posted remains part of any existing licensing arrangements."
+    },
+    {
+      "name": "Profile Visibility",
+      "severity": "high",
+      "defaultState": "Public",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://www.reddit.com/settings/privacy",
+      "webPath": ["Privacy & Safety", "Profile visibility"],
+      "description": "By default, your Reddit profile, post history, and comment history are publicly visible to anyone on the internet, including search engines and data scrapers. This means everything you have ever posted on Reddit under your account is indexable. Setting your profile to private limits visibility to approved followers only, but does not remove your content from Reddit's servers or from data licensing exports.",
+      "whatItDoesnt": "Making your profile private stops public indexing going forward. It does not delete your post history. It does not remove your content from data licensing agreements Reddit has with third parties. Content already indexed by search engines remains cached in those indexes until those caches expire."
+    },
+    {
+      "name": "Reddit Ads Personalization Opt-Out (Web)",
+      "severity": "medium",
+      "defaultState": "On",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://redditinc.com/policies/opt-out",
+      "webPath": ["Reddit Inc.", "Ad Personalization Opt-Out"],
+      "description": "Reddit offers a separate opt-out for interest-based advertising via its ad partner network. This is distinct from the in-app personalization toggle and applies to Reddit's programmatic advertising partnerships with third-party ad platforms and exchanges.",
+      "whatItDoesnt": "This opt-out applies to Reddit's use of interest-based advertising via ad exchanges. It does not cover all Reddit advertising, and it does not prevent data collection. The opt-out is cookie-based and must be re-applied if you clear cookies or switch browsers."
+    },
+    {
+      "name": "Location Personalization",
+      "severity": "medium",
+      "defaultState": "On",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://www.reddit.com/settings/privacy",
+      "webPath": ["Privacy & Safety", "Location Personalization"],
+      "description": "Reddit uses your inferred location (from IP address) to personalize content and ads. Location inference happens on every session without requiring explicit location permission from your device. It is used for local community recommendations and geo-targeted advertising.",
+      "whatItDoesnt": "Turning off location personalization stops Reddit from using inferred location for content and ad selection. It does not prevent Reddit from logging your IP address, which is standard technical logging. IP-based location inference still occurs at the network level regardless of this setting."
+    }
+  ]
+}

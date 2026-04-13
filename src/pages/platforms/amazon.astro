@@ -4,6 +4,7 @@ import SettingCard from '../../components/SettingCard.astro';
 import WarningCallout from '../../components/WarningCallout.astro';
 import CrossLinkChip from '../../components/CrossLinkChip.astro';
 import FactCard from '../../components/FactCard.astro';
+import platformData from '../../data/platforms/amazon.json';
 ---
 
 <PlatformLayout
@@ -12,7 +13,7 @@ import FactCard from '../../components/FactCard.astro';
   subtitle=""
   category="E-Commerce & Smart Home Platform"
   lastVerified="March 23, 2026"
-  settingsCount={10}
+  settingsCount={platformData.settings.length}
   severity="critical"
   severityText="Amazon operates across retail, smart home devices, cloud infrastructure, and advertising. Purchase history reveals behaviors that other platforms can only infer. Alexa devices record and store voice activity inside users' homes. Ring cameras have formalized law enforcement data sharing relationships. Amazon Sidewalk creates a mesh network using customer hardware without prominent disclosure."
   owner="Amazon.com Inc."
@@ -65,98 +66,29 @@ import FactCard from '../../components/FactCard.astro';
 
   <!-- SETTINGS THAT MATTER -->
   <div slot="settings">
-    <SettingCard
-      name="Alexa Voice History"
-      severity="critical"
-      defaultState="On"
-      webUrl="https://www.amazon.com/alexa-privacy/apd/rvh"
-      webPath={['Alexa Privacy', 'Review Voice History']}
-      description="Amazon stores every Alexa voice recording by default. These recordings are used to improve voice recognition accuracy and may be reviewed by Amazon employees or contractors. The recordings are linked to your Amazon account and stored indefinitely unless manually deleted. Amazon offers automatic deletion options (3 months or 18 months) under Manage Your Alexa Data."
-      whatItDoesnt="Enabling automatic deletion removes stored recordings on a schedule. It does not prevent Amazon from processing voice commands in real time. Amazon retains some data from voice interactions for fraud prevention and account security even when automatic deletion is enabled. The device continues to listen for the wake word at all times."
-    />
-
-    <SettingCard
-      name="Interest-Based Ads (Amazon DSP)"
-      severity="critical"
-      defaultState="On"
-      webUrl="https://www.amazon.com/adprefs"
-      webPath={['Your Account', 'Advertising Preferences']}
-      description="Amazon uses your purchase history, browsing behavior, and Prime Video watch history to serve targeted ads on Amazon and on third-party websites and apps through Amazon DSP. This is distinct from ads within Amazon search results. Amazon DSP ads follow you to news sites, apps, and other unrelated destinations using your Amazon behavioral profile."
-      whatItDoesnt="Opting out of interest-based ads stops Amazon from using your behavioral profile for off-Amazon ad targeting. You will still see ads on Amazon based on the products you search for and view. Amazon continues to collect your behavioral data; it simply stops applying it to external ad campaigns."
-    />
-
-    <SettingCard
-      name="Fire TV Device Usage Data"
-      severity="critical"
-      defaultState="On"
-      path="Settings > Preferences > Privacy Settings > Device Usage Data"
-      description="Amazon collects data on how you navigate the Fire TV interface — home screen browsing, settings changes, app selections. Used for marketing and product improvement."
-      whatItDoesnt="Turning this off stops marketing and product improvement use of this data. Amazon still collects operational data required to run the device."
-    />
-
-    <SettingCard
-      name="Fire TV App and Over-the-Air Usage Data"
-      severity="critical"
-      defaultState="On"
-      path="Settings > Preferences > Privacy Settings > Collect App and Over-the-Air Usage Data"
-      description="Amazon tracks which third-party apps you open, how long you use them, and what you watch via antenna. This is Amazon's version of viewership tracking — not traditional ACR (no screen fingerprinting), but OS-level monitoring of app activity across every app on the device."
-      whatItDoesnt="Turning this off does not affect data collection from Amazon's own services (Prime Video). It also does not stop individual apps from collecting data under their own policies."
-    />
-
-    <h3 class="severity-group-label">High</h3>
-
-    <SettingCard
-      name="Ring Camera Law Enforcement Sharing"
-      severity="high"
-      defaultState="Amazon may share without explicit consent in emergencies"
-      description="Amazon Ring has disclosed that it shares camera footage with law enforcement in response to emergency requests without requiring a warrant or notifying the device owner. The definition of emergency is determined by Amazon. Users can control who they share footage with voluntarily, but emergency sharing operates outside user control."
-      whatItDoesnt="Adjusting Ring privacy settings controls voluntary sharing — who you choose to share clips with and whether your clips appear in the Neighbors feed. It does not prevent Amazon from complying with emergency requests or legal process. There is no user-facing toggle to opt out of emergency law enforcement sharing."
-    />
-
-    <SettingCard
-      name="Amazon Sidewalk"
-      severity="high"
-      defaultState="On"
-      description="Amazon Sidewalk is a shared mesh network that uses the bandwidth and hardware of your Echo, Ring, and other compatible devices to extend connectivity for nearby Sidewalk-enabled devices. It was enabled by default for most existing Echo and Ring customers in 2021 without prominent notification. The network uses a small portion of your internet bandwidth and your device hardware to serve as a relay node for others."
-      whatItDoesnt="Turning off Sidewalk stops your device from participating in the shared network. It does not affect Amazon's ability to collect data from your own device usage. If neighbors' Sidewalk devices remain active, they may still use infrastructure near your home."
-    />
-
-    <SettingCard
-      name="Personalized Ads on Amazon"
-      severity="high"
-      defaultState="On"
-      webUrl="https://www.amazon.com/adprefs"
-      webPath={['Your Account', 'Advertising Preferences', 'Personalized Ads Preferences']}
-      description="Amazon uses your search queries, product views, purchase history, and Prime Video watch history to select which ads appear in Amazon search results, on product pages, and within Prime Video. This is the in-platform targeting system, separate from the DSP network that extends to third-party sites."
-      whatItDoesnt="Turning off personalized ads on Amazon switches you to contextual ads — ads related to the products you are currently searching for rather than your historical behavior. It does not reduce Amazon's data collection. Your purchase and browsing history continues to be stored and used for other purposes."
-    />
-
-    <SettingCard
-      name="Fire TV Manage Sharing From Apps"
-      severity="high"
-      defaultState="On (new as of 2025)"
-      path="Settings > Preferences > Privacy Settings > Manage Sharing From Apps"
-      description="Controls whether third-party apps can send viewing and content information back to Amazon."
-      whatItDoesnt="Only controls what apps share with Amazon. Does not affect what those apps collect independently or share with their own partners."
-    />
-
-    <h3 class="severity-group-label">Medium</h3>
-
-    <SettingCard
-      name="Alexa Voice Profile (Voice ID)"
-      severity="medium"
-      defaultState="Off by default"
-      description="Voice ID creates a biometric voice profile linked to your Amazon account, enabling Alexa to recognize who is speaking and personalize responses. The biometric voice data is stored on Amazon servers."
-      whatItDoesnt="If Voice ID was previously enabled and is now disabled, the stored voice profile should be deleted per Amazon policy. Review Alexa Privacy settings to confirm deletion."
-    />
-
-    <SettingCard
-      name="Alexa Skill Data Access"
-      severity="medium"
-      defaultState="Varies by skill"
-      description="Third-party Alexa skills — games, productivity tools, media integrations — request permissions to access account data, smart home devices, or the ability to send notifications. Each skill operates under its own developer's privacy policy, not Amazon's. Skills can request access to your name, email, phone number, and customer profile."
-      whatItDoesnt="Disabling a skill revokes future access but does not delete data that skill has already collected. The skill developer retains data per their own policy."
-    />
+    {(() => {
+      let lastSeverity = null;
+      return platformData.settings.map((s) => {
+        const showLabel = s.severity !== "critical" && s.severity !== lastSeverity;
+        lastSeverity = s.severity;
+        return (
+          <>
+            {showLabel && <h3 class="severity-group-label">{s.severity.charAt(0).toUpperCase() + s.severity.slice(1)}</h3>}
+            <SettingCard
+              name={s.name}
+              severity={s.severity}
+              defaultState={s.defaultState}
+              platform={s.platform}
+              path={s.path}
+              webUrl={s.webUrl ?? undefined}
+              webPath={s.webPath ?? undefined}
+              description={s.description}
+              whatItDoesnt={s.whatItDoesnt}
+            />
+          </>
+        );
+      });
+    })()}
   </div>
 
 

@@ -1,0 +1,55 @@
+{
+  "name": "Samsung TV",
+  "slug": "samsung-tv",
+  "category": "Smart TV Platform",
+  "severity": "critical",
+  "owner": "Samsung Electronics Co., Ltd.",
+  "ownerHQ": "Seoul, South Korea",
+  "monthlyUsers": "~500M+ Samsung TVs in active use globally",
+  "settings": [
+    {
+      "name": "Viewing Information Services",
+      "severity": "critical",
+      "defaultState": "On",
+      "platform": "Samsung TV",
+      "path": ["Home", "Settings", "All Settings", "General & Privacy", "Terms & Conditions Privacy Policy", "Viewing Information Services"],
+      "webUrl": "https://www.samsung.com/us/privacy/",
+      "webPath": ["Privacy", "Your Privacy Choices"],
+      "description": "Samsung's ACR control. Tizen OS captures frame fingerprints from everything on screen — cable, streaming apps, HDMI sources, broadcast — and sends them to Samsung's matching servers. Matches are logged as device ID, timestamp, duration, and content ID. These records power Samsung Ads and are the data at issue in the Texas AG settlement. On some models the path is: Settings → Support → Terms & Conditions → Samsung Privacy Policy → Viewing Information Services.",
+      "whatItDoesnt": "Turning this off stops Samsung's ACR from sending new fingerprints. It does not delete records already collected. It does not stop Samba TV's collection if Samba TV is enabled separately. It does not affect data collection inside streaming apps."
+    },
+    {
+      "name": "Samba TV / Personalized Service",
+      "severity": "high",
+      "defaultState": "On",
+      "platform": "Samsung TV",
+      "path": ["Home", "Settings", "All Settings", "General & Privacy", "Terms & Conditions Privacy Policy", "Samba Interactive TV"],
+      "webUrl": "https://www.samba.tv/legal/privacy-policy/",
+      "webPath": ["Privacy Policy", "Opt Out"],
+      "description": "Samba TV is a third-party ACR provider with its own data collection running independently of Samsung's Viewing Information Services. It operates under Samba TV's privacy policy and sells viewership data to its own set of partners. The consent for Samba TV was bundled into initial TV setup. It is a separate toggle from Viewing Information Services. Path varies by model and firmware version.",
+      "whatItDoesnt": "Turning off Samba TV does not affect Samsung's own ACR. The two systems are independent. Samba TV's previously collected data is not deleted by disabling this setting — Samba TV's own opt-out form is required to request deletion."
+    },
+    {
+      "name": "Interest-Based Advertising",
+      "severity": "high",
+      "defaultState": "On",
+      "platform": "Samsung TV",
+      "path": ["Home", "Settings", "All Settings", "General & Privacy", "Terms & Conditions Privacy Policy", "Interest-Based Advertising"],
+      "webUrl": "https://www.samsung.com/us/privacy/",
+      "webPath": ["Privacy", "Your Privacy Choices"],
+      "description": "Controls whether Samsung uses your viewing and usage data to personalize ads served through Samsung's own ad surfaces — the home screen, Samsung TV Plus, and Samsung's content recommendation system. With this off, Samsung still serves ads on its platforms; they are contextual rather than audience-targeted.",
+      "whatItDoesnt": "Turning this off does not stop ACR data collection. It does not stop Samsung from collecting viewership data or using it for aggregate measurement. It changes how Samsung targets ads on its own surfaces — not whether it collects the underlying data."
+    },
+    {
+      "name": "Samsung Account Personalization",
+      "severity": "medium",
+      "defaultState": "On",
+      "platform": "Samsung TV",
+      "path": ["Home", "Settings", "All Settings", "General & Privacy", "Terms & Conditions Privacy Policy"],
+      "webUrl": "https://account.samsung.com",
+      "webPath": ["Account", "Privacy", "Personalization"],
+      "description": "If a Samsung account is linked to the TV, viewing data can be associated with the same account used across Samsung phones, tablets, and wearables. This enables cross-device audience profiles — the TV viewing record and the mobile device record belong to the same account. Samsung's advertising offering includes cross-screen targeting for this reason.",
+      "whatItDoesnt": "Removing a Samsung account from the TV stops future linkage but does not delete previously associated data. The TV continues to collect device-level data; it is no longer tied to your Samsung account identifier."
+    }
+  ]
+}

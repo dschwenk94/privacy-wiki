@@ -1,0 +1,99 @@
+{
+  "name": "X / Twitter",
+  "slug": "x",
+  "category": "Social Media Platform",
+  "severity": "critical",
+  "owner": "X Corp (Elon Musk / xAI)",
+  "ownerHQ": "San Francisco, CA",
+  "monthlyUsers": "~600M MAU",
+  "settings": [
+    {
+      "name": "Grok AI Training",
+      "severity": "critical",
+      "defaultState": "On",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://x.com/settings/grok_settings",
+      "webPath": ["Privacy and Safety", "Grok & Third-party Collaborators"],
+      "description": "Three default-on checkboxes control how X feeds your data to xAI. The first allows your public posts, interactions, inputs to Grok, and results to be used for training and fine-tuning. The second allows X to personalize your Grok experience. The third allows Grok to remember your conversation history. All three were enabled by default in 2024 with no user notification.",
+      "whatItDoesnt": "Opting out stops future data from being used for training. Data already used to train existing model versions cannot be removed. The opt-out is forward-looking only. Making your account private also prevents your posts from being used for Grok training."
+    },
+    {
+      "name": "Data Sharing with Business Partners",
+      "severity": "critical",
+      "defaultState": "On",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://x.com/settings/privacy_and_safety",
+      "webPath": ["Data sharing and off-X activity"],
+      "description": "X shares behavioral data with unnamed business partners for ad targeting and measurement. The policy language is deliberately broad and covers sharing arrangements not individually disclosed to users.",
+      "whatItDoesnt": "Does not enumerate who the business partners are. Broad policy language may cover data-sharing arrangements not visible to users even after toggling this off."
+    },
+    {
+      "name": "Personalized Ads",
+      "severity": "high",
+      "defaultState": "On",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://x.com/settings/ads_preferences",
+      "webPath": ["Personalized ads"],
+      "description": "X uses your on-platform behavior to select ads. Tweets you engage with, accounts you follow, searches, link clicks. Enabled by default.",
+      "whatItDoesnt": "Turning this off does not stop X from collecting your behavioral data or building your interest profile. You see less relevant ads. The collection continues."
+    },
+    {
+      "name": "Inferred Location for Personalization",
+      "severity": "high",
+      "defaultState": "On",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://x.com/settings/location_information",
+      "webPath": ["Personalize based on your inferred location"],
+      "description": "X infers location from IP address, device settings, and activity patterns. Used for ad targeting and content personalization without requiring explicit location permission.",
+      "whatItDoesnt": "Does not prevent IP-based inference. X derives location signals from network data regardless of this setting. The toggle controls use, not collection."
+    },
+    {
+      "name": "Cross-Device Personalization",
+      "severity": "high",
+      "defaultState": "On",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://x.com/settings/off_x_activity",
+      "webPath": ["Personalize based on your devices"],
+      "description": "X tracks which devices you use and personalizes content and ads based on cross-device behavior patterns.",
+      "whatItDoesnt": "Does not stop X from identifying linked devices. It stops using that linkage for personalization, not from detecting it."
+    },
+    {
+      "name": "Track Where You See X Content",
+      "severity": "medium",
+      "defaultState": "On",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://x.com/settings/off_x_activity",
+      "webPath": ["Allow additional information sharing with business partners"],
+      "description": "X monitors when you encounter embedded tweets, X widgets, or X login buttons on external websites. This happens without any interaction on your part.",
+      "whatItDoesnt": "Does not prevent X from receiving signals when its code is embedded on third-party sites. The toggle controls what X does with those signals, not whether they are received."
+    },
+    {
+      "name": "Discoverability by Email and Phone",
+      "severity": "medium",
+      "defaultState": "On",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://x.com/settings/contacts",
+      "webPath": ["Discoverability and contacts"],
+      "description": "Two separate toggles let people who have your email address or phone number find your X account. Enabled by default. Also controls whether X can sync your address book to suggest connections.",
+      "whatItDoesnt": "Disabling these toggles stops new lookups. If someone already found your account through these methods, that connection is not reversed. Previously uploaded contacts are not automatically deleted."
+    },
+    {
+      "name": "Connected Apps",
+      "severity": "medium",
+      "defaultState": "Varies",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://x.com/settings/connected_apps",
+      "webPath": ["Apps and sessions", "Connected apps"],
+      "description": "Third-party apps authorized via your X account. Each has ongoing access to account data unless revoked.",
+      "whatItDoesnt": "Revoking permissions stops future access. It does not delete data the app already collected before revocation."
+    }
+  ]
+}

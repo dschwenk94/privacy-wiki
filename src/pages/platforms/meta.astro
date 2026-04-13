@@ -4,6 +4,7 @@ import SettingCard from '../../components/SettingCard.astro';
 import WarningCallout from '../../components/WarningCallout.astro';
 import CrossLinkChip from '../../components/CrossLinkChip.astro';
 import FactCard from '../../components/FactCard.astro';
+import platformData from '../../data/platforms/meta.json';
 ---
 
 <PlatformLayout
@@ -12,7 +13,7 @@ import FactCard from '../../components/FactCard.astro';
   subtitle=""
   category="Social Media Platform"
   lastVerified="March 23, 2026"
-  settingsCount={7}
+  settingsCount={platformData.settings.length}
   severity="critical"
   severityText="The most mature and comprehensive consumer data infrastructure that exists. Off-Facebook Activity tracking spans millions of third-party websites. Cross-platform data merging between Facebook and Instagram via Accounts Center. AI training on posts and photos with no US opt-out. The Audience Network serves targeted ads on thousands of unrelated apps using your Meta profile."
   owner="Meta Platforms"
@@ -67,80 +68,29 @@ import FactCard from '../../components/FactCard.astro';
 
   <!-- SETTINGS THAT MATTER -->
   <div slot="settings">
-    <SettingCard
-      name="Off-Facebook Activity"
-      severity="critical"
-      defaultState="On"
-      howToTurnOff="Disconnect All or individual partners"
-      webUrl="https://accountscenter.facebook.com/info_and_permissions/off_facebook_activity"
-      webPath={['Your information', 'Off-Facebook activity']}
-      description="This is the most important privacy setting Meta offers. The Off-Facebook Activity tool shows you a fraction of what third-party websites and apps have reported back to Meta about your behavior. Every business with the Meta Pixel or Conversions API installed sends your activity to Meta. The tool lets you view recent activity, disconnect individual businesses, and clear your history — but clearing does not delete the underlying data. It dissociates it from your account temporarily. Meta continues receiving new events immediately after clearing."
-      whatItDoesnt="Disconnecting a business or clearing your history does not delete what Meta has already collected or used for targeting. The data remains in Meta's systems. Your ad profile is rebuilt as new events arrive. The only durable reduction requires blocking Meta's tracking code at the browser or network level — ad blockers and tracker-blocking extensions are more effective than this toggle."
-    />
-
-    <SettingCard
-      name="Ad Personalization Using Partner Data"
-      severity="critical"
-      defaultState="On"
-      webUrl="https://accountscenter.facebook.com/ad_preferences/ad_settings"
-      webPath={['Ad preferences', 'Ad settings']}
-      description="Meta uses data from its advertising partners — external companies including retailers, apps, and data brokers — to target ads at you. This is separate from your on-platform behavior. It is the mechanism by which your activity on a retailer website appears as a targeted ad in your Facebook or Instagram feed. The partner data pipeline operates independently of the Off-Facebook Activity tool."
-      whatItDoesnt="Turning this off stops Meta from using partner data to select your ads. It does not stop Meta's partners from sending data about you to Meta. The data still arrives; it just does not get applied to your ad targeting. Your off-platform activity continues to be collected and stored."
-    />
-
-    <h3 class="severity-group-label">High</h3>
-
-    <SettingCard
-      name="Audience Network Ads"
-      severity="high"
-      defaultState="On"
-      webUrl="https://accountscenter.facebook.com/ad_preferences/ad_settings"
-      webPath={['Ad preferences', 'Ad settings', 'Ads shown outside of Meta']}
-      description="Meta's Audience Network serves targeted ads on thousands of third-party apps and websites, using your Facebook and Instagram behavioral profile. Your on-platform activity follows you to unrelated apps — games, news apps, utilities — that show ads through Meta's ad network. This is the reverse of off-platform tracking: it is your Meta profile being used to target you elsewhere."
-      whatItDoesnt="Turning off Audience Network ads stops Meta from using your profile to target ads on third-party apps. It does not stop those apps from showing ads — they will show untargeted or generically targeted ads instead. Your Meta profile continues to exist and be used for on-platform targeting."
-    />
-
-    <SettingCard
-      name="Search Engine Indexing of Profile"
-      severity="high"
-      defaultState="On"
-      webUrl="https://www.facebook.com/settings?tab=privacy"
-      webPath={['Privacy', 'How people find and contact you', 'Search engines outside of Facebook']}
-      description="Facebook allows search engines to index your profile by default. Your name, profile photo, and public content appear in Google and other search results. This applies to accounts with any public content, even if you consider your Facebook presence semi-private."
-      whatItDoesnt="Turning this off removes the permission for future crawling but does not immediately remove existing cached results from search engines. Google and other search engines may retain indexed content for weeks or months. Direct removal requires submitting removal requests through each search engine."
-    />
-
-    <SettingCard
-      name="People Can Look You Up Using Email/Phone"
-      severity="high"
-      defaultState="On"
-      webUrl="https://www.facebook.com/settings?tab=privacy"
-      webPath={['Privacy', 'How people find and contact you']}
-      description="By default, anyone with your email address or phone number can find your Facebook account by searching for it. This applies even if your profile is otherwise private. Facebook and Instagram also use this data to suggest your account to people whose contact lists you appear in."
-      whatItDoesnt="Turning these off stops people from finding you via contact information searches. It does not remove your phone number or email from Meta's systems. Meta continues to use that data internally for account security, fraud prevention, and ad targeting purposes."
-    />
-
-    <h3 class="severity-group-label">Medium</h3>
-
-    <SettingCard
-      name="Connected Third-Party Apps"
-      severity="medium"
-      defaultState="Varies"
-      webUrl="https://www.facebook.com/settings?tab=applications"
-      webPath={['Security and login', 'Apps and websites']}
-      description="Every app or service you have ever authenticated using Login with Facebook has ongoing access to your account data. The permissions granted at login — which often include profile information, friends list, and email — remain active until you manually revoke them. Many users have dozens of connected apps they no longer use or recognize."
-      whatItDoesnt="Removing an app revokes future access but does not delete data that app has already collected. The data the app acquired during its access period remains in that company's systems, governed by its own privacy policy. There is no mechanism to compel deletion."
-    />
-
-    <SettingCard
-      name="Ad Topic Preferences"
-      severity="medium"
-      defaultState="On"
-      webUrl="https://accountscenter.facebook.com/ad_preferences/ad_topics"
-      webPath={['Ad preferences', 'Ad topics']}
-      description="Meta allows you to indicate categories of ads you prefer to see less of — alcohol, gambling, parenting, political content, and others. Adjusting these preferences affects which ads are displayed. It does not affect data collection."
-      whatItDoesnt="Adjusting ad topic preferences does not reduce the data Meta collects or the sophistication of your ad profile. Meta continues building the same profile; it just displays ads from different categories. This is the most cosmetic of Meta's privacy controls."
-    />
+    {(() => {
+      let lastSeverity = null;
+      return platformData.settings.map((s) => {
+        const showLabel = s.severity !== "critical" && s.severity !== lastSeverity;
+        lastSeverity = s.severity;
+        return (
+          <>
+            {showLabel && <h3 class="severity-group-label">{s.severity.charAt(0).toUpperCase() + s.severity.slice(1)}</h3>}
+            <SettingCard
+              name={s.name}
+              severity={s.severity}
+              defaultState={s.defaultState}
+              platform={s.platform}
+              path={s.path}
+              webUrl={s.webUrl}
+              webPath={s.webPath}
+              description={s.description}
+              whatItDoesnt={s.whatItDoesnt}
+            />
+          </>
+        );
+      });
+    })()}
   </div>
 
 

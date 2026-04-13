@@ -4,6 +4,7 @@ import SettingCard from '../../components/SettingCard.astro';
 import WarningCallout from '../../components/WarningCallout.astro';
 import CrossLinkChip from '../../components/CrossLinkChip.astro';
 import FactCard from '../../components/FactCard.astro';
+import platformData from '../../data/platforms/samsung-tv.json';
 ---
 
 <PlatformLayout
@@ -12,7 +13,7 @@ import FactCard from '../../components/FactCard.astro';
   subtitle=""
   category="Smart TV Platform"
   lastVerified="April 3, 2026"
-  settingsCount={4}
+  settingsCount={platformData.settings.length}
   severity="critical"
   severityText="ACR (Automatic Content Recognition) is on by default through Viewing Information Services. Samsung settled with the Texas AG in February 2026 over ACR consent practices — the same issues for which VIZIO paid $2.2M to the FTC in 2017. Samsung Ads is a major connected TV advertising platform built on that viewership data."
   owner="Samsung Electronics Co., Ltd."
@@ -71,59 +72,29 @@ import FactCard from '../../components/FactCard.astro';
       <p>Turning off Viewing Information Services stops Samsung's ACR from sending fingerprints to its matching server. It does not delete viewership data already collected. It does not affect Samba TV's collection, which is governed by a separate setting and a separate consent. It does not affect tracking inside streaming apps — Netflix, Hulu, and others run their own tracking independently of the TV OS. Samsung has been reported to re-enable some data settings after firmware updates. Verify settings after major software updates.</p>
     </WarningCallout>
 
-    <!-- VERIFY: Samsung menu paths vary across Tizen OS versions. The paths below reflect current 2025/2026 Tizen models. Older models may use Settings > Support > Terms & Conditions > Privacy Choices. -->
-    <SettingCard
-      name="Viewing Information Services"
-      severity="critical"
-      defaultState="On"
-      platform="Samsung TV"
-      path={['Home', 'Settings', 'All Settings', 'General & Privacy', 'Terms & Conditions Privacy Policy', 'Viewing Information Services']}
-      webUrl="https://www.samsung.com/us/privacy/"
-      webPath={['Privacy', 'Your Privacy Choices']}
-      description="Samsung's ACR control. Tizen OS captures frame fingerprints from everything on screen — cable, streaming apps, HDMI sources, broadcast — and sends them to Samsung's matching servers. Matches are logged as device ID, timestamp, duration, and content ID. These records power Samsung Ads and are the data at issue in the Texas AG settlement. On some models the path is: Settings → Support → Terms & Conditions → Samsung Privacy Policy → Viewing Information Services."
-      whatItDoesnt="Turning this off stops Samsung's ACR from sending new fingerprints. It does not delete records already collected. It does not stop Samba TV's collection if Samba TV is enabled separately. It does not affect data collection inside streaming apps."
-    />
-
-    <h3 class="severity-group-label">High</h3>
-
-    <SettingCard
-      name="Samba TV / Personalized Service"
-      severity="high"
-      defaultState="On"
-      platform="Samsung TV"
-      path={['Home', 'Settings', 'All Settings', 'General & Privacy', 'Terms & Conditions Privacy Policy', 'Samba Interactive TV']}
-      webUrl="https://www.samba.tv/legal/privacy-policy/"
-      webPath={['Privacy Policy', 'Opt Out']}
-      description="Samba TV is a third-party ACR provider with its own data collection running independently of Samsung's Viewing Information Services. It operates under Samba TV's privacy policy and sells viewership data to its own set of partners. The consent for Samba TV was bundled into initial TV setup. It is a separate toggle from Viewing Information Services. Path varies by model and firmware version."
-      whatItDoesnt="Turning off Samba TV does not affect Samsung's own ACR. The two systems are independent. Samba TV's previously collected data is not deleted by disabling this setting — Samba TV's own opt-out form is required to request deletion."
-    />
-
-    <SettingCard
-      name="Interest-Based Advertising"
-      severity="high"
-      defaultState="On"
-      platform="Samsung TV"
-      path={['Home', 'Settings', 'All Settings', 'General & Privacy', 'Terms & Conditions Privacy Policy', 'Interest-Based Advertising']}
-      webUrl="https://www.samsung.com/us/privacy/"
-      webPath={['Privacy', 'Your Privacy Choices']}
-      description="Controls whether Samsung uses your viewing and usage data to personalize ads served through Samsung's own ad surfaces — the home screen, Samsung TV Plus, and Samsung's content recommendation system. With this off, Samsung still serves ads on its platforms; they are contextual rather than audience-targeted."
-      whatItDoesnt="Turning this off does not stop ACR data collection. It does not stop Samsung from collecting viewership data or using it for aggregate measurement. It changes how Samsung targets ads on its own surfaces — not whether it collects the underlying data."
-    />
-
-    <h3 class="severity-group-label">Medium</h3>
-
-    <!-- VERIFY: Samsung account cross-device settings path may vary; confirm under Samsung Account > Privacy on newer Tizen firmware -->
-    <SettingCard
-      name="Samsung Account Personalization"
-      severity="medium"
-      defaultState="On"
-      platform="Samsung TV"
-      path={['Home', 'Settings', 'All Settings', 'General & Privacy', 'Terms & Conditions Privacy Policy']}
-      webUrl="https://account.samsung.com"
-      webPath={['Account', 'Privacy', 'Personalization']}
-      description="If a Samsung account is linked to the TV, viewing data can be associated with the same account used across Samsung phones, tablets, and wearables. This enables cross-device audience profiles — the TV viewing record and the mobile device record belong to the same account. Samsung's advertising offering includes cross-screen targeting for this reason."
-      whatItDoesnt="Removing a Samsung account from the TV stops future linkage but does not delete previously associated data. The TV continues to collect device-level data; it is no longer tied to your Samsung account identifier."
-    />
+    {(() => {
+      let lastSeverity = null;
+      return platformData.settings.map((s) => {
+        const showLabel = s.severity !== "critical" && s.severity !== lastSeverity;
+        lastSeverity = s.severity;
+        return (
+          <>
+            {showLabel && <h3 class="severity-group-label">{s.severity.charAt(0).toUpperCase() + s.severity.slice(1)}</h3>}
+            <SettingCard
+              name={s.name}
+              severity={s.severity}
+              defaultState={s.defaultState}
+              platform={s.platform}
+              path={s.path}
+              webUrl={s.webUrl ?? undefined}
+              webPath={s.webPath ?? undefined}
+              description={s.description}
+              whatItDoesnt={s.whatItDoesnt}
+            />
+          </>
+        );
+      });
+    })()}
   </div>
 
   <!-- WHO GETS YOUR DATA -->

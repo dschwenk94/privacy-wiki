@@ -1,0 +1,55 @@
+{
+  "name": "Roku",
+  "slug": "roku",
+  "category": "Smart TV Platform / Streaming Platform",
+  "severity": "critical",
+  "owner": "Roku, Inc.",
+  "ownerHQ": "San Jose, CA",
+  "monthlyUsers": "~90M active accounts",
+  "settings": [
+    {
+      "name": "Use Info from TV Inputs",
+      "severity": "critical",
+      "defaultState": "On",
+      "platform": null,
+      "path": ["Settings", "Privacy", "Smart TV Experience", "Use Info from TV Inputs"],
+      "webUrl": "https://my.roku.com/account/privacy",
+      "webPath": ["Privacy", "Advertising preferences"],
+      "description": "This is Roku's ACR toggle, applicable to Roku TVs (not streaming sticks). When enabled, the TV captures what is displayed on screen from cable, antenna, and HDMI inputs and sends fingerprints to Roku's matching server. Match results — content ID, timestamp, duration — feed the Roku Ads platform and are used to build viewership audience segments sold to advertisers. The setting label 'Smart TV Experience' is Roku's name for ACR in this menu. Cross-reference: the ACR practice page covers the underlying technology.",
+      "whatItDoesnt": "Turning this off stops ACR collection from live TV inputs. It does not stop Roku from tracking which apps you use and for how long. Roku's app-level usage data collection is OS-level behavior, not controlled by this setting. It also does not delete previously collected ACR data."
+    },
+    {
+      "name": "Limit Ad Tracking",
+      "severity": "high",
+      "defaultState": "Off (tracking is on by default)",
+      "platform": null,
+      "path": ["Settings", "Privacy", "Advertising", "Limit Ad Tracking"],
+      "webUrl": "https://my.roku.com/account/privacy",
+      "webPath": ["Privacy", "Advertising preferences"],
+      "description": "Controls whether Roku uses your behavioral data to build and apply an ad targeting profile. With Limit Ad Tracking off (the default), Roku uses viewing history, app usage, search queries, and cross-device data to serve you targeted ads and to sell audience segments to advertisers through Roku Ads. Turning this on tells Roku not to use your data for interest-based ad targeting. Note the inverted logic: 'Limit Ad Tracking' toggled ON is the privacy-protective state.",
+      "whatItDoesnt": "Enabling Limit Ad Tracking does not stop Roku from collecting data. Roku still logs app launches, session duration, and usage patterns. It stops Roku from applying that data to your ad targeting profile and from including you in audience segments sold to advertisers. You will still see ads; they will not be targeted to your behavior profile."
+    },
+    {
+      "name": "Microphone Access",
+      "severity": "high",
+      "defaultState": "On (if using voice remote)",
+      "platform": null,
+      "path": ["Settings", "Privacy", "Microphone"],
+      "webUrl": "https://my.roku.com/account/privacy",
+      "webPath": ["Privacy", "Microphone settings"],
+      "description": "Roku's voice remotes send audio queries to Roku's servers for processing. Roku retains voice search queries and uses them for content recommendations and ad targeting. If you do not use the voice remote button, the microphone is not passively recording — voice capture is push-to-talk, not always-on. But when you do use it, those queries are logged and associated with your account and device.",
+      "whatItDoesnt": "Disabling microphone access prevents voice query data from being sent to Roku's servers. It does not affect the remote's other functions. If you use a third-party remote or navigate via the Roku mobile app instead, those interactions are logged through separate channels."
+    },
+    {
+      "name": "Audience Measurement",
+      "severity": "medium",
+      "defaultState": "On",
+      "platform": null,
+      "path": ["Settings", "Privacy", "Advertising", "Audience Measurement"],
+      "webUrl": "https://my.roku.com/account/privacy",
+      "webPath": ["Privacy", "Advertising preferences"],
+      "description": "Controls whether Roku shares your device usage data with third-party audience measurement companies — Nielsen and Comscore are the primary partners. This is separate from Roku's own first-party ad platform. When enabled, anonymized-but-device-linked viewing data is reported to these measurement firms for panel-level TV industry research. The data contributes to industry viewership ratings and advertiser reach measurement across platforms.",
+      "whatItDoesnt": "Turning this off stops Roku from reporting your device's data to third-party measurement partners. It does not stop Roku from collecting or using that data internally through its own Roku Ads platform. First-party ad targeting is controlled by Limit Ad Tracking, not this setting."
+    }
+  ]
+}

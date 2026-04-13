@@ -4,6 +4,7 @@ import SettingCard from '../../components/SettingCard.astro';
 import WarningCallout from '../../components/WarningCallout.astro';
 import CrossLinkChip from '../../components/CrossLinkChip.astro';
 import FactCard from '../../components/FactCard.astro';
+import platformData from '../../data/platforms/tiktok.json';
 ---
 
 <PlatformLayout
@@ -12,7 +13,7 @@ import FactCard from '../../components/FactCard.astro';
   subtitle=""
   category="Social Media Platform"
   lastVerified="March 22, 2026"
-  settingsCount={7}
+  settingsCount={platformData.settings.length}
   severity="critical"
   severityText="Off-platform tracking via TikTok Pixel, a 2026 privacy policy that added precise GPS collection, no AI training opt-out for US users, and default-on ad targeting across platforms. The data profile extends well beyond what you do in the app."
   owner="ByteDance Ltd."
@@ -67,86 +68,29 @@ import FactCard from '../../components/FactCard.astro';
 
   <!-- SETTINGS THAT MATTER -->
   <div slot="settings">
-    <SettingCard
-      name="Off-TikTok Activity"
-      severity="critical"
-      defaultState="On"
-      howToTurnOff="Tap Disconnect All or disconnect individual advertisers"
-      webUrl="https://www.tiktok.com/setting"
-      webPath={['Ads', 'Your Off-TikTok Activity']}
-      description="This is TikTok's equivalent of Meta's Off-Facebook Activity. Advertisers install TikTok's Pixel or SDK on their websites and apps. When you visit those properties, your activity is reported back to TikTok and used to target ads at you. You can view which advertisers have shared data about you, disconnect individual ones, and clear the activity history once every 24 hours. There is also a 'Disconnect All' option."
-      whatItDoesnt="Disconnecting advertisers stops them from using your off-TikTok data for future targeting. It does not delete what TikTok has already collected or processed. The TikTok Pixel on third-party sites still fires when you visit them. The data still goes to TikTok's servers. The setting controls how that data is applied to your profile, not whether it is sent."
-    />
-
-    <SettingCard
-      name="Targeted Ads Outside of TikTok"
-      severity="critical"
-      defaultState="On"
-      howToTurnOff="Toggle off; also disable App Tracking Transparency on iPhone"
-      webUrl="https://www.tiktok.com/setting"
-      webPath={['Ads', 'Targeted Ads']}
-      description="Your TikTok behavioral profile is used to serve you TikTok-informed ads on third-party platforms and websites. Your behavior inside TikTok follows you to other apps and sites. Turning this off tells TikTok not to share your profile data with ad partners for off-platform targeting. On iOS 14.5 and later, denying TikTok's App Tracking Transparency prompt via iPhone Settings overrides this toggle at the OS level."
-      whatItDoesnt="Turning this off stops TikTok from using your data to target ads on other platforms. It does not stop TikTok from building or maintaining your ad profile. Your on-platform behavior is still logged and still used for ads within TikTok."
-    />
-
-    <h3 class="severity-group-label">High</h3>
-
-    <SettingCard
-      name="Personalized Ads"
-      severity="high"
-      defaultState="On"
-      howToTurnOff="Toggle off"
-      webUrl="https://www.tiktok.com/setting"
-      webPath={['Ads', 'Personalized Ads']}
-      description="Controls whether TikTok uses your in-app behavior to select the ads you see in your For You feed. Watch history, search queries, likes, follows, and engagement patterns all feed into this. With this on, the ads are tuned to what TikTok infers about your interests and intent."
-      whatItDoesnt="Turning this off does not stop TikTok from collecting your behavioral data. The profile still gets built. You see generic ads instead of targeted ones. The data collection is unchanged. The Off-TikTok Activity and location settings need to be addressed separately."
-    />
-
-    <SettingCard
-      name="Sync Contacts and Facebook Friends"
-      severity="high"
-      defaultState="Off (prompted during onboarding)"
-      howToTurnOff="Toggle off; tap Remove previously synced contacts"
-      webUrl="https://www.tiktok.com/setting"
-      webPath={['Privacy', 'Sync contacts and Facebook friends']}
-      description="When enabled, TikTok uploads your phone contacts and Facebook friends list to its servers to find people you know and suggest your account to them. The data is sent regardless of whether any matches are found. TikTok uses this to build social graphs. If you previously synced contacts, tap 'Remove previously synced contacts' to request deletion. The same option exists for Facebook friends."
-      whatItDoesnt="Removing previously synced contacts deletes them from TikTok's contact-sync database for future use. It does not affect inferences already drawn from that data. Your account may still be suggested to people who synced contacts containing your phone number."
-    />
-
-    <h3 class="severity-group-label">Medium</h3>
-
-    <SettingCard
-      name="Suggest Your Account to Others"
-      severity="medium"
-      defaultState="On"
-      howToTurnOff="Disable all toggles"
-      webUrl="https://www.tiktok.com/setting"
-      webPath={['Privacy', 'Suggest your account to others']}
-      description="TikTok recommends your profile to other users based on your phone number, email, or contacts who have your information. Separate toggles exist for contacts, Facebook friends, and people who open or send links. Each can be disabled independently."
-      whatItDoesnt="Turning off all suggestion toggles reduces account recommendations driven by contact data. It does not make your public profile unsearchable or prevent your content from appearing in the For You feed of people you do not know."
-    />
-
-    <SettingCard
-      name="Browser Autofill"
-      severity="medium"
-      defaultState="On"
-      howToTurnOff="Toggle off; or open links in default browser"
-      webUrl="https://www.tiktok.com/setting"
-      webPath={['Security and Permissions', 'User Information']}
-      description="TikTok has its own in-app browser used when you tap links inside the app. This browser can autofill payment information and contact information on sites you visit within TikTok. Separate toggles exist for each. You can also access browser settings by tapping the three-dot menu while on a page inside TikTok's browser."
-      whatItDoesnt="Turning off autofill stops TikTok from pre-filling forms in its in-app browser. TikTok's in-app browser can still observe your activity on pages you open inside the app. Autofill and page-level browsing data are separate behaviors."
-    />
-
-    <SettingCard
-      name="Connected Apps"
-      severity="medium"
-      defaultState="Varies"
-      howToTurnOff="Revoke access for unused apps"
-      webUrl="https://www.tiktok.com/setting"
-      webPath={['Security and Permissions', 'Apps and Services Permissions']}
-      description="Third-party apps you have authenticated with your TikTok account via TikTok login. Each may have ongoing access to your profile, follower list, and in some cases content permissions. TikTok's Security Checkup tool, also in the Security and Permissions menu, walks through connected apps as part of an account review."
-      whatItDoesnt="Revoking a connected app's permissions stops future access. It does not delete data the app already collected before revocation."
-    />
+    {(() => {
+      let lastSeverity = null;
+      return platformData.settings.map((s) => {
+        const showLabel = s.severity !== "critical" && s.severity !== lastSeverity;
+        lastSeverity = s.severity;
+        return (
+          <>
+            {showLabel && <h3 class="severity-group-label">{s.severity.charAt(0).toUpperCase() + s.severity.slice(1)}</h3>}
+            <SettingCard
+              name={s.name}
+              severity={s.severity}
+              defaultState={s.defaultState}
+              platform={s.platform}
+              path={s.path}
+              webUrl={s.webUrl}
+              webPath={s.webPath}
+              description={s.description}
+              whatItDoesnt={s.whatItDoesnt}
+            />
+          </>
+        );
+      });
+    })()}
   </div>
 
 

@@ -1,0 +1,44 @@
+{
+  "name": "VIZIO",
+  "slug": "vizio",
+  "category": "Smart TV Platform",
+  "severity": "critical",
+  "owner": "Walmart, Inc.",
+  "ownerHQ": "Bentonville, AR",
+  "monthlyUsers": "~18M SmartCast users",
+  "settings": [
+    {
+      "name": "Viewing Data",
+      "severity": "critical",
+      "defaultState": "On",
+      "platform": null,
+      "path": ["Settings", "Admin & Privacy", "Viewing Data"],
+      "webUrl": "https://www.vizio.com/en/terms/privacy-policy",
+      "webPath": ["Privacy Policy", "Your Privacy Choices"],
+      "description": "VIZIO's ACR control. The TV captures screen fingerprints and sends them to Inscape (now VIZIO Ads) for content matching. Match records — what your household watched, when, and for how long — are sold to Comscore, Nielsen, VideoAmp, iSpot, and programmatic ad platforms. Data is tied to a device ID and enriched with demographic estimates before sale. This is the setting VIZIO failed to disclose before the 2017 FTC action. On older models: Menu → System → Reset & Admin → Viewing Data → Off. On newer SmartCast models: Settings → Admin & Privacy → Viewing Data → Off.",
+      "whatItDoesnt": "Turning this off stops new ACR collection. It does not delete data already collected or sold. VIZIO's privacy opt-out form can be used to request deletion of previously collected data, but it cannot reverse data already shared with third parties."
+    },
+    {
+      "name": "Interest Based Ads",
+      "severity": "high",
+      "defaultState": "On",
+      "platform": null,
+      "path": ["Settings", "Admin & Privacy", "Interest Based Ads"],
+      "webUrl": "https://www.vizio.com/en/terms/privacy-policy",
+      "webPath": ["Privacy Policy", "Your Privacy Choices"],
+      "description": "Controls whether VIZIO uses your viewership data to target ads served within SmartCast — the home screen, the SmartCast channel, and VIZIO's ad-supported content. With this off, VIZIO still serves ads; they are contextual rather than audience-targeted. The SmartCast home screen remains an ad surface either way. On older models: Menu → System → Reset & Admin → Interest Based Ads → Off.",
+      "whatItDoesnt": "Turning this off does not stop VIZIO from collecting viewership data or selling it to measurement companies. It stops VIZIO from using that data to personalize the ads it serves on its own platform. Data licensing to Comscore, Nielsen, and others is controlled by the Viewing Data setting, not this one."
+    },
+    {
+      "name": "SmartCast Home Screen Personalization",
+      "severity": "medium",
+      "defaultState": "On",
+      "platform": null,
+      "path": ["Settings", "Admin & Privacy", "Personalization"],
+      "webUrl": "https://www.vizio.com/en/terms/privacy-policy",
+      "webPath": ["Privacy Policy", "Your Privacy Choices"],
+      "description": "Controls whether VIZIO personalizes the SmartCast home screen based on your viewing and app usage history. When enabled, the featured content row, app recommendations, and promoted content are tuned to your usage patterns. These are commercial placements — paid slots — not editorial picks. Personalization uses SmartCast usage data and, if Viewing Data is on, ACR data.",
+      "whatItDoesnt": "Turning this off does not remove ads from the SmartCast home screen. You will see generic promoted content rather than audience-targeted content. The underlying data collection continues; only the personalization layer changes."
+    }
+  ]
+}

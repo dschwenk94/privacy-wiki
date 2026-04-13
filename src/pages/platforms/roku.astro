@@ -4,6 +4,7 @@ import SettingCard from '../../components/SettingCard.astro';
 import WarningCallout from '../../components/WarningCallout.astro';
 import CrossLinkChip from '../../components/CrossLinkChip.astro';
 import FactCard from '../../components/FactCard.astro';
+import platformData from '../../data/platforms/roku.json';
 ---
 
 <PlatformLayout
@@ -12,7 +13,7 @@ import FactCard from '../../components/FactCard.astro';
   subtitle=""
   category="Smart TV Platform / Streaming Platform"
   lastVerified="April 3, 2026"
-  settingsCount={4}
+  settingsCount={platformData.settings.length}
   severity="critical"
   severityText="Roku collects at the OS level, which means it sees activity across every app on the device — not just the Roku Channel. ACR, app launch data, viewing duration, and cross-device identity are all on by default. Roku's entire business is advertising and data licensing. The hardware is how it gets into your living room."
   owner="Roku, Inc."
@@ -71,54 +72,29 @@ import FactCard from '../../components/FactCard.astro';
       <p>Turning off Use Info from TV Inputs stops Roku from reading screen content via ACR on live TV inputs. It does not stop Roku from tracking app launches, session duration, and device usage across all apps on the device. Roku still owns the OS layer. Limit Ad Tracking controls how your ad profile is used, not whether it is built. Voice data collection requires a separate check. There is no single setting that stops all data collection on a Roku device.</p>
     </WarningCallout>
 
-    <SettingCard
-      name="Use Info from TV Inputs"
-      severity="critical"
-      defaultState="On"
-      path={['Settings', 'Privacy', 'Smart TV Experience', 'Use Info from TV Inputs']}
-      webUrl="https://my.roku.com/account/privacy"
-      webPath={['Privacy', 'Advertising preferences']}
-      description="This is Roku's ACR toggle, applicable to Roku TVs (not streaming sticks). When enabled, the TV captures what is displayed on screen from cable, antenna, and HDMI inputs and sends fingerprints to Roku's matching server. Match results — content ID, timestamp, duration — feed the Roku Ads platform and are used to build viewership audience segments sold to advertisers. The setting label 'Smart TV Experience' is Roku's name for ACR in this menu. Cross-reference: the ACR practice page covers the underlying technology."
-      whatItDoesnt="Turning this off stops ACR collection from live TV inputs. It does not stop Roku from tracking which apps you use and for how long. Roku's app-level usage data collection is OS-level behavior, not controlled by this setting. It also does not delete previously collected ACR data."
-    />
-
-    <h3 class="severity-group-label">High</h3>
-
-    <SettingCard
-      name="Limit Ad Tracking"
-      severity="high"
-      defaultState="Off (tracking is on by default)"
-      path={['Settings', 'Privacy', 'Advertising', 'Limit Ad Tracking']}
-      webUrl="https://my.roku.com/account/privacy"
-      webPath={['Privacy', 'Advertising preferences']}
-      description="Controls whether Roku uses your behavioral data to build and apply an ad targeting profile. With Limit Ad Tracking off (the default), Roku uses viewing history, app usage, search queries, and cross-device data to serve you targeted ads and to sell audience segments to advertisers through Roku Ads. Turning this on tells Roku not to use your data for interest-based ad targeting. Note the inverted logic: 'Limit Ad Tracking' toggled ON is the privacy-protective state."
-      whatItDoesnt="Enabling Limit Ad Tracking does not stop Roku from collecting data. Roku still logs app launches, session duration, and usage patterns. It stops Roku from applying that data to your ad targeting profile and from including you in audience segments sold to advertisers. You will still see ads; they will not be targeted to your behavior profile."
-    />
-
-    <SettingCard
-      name="Microphone Access"
-      severity="high"
-      defaultState="On (if using voice remote)"
-      path={['Settings', 'Privacy', 'Microphone']}
-      webUrl="https://my.roku.com/account/privacy"
-      webPath={['Privacy', 'Microphone settings']}
-      description="Roku's voice remotes send audio queries to Roku's servers for processing. Roku retains voice search queries and uses them for content recommendations and ad targeting. If you do not use the voice remote button, the microphone is not passively recording — voice capture is push-to-talk, not always-on. But when you do use it, those queries are logged and associated with your account and device."
-      whatItDoesnt="Disabling microphone access prevents voice query data from being sent to Roku's servers. It does not affect the remote's other functions. If you use a third-party remote or navigate via the Roku mobile app instead, those interactions are logged through separate channels."
-    />
-
-    <!-- VERIFY: 'Audience Measurement' may appear as a separate toggle or may have been renamed across OS versions -->
-    <h3 class="severity-group-label">Medium</h3>
-
-    <SettingCard
-      name="Audience Measurement"
-      severity="medium"
-      defaultState="On"
-      path={['Settings', 'Privacy', 'Advertising', 'Audience Measurement']}
-      webUrl="https://my.roku.com/account/privacy"
-      webPath={['Privacy', 'Advertising preferences']}
-      description="Controls whether Roku shares your device usage data with third-party audience measurement companies — Nielsen and Comscore are the primary partners. This is separate from Roku's own first-party ad platform. When enabled, anonymized-but-device-linked viewing data is reported to these measurement firms for panel-level TV industry research. The data contributes to industry viewership ratings and advertiser reach measurement across platforms."
-      whatItDoesnt="Turning this off stops Roku from reporting your device's data to third-party measurement partners. It does not stop Roku from collecting or using that data internally through its own Roku Ads platform. First-party ad targeting is controlled by Limit Ad Tracking, not this setting."
-    />
+    {(() => {
+      let lastSeverity = null;
+      return platformData.settings.map((s) => {
+        const showLabel = s.severity !== "critical" && s.severity !== lastSeverity;
+        lastSeverity = s.severity;
+        return (
+          <>
+            {showLabel && <h3 class="severity-group-label">{s.severity.charAt(0).toUpperCase() + s.severity.slice(1)}</h3>}
+            <SettingCard
+              name={s.name}
+              severity={s.severity}
+              defaultState={s.defaultState}
+              platform={s.platform}
+              path={s.path}
+              webUrl={s.webUrl ?? undefined}
+              webPath={s.webPath ?? undefined}
+              description={s.description}
+              whatItDoesnt={s.whatItDoesnt}
+            />
+          </>
+        );
+      });
+    })()}
   </div>
 
   <!-- WHO GETS YOUR DATA -->

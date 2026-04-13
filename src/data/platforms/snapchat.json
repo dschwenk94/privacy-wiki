@@ -1,0 +1,88 @@
+{
+  "name": "Snapchat",
+  "slug": "snapchat",
+  "category": "Social Media Platform",
+  "severity": "high",
+  "owner": "Snap Inc.",
+  "ownerHQ": "Santa Monica, CA",
+  "monthlyUsers": "~800M MAU",
+  "settings": [
+    {
+      "name": "Snap Map Location Sharing",
+      "severity": "critical",
+      "defaultState": "Varies (Ghost Mode recommended)",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://myaccount.snapchat.com/",
+      "webPath": ["Privacy Controls", "See My Location"],
+      "description": "Snap Map shows your real-time location to selected friends or all friends by default if you have previously shared your location. Ghost Mode prevents your location from appearing on the Snap Map for other users. However, enabling Ghost Mode stops your location from being shown to friends — it does not stop Snap from collecting your location internally. Snap continues to use location data for ad targeting, local content, and product personalization regardless of Ghost Mode.",
+      "whatItDoesnt": "Ghost Mode hides your location from other Snapchat users. It does not stop Snapchat from collecting your location. Snap's privacy policy explicitly states that location data is used for advertising and personalization regardless of Snap Map visibility settings. To limit location collection, deny Snapchat's location permission in your phone's Settings app entirely."
+    },
+    {
+      "name": "Ad Preferences (Lifestyle Categories)",
+      "severity": "high",
+      "defaultState": "On",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://myaccount.snapchat.com/",
+      "webPath": ["Ad Preferences", "Lifestyle & Interests"],
+      "description": "Snap builds an interest profile based on your in-app behavior and uses it to target ads. Your Snap Map activity, Stories views, Spotlight engagement, search queries, and Lens usage all contribute to this profile. The Ad Preferences section shows the inferred interest categories Snap has assigned to you. Each category can be toggled off individually.",
+      "whatItDoesnt": "Toggling off interest categories stops Snap from using those specific inferences for ad selection. It does not stop Snap from collecting behavioral data or updating the inferred interest model. Your profile continues to exist; the categories you disable are excluded from targeting use until Snap re-infers them from future behavior."
+    },
+    {
+      "name": "Data Sharing for Personalized Ads",
+      "severity": "high",
+      "defaultState": "On",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://myaccount.snapchat.com/",
+      "webPath": ["Ad Preferences", "Audience-Based Ads"],
+      "description": "Snap allows advertisers to upload customer lists (email addresses, phone numbers) to match against Snap user accounts for targeting. This is called Audience Match. If an advertiser has your contact information, they can target you on Snapchat even if you have no direct relationship with that brand on the platform. Advertisers also receive aggregated audience data and behavioral signals for campaign optimization.",
+      "whatItDoesnt": "Turning off audience-based ad targeting stops advertisers from reaching you via uploaded contact lists. It does not stop contextual or interest-based ad targeting. Snap continues to use your in-app behavioral profile to serve ads; the mechanism excluded is the customer list matching specifically."
+    },
+    {
+      "name": "Third-Party Activity for Ads",
+      "severity": "high",
+      "defaultState": "On",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://myaccount.snapchat.com/",
+      "webPath": ["Ad Preferences", "Third-party activity for ads"],
+      "description": "Snap uses data from the Snap Pixel and Snap SDK installed on third-party websites and apps to build your ad targeting profile and measure ad effectiveness. When you visit a website that has Snap's tracking code, your activity is reported to Snap. Turning this off instructs Snap not to use that off-platform data for ad targeting.",
+      "whatItDoesnt": "Turning this off stops Snap from using off-platform data to target ads at you. It does not stop the Snap Pixel from firing when you visit third-party sites. The data is still sent to Snap's servers; the setting controls how it is applied to your profile, not whether it is collected."
+    },
+    {
+      "name": "My AI Data Usage",
+      "severity": "high",
+      "defaultState": "On",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://myaccount.snapchat.com/",
+      "webPath": ["Privacy Controls", "Clear My AI History"],
+      "description": "My AI is Snapchat's chatbot powered by OpenAI's GPT models, pinned to the top of the Chat feed. Conversations with My AI are retained by Snap and used to improve AI products. You can clear your My AI conversation history, which removes the visible chat. Snap retains usage data for safety and product improvement. Removing the My AI pin from the chat feed requires a Snapchat+ paid subscription.",
+      "whatItDoesnt": "Clearing My AI history removes the visible conversation. It does not guarantee deletion of all data derived from those conversations from Snap's systems. There is no setting to opt out of My AI data being used for AI model improvement. The only way to avoid this data collection is to not use My AI."
+    },
+    {
+      "name": "Connected Apps",
+      "severity": "medium",
+      "defaultState": "Varies",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://myaccount.snapchat.com/",
+      "webPath": ["Privacy Controls", "Connected Apps"],
+      "description": "Third-party apps and services you have authorized with your Snapchat account via Snap Kit (Snap's login and sharing SDK). These apps may have ongoing access to your Snapchat profile, Bitmoji, and in some cases your friend list. Each app operates under its own privacy policy.",
+      "whatItDoesnt": "Revoking a connected app's access stops future data collection by that app. It does not delete data the app already collected before revocation."
+    },
+    {
+      "name": "My Data Download",
+      "severity": "medium",
+      "defaultState": "Available on request",
+      "platform": null,
+      "path": null,
+      "webUrl": "https://accounts.snapchat.com/accounts/downloadmydata",
+      "webPath": ["Privacy Controls", "My Data", "Submit Request"],
+      "description": "Snap allows you to request a download of your account data including account history, search history, location history, ad preferences, purchase history, and login history. The download does not include the content of expired Snaps but does include metadata about sent and received messages.",
+      "whatItDoesnt": "The My Data download provides a snapshot of data Snap has about you. It does not include all data in Snap's systems, particularly data derived from your behavior that is used for targeting but not stored in user-readable form. Downloading your data does not delete it."
+    }
+  ]
+}

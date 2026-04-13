@@ -4,6 +4,7 @@ import SettingCard from '../../components/SettingCard.astro';
 import WarningCallout from '../../components/WarningCallout.astro';
 import CrossLinkChip from '../../components/CrossLinkChip.astro';
 import FactCard from '../../components/FactCard.astro';
+import platformData from '../../data/platforms/google.json';
 ---
 
 <PlatformLayout
@@ -12,7 +13,7 @@ import FactCard from '../../components/FactCard.astro';
   subtitle=""
   category="Search, Advertising, and Cloud Platform"
   lastVerified="March 23, 2026"
-  settingsCount={6}
+  settingsCount={platformData.settings.length}
   severity="critical"
   severityText="Google Analytics and the Google Ads network are present on roughly 90% of top websites, making Google's off-platform reach larger than any other single company on the internet. Cross-product data combination — Search, YouTube, Maps, Gmail, Chrome, Android — produces profiles with no close equivalent. The Location History Timeline and Web and App Activity settings are on by default and require manual action to address."
   owner="Alphabet Inc."
@@ -67,71 +68,29 @@ import FactCard from '../../components/FactCard.astro';
 
   <!-- SETTINGS THAT MATTER -->
   <div slot="settings">
-    <SettingCard
-      name="Web and App Activity"
-      severity="critical"
-      defaultState="On"
-      webUrl="https://myaccount.google.com/activitycontrols"
-      webPath={['Data and Privacy', 'Web and App Activity']}
-      description="This is the master switch for Google's behavioral data collection across Search, Maps, YouTube (when not signed in), Chrome, and Android apps. When on, Google logs your activity across these products and uses it to personalize search results, recommendations, and ads. It includes a sub-option to include Chrome history and activity from sites and apps that use Google services. That sub-option covers the off-platform Google Analytics and Google Ads tracking network."
-      whatItDoesnt="Turning off Web and App Activity stops Google from saving new activity to your account. It does not delete what has already been collected. Google Analytics on third-party websites still reports your visits to Google — the setting controls whether that data is saved to your profile, not whether it is transmitted. Off-platform tracking via Google's ad network continues; this setting controls what is logged against your account."
-    />
-
-    <h3 class="severity-group-label">High</h3>
-
-    <SettingCard
-      name="Location History (Timeline)"
-      severity="high"
-      defaultState="Off for new accounts (since 2024); server-side for accounts that had it enabled"
-      webUrl="https://myaccount.google.com/activitycontrols/location"
-      webPath={['Data and Privacy', 'Location History']}
-      description="Controls whether Google Maps saves a detailed record of every place you visit to your Google Account. When enabled and synced to Google's servers, this produces a day-by-day record of your physical movements including home, work, and locations you visit regularly. Since 2024, new accounts default to on-device storage only. Existing accounts with server-side Timeline retain that data on Google's servers until manually deleted. The setting also controls whether Google can infer your home and work locations from your movement patterns."
-      whatItDoesnt="Turning off Location History does not stop Google from estimating your location for other purposes: IP address geolocation is used for local search results and ad targeting regardless of this setting. Location embedded in photos you upload to Google Photos is stored separately and is not controlled by this toggle. Google may still receive your location from the Google Maps app for real-time navigation even with this off."
-    />
-
-    <SettingCard
-      name="YouTube History"
-      severity="high"
-      defaultState="On"
-      howToTurnOff="Toggle off"
-      webUrl="https://myaccount.google.com/activitycontrols/youtube"
-      webPath={['Data and Privacy', 'YouTube History']}
-      description="Logs every video you watch and every search you perform on YouTube to your Google Account. YouTube watch history directly feeds the recommendation algorithm and is used for ad targeting. Separate from Web and App Activity, this toggle covers YouTube-specific activity only. Auto-delete options are available at 3, 18, and 36 months."
-      whatItDoesnt="Turning off YouTube History stops history from being saved to your account. It does not prevent YouTube from using your current session behavior to personalize recommendations during that session. It does not affect ad targeting based on other Google signals outside of YouTube."
-    />
-
-    <SettingCard
-      name="Ad Personalization"
-      severity="high"
-      defaultState="On"
-      howToTurnOff="Disable"
-      webUrl="https://myaccount.google.com/data-and-privacy"
-      webPath={['Ad personalization', 'Go to ad settings']}
-      description="Controls whether Google uses your behavioral data to select which ads you see across Google Search, YouTube, Gmail, and the Google Display Network (which covers millions of third-party websites). You can also view and remove individual interest categories Google has inferred about you. The page shows inferred demographics including estimated age range, gender, and household income bracket. Advertisers bid on these segments through Google Ads and DV360 (DoubleClick)."
-      whatItDoesnt="Turning off ad personalization means you see generic ads instead of targeted ones. It does not stop Google from collecting behavioral data. It does not stop Google Analytics from measuring your activity on third-party sites. Advertisers using conversion tracking still receive signals about your behavior."
-    />
-
-    <SettingCard
-      name="Connected Apps and Sites"
-      severity="high"
-      defaultState="Varies"
-      webUrl="https://myaccount.google.com/permissions"
-      webPath={['Data from apps and services you use', 'Connected apps']}
-      description="Third-party apps and websites you have signed into using Sign in with Google. Each may have read or write access to Google data including your email address, profile information, calendar, contacts, or Drive files — depending on the permissions you granted. Some apps request only basic profile data; others request ongoing access to Gmail or Calendar. Permissions persist until manually revoked, even if you have stopped using the app."
-      whatItDoesnt="Revoking an app's access removes its ability to make future API calls to your Google data. It does not delete data the app already retrieved. It does not affect Google's own data collection — only what third-party apps can access."
-    />
-
-    <h3 class="severity-group-label">Medium</h3>
-
-    <SettingCard
-      name="Shared Endorsements in Ads"
-      severity="medium"
-      defaultState="On"
-      webUrl="https://myaccount.google.com/shared-endorsements"
-      webPath={['Data and Privacy', 'Shared endorsements in ads']}
-      description="When this is on, your name, profile photo, and ratings or reviews you've left in Google products (Maps, Play Store, etc.) can appear next to ads shown to your Google connections. This is a form of social proof advertising. Your review of a restaurant may appear as an endorsement in an ad shown to someone in your contacts."
-      whatItDoesnt="Turning this off stops Google from using your identity in social proof ad units. It does not affect review visibility in Maps or the Play Store. It does not affect ad targeting."
-    />
+    {(() => {
+      let lastSeverity = null;
+      return platformData.settings.map((s) => {
+        const showLabel = s.severity !== "critical" && s.severity !== lastSeverity;
+        lastSeverity = s.severity;
+        return (
+          <>
+            {showLabel && <h3 class="severity-group-label">{s.severity.charAt(0).toUpperCase() + s.severity.slice(1)}</h3>}
+            <SettingCard
+              name={s.name}
+              severity={s.severity}
+              defaultState={s.defaultState}
+              platform={s.platform}
+              path={s.path}
+              webUrl={s.webUrl ?? undefined}
+              webPath={s.webPath ?? undefined}
+              description={s.description}
+              whatItDoesnt={s.whatItDoesnt}
+            />
+          </>
+        );
+      });
+    })()}
   </div>
 
 
