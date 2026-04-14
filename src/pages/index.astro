@@ -1,10 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-type Platform = { name: string; href: string; description: string };
-type PlatformGroup = { label: string; platforms: Platform[] };
-
-const platformGroups: PlatformGroup[] = [
+const platformGroups = [
   {
     label: 'Social Media',
     platforms: [
@@ -86,7 +83,7 @@ const platformGroups: PlatformGroup[] = [
     ],
   },
 ];
-const rights: Array<{ name: string; href: string; description: string }> = [
+const rights = [
   {
     name: 'COPPA',
     href: '/rights/coppa',
@@ -109,7 +106,7 @@ const rights: Array<{ name: string; href: string; description: string }> = [
   },
 ];
 
-const dataBrokers: Array<{ name: string; href: string; description: string }> = [
+const dataBrokers = [
   {
     name: 'Acxiom',
     href: '/data-brokers/acxiom',
@@ -127,7 +124,7 @@ const dataBrokers: Array<{ name: string; href: string; description: string }> = 
   },
 ];
 
-const practices: Array<{ name: string; href: string; description: string }> = [
+const practices = [
   {
     name: 'Automatic Content Recognition (ACR)',
     href: '/practices/acr',
