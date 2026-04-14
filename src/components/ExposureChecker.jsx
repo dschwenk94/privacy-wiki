@@ -12,79 +12,47 @@ import vizio from '../data/platforms/vizio.json';
 import x from '../data/platforms/x.json';
 import youtube from '../data/platforms/youtube.json';
 
-type Severity = 'critical' | 'high' | 'medium';
-
-interface RawSetting {
-  name: string;
-  severity: string;
-  defaultState: string;
-  description: string;
-  whatItDoesnt?: string | null;
-  path?: string[] | null;
-  webUrl?: string | null;
-  webPath?: string[] | null;
-}
-
-interface PlatformData {
-  name: string;
-  slug: string;
-  settings: RawSetting[];
-}
-
-interface FlatSetting {
-  name: string;
-  severity: Severity;
-  defaultState: string;
-  description: string;
-  whatItDoesnt?: string | null;
-  path?: string[] | null;
-  webUrl?: string | null;
-  webPath?: string[] | null;
-  platformName: string;
-  platformSlug: string;
-}
-
-const SEV_ORDER: Record<string, number> = { critical: 0, high: 1, medium: 2 };
-const SEV_COLOR: Record<string, string> = {
+const SEV_ORDER = { critical: 0, high: 1, medium: 2 };
+const SEV_COLOR = {
   critical: '#e53e3e',
   high: '#d69e2e',
   medium: '#b7791f',
 };
 
-const CATEGORIES: { label: string; platforms: PlatformData[] }[] = [
+const CATEGORIES = [
   {
     label: 'Social Media',
-    platforms: [tiktok, x, meta, reddit, snapchat] as PlatformData[],
+    platforms: [tiktok, x, meta, reddit, snapchat],
   },
   {
     label: 'Search & Advertising',
-    platforms: [google] as PlatformData[],
+    platforms: [google],
   },
   {
     label: 'Streaming & Entertainment',
-    platforms: [youtube] as PlatformData[],
+    platforms: [youtube],
   },
   {
     label: 'Retail & E-Commerce',
-    platforms: [amazon] as PlatformData[],
+    platforms: [amazon],
   },
   {
     label: 'Smart TVs',
-    platforms: [vizio, roku, samsungTv] as PlatformData[],
+    platforms: [vizio, roku, samsungTv],
   },
 ];
 
-function firstSentence(text: string): string {
+function firstSentence(text) {
   const m = text.match(/^[^.!?]+[.!?]/);
   return m ? m[0].trim() : text;
 }
 
 export default function ExposureChecker() {
-  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [selected, setSelected] = useState(new Set());
   const [quickWins, setQuickWins] = useState(false);
-  const [expanded, setExpanded] = useState<Set<string>>(new Set());
+  const [expanded, setExpanded] = useState(new Set());
 
-  function toggle(slug: string) {
+  function toggle(slug) {
     setSelected(prev => {
       const next = new Set(prev);
       if (next.has(slug)) next.delete(slug);
@@ -93,7 +61,7 @@ export default function ExposureChecker() {
     });
   }
 
-  function toggleExpand(key: string) {
+  function toggleExpand(key) {
     setExpanded(prev => {
       const next = new Set(prev);
       if (next.has(key)) next.delete(key);
@@ -102,14 +70,13 @@ export default function ExposureChecker() {
     });
   }
 
-  const allSettings: FlatSetting[] = [];
+  const allSettings = [];
   for (const cat of CATEGORIES) {
     for (const p of cat.platforms) {
       if (selected.has(p.slug)) {
         for (const s of p.settings) {
           allSettings.push({
             ...s,
-            severity: s.severity as Severity,
             platformName: p.name,
             platformSlug: p.slug,
           });
@@ -205,7 +172,7 @@ export default function ExposureChecker() {
                 <div
                   key={key}
                   className="ec-card"
-                  style={{ '--sev': color } as React.CSSProperties}
+                  style={{ '--sev': color }}
                 >
                   <div className="ec-card-top">
                     <div className="ec-card-left">
@@ -294,7 +261,6 @@ export default function ExposureChecker() {
 }
 
 const STYLES = `
-  /* ── Platform selection grid ── */
   .ec-grid {
     display: flex;
     flex-direction: column;
@@ -356,7 +322,6 @@ const STYLES = `
     font-family: 'IBM Plex Sans', system-ui, sans-serif;
   }
 
-  /* ── Results area ── */
   .ec-results {
     border-top: 1px solid #2a2a2a;
     padding-top: 1.5rem;
@@ -420,7 +385,6 @@ const STYLES = `
     font-family: 'IBM Plex Sans', system-ui, sans-serif;
   }
 
-  /* ── Setting cards ── */
   .ec-list {
     display: flex;
     flex-direction: column;
@@ -569,7 +533,6 @@ const STYLES = `
     color: #c0c0c0;
   }
 
-  /* ── Expanded view ── */
   .ec-expanded {
     border-top: 1px solid #2a2a2a;
     border-left: 3px solid var(--sev);
